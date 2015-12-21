@@ -30,7 +30,7 @@ for (project in projects) {
       logRotator { numToKeep 30 }
 
       steps {
-        shell("./${job}.sh")
+        shell("./scripts/${job}.sh")
       }
 
       wrappers {
