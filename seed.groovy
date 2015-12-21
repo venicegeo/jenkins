@@ -35,9 +35,11 @@ for (project in projects) {
 
       publishers {
         slackNotifications {
+          notifyBuildStart()
           notifyAborted()
           notifyFailure()
           notifyNotBuilt()
+          notifySuccess()
           notifyUnstable()
           notifyBackToNormal()
         }
