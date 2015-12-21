@@ -9,16 +9,16 @@ def projects = [
 for (project in projects) {
   for (job in project.jobs) {
 
-    freeStyleJob ('${project.name}-${job}') {
+    freeStyleJob ("${project.name}-${job}") {
       properties {
-        githubProjectUrl 'https://github.com/venicegeo/${project.name}'
+        githubProjectUrl "https://github.com/venicegeo/${project.name}"
       }
 
       scm {
         git {
           remote {
-            github 'venicegeo/${project.name}'
-            credentials 'github'
+            github "venicegeo/${project.name}"
+            credentials "github"
           }
         }
       }
@@ -30,7 +30,7 @@ for (project in projects) {
       logRotator { numToKeep 30 }
 
       steps {
-        shell('./${job}.sh')
+        shell("./${job}.sh")
       }
 
       wrappers {
