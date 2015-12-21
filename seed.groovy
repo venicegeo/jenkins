@@ -33,6 +33,16 @@ for (project in projects) {
         shell("./scripts/${job}.sh")
       }
 
+      publishers {
+        slackNotifications {
+          notifyAborted()
+          notifyFailure()
+          notifyNotBuilt()
+          notifyUnstable()
+          notifyBackToNormal()
+        }
+      }
+
       wrappers {
         colorizeOutput()
       }
