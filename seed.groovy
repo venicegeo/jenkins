@@ -18,7 +18,7 @@ for (project in projects) {
         git {
           remote {
             github "venicegeo/${project.name}"
-            credentials "github"
+            credentials 'fa3aab48-4edc-446d-b1e2-1d89d86f4458'
           }
         }
       }
