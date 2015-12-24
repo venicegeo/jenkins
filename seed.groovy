@@ -1,9 +1,5 @@
 def projects = [
-  [name: 'pz-dispatcher', jobs: ['setup', 'build']],
-  [name: 'pz-gateway', jobs: ['setup', 'build']],
-  [name: 'pz-jobcommon', jobs: ['setup', 'build']],
-  [name: 'pz-jobmanager', jobs: ['setup', 'build']],
-  [name: 'pz-serviceregistry', jobs: ['setup', 'build']]
+  [name: 'refapp-devops', jobs: ['setup']]
 ]
 
 for (project in projects) {
@@ -30,7 +26,8 @@ for (project in projects) {
       logRotator { numToKeep 30 }
 
       steps {
-        shell("./scripts/${job}.sh")
+        shell("git clean -xffd")
+        shell("./build/${job}.sh")
       }
 
       publishers {
