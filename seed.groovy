@@ -1,5 +1,5 @@
 def projects = [
-  [name: 'refapp-devops', jobs: ['setup']]
+  [name: 'refapp-devops', jobs: ['setup', 'artifact', 'build-test']]
 ]
 
 for (project in projects) {
