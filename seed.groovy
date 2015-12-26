@@ -59,6 +59,7 @@ for (p in projects) {
             resetIfExists false
             pluginTimeout 120
             servicesToCreate ''
+            appURIs ''
             manifestChoice {
               value 'manifestFile'
               manifestFile 'manifest.yml'
