@@ -48,7 +48,7 @@ for (p in projects) {
 
       if (job == 'deliver') {
         configure { project ->
-          project / publisher << 'com.hpe.cloudfoundryjenkins.CloudFoundryPushPublisher' {
+          project / publishers << 'com.hpe.cloudfoundryjenkins.CloudFoundryPushPublisher' {
             target 'http://api.cf.piazzageo.io</target>'
             organization 'piazza'
             space 'dev'
