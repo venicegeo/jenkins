@@ -20,7 +20,9 @@ for (p in projects) {
       }
 
       triggers {
-        githubPush()
+        if (job != 'deliver') {
+          githubPush()
+        }
       }
 
       logRotator { numToKeep 30 }
