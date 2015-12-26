@@ -58,7 +58,7 @@ for (p in projects) {
             selfSigned true
             resetIfExists false
             pluginTimeout 120
-            servicesToCreate
+            servicesToCreate ''
             manifestChoice {
               value 'manifestFile'
               manifestFile 'manifest.yml'
