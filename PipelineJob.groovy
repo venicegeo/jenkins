@@ -1,5 +1,3 @@
-package pipeline
-
 class PipelineJob {
   def project
   def step

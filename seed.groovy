@@ -1,4 +1,4 @@
-import pipeline.PipelineJob
+import PipelineJob
 
 def projects = [
   [
