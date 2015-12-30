@@ -24,7 +24,9 @@ for (p in projects) {
 
     if (s == 'cf-deliver') {
       jobs[s].deliver()
-    } else {
+    }
+
+    if ( p.pipeline[i+1] ) {
       jobs[s].job.with {
         publishers {
           downstream("${p.name}-${p.pipeline[i+1]}", "SUCCESS")
