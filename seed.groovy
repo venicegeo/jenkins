@@ -37,7 +37,7 @@ for (p in projects) {
     allowPipelineStart(true)
     allowRebuild(true)
     pipelineInstances(5)
-    columns(5)
+    columns(10)
     updateInterval(60)
     pipelines {
       component(p.name, "${p.name}-${p.pipeline[0]}")
