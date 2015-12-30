@@ -20,7 +20,7 @@ class PipelineJob {
 
       steps {
         shell("git clean -xffd")
-        shell("[ -x ./scripts/${this.step}.sh ] && ./scripts/${this.step}.sh || echo noop")
+        shell("[ -x ./scripts/${this.step}.sh ] && { ./scripts/${this.step}.sh; exit $?; } || echo noop")
       }
 
       logRotator { numToKeep 30 }
