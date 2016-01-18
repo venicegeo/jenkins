@@ -4,10 +4,12 @@ def projects = [
   [
     name: 'refapp-devops',
     pipeline: ['setup','test','artifact','placeholder','cf-deliver','health-check']
-  ] ,
-  [
+  ],[
     name: 'pz-uuidgen',
     pipeline: ['build-test-archive','cf-deliver','health-check']
+  ],[
+    name: 'swagger-ui',
+    pipeline: ['deploy']
   ]
 ]
 
