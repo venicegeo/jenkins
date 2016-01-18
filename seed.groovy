@@ -6,7 +6,7 @@ def projects = [
     pipeline: ['setup','test','artifact','placeholder','cf-deliver','health-check']
   ],[
     name: 'pz-discover',
-    pipeline: ['setup','test','artifact','placeholder','cf-deliver','health-check']
+    pipeline: ['setup','test','artifact','cf-deliver','health-check']
   ],[
     name: 'pz-uuidgen',
     pipeline: ['build-test-archive','cf-deliver','health-check']
