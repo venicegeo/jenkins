@@ -8,6 +8,9 @@ def projects = [
     name: 'pz-discover',
     pipeline: ['setup','test','artifact','cf-deliver','health-check']
   ],[
+    name: 'pz-logger',
+    pipeline: ['build-test-archive','cf-deliver','health-check']
+  ],[
     name: 'pz-uuidgen',
     pipeline: ['build-test-archive','cf-deliver','health-check']
   ],[
