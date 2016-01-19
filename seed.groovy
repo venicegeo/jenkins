@@ -19,6 +19,9 @@ def projects = [
   ],[
     name: 'swagger-ui',
     pipeline: ['deploy']
+  ],[
+    name: 'pz-servicecontroller',
+    pipeline: ['build']
   ]
 ]
 
