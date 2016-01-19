@@ -5,29 +5,6 @@ def projects = [
     name: 'refapp-devops',
     pipeline: ['setup','test','artifact','placeholder','cf-deliver','health-check']
   ],[
-    name: 'example',
-    pipeline: ['scratch']
-  ],[
-    name: 'pz-alerter',
-    pipeline: ['build-test-archive','cf-deliver','health-check']
-  ],[
-    name: 'pz-discover',
-    pipeline: ['setup','test','artifact','cf-deliver','health-check']
-  ],[
-    name: 'pz-logger',
-    pipeline: ['build-test-archive','cf-deliver','health-check']
-  ],[
-    name: 'pz-uuidgen',
-    pipeline: ['build-test-archive','cf-deliver','health-check']
-  ],[
-    name: 'swagger-ui',
-    pipeline: ['deploy']
-  ]
-]
-
-for (p in projects) {
-  def jobs = [:]
-  p.pipeline.eachWithIndex { s, i ->
     name: 'pz-alerter',
     pipeline: ['build-test-archive','cf-deliver','health-check']
   ],[
