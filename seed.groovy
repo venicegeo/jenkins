@@ -5,6 +5,9 @@ def projects = [
     name: 'refapp-devops',
     pipeline: ['setup','test','artifact','placeholder','cf-deliver','health-check']
   ],[
+    name: 'pz-alerter',
+    pipeline: ['build-test-archive','cf-deliver','health-check']
+  ],[
     name: 'pz-discover',
     pipeline: ['setup','test','artifact','cf-deliver','health-check']
   ],[
