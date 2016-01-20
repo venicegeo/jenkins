@@ -25,6 +25,9 @@ def projects = [
   ],[
     name: 'pzsvc-lasinfo',
     pipeline: ['build-test-archive','cf-deliver','health-check']
+  ],[
+    name: 'gondola',
+    pipeline: ['validate']
   ]
 ]
 
