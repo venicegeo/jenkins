@@ -22,6 +22,9 @@ def projects = [
   ],[
     name: 'pz-servicecontroller',
     pipeline: ['build']
+  ],[
+    name: 'pzsvc-lasinfo',
+    pipeline: ['build-test-archive','cf-deliver','health-check']
   ]
 ]
 
