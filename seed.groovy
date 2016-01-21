@@ -21,7 +21,7 @@ def projects = [
     pipeline: ['deploy']
   ],[
     name: 'pz-servicecontroller',
-    pipeline: ['build']
+    pipeline: ['build', 'cf-deliver', 'health-check']
   ],[
     name: 'pzsvc-gdaldem',
     pipeline: ['build-test-archive','cf-deliver','health-check']
