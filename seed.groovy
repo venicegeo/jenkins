@@ -28,6 +28,15 @@ def projects = [
   ],[
     name: 'pzsvc-coordinate-conversion',
     pipeline: ['setup', 'build']
+  ],[
+    name: 'pz-gateway',
+    pipeline: ['build']
+  ],[
+    name: 'pz-dispatcher',
+    pipeline: ['build']
+  ],[
+    name: 'pz-jobmanager',
+    pipeline: ['build']
   ]
 ]
 
