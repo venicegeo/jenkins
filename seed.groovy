@@ -30,7 +30,7 @@ def projects = [
     pipeline: ['build', 'cf-deliver', 'health-check']
   ],[
     name: 'pz-gateway',
-    pipeline: ['build']
+    pipeline: ['build', 'cf-deliver']
   ],[
     name: 'pz-dispatcher',
     pipeline: ['build']
