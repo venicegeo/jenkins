@@ -27,7 +27,7 @@ def projects = [
     pipeline: ['build-test-archive','cf-deliver','health-check']
   ],[
     name: 'pzsvc-coordinate-conversion',
-    pipeline: ['setup', 'build']
+    pipeline: ['build', 'cf-deliver', 'health-check']
   ],[
     name: 'pz-gateway',
     pipeline: ['build']
