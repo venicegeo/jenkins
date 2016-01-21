@@ -33,13 +33,13 @@ def projects = [
     pipeline: ['build', 'cf-deliver', 'health-check']
   ],[
     name: 'pz-gateway',
-    pipeline: ['build', 'cf-deliver']
+    pipeline: ['build', 'cf-deliver', 'health-check']
   ],[
     name: 'pz-dispatcher',
-    pipeline: ['build', 'cf-deliver']
+    pipeline: ['build', 'cf-deliver', 'health-check']
   ],[
     name: 'pz-jobmanager',
-    pipeline: ['build', 'cf-deliver']
+    pipeline: ['build', 'cf-deliver', 'health-check']
   ]
 ]
 
