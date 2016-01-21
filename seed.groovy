@@ -23,6 +23,9 @@ def projects = [
     name: 'pz-servicecontroller',
     pipeline: ['build']
   ],[
+    name: 'pzsvc-gdaldem',
+    pipeline: ['build-test-archive','cf-deliver','health-check']
+  ],[
     name: 'pzsvc-lasinfo',
     pipeline: ['build-test-archive','cf-deliver','health-check']
   ],[
