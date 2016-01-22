@@ -29,6 +29,9 @@ def projects = [
     name: 'pzsvc-lasinfo',
     pipeline: ['build-test-archive','cf-deliver','health-check']
   ],[
+    name: 'pzsvc-pdal',
+    pipeline: ['build-test-archive','cf-deliver','health-check']
+  ],[
     name: 'pzsvc-coordinate-conversion',
     pipeline: ['build', 'cf-deliver', 'health-check']
   ],[
