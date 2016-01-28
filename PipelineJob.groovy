@@ -45,7 +45,9 @@ class PipelineJob {
   def trigger() {
     this.job.with {
       triggers {
-        githubPush()
+        githubPush {
+          includeBranches('integration,master')
+        }
       }
     }
 
