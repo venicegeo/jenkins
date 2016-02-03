@@ -47,6 +47,9 @@ def projects = [
     name: 'pz-jobmanager',
     pipeline: ['build', 'cf-deliver', 'health-check']
   ],[
+    name: 'pz-ingest',
+    pipeline: ['build', 'cf-deliver']
+  ],[    
     name: 'pzsvc-us-geospatial-filter',
     pipeline: ['build', 'cf-deliver', 'health-check']
   ],[
