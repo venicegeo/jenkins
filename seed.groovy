@@ -86,16 +86,21 @@ for (p in projects) {
       jobs[s].trigger()
     }
 
-    if (s == 'cf-deliver') {
-      jobs[s].deliver()
-    }
-
-    if (s == 'cf-deploy') {
-      jobs[s].deploy()
-    }
-
-    if (s == 'cf-teardown') {
-      jobs[s].teardown()
+    switch (s) {
+      case 'cf-deliver':
+        jobs[s].deliver()
+        jobs[s].triggerTeardown()
+        break
+      case 'cf-deploy':
+        jobs[s].deploy()
+        jobs[s].triggerTeardown()
+        break
+      case 'health-check'
+        jobs[s].triggerTeardown()
+        break
+      case 'cf-teardown'
+        jobs[s].teardown()
+        break
     }
 
     if ( p.pipeline[i+1] ) {

@@ -73,6 +73,15 @@ class PipelineJob {
     }
   }
 
+  def triggerTeardown() {
+    this.job.with {
+      publishers {
+        downstream("${this.project}-cf-teardown", "UNSTABLE")
+        downstream("${this.project}-cf-teardown", "FAILURE")
+      }
+    }
+  }
+
   def teardown() {
     this.job.with {
       steps {
