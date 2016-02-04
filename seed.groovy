@@ -64,7 +64,7 @@ for (p in projects) {
   p.pipeline.eachWithIndex { s, i ->
     jobs[s] = new PipelineJob([
       project: p.name,
-      branch: p.branch ? p.branch : '**'
+      branch: p.branch ? p.branch : '**',
       step: s,
       job: job("${p.name}-${s}")
     ])
