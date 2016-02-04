@@ -84,9 +84,9 @@ class PipelineJob {
             condition {
               status('ABORTED', 'FAILURE')
             }
-          }
-          publishers {
-            downstream("${this.project}-cf-teardown", "FAILURE")
+            publishers {
+              downstream("${this.project}-cf-teardown", "FAILURE")
+            }
           }
         }
       }
