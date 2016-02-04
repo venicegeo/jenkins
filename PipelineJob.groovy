@@ -82,7 +82,7 @@ class PipelineJob {
         flexiblePublish {
           conditionalAction {
             condition {
-              status('ABORTED', 'UNSTABLE', 'FAILURE')
+              status('ABORTED', 'FAILURE')
             }
           }
           publishers {
