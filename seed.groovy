@@ -102,7 +102,7 @@ for (p in projects) {
           cfapi: p.pcf ? 'http://api.system.cf2.piazzageo.io' : 'http://api.cf.piazzageo.io',
           job: job("${p.name}-cf-teardown")
         ])
-
+        cleanup.base()
         cleanup.teardown()
         break
       case 'health-check':
