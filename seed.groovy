@@ -25,7 +25,8 @@ def projects = [
     pipeline: ['build', 'cf-deliver', 'health-check']
   ],[
     name: 'pz-jobcommon',
-    pipeline: ['build']
+    pipeline: ['build'],
+    branch: 'master'
   ],[
     name: 'pzsvc-gdaldem',
     pipeline: ['build-test-archive','cf-deliver','health-check']
@@ -40,16 +41,20 @@ def projects = [
     pipeline: ['build', 'cf-deliver', 'health-check']
   ],[
     name: 'pz-gateway',
-    pipeline: ['build', 'cf-deliver', 'health-check']
+    pipeline: ['build', 'cf-deliver', 'health-check'],
+    branch: 'master'
   ],[
     name: 'pz-dispatcher',
-    pipeline: ['build', 'cf-deliver', 'health-check']
+    pipeline: ['build', 'cf-deliver', 'health-check'],
+    branch: 'master'
   ],[
     name: 'pz-jobmanager',
-    pipeline: ['build', 'cf-deliver', 'health-check']
+    pipeline: ['build', 'cf-deliver', 'health-check'],
+    branch: 'master'
   ],[
     name: 'pz-ingest',
-    pipeline: ['build', 'cf-deliver']
+    pipeline: ['build', 'cf-deliver'],
+    branch: 'master'
   ],[    
     name: 'pzsvc-us-geospatial-filter',
     pipeline: ['build', 'cf-deliver', 'health-check']
