@@ -94,6 +94,16 @@ for (p in projects) {
       case 'cf-deploy':
         jobs[s].deploy()
         jobs[s].triggerTeardown()
+        cleanup = new PipelineJob([
+          project: p.name,
+          branch: p.branch,
+          step: 'cf-teardown',
+          cfdomain: p.pcf ? 'apps.cf2.piazzageo.io' : 'cf.piazzageo.io',
+          cfapi: p.pcf ? 'http://api.system.cf2.piazzageo.io' : 'http://api.cf.piazzageo.io',
+          job: job("${p.name}-cf-teardown")
+        ])
+
+        cleanup.teardown()
         break
       case 'health-check':
         jobs[s].triggerTeardown()
@@ -111,17 +121,6 @@ for (p in projects) {
       }
     }
   }
-
-  cleanup = new PipelineJob([
-    project: p.name,
-    branch: p.branch,
-    step: 'cf-teardown',
-    cfdomain: p.pcf ? 'apps.cf2.piazzageo.io' : 'cf.piazzageo.io',
-    cfapi: p.pcf ? 'http://api.system.cf2.piazzageo.io' : 'http://api.cf.piazzageo.io',
-    job: job("${p.name}-cf-teardown")
-  ])
-
-  cleanup.teardown()
 
   deliveryPipelineView(p.name) {
     allowPipelineStart(true)
