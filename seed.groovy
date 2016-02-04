@@ -89,9 +89,14 @@ for (p in projects) {
     switch (s) {
       case 'cf-deliver':
         jobs[s].deliver()
+        jobs[s].triggerTeardown()
         break
       case 'cf-deploy':
         jobs[s].deploy()
+        jobs[s].triggerTeardown()
+        break
+      case 'health-check':
+        jobs[s].triggerTeardown()
         break
       case 'cf-teardown':
         jobs[s].teardown()
