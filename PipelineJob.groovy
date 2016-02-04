@@ -66,8 +66,8 @@ class PipelineJob {
       steps {
         shell("""
           current=`cf routes | grep ${this.project} | awk '{print \$4}'`
-          cf map-route ${this.project}-\$GIT_REVISION ${this.cfdomain} -n ${this.project}
-          cf delete -f \$current
+          cf map-route ${this.project}-`git rev-parse HEAD` ${this.cfdomain} -n ${this.project}
+          [ -n "\$current" ] && cf delete -f \$current
         """)
       }
     }
@@ -85,7 +85,7 @@ class PipelineJob {
   def teardown() {
     this.job.with {
       steps {
-        shell("cf delete -f ${this.project}-\$GIT_REVISION")
+        shell("cf delete -f ${this.project}-`git rev-parse HEAD`")
       }
     }
   }
