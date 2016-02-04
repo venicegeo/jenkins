@@ -4,6 +4,7 @@ def projects = [
   [
     name: 'refapp-devops',
     pipeline: ['setup','test','artifact','placeholder','cf-deliver','health-check'],
+    pcf: true
     branch: 'master'
   ],[
     name: 'pz-alerter',
@@ -71,6 +72,7 @@ for (p in projects) {
       project: p.name,
       branch: p.branch ? p.branch : '**',
       step: s,
+      cfapi: p.pcf ? 'http://api.system.cf2.piazzageo.io' : 'http://api.cf.piazzageo.io',
       job: job("${p.name}-${s}")
     ])
 
