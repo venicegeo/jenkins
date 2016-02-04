@@ -81,7 +81,9 @@ class PipelineJob {
       publishers {
         flexiblePublish {
           conditionalAction {
-            status('ABORTED', 'UNSTABLE', 'FAILURE')
+            condition {
+              status('ABORTED', 'UNSTABLE', 'FAILURE')
+            }
           }
           publishers {
             downstream("${this.project}-cf-teardown", "FAILURE")
