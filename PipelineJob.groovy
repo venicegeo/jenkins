@@ -4,6 +4,7 @@ class PipelineJob {
   def job
   def branch
   def cfapi
+  def cfdomain
 
   def base() {
     this.job.with {
@@ -58,6 +59,26 @@ class PipelineJob {
     }
 
     return this
+  }
+
+  def deploy() {
+    this.job.with {
+      steps {
+        shell("""
+          current=$(cf routes | grep ${this.project} | awk '{print $4}')
+          cf map-route ${this.project}-$GIT_REVISION ${this.cfdomain} -n ${this.project}
+          cf delete -f $current
+        """)
+      }
+    }
+  }
+
+  def teardown() {
+    this.job.with {
+      steps {
+        shell("cf delete -f ${this.project}-$GIT_REVISION")
+      }
+    }
   }
 
   def deliver() {

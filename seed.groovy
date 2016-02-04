@@ -75,6 +75,7 @@ for (p in projects) {
       project: p.name,
       branch: p.branch ? p.branch : '**',
       step: s,
+      cfdomain: p.pcf ? 'apps.cf2.piazzageo.io' : 'cf.piazzageo.io',
       cfapi: p.pcf ? 'http://api.system.cf2.piazzageo.io' : 'http://api.cf.piazzageo.io',
       job: job("${p.name}-${s}")
     ])
@@ -87,6 +88,14 @@ for (p in projects) {
 
     if (s == 'cf-deliver') {
       jobs[s].deliver()
+    }
+
+    if (s == 'cf-deploy') {
+      jobs[s].deploy()
+    }
+
+    if (s == 'cf-teardown') {
+      jobs[s].teardown()
     }
 
     if ( p.pipeline[i+1] ) {
