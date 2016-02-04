@@ -65,7 +65,7 @@ class PipelineJob {
     this.job.with {
       steps {
         shell("""
-          current=`cf routes | grep ${this.project} | awk '{print $4}'`
+          current=`cf routes | grep ${this.project} | awk '{print \$4}'`
           cf map-route ${this.project}-\$GIT_REVISION ${this.cfdomain} -n ${this.project}
           cf delete -f \$current
         """)
