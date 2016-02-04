@@ -22,8 +22,13 @@ class PipelineJob {
       }
 
       steps {
-        shell("git clean -xffd")
-        shell("[ -f ./scripts/${this.step}.sh ] && { chmod 700 ./scripts/${this.step}.sh; ./scripts/${this.step}.sh; exit \$?; } || echo noop")
+        shell("""
+          git clean -xffd
+          [ -f ./scripts/${this.step.sh ] || { echo "noop"; exit; }
+          chmod 700 ./scripts/${this.step.sh}
+          ./scripts/${this.step.sh}
+          exit \$?
+        """)
       }
 
       logRotator { numToKeep 30 }
@@ -59,7 +64,7 @@ class PipelineJob {
     this.job.with {
       configure { project ->
         project / publishers << 'com.hpe.cloudfoundryjenkins.CloudFoundryPushPublisher' {
-          target "${cfapi}"
+          target "${this.cfapi}"
           organization 'piazza'
           cloudSpace 'dev'
           credentialsId 'ff5565ae-2494-45c0-ac9a-d01003a34096'
