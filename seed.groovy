@@ -3,7 +3,8 @@ import PipelineJob
 def projects = [
   [
     name: 'refapp-devops',
-    pipeline: ['setup','test','artifact','placeholder','cf-deliver','health-check']
+    pipeline: ['setup','test','artifact','placeholder','cf-deliver','health-check'],
+    branch: 'master'
   ],[
     name: 'pz-alerter',
     pipeline: ['build-test-archive','cf-deliver','health-check']
@@ -63,6 +64,7 @@ for (p in projects) {
   p.pipeline.eachWithIndex { s, i ->
     jobs[s] = new PipelineJob([
       project: p.name,
+      branch: p.branch ? p.branch : '**'
       step: s,
       job: job("${p.name}-${s}")
     ])
