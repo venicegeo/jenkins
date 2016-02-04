@@ -4,7 +4,7 @@ def projects = [
   [
     name: 'refapp-devops',
     pipeline: ['setup','test','artifact','placeholder','cf-deliver','health-check'],
-    pcf: true
+    pcf: true,
     branch: 'master'
   ],[
     name: 'pz-alerter',
