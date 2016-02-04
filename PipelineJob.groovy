@@ -25,7 +25,7 @@ class PipelineJob {
       steps {
         shell("""
           git clean -xffd
-          [ -f ./scripts/${this.step.sh ] || { echo "noop"; exit; }
+          [ -f ./scripts/${this.step.sh} ] || { echo "noop"; exit; }
           chmod 700 ./scripts/${this.step.sh}
           ./scripts/${this.step.sh}
           exit \$?
