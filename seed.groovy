@@ -8,16 +8,19 @@ def projects = [
     branch: 'master'
   ],[
     name: 'pz-alerter',
-    pipeline: ['build-test-archive','cf-deliver','health-check']
+    pipeline: ['build-test-archive','cf-deliver','health-check'],
+    branch: 'master'
   ],[
     name: 'pz-discover',
     pipeline: ['setup','test','artifact','cf-deliver','health-check']
   ],[
     name: 'pz-logger',
-    pipeline: ['build-test-archive','cf-deliver','health-check']
+    pipeline: ['build-test-archive','cf-deliver','health-check'],
+    branch: 'master'
   ],[
     name: 'pz-uuidgen',
-    pipeline: ['build-test-archive','cf-deliver','health-check']
+    pipeline: ['build-test-archive','cf-deliver','health-check'],
+    branch: 'master'
   ],[
     name: 'swagger-ui',
     pipeline: ['deploy']
