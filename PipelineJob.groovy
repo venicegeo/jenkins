@@ -79,8 +79,14 @@ class PipelineJob {
   def triggerTeardown() {
     this.job.with {
       publishers {
-        downstream("${this.project}-cf-teardown", "UNSTABLE")
-        downstream("${this.project}-cf-teardown", "FAILURE")
+        flexiblePublish {
+          conditionalAction {
+            status('ABORTED', 'UNSTABLE', 'FAILURE')
+          }
+          publishers {
+            downstream("${this.project}-cf-teardown", "FAILURE")
+          }
+        }
       }
     }
   }
