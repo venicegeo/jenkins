@@ -95,10 +95,10 @@ for (p in projects) {
         jobs[s].deploy()
         jobs[s].triggerTeardown()
         break
-      case 'health-check'
+      case 'health-check':
         jobs[s].triggerTeardown()
         break
-      case 'cf-teardown'
+      case 'cf-teardown':
         jobs[s].teardown()
         break
     }
