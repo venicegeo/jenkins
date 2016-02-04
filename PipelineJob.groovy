@@ -2,6 +2,7 @@ class PipelineJob {
   def project
   def step
   def job
+  def branch
 
   def base() {
     this.job.with {
