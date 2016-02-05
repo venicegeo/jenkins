@@ -23,7 +23,7 @@ class ProjectMap {
     ],[
       name: 'swagger-ui',
       pcf: true,
-      pipeline: ['cf-deliver']
+      pipeline: ['cf-deliver', 'health-check', 'cf-deploy']
     ],[
       name: 'pz-servicecontroller',
       pipeline: ['build', 'cf-deliver', 'health-check']
