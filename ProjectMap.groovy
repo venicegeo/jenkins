@@ -22,7 +22,8 @@ class ProjectMap {
       branch: 'master'
     ],[
       name: 'swagger-ui',
-      pipeline: ['deploy']
+      pcf: true,
+      pipeline: ['cf-deliver']
     ],[
       name: 'pz-servicecontroller',
       pipeline: ['build', 'cf-deliver', 'health-check']
