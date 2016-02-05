@@ -11,8 +11,7 @@ class ProjectMap {
       branch: 'master'
     ],[
       name: 'pz-discover',
-      pcf: true,
-      pipeline: ['setup','test','artifact','cf-deliver','health-check','cf-deploy']
+      pipeline: ['setup','test','artifact','cf-deliver','health-check']
     ],[
       name: 'pz-logger',
       pipeline: ['build-test-archive','cf-deliver','health-check'],
