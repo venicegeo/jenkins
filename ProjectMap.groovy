@@ -21,7 +21,7 @@ class ProjectMap {
       pipeline: ['build-test-archive','cf-deliver','health-check'],
       branch: 'master'
     ],[
-      name: 'swagger-ui',
+      name: 'pz-swagger',
       pcf: true,
       pipeline: ['cf-deliver', 'health-check', 'cf-deploy']
     ],[
