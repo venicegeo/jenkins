@@ -52,17 +52,15 @@ class PipelineJob {
   }
 
   def trigger() {
-    this.job.with {
+    return this.job.with {
       triggers {
         githubPush()
       }
     }
-
-    return this
   }
 
   def deploy() {
-    this.job.with {
+    return this.job.with {
       steps {
         shell("""
           legacy=`cf routes | grep '${this.project} ' | awk '{print \$4}'`
@@ -77,7 +75,7 @@ class PipelineJob {
   }
 
   def triggerTeardown() {
-    this.job.with {
+    return this.job.with {
       publishers {
         flexiblePublish {
           conditionalAction {
@@ -94,7 +92,7 @@ class PipelineJob {
   }
 
   def teardown() {
-    this.job.with {
+    return this.job.with {
       steps {
         shell("cf delete -f ${this.project}-`git rev-parse HEAD`")
       }
