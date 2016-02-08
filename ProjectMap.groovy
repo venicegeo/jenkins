@@ -59,7 +59,11 @@ class ProjectMap {
       name: 'pz-ingest',
       pipeline: ['build', 'cf-deliver'],
       branch: 'master'
-    ],[    
+    ],[
+      name: 'pz-access',
+      pipeline: ['build', 'cf-deliver', 'health-check'],
+      branch: 'master'
+    ],[         
       name: 'pzsvc-us-geospatial-filter',
       pipeline: ['build', 'cf-deliver', 'health-check']
     ],[
