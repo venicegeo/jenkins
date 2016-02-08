@@ -63,6 +63,9 @@ class ProjectMap {
       name: 'pzsvc-us-geospatial-filter',
       pipeline: ['build', 'cf-deliver', 'health-check']
     ],[
+     name: 'pzsvc-us-phone-number-filter',
+     pipeline: ['build', 'cf-deliver', 'health-check']
+    ],[
       name: 'pzclient-sak',
       pipeline: ['cf-deliver']
     ]
