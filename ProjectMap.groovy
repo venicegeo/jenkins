@@ -26,7 +26,7 @@ class ProjectMap {
       pipeline: ['cf-deliver', 'health-check', 'cf-deploy']
     ],[
       name: 'pz-servicecontroller',
-      pipeline: ['build', 'cf-deliver', 'health-check']
+      pipeline: ['build', 'cf-deliver', 'health-check', 'black-box-tests.sh']
     ],[
       name: 'pz-jobcommon',
       pipeline: ['build'],
