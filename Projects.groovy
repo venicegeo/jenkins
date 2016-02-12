@@ -1,5 +1,5 @@
-class ProjectMap {
-  static projects = [
+class Projects {
+  static list = [
     [
       name: 'refapp-devops',
       pipeline: ['setup','test','artifact','placeholder','cf-deliver','health-check','cf-deploy'],

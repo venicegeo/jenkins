@@ -1,7 +1,7 @@
 import PipelineJob
-import ProjectMap
+import Projects
 
-for (p in ProjectMap.projects) {
+for (p in Projects.list) {
   def jobs = [:]
 
   p.pipeline.eachWithIndex { s, i ->

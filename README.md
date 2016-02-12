@@ -8,17 +8,19 @@ The seed job is responsible for generating all other Jenkins jobs.
 
 ## How do I create a Jenkins job?
 
-All jobs are spec'd out in `./ProjectMap.groovy`. To add jobs for your repo, just add your jobs to the `projects` collection in `./ProjectMap.groovy`:
+All jobs are spec'd out in `./Projects.groovy`. To add jobs for your repo, just add your jobs to the `list` collection in `./Projects.groovy`:
 
 ```groovy
-static projects = [
-...
-  [
-    name: 'your-venicegeo-repo',
-    pipeline: ['job1','job2']
+class Projects {
+  static list = [
+  ...
+    [
+      name: 'your-venicegeo-repo',
+      pipeline: ['job1','job2']
+    ]
+  ...
   ]
-...
-]
+}
 ```
 
 Then create `./scripts/job1.sh` and `./scripts/job2.sh` in `your-venicegeo-repo`.
