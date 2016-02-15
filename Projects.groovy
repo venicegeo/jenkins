@@ -6,7 +6,7 @@ class Projects {
       pcf: true,
       branch: 'master'
     ],[
-      name: 'pz-alerter',
+      name: 'pz-workflow',
       pipeline: ['build-test-archive','cf-deliver','health-check'],
       branch: 'master'
     ],[
