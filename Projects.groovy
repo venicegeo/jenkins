@@ -77,7 +77,7 @@ class Projects {
       name: 'pz-access',
       pipeline: ['build', 'cf-deliver', 'health-check'],
       branch: 'master'
-    ],[         
+    ],[
       name: 'pzsvc-us-geospatial-filter',
       pipeline: ['build', 'cf-deliver', 'health-check']
     ],[
@@ -85,7 +85,8 @@ class Projects {
      pipeline: ['build', 'cf-deliver', 'health-check']
     ],[
       name: 'pzclient-sak',
-      pipeline: ['cf-deliver']
+      pipeline: ['cf-deliver'],
+      branch: 'master'
     ]
   ]
 }
