@@ -17,7 +17,6 @@ class Projects {
     [
       name: 'refapp-devops',
       pipeline: ['setup','test','artifact','placeholder','cf-deliver','health-check','cf-deploy'],
-      pcf: true,
       branch: 'master'
     ],[
       name: 'pz-workflow',
