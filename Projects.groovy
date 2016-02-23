@@ -91,6 +91,10 @@ class Projects {
       name: 'pz-search-metadata-ingest',
       pipeline: ['build', 'cf-deliver', 'health-check'],
       branch: 'master'
+    ],
+    [
+      name: 'time-lapse-viewer',
+      pipeline: ['build', 'cf-deliver', 'health-check']
     ]
   ]
 }
