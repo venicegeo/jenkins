@@ -87,6 +87,10 @@ class Projects {
       name: 'pzclient-sak',
       pipeline: ['cf-deliver'],
       branch: 'master'
+    ],[
+      name: 'pz-search-metadata-ingest',
+      pipeline: ['build', 'cf-deliver', 'health-check'],
+      branch: 'master'
     ]
   ]
 }
