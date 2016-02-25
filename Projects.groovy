@@ -52,8 +52,7 @@ class Projects {
       pipeline: ['build-test-archive','cf-deliver','health-check']
     ],[
       name: 'pzsvc-pdal',
-      pcf: true,
-      pipeline: ['build','cf-deliver','health-check']
+      pipeline: ['build-test-archive','cf-deliver','health-check']
     ],[
       name: 'pzsvc-coordinate-conversion',
       pipeline: ['build', 'cf-deliver', 'health-check']
