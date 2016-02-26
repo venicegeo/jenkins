@@ -50,6 +50,10 @@ class Projects {
       pipeline: ['build', 'cf-deliver', 'health-check'],
       branch: 'master'
     ],[
+      name: 'pz-search-query',
+      pipeline: ['build', 'cf-deliver', 'health-check'],
+      branch: 'master'
+    ],[
       name: 'pz-servicecontroller',
       pipeline: ['build', 'cf-deliver', 'health-check', 'black-box-tests']
     ],[
