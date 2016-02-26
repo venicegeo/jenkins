@@ -85,6 +85,9 @@ class Projects {
       name: 'pzsvc-pdal',
       pipeline: ['build-test-archive','cf-deliver','health-check', 'black-box-tests']
     ],[
+      name: 'pzsvc-twofishes',
+      pipeline: ['build', 'cf-deliver', 'health-check']
+    ],[
       name: 'pzsvc-us-geospatial-filter',
       pipeline: ['build', 'cf-deliver', 'health-check']
     ],[
