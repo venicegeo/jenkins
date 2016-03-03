@@ -91,6 +91,9 @@ class Projects {
       name: 'pzsvc-us-geospatial-filter',
       pipeline: ['build', 'cf-deliver', 'health-check']
     ],[
+      name: 'pztest-integration',
+      pipeline: ['black-box-tests']
+    ],[
       name: 'pzsvc-us-phone-number-filter',
       pipeline: ['build', 'cf-deliver', 'health-check']
     ],[
