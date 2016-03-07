@@ -30,7 +30,6 @@ class PipelineJob {
         git {
           remote {
             github "venicegeo/${this.project}"
-            credentials 'fa3aab48-4edc-446d-b1e2-1d89d86f4458'
           }
           branch("${this.branch}")
         }
@@ -47,15 +46,6 @@ class PipelineJob {
       }
 
       logRotator { numToKeep 30 }
-
-      publishers {
-        slackNotifications {
-          notifyFailure()
-          notifyNotBuilt()
-          notifyUnstable()
-          notifyBackToNormal()
-        }
-      }
 
       wrappers {
         colorizeOutput()
@@ -119,9 +109,9 @@ class PipelineJob {
         project / publishers << 'com.hpe.cloudfoundryjenkins.CloudFoundryPushPublisher' {
           target "${this.cfapi}"
           organization 'piazza'
-          cloudSpace 'dev'
-          credentialsId 'ff5565ae-2494-45c0-ac9a-d01003a34096'
-          selfSigned true
+          cloudSpace 'simulator-dev'
+          credentialsId '6ad30d14-e498-11e5-9730-9a79f06e9478'
+          selfSigned false
           resetIfExists false
           pluginTimeout 120
           servicesToCreate ''
@@ -140,4 +130,3 @@ class PipelineJob {
     return this
   }
 }
-

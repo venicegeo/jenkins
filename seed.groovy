@@ -25,8 +25,8 @@ for (p in Projects.list) {
       project: p.name,
       branch: p.branch ? p.branch : '**',
       step: s,
-      cfdomain: p.pcf ? 'apps.cf2.piazzageo.io' : 'cf.piazzageo.io',                      // hack for 2 CF - TODO
-      cfapi: p.pcf ? 'http://api.system.cf2.piazzageo.io' : 'http://api.cf.piazzageo.io', // hack for 2 CF - TODO
+      cfdomain: 'devops.geointservices.io'
+      cfapi: 'https://api.devops.geointservices.io'
       job: job("${p.name}-${s}")
     ]).base()
 
@@ -49,8 +49,8 @@ for (p in Projects.list) {
           project: p.name,
           branch: p.branch,
           step: 'cf-teardown',
-          cfdomain: p.pcf ? 'apps.cf2.piazzageo.io' : 'cf.piazzageo.io',
-          cfapi: p.pcf ? 'http://api.system.cf2.piazzageo.io' : 'http://api.cf.piazzageo.io',
+          cfdomain: 'devops.geointservices.io'
+          cfapi: 'https://api.devops.geointservices.io'
           job: job("${p.name}-cf-teardown")
         ]).base().teardown()
         break
@@ -69,18 +69,6 @@ for (p in Projects.list) {
           downstream("${p.name}-${p.pipeline[i+1]}", "SUCCESS")
         }
       }
-    }
-  }
-
-  // Create a Pipeline View for each project.
-  deliveryPipelineView(p.name) {
-    allowPipelineStart(true)
-    allowRebuild(true)
-    pipelineInstances(5)
-    columns(10)
-    updateInterval(60)
-    pipelines {
-      component(p.name, "${p.name}-${p.pipeline[0]}")
     }
   }
 }
