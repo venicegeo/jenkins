@@ -55,7 +55,8 @@ class Projects {
       branch: 'master'
     ],[
       name: 'pz-servicecontroller',
-      pipeline: ['build', 'cf-deliver', 'health-check', 'black-box-tests']
+      pipeline: ['build', 'cf-deliver', 'health-check', 'black-box-tests'],
+      branch: 'master'
     ],[
       name: 'pz-swagger',
       pcf: true,
