@@ -55,54 +55,6 @@ class PipelineJob {
     return this
   }
 
-  def trigger() {
-    return this.job.with {
-      triggers {
-        githubPush()
-      }
-    }
-  }
-
-  def deploy() {
-    return this.job.with {
-      steps {
-        shell("""
-          legacy=`cf routes | grep '${this.project} ' | awk '{print \$4}'`
-          target=${this.project}-`git rev-parse HEAD`
-          [ "\$target" = "\$legacy" ] && { echo "nothing to do."; exit 0; }
-          cf map-route ${this.project}-`git rev-parse HEAD` ${this.cfdomain} -n ${this.project}
-          s=\$?
-          [ -n "\$legacy" ] && cf delete -f \$legacy || exit \$s
-        """)
-      }
-    }
-  }
-
-  def triggerTeardown() {
-    return this.job.with {
-      publishers {
-        flexiblePublish {
-          conditionalAction {
-            condition {
-              status('ABORTED', 'FAILURE')
-            }
-            publishers {
-              downstream("${this.project}-cf-teardown", "FAILURE")
-            }
-          }
-        }
-      }
-    }
-  }
-
-  def teardown() {
-    return this.job.with {
-      steps {
-        shell("cf delete -f ${this.project}-`git rev-parse HEAD`")
-      }
-    }
-  }
-
   def deliver() {
     this.job.with {
       configure { project ->
