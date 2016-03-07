@@ -58,6 +58,10 @@ class Projects {
       pipeline: ['build', 'cf-deliver', 'health-check', 'black-box-tests'],
       branch: 'master'
     ],[
+      name: 'pz-services',
+      pipeline: ['build'],
+      branch: 'master'
+    ],[
       name: 'pz-swagger',
       pcf: true,
       pipeline: ['cf-deliver', 'health-check', 'cf-deploy']
