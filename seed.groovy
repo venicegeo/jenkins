@@ -25,8 +25,8 @@ for (p in Projects.list) {
       project: p.name,
       branch: p.branch ? p.branch : '**',
       step: s,
-      cfdomain: 'devops.geointservices.io'
-      cfapi: 'https://api.devops.geointservices.io'
+      cfdomain: 'devops.geointservices.io',
+      cfapi: 'https://api.devops.geointservices.io',
       job: job("${p.name}-${s}")
     ]).base()
 
@@ -49,8 +49,8 @@ for (p in Projects.list) {
           project: p.name,
           branch: p.branch,
           step: 'cf-teardown',
-          cfdomain: 'devops.geointservices.io'
-          cfapi: 'https://api.devops.geointservices.io'
+          cfdomain: 'devops.geointservices.io',
+          cfapi: 'https://api.devops.geointservices.io',
           job: job("${p.name}-cf-teardown")
         ]).base().teardown()
         break
