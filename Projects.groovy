@@ -15,6 +15,10 @@
 class Projects {
   static list = [
     [
+      name: 'beachfront',
+      pipeline: ['build', 'cf-deliver', 'health-check'],
+      branch: 'master'
+    ],[
       name: 'pz-access',
       pipeline: ['build', 'cf-deliver', 'health-check'],
       branch: 'master'
