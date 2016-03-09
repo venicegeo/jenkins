@@ -40,5 +40,14 @@ for (p in Projects.list) {
         jobs[s].deliver()         // deleiver to CloudFoundry
         break
     }
+
+    // This sets up our pipeline to progress when jobs are successfull.
+    if ( p.pipeline[i+1] ) {
+      jobs[s].job.with {
+        publishers {
+          buildPipelineTrigger("${p.name}/${p.pipeline[i+1]}")
+        }
+      }
+    }
   }
 }
