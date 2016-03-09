@@ -18,16 +18,20 @@ import Projects
 for (p in Projects.list) {
   def jobs = [:]
 
+  folder(p.name) {
+    displayName(p.name)
+  }
+
   p.pipeline.eachWithIndex { s, i ->
 
     // Base config for all Jenkins jobs
     jobs[s] = new PipelineJob([
       project: p.name,
-      branch: p.branch ? p.branch : '**',
+      branch: p.branch ? p.branch : 'master',
       step: s,
       cfdomain: 'devops.geointservices.io',
       cfapi: 'https://api.devops.geointservices.io',
-      job: job("${p.name}-${s}")
+      job: job("${p.project}/${p.name}-${s}")
     ]).base()
 
     // Special keywords get special job behavior.
