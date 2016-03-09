@@ -44,8 +44,16 @@ for (p in Projects.list) {
     // This sets up our pipeline to progress when jobs are successfull.
     if ( p.pipeline[i+1] ) {
       jobs[s].job.with {
-        publishers {
-          buildPipelineTrigger("piazza/${p.name}/${i+1}-${p.pipeline[i+1]}")
+        configure { project ->
+          project / publishers << 'hudson.tasks.BuildTrigger' {
+            childProjects "piazza/${p.name}/${i+1}-${p.pipeline[i+1]}"
+            threshold {
+              name "SUCCESS"
+              ordinal "0"
+              color "BLUE"
+              completeBuild true
+            }
+          }
         }
       }
     }
