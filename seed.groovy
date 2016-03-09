@@ -45,7 +45,7 @@ for (p in Projects.list) {
     if ( p.pipeline[i+1] ) {
       jobs[s].job.with {
         publishers {
-          buildPipelineTrigger("${p.name}/${i+1}-${p.pipeline[i+1]}")
+          buildPipelineTrigger("piazza/${p.name}/${i+1}-${p.pipeline[i+1]}")
         }
       }
     }
