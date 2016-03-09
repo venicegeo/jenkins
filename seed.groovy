@@ -31,7 +31,7 @@ for (p in Projects.list) {
       step: s,
       cfdomain: 'devops.geointservices.io',
       cfapi: 'https://api.devops.geointservices.io',
-      job: job("${p.project}/${p.name}-${s}")
+      job: job("${p.name}/${s}")
     ]).base()
 
     // Special keywords get special job behavior.
