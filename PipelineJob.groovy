@@ -61,10 +61,10 @@ class PipelineJob {
         project / publishers << 'com.hpe.cloudfoundryjenkins.CloudFoundryPushPublisher' {
           target "${this.cfapi}"
           organization 'piazza'
-          cloudSpace 'simulator-dev'
+          cloudSpace 'simulator-staging'
           credentialsId '6ad30d14-e498-11e5-9730-9a79f06e9478'
           selfSigned false
-          resetIfExists false
+          resetIfExists true
           pluginTimeout 120
           servicesToCreate ''
           appURIs ''
