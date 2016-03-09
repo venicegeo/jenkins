@@ -51,12 +51,12 @@ for (p in Projects.list) {
     }
   }
 
-  buildPipelineView("${p.name}/pipeline") {
+  buildPipelineView("piazza/${p.name}/pipeline") {
     filterBuildQueue()
     filterExecutors()
     title("${p.name} pipeline")
     displayedBuilds(5)
-    selectedJob("${p.name}/${p.pipeline[0]}")
+    selectedJob("piazza/${p.name}/${p.pipeline[0]}")
     alwaysAllowManualTrigger()
     showPipelineParameters()
     refreshFrequency(60)
