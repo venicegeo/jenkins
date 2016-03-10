@@ -55,6 +55,14 @@ class PipelineJob {
     return this
   }
 
+  def trigger() {
+    return this.job.with {
+      triggers {
+        githubPush()
+      }
+    }
+  }
+
   def deliver() {
     this.job.with {
       configure { project ->

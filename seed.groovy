@@ -34,6 +34,11 @@ for (p in Projects.list) {
       job: job("${p.name}/${i}-${s}")
     ]).base()
 
+    // If first job in the pipeline, establish an external trigger.
+    if (i == 0) {
+      jobs[s].trigger()
+    }
+
     // Special keywords get special job behavior.
     switch (s) {
       case 'cf-deliver':
