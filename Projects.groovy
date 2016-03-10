@@ -15,7 +15,7 @@
 class Projects {
   static list = [
     [
-      name: 'beachfront',
+      name: 'bf-ui',
       pipeline: ['build', 'cf-deliver', 'health-check'],
       branch: 'master'
     ],[
@@ -88,7 +88,7 @@ class Projects {
       name: 'pzsvc-gdaldem',
       pipeline: ['build-test-archive','cf-deliver','health-check', 'black-box-tests']
     ],[
-     name: 'pzsvc-lasinfo',
+      name: 'pzsvc-lasinfo',
       pipeline: ['build-test-archive','cf-deliver','health-check', 'black-box-tests']
     ],[
       name: 'pzsvc-pdal',
