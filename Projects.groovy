@@ -89,7 +89,7 @@ class Projects {
       pipeline: ['build-test-archive','cf-deliver','health-check', 'black-box-tests']
     ],[
      name: 'pzsvc-lasinfo',
-      pipeline: ['build-test-archive','cf-deliver','health-check']
+      pipeline: ['build-test-archive','cf-deliver','health-check', 'black-box-tests']
     ],[
       name: 'pzsvc-pdal',
       pipeline: ['build-test-archive','cf-deliver','health-check', 'black-box-tests']
