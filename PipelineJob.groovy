@@ -78,7 +78,7 @@ class PipelineJob {
           appURIs ''
           manifestChoice {
             value 'manifestFile'
-            manifestFile 'manifest.yml'
+            manifestFile 'manifest.jenkins.yml'
             memory 0
             instances 0
             noRoute false
