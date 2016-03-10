@@ -19,7 +19,7 @@ class Projects {
       pipeline: ['cf-deliver']
     ],[
       name: 'pz-discover',
-      pipeline: ['setup', 'artifact', 'test', 'cf-deliver']
+      pipeline: ['setup', 'archive', 'test', 'cf-deliver']
     ]
   ]
 }
