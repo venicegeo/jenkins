@@ -18,6 +18,9 @@ class Projects {
       name: 'pz-discover',
       pipeline: ['static', 'test', 'archive', 'stage']
     ],[
+      name: 'pz-gateway',
+      pipeline: ['archive', 'stage']
+    ],[
       name: 'pz-services',
       pipeline: ['static', 'test', 'archive', 'stage']
     ]
