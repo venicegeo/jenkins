@@ -67,26 +67,26 @@ class PipelineJob {
     return this.job.with {
       steps {
         shell("""
-          root=$(pwd -P)
+          root=\$(pwd -P)
 
-          [ ! -f $root/ci/vars.sh ] && echo "No vars.sh" && exit 1
-          source $root/ci/vars.sh
+          [ ! -f \$root/ci/vars.sh ] && echo "No vars.sh" && exit 1
+          source \$root/ci/vars.sh
 
-          [ ! -f $ARTIFACT ] && echo "No artifact?" && exit 1
+          [ ! -f \$ARTIFACT ] && echo "No artifact?" && exit 1
 
           # pom?
-          [ -f $root/pom.xml ] && genpom=false || genpom=false
+          [ -f \$root/pom.xml ] && genpom=false || genpom=false
 
           # push artifact to nexus
           mvn deploy:deploy-file \
             -Durl="https://nexus.devops.geointservices.io/content/repositories/Piazza" \
             -DrepositoryId=nexus \
-            -Dfile=$ARTIFACT \
-            -DgeneratePom=$genpom \
+            -Dfile=\$ARTIFACT \
+            -DgeneratePom=\$genpom \
             -DgroupId=io.piazzageo \
-            -DartifactId=$APP \
-            -Dversion=$VERSION \
-            -Dpackaging=$EXT
+            -DartifactId=\$APP \
+            -Dversion=\$VERSION \
+            -Dpackaging=\$EXT
         """)
       }
     }
@@ -96,29 +96,29 @@ class PipelineJob {
     this.job.with {
       steps {
         shell("""
-          root=$(pwd -P)
+          root=\$(pwd -P)
 
-          [ ! -f $root/ci/vars.sh ] && echo "No vars.sh" && exit 1
-          source $root/ci/vars.sh
+          [ ! -f \$root/ci/vars.sh ] && echo "No vars.sh" && exit 1
+          source \$root/ci/vars.sh
 
-          [ -f $root/$APP.$EXT ] && exit
+          [ -f \$root/\$APP.\$EXT ] && exit
 
           mvn dependency:get \
             -DremoteRepositories=nexus::default::"https://nexus.devops.geointservices.io/content/repositories/Piazza" \
             -DrepositoryId=nexus \
-            -DartifactId=$APP \
+            -DartifactId=\$APP \
             -DgroupId=io.piazzageo \
-            -Dpackaging=$EXT \
+            -Dpackaging=\$EXT \
             -Dtransitive=false \
-            -Dversion=$VERSION
+            -Dversion=\$VERSION
 
           mvn dependency:copy \
-            -Dartifact=io.piazzageo:$APP:$VERSION:$EXT \
+            -Dartifact=io.piazzageo:\$APP:\$VERSION:\$EXT \
             -DstripVersion=true \
             -DoverWriteIfNewer=true \
-            -DoutputDirectory=$root
+            -DoutputDirectory=\$root
 
-          mv $root/$ARTIFACT $root/$APP.$EXT
+          mv \$root/\$ARTIFACT \$root/\$APP.\$EXT
         """)
       }
 
