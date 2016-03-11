@@ -28,8 +28,7 @@ class PipelineJob {
 
           [[ -z "\$APP" || -z "\$EXT" ]] && echo "APP and EXT must be defined" && exit 1
 
-          git describe >/dev/null 2>&1 && prefix=\$(git describe) || prefix=0.0
-          version=\$prefix\$(git rev-parse --short HEAD)
+          version=\$(git describe --long --tags --dirty --always)
           artifact=\$APP-\$version.\$EXT
         """
 
