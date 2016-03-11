@@ -114,8 +114,6 @@ class PipelineJob {
 
           mvn dependency:copy \
             -Dartifact=io.piazzageo:\$APP:\$VERSION:\$EXT \
-            -DstripVersion=true \
-            -DoverWriteIfNewer=true \
             -DoutputDirectory=\$root
 
           mv \$root/\$ARTIFACT \$root/\$APP.\$EXT
