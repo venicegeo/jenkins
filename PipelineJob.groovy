@@ -131,14 +131,14 @@ class PipelineJob {
           ${this.shellvars}
 
           mvn dependency:get \
-            -Ddest=\$root/\$APP.\$EXT
             -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
             -DrepositoryId=nexus \
             -DartifactId=\$APP \
             -DgroupId=io.piazzageo \
             -Dpackaging=\$EXT \
             -Dtransitive=false \
-            -Dversion=\$version
+            -Dversion=\$version \
+            -Ddest=\$root/\$APP.\$EXT
         """)
       }
 
