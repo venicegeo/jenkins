@@ -29,7 +29,7 @@ for (p in Projects.list) {
       project: p.name,
       branch: p.branch ? p.branch : 'master',
       step: s,
-      cfdomain: 'devops.geointservices.io',
+      cfdomain: 'stage.geointservices.io',
       cfapi: 'https://api.devops.geointservices.io',
       job: job("${p.name}/${i}-${s}")
     ]).base()
@@ -41,8 +41,11 @@ for (p in Projects.list) {
 
     // Special keywords get special job behavior.
     switch (s) {
-      case 'cf-deliver':
-        jobs[s].deliver()         // deleiver to CloudFoundry
+      case 'archive':
+        jobs[s].archive()         // push artifact to nexus
+        break
+      case 'deliver':
+        jobs[s].deliver()         // pull artifact from nexus, deliver to PCF
         break
     }
 

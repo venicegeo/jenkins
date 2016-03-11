@@ -38,9 +38,9 @@ class PipelineJob {
       steps {
         shell("""
           git clean -xffd
-          [ -f ./scripts/${this.step}.sh ] || { echo "noop"; exit; }
-          chmod 700 ./scripts/${this.step}.sh
-          ./scripts/${this.step}.sh
+          [ -f ./ci/${this.step}.sh ] || { echo "noop"; exit; }
+          chmod 700 ./ci/${this.step}.sh
+          ./ci/${this.step}.sh
           exit \$?
         """)
       }
@@ -63,8 +63,65 @@ class PipelineJob {
     }
   }
 
+  def archive() {
+    return this.job.with {
+      steps {
+        shell("""
+          root=$(pwd -P)
+
+          [ ! -f $root/ci/vars.sh ] && echo "No vars.sh" && exit 1
+          source $root/ci/vars.sh
+
+          [ ! -f $ARTIFACT ] && echo "No artifact?" && exit 1
+
+          # pom?
+          [ -f $root/pom.xml ] && genpom=false || genpom=false
+
+          # push artifact to nexus
+          mvn deploy:deploy-file \
+            -Durl="https://nexus.devops.geointservices.io/content/repositories/Piazza" \
+            -DrepositoryId=nexus \
+            -Dfile=$ARTIFACT \
+            -DgeneratePom=$genpom \
+            -DgroupId=io.piazzageo \
+            -DartifactId=$APP \
+            -Dversion=$VERSION \
+            -Dpackaging=$EXT
+        """)
+      }
+    }
+  }
+
   def deliver() {
     this.job.with {
+      steps {
+        shell("""
+          root=$(pwd -P)
+
+          [ ! -f $root/ci/vars.sh ] && echo "No vars.sh" && exit 1
+          source $root/ci/vars.sh
+
+          [ -f $root/$APP.$EXT ] && exit
+
+          mvn dependency:get \
+            -DremoteRepositories=nexus::default::"https://nexus.devops.geointservices.io/content/repositories/Piazza" \
+            -DrepositoryId=nexus \
+            -DartifactId=$APP \
+            -DgroupId=io.piazzageo \
+            -Dpackaging=$EXT \
+            -Dtransitive=false \
+            -Dversion=$VERSION
+
+          mvn dependency:copy \
+            -Dartifact=io.piazzageo:$APP:$VERSION:$EXT \
+            -DstripVersion=true \
+            -DoverWriteIfNewer=true \
+            -DoutputDirectory=$root
+
+          mv $root/$ARTIFACT $root/$APP.$EXT
+        """)
+      }
+
       configure { project ->
         project / publishers << 'com.hpe.cloudfoundryjenkins.CloudFoundryPushPublisher' {
           target "${this.cfapi}"
@@ -78,7 +135,7 @@ class PipelineJob {
           appURIs ''
           manifestChoice {
             value 'manifestFile'
-            manifestFile 'manifest.jenkins.yml'
+            manifestFile 'ci/manifest.yml'
             memory 0
             instances 0
             noRoute false
