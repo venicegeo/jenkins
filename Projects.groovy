@@ -58,6 +58,14 @@ class Projects {
       pipeline: ['build', 'cf-deliver', 'health-check'],
       branch: 'master'
     ],[
+      name: 'pz-search-lite-metadata-ingest',
+      pipeline: ['build', 'cf-deliver', 'health-check'],
+      branch: 'master'
+    ],[
+      name: 'pz-search-lite-query',
+      pipeline: ['build', 'cf-deliver', 'health-check'],
+      branch: 'master'
+    ],[
       name: 'pz-servicecontroller',
       pipeline: ['build', 'cf-deliver', 'health-check', 'black-box-tests'],
       branch: 'master'
