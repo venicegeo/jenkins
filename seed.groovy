@@ -75,7 +75,7 @@ for (p in Projects.list) {
     filterExecutors()
     title("${p.name} pipeline")
     displayedBuilds(5)
-    selectedJob("piazza/${p.name}/${p.pipeline[0]}")
+    selectedJob("piazza/${p.name}/0-${p.pipeline[0]}")
     alwaysAllowManualTrigger()
     showPipelineParameters()
     refreshFrequency(60)
