@@ -21,7 +21,7 @@ class PipelineJob {
   def cfdomain
 
   def base() {
-    return this.job.with {
+    this.job.with {
       properties {
         githubProjectUrl "https://github.com/venicegeo/${this.project}"
       }
@@ -46,23 +46,23 @@ class PipelineJob {
       }
 
       logRotator { numToKeep 30 }
-
-      wrappers {
-        colorizeOutput()
-      }
     }
+
+    return this
   }
 
   def trigger() {
-    return this.job.with {
+    this.job.with {
       triggers {
         githubPush()
       }
     }
+
+    return this
   }
 
   def archive() {
-    return this.job.with {
+    this.job.with {
       steps {
         shell("""
           root=\$(pwd -P)
@@ -88,10 +88,12 @@ class PipelineJob {
         """)
       }
     }
+
+    return this
   }
 
   def deliver() {
-    return this.job.with {
+    this.job.with {
       steps {
         shell("""
           root=\$(pwd -P)
@@ -141,10 +143,12 @@ class PipelineJob {
         }
       }
     }
+
+    return this
   }
 
   def deploy() {
-    return this.job.with {
+    this.job.with {
       steps {
         shell("""
           legacy=`cf routes | grep '${this.project} ' | awk '{print \$4}'`
@@ -156,5 +160,7 @@ class PipelineJob {
         """)
       }
     }
+
+    return this
   }
 }
