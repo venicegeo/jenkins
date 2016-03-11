@@ -16,7 +16,10 @@ class Projects {
   static list = [
     [
       name: 'pz-discover',
-      pipeline: ['setup', 'test', 'archive', 'stage']
+      pipeline: ['static', 'test', 'archive', 'stage']
+    ],[
+      name: 'pz-services',
+      pipeline: ['static', 'test', 'archive', 'stage']
     ]
   ]
 }
