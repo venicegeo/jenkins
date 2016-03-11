@@ -24,6 +24,26 @@ class PipelineJob {
     this.job.with {
       properties {
         githubProjectUrl "https://github.com/venicegeo/${this.project}"
+
+        configure { properties ->
+          properties << 'jenkins.plugins.slack.SlackNotifier_-SlackJobProperty' {
+            teamDomain "https://venicegeo.slack.com"
+            token credentialsId("53c859fe-e776-11e5-9730-9a79f06e9478")
+            room "jenkins"
+            startNotification false
+            notifySuccess false
+            notifyAborted true
+            notifyNotBuilt true
+            notifyUnstable true
+            notifyFailure true
+            notifyBackToNormal true
+            notifyRepeatedFailure true
+            includeTestSummary false
+            showCommitList false
+            includeCustomMessage true
+            customMessage "<$GIT_COMMIT>"
+          }
+        }
       }
 
       scm {
@@ -46,26 +66,6 @@ class PipelineJob {
       }
 
       logRotator { numToKeep 30 }
-
-      configure { project ->
-        project / properties << 'jenkins.plugins.slack.SlackNotifier_-SlackJobProperty' {
-          teamDomain "https://venicegeo.slack.com"
-          token credentialsId("53c859fe-e776-11e5-9730-9a79f06e9478")
-          room "jenkins"
-          startNotification false
-          notifySuccess false
-          notifyAborted true
-          notifyNotBuilt true
-          notifyUnstable true
-          notifyFailure true
-          notifyBackToNormal true
-          notifyRepeatedFailure true
-          includeTestSummary false
-          showCommitList false
-          includeCustomMessage true
-          customMessage "<$GIT_COMMIT>"
-        }
-      }
     }
 
     return this
