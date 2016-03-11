@@ -44,8 +44,11 @@ for (p in Projects.list) {
       case 'archive':
         jobs[s].archive()         // push artifact to nexus
         break
-      case 'deliver':
-        jobs[s].deliver()         // pull artifact from nexus, deliver to PCF
+      case 'stage':
+        jobs[s].deliver()         // pull artifact from nexus, stage in PCF
+        break
+      case 'deploy':
+        jobs[s].deliver()         // Blue/Green deploy on PCF
         break
     }
 

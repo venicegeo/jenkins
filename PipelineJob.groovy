@@ -21,7 +21,7 @@ class PipelineJob {
   def cfdomain
 
   def base() {
-    this.job.with {
+    return this.job.with {
       properties {
         githubProjectUrl "https://github.com/venicegeo/${this.project}"
       }
@@ -51,8 +51,6 @@ class PipelineJob {
         colorizeOutput()
       }
     }
-
-    return this
   }
 
   def trigger() {
@@ -93,7 +91,7 @@ class PipelineJob {
   }
 
   def deliver() {
-    this.job.with {
+    return this.job.with {
       steps {
         shell("""
           root=\$(pwd -P)
@@ -143,7 +141,20 @@ class PipelineJob {
         }
       }
     }
+  }
 
-    return this
+  def deploy() {
+    return this.job.with {
+      steps {
+        shell("""
+          legacy=`cf routes | grep '${this.project} ' | awk '{print \$4}'`
+          target=${this.project}-`git rev-parse HEAD`
+          [ "\$target" = "\$legacy" ] && { echo "nothing to do."; exit 0; }
+          cf map-route ${this.project}-`git rev-parse HEAD` ${this.cfdomain} -n ${this.project}
+          s=\$?
+          [ -n "\$legacy" ] && cf delete -f \$legacy || exit \$s
+        """)
+      }
+    }
   }
 }
