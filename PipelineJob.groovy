@@ -20,6 +20,18 @@ class PipelineJob {
   def cfapi
   def cfdomain
   def slackToken
+  def shellvars="""
+          root=\$(pwd -P)
+
+          [ ! -f \$root/ci/vars.sh ] && echo "No vars.sh" && exit 1
+          source \$root/ci/vars.sh
+
+          [[ -z "\$APP" || -z "\$EXT" ]] && echo "APP and EXT must be defined" && exit 1
+
+          git describe >/dev/null 2>&1 && prefix=\$(git describe) || prefix=0.
+          version=\$prefix.\$(git rev-parse --short HEAD)
+          artifact=\$APP-\$version.\$EXT
+        """
 
   def base() {
     this.job.with {
@@ -89,12 +101,9 @@ class PipelineJob {
     this.job.with {
       steps {
         shell("""
-          root=\$(pwd -P)
+          ${this.shellvars}
 
-          [ ! -f \$root/ci/vars.sh ] && echo "No vars.sh" && exit 1
-          source \$root/ci/vars.sh
-
-          [ ! -f \$ARTIFACT ] && echo "No artifact?" && exit 1
+          mv \$root/\$APP.\$EXT \$artifact
 
           # pom?
           [ -f \$root/pom.xml ] && genpom=false || genpom=false
@@ -103,11 +112,11 @@ class PipelineJob {
           mvn deploy:deploy-file \
             -Durl="https://nexus.devops.geointservices.io/content/repositories/Piazza" \
             -DrepositoryId=nexus \
-            -Dfile=\$ARTIFACT \
+            -Dfile=\$artifact \
             -DgeneratePom=\$genpom \
             -DgroupId=io.piazzageo \
             -DartifactId=\$APP \
-            -Dversion=\$VERSION \
+            -Dversion=\$version \
             -Dpackaging=\$EXT
         """)
       }
@@ -120,27 +129,22 @@ class PipelineJob {
     this.job.with {
       steps {
         shell("""
-          root=\$(pwd -P)
-
-          [ ! -f \$root/ci/vars.sh ] && echo "No vars.sh" && exit 1
-          source \$root/ci/vars.sh
-
-          [ -f \$root/\$APP.\$EXT ] && exit
+          ${this.shellvars}
 
           mvn dependency:get \
-            -DremoteRepositories=nexus::default::"https://nexus.devops.geointservices.io/content/repositories/Piazza" \
+            -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
             -DrepositoryId=nexus \
             -DartifactId=\$APP \
             -DgroupId=io.piazzageo \
             -Dpackaging=\$EXT \
             -Dtransitive=false \
-            -Dversion=\$VERSION
+            -Dversion=\$version
 
           mvn dependency:copy \
-            -Dartifact=io.piazzageo:\$APP:\$VERSION:\$EXT \
+            -Dartifact=io.piazzageo:\$APP:\$version:\$EXT \
             -DoutputDirectory=\$root
 
-          mv \$root/\$ARTIFACT \$root/\$APP.\$EXT
+          mv \$root/\$artifact \$root/\$APP.\$EXT
         """)
       }
 
