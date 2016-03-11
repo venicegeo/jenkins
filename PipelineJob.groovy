@@ -19,6 +19,7 @@ class PipelineJob {
   def branch
   def cfapi
   def cfdomain
+  def slackToken
 
   def base() {
     this.job.with {
@@ -39,7 +40,7 @@ class PipelineJob {
       publishers {
         slackNotifications {
           projectChannel "jenkins"
-          integrationToken "${SLACK_TOKEN}"
+          integrationToken "${this.slackToken}"
           configure { node ->
             teamDomain "venicegeo"
             startNotification false

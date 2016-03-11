@@ -31,6 +31,7 @@ for (p in Projects.list) {
       step: s,
       cfdomain: 'stage.geointservices.io',
       cfapi: 'https://api.devops.geointservices.io',
+      slackToken: binding.variables.get("SLACK_TOKEN"),
       job: job("${p.name}/${i}-${s}")
     ]).base()
 
