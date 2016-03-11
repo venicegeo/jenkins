@@ -39,9 +39,9 @@ class PipelineJob {
       publishers {
         slackNotifications {
           projectChannel "jenkins"
-          integrationToken "\$SLACK_TOKEN"
+          integrationToken "${SLACK_TOKEN}"
           configure { node ->
-            teamDomain "https://venicegeo.slack.com"
+            teamDomain "venicegeo"
             startNotification false
             notifySuccess false
             notifyAborted true
