@@ -22,11 +22,10 @@ class PipelineJob {
 
   def base() {
     this.job.with {
-      properties {
-        githubProjectUrl "https://github.com/venicegeo/${this.project}"
 
-        configure { properties ->
-          properties << 'jenkins.plugins.slack.SlackNotifier_-SlackJobProperty' {
+      publishers {
+        slackNotifications {
+          configure { node ->
             teamDomain "https://venicegeo.slack.com"
             token credentialsId("53c859fe-e776-11e5-9730-9a79f06e9478")
             room "jenkins"
@@ -44,6 +43,10 @@ class PipelineJob {
             customMessage "<$GIT_COMMIT>"
           }
         }
+      }
+
+      properties {
+        githubProjectUrl "https://github.com/venicegeo/${this.project}"
       }
 
       scm {
