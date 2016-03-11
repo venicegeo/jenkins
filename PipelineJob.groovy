@@ -23,12 +23,25 @@ class PipelineJob {
   def base() {
     this.job.with {
 
+      properties {
+        githubProjectUrl "https://github.com/venicegeo/${this.project}"
+      }
+
+      scm {
+        git {
+          remote {
+            github "venicegeo/${this.project}"
+          }
+          branch("${this.branch}")
+        }
+      }
+
       publishers {
         slackNotifications {
+          projectChannel "jenkins"
+          integrationToken "\$SLACK_TOKEN"
           configure { node ->
             teamDomain "https://venicegeo.slack.com"
-            token credentialsId("53c859fe-e776-11e5-9730-9a79f06e9478")
-            room "jenkins"
             startNotification false
             notifySuccess false
             notifyAborted true
@@ -42,19 +55,6 @@ class PipelineJob {
             includeCustomMessage true
             customMessage "<\$GIT_COMMIT>"
           }
-        }
-      }
-
-      properties {
-        githubProjectUrl "https://github.com/venicegeo/${this.project}"
-      }
-
-      scm {
-        git {
-          remote {
-            github "venicegeo/${this.project}"
-          }
-          branch("${this.branch}")
         }
       }
 
