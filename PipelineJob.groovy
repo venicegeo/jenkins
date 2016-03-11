@@ -131,6 +131,7 @@ class PipelineJob {
           ${this.shellvars}
 
           mvn dependency:get \
+            -Ddest=\$root/\$APP.\$EXT
             -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
             -DrepositoryId=nexus \
             -DartifactId=\$APP \
@@ -138,12 +139,6 @@ class PipelineJob {
             -Dpackaging=\$EXT \
             -Dtransitive=false \
             -Dversion=\$version
-
-          mvn dependency:copy \
-            -Dartifact=io.piazzageo:\$APP:\$version:\$EXT \
-            -DoutputDirectory=\$root
-
-          mv \$root/\$artifact \$root/\$APP.\$EXT
         """)
       }
 
