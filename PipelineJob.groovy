@@ -39,7 +39,7 @@ class PipelineJob {
 
       publishers {
         slackNotifications {
-          projectChannel "jenkins"
+          projectChannel "#jenkins"
           integrationToken "${this.slackToken}"
           configure { node ->
             teamDomain "venicegeo"
