@@ -139,6 +139,8 @@ class PipelineJob {
             -Dtransitive=false \
             -Dversion=\$version \
             -Ddest=\$root/\$APP.\$EXT
+
+          [ "bin" = "\$EXT" ] && chmod 700 \$root/\$APP.\$EXT
         """)
       }
 
