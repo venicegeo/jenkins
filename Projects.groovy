@@ -13,7 +13,7 @@
 // limitations under the License.
 
 class Projects {
-  static list = [
+  static projects = [
     [
       name: 'pz-discover',
       pipeline: ['static', 'test', 'archive', 'stage']

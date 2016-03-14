@@ -12,73 +12,78 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import PipelineJob
-import Projects
+import PiazzaJob
+import static Projects.projects
 
-for (p in Projects.list) {
-  def jobs = [:]
+def entries = [:]
 
-  folder(p.name) {
-    displayName(p.name)
+def SLACK_TOKEN = binding.variables.get("SLACK_TOKEN")
+
+// rearrange the job list for processing.
+for (p in projects) {
+  entries[p.name] = [:]
+
+  p.pipeline.eachWithIndex { step, idx ->
+    entries[p.name][step] = [index: idx, branch: p.branch, children: [:]]
+
+    if (p.pipeline[idx+1]) {
+      entries[p.name][step].children[idx+1] = p.pipeline[idx+1]
+    }
+  }
+}
+
+entries.each{ name, entry ->
+
+  // create parent folder
+  folder(name) {
+    displayName(name)
   }
 
-  p.pipeline.eachWithIndex { s, i ->
+  entry.each{ step, data ->
 
-    // Base config for all Jenkins jobs
-    jobs[s] = new PipelineJob([
-      project: p.name,
-      branch: p.branch ? p.branch : 'master',
-      step: s,
-      cfdomain: 'stage.geointservices.io',
-      cfapi: 'https://api.devops.geointservices.io',
-      slackToken: binding.variables.get("SLACK_TOKEN"),
-      job: job("${p.name}/${i}-${s}")
+    // base job config
+    data.config = new PiazzaJob([
+      jobject: job("${name}/${data.index}-${step}"),
+      reponame: name,
+      targetbranch: data.branch ? data.branch : 'master',
+      slackToken: SLACK_TOKEN,
+      script: step
     ]).base()
 
-    // If first job in the pipeline, establish an external trigger.
-    if (i == 0) {
-      jobs[s].trigger()
+    // first job in pipeline needs an external trigger.
+    if (data.index == 0) {
+      data.config.trigger()
+      // construct the pipeline view
+      buildPipelineView("piazza/${name}/pipeline") {
+        filterBuildQueue()
+        filterExecutors()
+        title("${name} build pipeline")
+        displayedBuilds(5)
+        selectedJob("piazza/${name}/${data.index}-${step}")
+        alwaysAllowManualTrigger()
+        showPipelineParameters()
+        refreshFrequency(60)
+      }
+    }
+
+    // define downstream jobs
+    if (data.children) {
+      data.children.each { child, idx ->
+        data.config.downstream("${idx}-${child}")
+      }
     }
 
     // Special keywords get special job behavior.
-    switch (s) {
+    switch (step) {
       case 'archive':
-        jobs[s].archive()         // push artifact to nexus
+        data.config.archive()       // push artifact to nexus
         break
       case 'stage':
-        jobs[s].deliver()         // pull artifact from nexus, stage in PCF
+        data.config.stage()         // stage artifact in PCF
         break
       case 'deploy':
-        jobs[s].deliver()         // Blue/Green deploy on PCF
+        data.config.deploy()         // blue/green deploy in PCF (credentials needed)
         break
     }
-
-    // This sets up our pipeline to progress when jobs are successfull.
-    if ( p.pipeline[i+1] ) {
-      jobs[s].job.with {
-        configure { project ->
-          project / publishers << 'hudson.tasks.BuildTrigger' {
-            childProjects "piazza/${p.name}/${i+1}-${p.pipeline[i+1]}"
-            threshold {
-              name "SUCCESS"
-              ordinal "0"
-              color "BLUE"
-              completeBuild true
-            }
-          }
-        }
-      }
-    }
-  }
-
-  buildPipelineView("piazza/${p.name}/pipeline") {
-    filterBuildQueue()
-    filterExecutors()
-    title("${p.name} pipeline")
-    displayedBuilds(5)
-    selectedJob("piazza/${p.name}/0-${p.pipeline[0]}")
-    alwaysAllowManualTrigger()
-    showPipelineParameters()
-    refreshFrequency(60)
   }
 }

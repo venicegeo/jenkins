@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-class PipelineJob {
-  def project
-  def step
-  def job
-  def branch
-  def cfapi
-  def cfdomain
+class PiazzaJob {
   def slackToken
+  def reponame
+  def script
+  def jobject
+  def targetbranch
+  def cfapi = "https://api.devops.geointservices.io"
+  def cfdomain = "stage.geointservices.io"
   def shellvars="""
           root=\$(pwd -P)
 
@@ -33,25 +33,35 @@ class PipelineJob {
         """
 
   def base() {
-    this.job.with {
+    this.jobject.with {
 
       properties {
-        githubProjectUrl "https://github.com/venicegeo/${this.project}"
+        githubProjectUrl "https://github.com/venicegeo/${this.reponame}"
       }
 
       scm {
         git {
           remote {
-            github "venicegeo/${this.project}"
+            github "venicegeo/${this.reponame}"
           }
-          branch("${this.branch}")
+          branch("${this.targetbranch}")
         }
+      }
+
+      steps {
+        shell("""
+          git clean -xffd
+          [ -f ./ci/${this.script}.sh ] || { echo "noop"; exit; }
+          chmod 700 ./ci/${this.script}.sh
+          ./ci/${this.script}.sh
+          exit \$?
+        """)
       }
 
       publishers {
         slackNotifications {
           projectChannel "#jenkins"
-          integrationToken "${this.slackToken}"
+          integrationToken this.slackToken
           configure { node ->
             teamDomain "venicegeo"
             startNotification false
@@ -70,16 +80,6 @@ class PipelineJob {
         }
       }
 
-      steps {
-        shell("""
-          git clean -xffd
-          [ -f ./ci/${this.step}.sh ] || { echo "noop"; exit; }
-          chmod 700 ./ci/${this.step}.sh
-          ./ci/${this.step}.sh
-          exit \$?
-        """)
-      }
-
       logRotator { numToKeep 30 }
     }
 
@@ -87,9 +87,26 @@ class PipelineJob {
   }
 
   def trigger() {
-    this.job.with {
-      triggers {
+    this.jobject.with {
+      triggers { 
         githubPush()
+      }
+    }
+    return this
+  }
+
+  def downstream(childname) {
+    this.jobject.with {
+      configure { project ->
+        project / publishers << 'hudson.tasks.BuildTrigger' {
+          childProjects "piazza/${this.reponame}/${childname}"
+          threshold {
+            name "SUCCESS"
+            ordinal "0"
+            color "BLUE"
+            completeBuild true
+          }
+        }
       }
     }
 
@@ -97,7 +114,7 @@ class PipelineJob {
   }
 
   def archive() {
-    this.job.with {
+    this.jobject.with {
       steps {
         shell("""
           ${this.shellvars}
@@ -124,8 +141,8 @@ class PipelineJob {
     return this
   }
 
-  def deliver() {
-    this.job.with {
+  def stage() {
+    this.jobject.with {
       steps {
         shell("""
           ${this.shellvars}
@@ -173,10 +190,10 @@ class PipelineJob {
     this.job.with {
       steps {
         shell("""
-          legacy=`cf routes | grep '${this.project} ' | awk '{print \$4}'`
-          target=${this.project}-`git rev-parse HEAD`
+          legacy=`cf routes | grep '${this.reponame} ' | awk '{print \$4}'`
+          target=${this.reponame}-`git rev-parse HEAD`
           [ "\$target" = "\$legacy" ] && { echo "nothing to do."; exit 0; }
-          cf map-route ${this.project}-`git rev-parse HEAD` ${this.cfdomain} -n ${this.project}
+          cf map-route ${this.reponame}-`git rev-parse HEAD` ${this.cfdomain} -n ${this.reponame}
           s=\$?
           [ -n "\$legacy" ] && cf delete -f \$legacy || exit \$s
         """)
