@@ -157,9 +157,9 @@ class PiazzaJob {
             -Dversion=\$version \
             -Ddest=\$root/\$APP.\$EXT
 
-          s=\$?
+          [ "bin" = "\$EXT" ] && chmod 700 \$root/\$APP.\$EXT
 
-          [ "bin" = "\$EXT" ] && chmod 700 \$root/\$APP.\$EXT || exit \$s
+          [ -f \$root/\$APP.\$EXT ] || exit 1
         """)
       }
 
