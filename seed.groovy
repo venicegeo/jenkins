@@ -68,8 +68,8 @@ entries.each{ name, entry ->
 
     // define downstream jobs
     if (data.children) {
-      data.children.each { child, idx ->
-        data.config.downstream("${idx}-${child}")
+      data.children.each { idx, childname ->
+        data.config.downstream("${idx}-${childname}")
       }
     }
 
