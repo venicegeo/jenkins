@@ -21,6 +21,10 @@ class Projects {
       name: 'pz-gateway',
       pipeline: ['archive', 'stage']
     ],[
+      name: 'pz-jobcommon',
+      pipeline: ['archive'],
+      branch: 'geoint'
+    ],[
       name: 'pz-services',
       pipeline: ['static', 'test', 'archive', 'stage']
     ],[
