@@ -159,7 +159,7 @@ class PiazzaJob {
 
           s=\$?
 
-          [ "bin" = "\$EXT" ] && chmod 700 \$root/\$APP.\$EXT || exit $s
+          [ "bin" = "\$EXT" ] && chmod 700 \$root/\$APP.\$EXT || exit \$s
         """)
       }
 
