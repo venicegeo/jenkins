@@ -18,6 +18,10 @@ class Projects {
       name: 'pz-discover',
       pipeline: ['static', 'test', 'archive', 'stage']
     ],[
+      name: 'pz-dispatcher',
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
+    ],[
       name: 'pz-gateway',
       pipeline: ['archive', 'stage'],
       branch: 'geoint'
