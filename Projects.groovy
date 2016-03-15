@@ -30,6 +30,9 @@ class Projects {
       pipeline: ['archive'],
       branch: 'geoint'
     ],[
+      name: 'pz-logger',
+      pipeline: ['test', 'archive', 'stage']
+    ],[
       name: 'pz-services',
       pipeline: ['static', 'test', 'archive', 'stage']
     ],[
