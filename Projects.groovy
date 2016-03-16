@@ -45,6 +45,14 @@ class Projects {
       name: 'pz-logger',
       pipeline: ['test', 'archive', 'stage']
     ],[
+      name: 'pz-search-metadata-ingest',
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
+    ],[
+      name: 'pz-search-query',
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
+    ],[
       name: 'pz-services',
       pipeline: ['static', 'test', 'archive', 'stage']
     ],[
