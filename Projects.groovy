@@ -15,6 +15,10 @@
 class Projects {
   static projects = [
     [
+      name: 'pz-access',
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
+    ],[
       name: 'pz-discover',
       pipeline: ['static', 'test', 'archive', 'stage']
     ],[
@@ -26,8 +30,16 @@ class Projects {
       pipeline: ['archive', 'stage'],
       branch: 'geoint'
     ],[
+      name: 'pz-ingest',
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
+    ],[
       name: 'pz-jobcommon',
       pipeline: ['archive'],
+      branch: 'geoint'
+    ],[
+      name: 'pz-jobmanager',
+      pipeline: ['archive', 'stage'],
       branch: 'geoint'
     ],[
       name: 'pz-logger',
@@ -37,6 +49,9 @@ class Projects {
       pipeline: ['static', 'test', 'archive', 'stage']
     ],[
       name: 'pz-uuidgen',
+      pipeline: ['test', 'archive', 'stage']
+    ],[
+      name: 'pz-workflow',
       pipeline: ['test', 'archive', 'stage']
     ]
   ]
