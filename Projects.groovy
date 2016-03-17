@@ -76,6 +76,9 @@ class Projects {
     ],[
       name: 'pz-workflow',
       pipeline: ['test', 'archive', 'stage']
+    ],[
+      name: 'pzclient-sak',
+      pipeline: ['archive', 'stage']
     ]
   ]
 }
