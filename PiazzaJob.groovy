@@ -158,7 +158,7 @@ class PiazzaJob {
             -Ddest=\$root/\$APP.\$EXT
 
           [ "bin" = "\$EXT" ] && chmod 700 \$root/\$APP.\$EXT
-          [ "tar.gz" = "\$EXT" ] && tar -xzf \$root/\$APP.$EXT
+          [ "tar.gz" = "\$EXT" ] && tar -xzf \$root/\$APP.\$EXT
 
           [ -f \$root/\$APP.\$EXT ] || exit 1
         """)
