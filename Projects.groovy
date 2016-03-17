@@ -79,6 +79,13 @@ class Projects {
     ],[
       name: 'pzclient-sak',
       pipeline: ['archive', 'stage']
+    ],[
+      name: 'pzsvc-coordinate-conversion',
+      pipeline: ['archive', 'stage']
+    ],[
+      name: 'pzsvc-gdaldem',
+      pipeline: ['test', 'archive', 'blackbox'],
+      branch: 'geoint'
     ]
   ]
 }
