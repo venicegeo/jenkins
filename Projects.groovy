@@ -68,6 +68,9 @@ class Projects {
       name: 'pz-services',
       pipeline: ['static', 'test', 'archive', 'stage']
     ],[
+      name: 'pz-swagger',
+      pipeline: ['archive', 'stage']
+    ],[
       name: 'pz-uuidgen',
       pipeline: ['test', 'archive', 'stage']
     ],[
