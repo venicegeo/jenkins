@@ -28,7 +28,7 @@ class PiazzaJob {
 
           [[ -z "\$APP" || -z "\$EXT" ]] && echo "APP and EXT must be defined" && exit 1
 
-          version=\$(git describe --long --tags --dirty --always)
+          version=\$(git describe --long --tags --always)
           artifact=\$APP-\$version.\$EXT
         """
 
