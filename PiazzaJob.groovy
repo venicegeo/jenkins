@@ -121,6 +121,16 @@ class PiazzaJob {
 
           mv \$root/\$APP.\$EXT \$artifact
 
+          mvn dependency:get \
+            -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
+            -DrepositoryId=nexus \
+            -DartifactId=\$APP \
+            -DgroupId=io.piazzageo \
+            -Dpackaging=\$EXT \
+            -Dtransitive=false \
+            -Dversion=\$version \
+          && { echo "artifact already exists! Noop!"; exit 0; } || true
+
           # pom?
           [ -f \$root/pom.xml ] && genpom=false || genpom=false
 
