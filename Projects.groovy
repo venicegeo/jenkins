@@ -63,6 +63,7 @@ class Projects {
     ],[
       name: 'pz-servicecontroller',
       pipeline: ['archive', 'stage', 'blackbox'],
+      branch: 'geoint'
     ],[
       name: 'pz-services',
       pipeline: ['static', 'test', 'archive', 'stage']
