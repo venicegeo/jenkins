@@ -94,6 +94,12 @@ class Projects {
       name: 'pzsvc-pdal',
       pipeline: ['test', 'archive', 'stage', 'blackbox'],
       branch: 'geoint'
+    ],[
+      name: 'pzsvc-us-phone-number-filter',
+      pipeline: ['archive', 'stage']
+    ],[
+      name: 'pzsvc-us-geospatial-filter',
+      pipeline: ['archive', 'stage']
     ]
   ]
 }
