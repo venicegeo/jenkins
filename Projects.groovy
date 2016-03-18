@@ -15,6 +15,9 @@
 class Projects {
   static projects = [
     [
+      name: 'bf-ui',
+      pipeline: ['archive', 'stage']
+    ],[
       name: 'pz-access',
       pipeline: ['archive', 'stage'],
       branch: 'geoint'
