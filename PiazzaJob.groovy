@@ -223,10 +223,14 @@ class PiazzaJob {
           nodeJSInstallationName "Node 5.7.0"
         }
       }
-      steps {
-        shell("""
-          npm install newman
-        """)
+
+      wrappers {
+        preScmSteps {
+          steps {
+            shell('npm install newman')
+          }
+          failOnError()
+        }
       }
     }
 
