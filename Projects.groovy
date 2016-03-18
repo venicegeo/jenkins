@@ -102,7 +102,7 @@ class Projects {
       pipeline: ['archive', 'stage']
     ],[
       name: 'pztest-integration',
-      pipeline: ['black-box-test']
+      pipeline: ['black-box-tests']
     ]
   ]
 }
