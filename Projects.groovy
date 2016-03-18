@@ -84,7 +84,15 @@ class Projects {
       pipeline: ['archive', 'stage']
     ],[
       name: 'pzsvc-gdaldem',
-      pipeline: ['test', 'archive', 'blackbox'],
+      pipeline: ['test', 'archive', 'stage', 'blackbox'],
+      branch: 'geoint'
+    ],[
+      name: 'pzsvc-lasinfo',
+      pipeline: ['test', 'archive', 'stage', 'blackbox'],
+      branch: 'geoint'
+    ],[
+      name: 'pzsvc-pdal',
+      pipeline: ['test', 'archive', 'stage', 'blackbox'],
       branch: 'geoint'
     ]
   ]
