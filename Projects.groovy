@@ -106,6 +106,9 @@ class Projects {
     ],[
       name: 'pztest-integration',
       pipeline: ['blackbox']
+    ],[
+      name: 'time-lapse-viewer',
+      pipeline: ['archive', 'stage']
     ]
   ]
 }
