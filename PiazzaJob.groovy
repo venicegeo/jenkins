@@ -224,13 +224,8 @@ class PiazzaJob {
         }
       }
 
-      wrappers {
-        preScmSteps {
-          steps {
-            shell('npm install newman')
-          }
-          failOnError()
-        }
+      steps {
+        shell('npm install newman')
       }
     }
 

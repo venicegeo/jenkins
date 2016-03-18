@@ -48,7 +48,13 @@ entries.each{ name, entry ->
       targetbranch: data.branch ? data.branch : 'master',
       slackToken: SLACK_TOKEN,
       script: step
-    ]).base()
+    ])
+
+    if (step == 'blackbox') {
+      data.config.blackbox()
+    }
+
+    data.config.base()
 
     // first job in pipeline needs an external trigger.
     if (data.index == 0) {
@@ -83,9 +89,6 @@ entries.each{ name, entry ->
         break
       case 'deploy':
         data.config.deploy()         // blue/green deploy in PCF (credentials needed)
-        break
-      case 'blackbox':
-        data.config.blackbox()         // provide newman for blackbox testing
         break
     }
   }
