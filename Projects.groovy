@@ -100,6 +100,9 @@ class Projects {
     ],[
       name: 'pzsvc-us-geospatial-filter',
       pipeline: ['archive', 'stage']
+    ],[
+      name: 'pztest-integration',
+      pipeline: ['black-box-test']
     ]
   ]
 }
