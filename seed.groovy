@@ -84,6 +84,9 @@ entries.each{ name, entry ->
       case 'deploy':
         data.config.deploy()         // blue/green deploy in PCF (credentials needed)
         break
+      case 'blackbox':
+        data.config.blackbox()         // provide newman for blackbox testing
+        break
     }
   }
 }

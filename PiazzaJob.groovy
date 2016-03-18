@@ -200,7 +200,7 @@ class PiazzaJob {
   }
 
   def deploy() {
-    this.job.with {
+    this.jobject.with {
       steps {
         shell("""
           legacy=`cf routes | grep '${this.reponame} ' | awk '{print \$4}'`
@@ -209,6 +209,23 @@ class PiazzaJob {
           cf map-route ${this.reponame}-`git rev-parse HEAD` ${this.cfdomain} -n ${this.reponame}
           s=\$?
           [ -n "\$legacy" ] && cf delete -f \$legacy || exit \$s
+        """)
+      }
+    }
+
+    return this
+  }
+
+  def blackbox() {
+    this.jobject.with {
+      configure { project ->
+        project / buildWrappers << 'jenkins.plugins.nodejs.tools.NpmPackagesBuildWrapper' {
+          nodeJSInstallationName "Node 5.7.0"
+        }
+      }
+      steps {
+        shell("""
+          npm install newman
         """)
       }
     }
