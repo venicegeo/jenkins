@@ -225,7 +225,7 @@ class PiazzaJob {
       }
 
       steps {
-        shell('npm install newman')
+        shell('npm install -g newman@2')
       }
     }
 
