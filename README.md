@@ -1,6 +1,6 @@
 # Jenkins Seed
 
-This is the repo for Venice's [Jenkins Seed Job](http://jenkins.piazzageo.io/job/seed).
+This is the repo for Venice's Jenkins Seed Job.
 
 ## What is a seed job?
 
@@ -12,7 +12,7 @@ All jobs are spec'd out in `./Projects.groovy`. To add jobs for your repo, just 
 
 ```groovy
 class Projects {
-  static list = [
+  static projects = [
   ...
     [
       name: 'your-venicegeo-repo',
@@ -27,10 +27,10 @@ Then create `./scripts/job1.sh` and `./scripts/job2.sh` in `your-venicegeo-repo`
 
 ## How do I make Jenkins deploy my app to CloudFoundry?
 
-- create a job `cf-deliver` and a `./manifest.yml` in your repo ([more on manifests](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html)).
+## How do I make Jenkins deploy my app to CloudFoundry?
 
-## How do I trigger a Jenkins job?
-- Right now the only way jobs are triggered is via a push to github.
+- add `stage` to your pipeline and a `./manifest.jenkins.yml` in your repo ([more on manifests](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html)).
+- **Note:** you'll need an artifact in nexus!
 
 ## Testing seed job generation
 ```

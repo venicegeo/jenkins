@@ -12,75 +12,84 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import PipelineJob
-import Projects
+import PiazzaJob
+import static Projects.projects
 
-for (p in Projects.list) {
-  def jobs = [:]
+def entries = [:]
 
-  p.pipeline.eachWithIndex { s, i ->
+def SLACK_TOKEN = binding.variables.get("SLACK_TOKEN")
 
-    // Base config for all Jenkins jobs
-    jobs[s] = new PipelineJob([
-      project: p.name,
-      branch: p.branch ? p.branch : '**',
-      step: s,
-      cfdomain: p.pcf ? 'apps.cf2.piazzageo.io' : 'cf.piazzageo.io',                      // hack for 2 CF - TODO
-      cfapi: p.pcf ? 'http://api.system.cf2.piazzageo.io' : 'http://api.cf.piazzageo.io', // hack for 2 CF - TODO
-      job: job("${p.name}-${s}")
-    ]).base()
+// rearrange the job list for processing.
+for (p in projects) {
+  entries[p.name] = [:]
 
-    // If first job in the pipeline, establish an external trigger.
-    if (i == 0) {
-      jobs[s].trigger()
+  p.pipeline.eachWithIndex { step, idx ->
+    entries[p.name][step] = [index: idx, branch: p.branch, children: [:]]
+
+    if (p.pipeline[idx+1]) {
+      entries[p.name][step].children[idx+1] = p.pipeline[idx+1]
+    }
+  }
+}
+
+entries.each{ name, entry ->
+
+  // create parent folder
+  folder(name) {
+    displayName(name)
+  }
+
+  entry.each{ step, data ->
+
+    // base job config
+    data.config = new PiazzaJob([
+      jobject: job("${name}/${data.index}-${step}"),
+      reponame: name,
+      targetbranch: data.branch ? data.branch : 'master',
+      slackToken: SLACK_TOKEN,
+      script: step
+    ])
+
+    if (step == 'blackbox') {
+      data.config.blackbox()
+    }
+
+    data.config.base()
+
+    // first job in pipeline needs an external trigger.
+    if (data.index == 0) {
+      data.config.trigger()
+      // construct the pipeline view
+      buildPipelineView("piazza/${name}/pipeline") {
+        filterBuildQueue()
+        filterExecutors()
+        title("${name} build pipeline")
+        displayedBuilds(5)
+        selectedJob("piazza/${name}/${data.index}-${step}")
+        alwaysAllowManualTrigger()
+        showPipelineParameters()
+        refreshFrequency(60)
+      }
+    }
+
+    // define downstream jobs
+    if (data.children) {
+      data.children.each { idx, childname ->
+        data.config.downstream("${idx}-${childname}")
+      }
     }
 
     // Special keywords get special job behavior.
-    switch (s) {
-      case 'cf-deliver':
-        jobs[s].deliver()         // deleiver to CloudFoundry
-        jobs[s].triggerTeardown() // and trigger teardown on failure
+    switch (step) {
+      case 'archive':
+        data.config.archive()       // push artifact to nexus
         break
-      case 'cf-deploy':
-        jobs[s].deploy()          // Run a blue/green deployment.
-        jobs[s].triggerTeardown() // and teardown on failure.
-        // We need a teardown job if we are deploying.
-        cleanup = new PipelineJob([
-          project: p.name,
-          branch: p.branch,
-          step: 'cf-teardown',
-          cfdomain: p.pcf ? 'apps.cf2.piazzageo.io' : 'cf.piazzageo.io',
-          cfapi: p.pcf ? 'http://api.system.cf2.piazzageo.io' : 'http://api.cf.piazzageo.io',
-          job: job("${p.name}-cf-teardown")
-        ]).base().teardown()
+      case 'stage':
+        data.config.stage()         // stage artifact in PCF
         break
-      case 'health-check':
-        jobs[s].triggerTeardown() // A failed health-check will cause a teardown.
+      case 'deploy':
+        data.config.deploy()         // blue/green deploy in PCF (credentials needed)
         break
-      case 'cf-teardown':
-        jobs[s].teardown() // Maybe we want a teardown in our pipeline...
-        break
-    }
-
-    // This sets up our pipeline to progress when jobs are successfull.
-    if ( p.pipeline[i+1] ) {
-      jobs[s].job.with {
-        publishers {
-          downstream("${p.name}-${p.pipeline[i+1]}", "SUCCESS")
-        }
-      }
-    }
-  }
-
-  // Create a Pipeline View for each project.
-  deliveryPipelineView(p.name) {
-    allowPipelineStart(true)
-    allowRebuild(true)
-    pipelineInstances(5)
-    columns(10)
-    updateInterval(60)
-    pipelines {
-      component(p.name, "${p.name}-${p.pipeline[0]}")
     }
   }
 }

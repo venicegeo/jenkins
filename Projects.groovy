@@ -13,113 +13,102 @@
 // limitations under the License.
 
 class Projects {
-  static list = [
+  static projects = [
     [
       name: 'bf-ui',
-      pipeline: ['build', 'cf-deliver', 'health-check'],
-      branch: 'master'
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pz-access',
-      pipeline: ['build', 'cf-deliver', 'health-check'],
-      branch: 'master'
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
     ],[
       name: 'pz-discover',
-      pipeline: ['setup','test','artifact','cf-deliver','health-check']
+      pipeline: ['static', 'test', 'archive', 'stage']
     ],[
       name: 'pz-dispatcher',
-      pipeline: ['build', 'cf-deliver', 'health-check'],
-      branch: 'master'
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
     ],[
       name: 'pz-gateway',
-      pipeline: ['build', 'cf-deliver', 'health-check'],
-      branch: 'master'
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
     ],[
       name: 'pz-ingest',
-      pipeline: ['build', 'cf-deliver'],
-      branch: 'master'
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
     ],[
       name: 'pz-jobcommon',
-      pipeline: ['build'],
-      branch: 'master'
+      pipeline: ['archive'],
+      branch: 'geoint'
     ],[
       name: 'pz-jobmanager',
-      pipeline: ['build', 'cf-deliver', 'health-check'],
-      branch: 'master'
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
     ],[
       name: 'pz-logger',
-      pipeline: ['build-test-archive','cf-deliver','health-check'],
-      branch: 'master'
-    ],[
-      name: 'pz-search-metadata-ingest',
-      pipeline: ['build', 'cf-deliver', 'health-check'],
-      branch: 'master'
-    ],[
-      name: 'pz-search-query',
-      pipeline: ['build', 'cf-deliver', 'health-check'],
-      branch: 'master'
+      pipeline: ['test', 'archive', 'stage']
     ],[
       name: 'pz-search-lite-metadata-ingest',
-      pipeline: ['build', 'cf-deliver', 'health-check'],
-      branch: 'master'
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
     ],[
       name: 'pz-search-lite-query',
-      pipeline: ['build', 'cf-deliver', 'health-check'],
-      branch: 'master'
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
+    ],[
+      name: 'pz-search-metadata-ingest',
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
+    ],[
+      name: 'pz-search-query',
+      pipeline: ['archive', 'stage'],
+      branch: 'geoint'
     ],[
       name: 'pz-servicecontroller',
-      pipeline: ['build', 'cf-deliver', 'health-check', 'black-box-tests'],
-      branch: 'master'
+      pipeline: ['archive', 'stage', 'blackbox'],
+      branch: 'geoint'
     ],[
       name: 'pz-services',
-      pipeline: ['build'],
-      branch: 'master'
+      pipeline: ['static', 'test', 'archive', 'stage']
     ],[
       name: 'pz-swagger',
-      pcf: true,
-      pipeline: ['cf-deliver', 'health-check', 'cf-deploy']
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pz-uuidgen',
-      pipeline: ['build-test-archive','cf-deliver','health-check'],
-      branch: 'master'
+      pipeline: ['test', 'archive', 'stage']
     ],[
       name: 'pz-workflow',
-      pipeline: ['build-test-archive','cf-deliver','health-check'],
-      branch: 'master'
+      pipeline: ['test', 'archive', 'stage']
     ],[
       name: 'pzclient-sak',
-      pipeline: ['cf-deliver'],
-      branch: 'master'
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pzsvc-coordinate-conversion',
-      pipeline: ['build', 'cf-deliver', 'health-check']
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pzsvc-gdaldem',
-      pipeline: ['build-test-archive','cf-deliver','health-check', 'black-box-tests']
+      pipeline: ['test', 'archive', 'stage', 'blackbox'],
+      branch: 'geoint'
     ],[
       name: 'pzsvc-lasinfo',
-      pipeline: ['build-test-archive','cf-deliver','health-check', 'black-box-tests']
+      pipeline: ['test', 'archive', 'stage', 'blackbox'],
+      branch: 'geoint'
     ],[
       name: 'pzsvc-pdal',
-      pipeline: ['build-test-archive','cf-deliver','health-check', 'black-box-tests']
-    ],[
-      name: 'pzsvc-twofishes',
-      pipeline: ['build', 'cf-deliver', 'health-check']
-    ],[
-      name: 'pzsvc-us-geospatial-filter',
-      pipeline: ['build', 'cf-deliver', 'health-check']
-    ],[
-      name: 'pztest-integration',
-      pipeline: ['black-box-tests']
+      pipeline: ['test', 'archive', 'stage', 'blackbox'],
+      branch: 'geoint'
     ],[
       name: 'pzsvc-us-phone-number-filter',
-      pipeline: ['build', 'cf-deliver', 'health-check']
+      pipeline: ['archive', 'stage']
     ],[
-      name: 'refapp-devops',
-      pipeline: ['setup','test','artifact','placeholder','cf-deliver','health-check','cf-deploy'],
-      branch: 'master'
+      name: 'pzsvc-us-geospatial-filter',
+      pipeline: ['archive', 'stage']
+    ],[
+      name: 'pztest-integration',
+      pipeline: ['blackbox']
     ],[
       name: 'time-lapse-viewer',
-      pipeline: ['build', 'cf-deliver', 'health-check']
+      pipeline: ['archive', 'stage']
     ]
   ]
 }
