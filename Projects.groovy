@@ -18,6 +18,9 @@ class Projects {
       name: 'bf-ui',
       pipeline: ['archive', 'stage']
     ],[
+      name: 'cheese',
+      pipeline: ['archive', 'stage']
+    ],[
       name: 'pz-access',
       pipeline: ['archive', 'stage'],
       branch: 'geoint'
