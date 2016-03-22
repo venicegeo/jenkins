@@ -1,4 +1,4 @@
-# Jenkins Seed
+# Jenkins Build Pipelines
 
 This is the repo for Venice's Jenkins Seed Job.
 
@@ -23,9 +23,7 @@ class Projects {
 }
 ```
 
-Then create `./scripts/job1.sh` and `./scripts/job2.sh` in `your-venicegeo-repo`.
-
-## How do I make Jenkins deploy my app to CloudFoundry?
+Then create `./ci/job1.sh` and `./ci/job2.sh` in `your-venicegeo-repo`.
 
 ## How do I make Jenkins deploy my app to CloudFoundry?
 
