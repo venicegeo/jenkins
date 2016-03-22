@@ -22,31 +22,25 @@ class Projects {
       pipeline: ['archive', 'stage']
     ],[
       name: 'pz-access',
-      pipeline: ['archive', 'stage'],
-      branch: 'geoint'
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pz-discover',
       pipeline: ['static', 'test', 'archive', 'stage']
     ],[
       name: 'pz-dispatcher',
-      pipeline: ['archive', 'stage'],
-      branch: 'geoint'
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pz-gateway',
-      pipeline: ['archive', 'stage'],
-      branch: 'geoint'
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pz-ingest',
-      pipeline: ['archive', 'stage'],
-      branch: 'geoint'
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pz-jobcommon',
-      pipeline: ['archive'],
-      branch: 'geoint'
+      pipeline: ['archive']
     ],[
       name: 'pz-jobmanager',
-      pipeline: ['archive', 'stage'],
-      branch: 'geoint'
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pz-logger',
       pipeline: ['test', 'archive', 'stage']
