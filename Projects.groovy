@@ -54,8 +54,7 @@ class Projects {
       branch: 'geoint'
     ],[
       name: 'pz-servicecontroller',
-      pipeline: ['archive', 'stage', 'blackbox'],
-      branch: 'geoint'
+      pipeline: ['archive', 'stage', 'blackbox']
     ],[
       name: 'pz-swagger',
       pipeline: ['archive', 'stage']
