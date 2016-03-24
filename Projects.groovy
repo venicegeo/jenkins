@@ -18,9 +18,6 @@ class Projects {
       name: 'bf-ui',
       pipeline: ['archive', 'stage']
     ],[
-      name: 'cheese',
-      pipeline: ['archive', 'stage']
-    ],[
       name: 'pz-access',
       pipeline: ['archive', 'stage']
     ],[
@@ -84,12 +81,6 @@ class Projects {
       branch: 'geoint'
     ],[
       name: 'pzsvc-preview-generator',
-      pipeline: ['archive', 'stage']
-    ],[
-      name: 'pzsvc-us-phone-number-filter',
-      pipeline: ['archive', 'stage']
-    ],[
-      name: 'pzsvc-us-geospatial-filter',
       pipeline: ['archive', 'stage']
     ],[
       name: 'pztest-integration',
