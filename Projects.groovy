@@ -95,8 +95,8 @@ class Projects {
       pipeline: ['test', 'archive', 'stage', 'blackbox'],
       branch: 'geoint'
     ],[
-      name: 'pzsvc-previewgenerator',
-	  pipeline: ['archive', 'stage']
+      name: 'pzsvc-preview-generator',
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pzsvc-us-phone-number-filter',
       pipeline: ['archive', 'stage']
