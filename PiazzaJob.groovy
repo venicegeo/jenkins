@@ -52,7 +52,7 @@ class PiazzaJob {
         shell("""
           git clean -xffd
           [ -f ./ci/${this.script}.sh ] || { echo "noop"; exit; }
-          chmod 700 ./ci/${this.script}.sh
+          chmod 755 ./ci/${this.script}.sh
           ./ci/${this.script}.sh
           exit \$?
         """)
