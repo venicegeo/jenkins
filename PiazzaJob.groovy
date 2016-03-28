@@ -52,7 +52,7 @@ class PiazzaJob {
         shell("""
           git clean -xffd
           [ -f ./ci/${this.script}.sh ] || { echo "noop"; exit; }
-          chmod 755 ./ci/${this.script}.sh
+          chmod 700 ./ci/${this.script}.sh
           ./ci/${this.script}.sh
           exit \$?
         """)
@@ -167,7 +167,7 @@ class PiazzaJob {
             -Dversion=\$version \
             -Ddest=\$root/\$APP.\$EXT
 
-          [ "bin" = "\$EXT" ] && chmod 700 \$root/\$APP.\$EXT
+          [ "bin" = "\$EXT" ] && chmod 755 \$root/\$APP.\$EXT
           [ "tar.gz" = "\$EXT" ] && tar -xzf \$root/\$APP.\$EXT
 
           [ -f \$root/\$APP.\$EXT ] || exit 1
