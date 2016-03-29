@@ -21,9 +21,6 @@ class Projects {
       name: 'pz-access',
       pipeline: ['archive', 'stage']
     ],[
-      name: 'pz-discover',
-      pipeline: ['static', 'test', 'archive', 'stage']
-    ],[
       name: 'pz-dispatcher',
       pipeline: ['archive', 'stage']
     ],[
