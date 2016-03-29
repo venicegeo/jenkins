@@ -44,11 +44,9 @@ class Projects {
     ],[
       name: 'pz-search-metadata-ingest',
       pipeline: ['archive', 'stage'],
-      branch: 'geoint'
     ],[
       name: 'pz-search-query',
       pipeline: ['archive', 'stage'],
-      branch: 'geoint'
     ],[
       name: 'pz-servicecontroller',
       pipeline: ['archive', 'stage', 'blackbox']
@@ -70,15 +68,12 @@ class Projects {
     ],[
       name: 'pzsvc-gdaldem',
       pipeline: ['test', 'archive', 'stage', 'blackbox'],
-      branch: 'geoint'
     ],[
       name: 'pzsvc-lasinfo',
       pipeline: ['test', 'archive', 'stage', 'blackbox'],
-      branch: 'geoint'
     ],[
       name: 'pzsvc-pdal',
       pipeline: ['test', 'archive', 'stage', 'blackbox'],
-      branch: 'geoint'
     ],[
       name: 'pzsvc-preview-generator',
       pipeline: ['archive', 'stage']
