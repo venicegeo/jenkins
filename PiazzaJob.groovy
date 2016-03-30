@@ -19,7 +19,7 @@ class PiazzaJob {
   def jobject
   def targetbranch
   def cfapi = "https://api.devops.geointservices.io"
-  def cfdomain = "stage.geointservices.io"
+  def cfdomain = "int.geointservices.io"
   def shellvars="""
           root=\$(pwd -P)
 
@@ -125,7 +125,7 @@ class PiazzaJob {
             -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
             -DrepositoryId=nexus \
             -DartifactId=\$APP \
-            -DgroupId=io.piazzageo \
+            -DgroupId=org.venice.piazza\
             -Dpackaging=\$EXT \
             -Dtransitive=false \
             -Dversion=\$version \
@@ -140,7 +140,7 @@ class PiazzaJob {
             -DrepositoryId=nexus \
             -Dfile=\$artifact \
             -DgeneratePom=\$genpom \
-            -DgroupId=io.piazzageo \
+            -DgroupId=org.venice.piazza \
             -DartifactId=\$APP \
             -Dversion=\$version \
             -Dpackaging=\$EXT
@@ -161,7 +161,7 @@ class PiazzaJob {
             -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
             -DrepositoryId=nexus \
             -DartifactId=\$APP \
-            -DgroupId=io.piazzageo \
+            -DgroupId=org.venice.piazza \
             -Dpackaging=\$EXT \
             -Dtransitive=false \
             -Dversion=\$version \
@@ -178,7 +178,7 @@ class PiazzaJob {
         project / publishers << 'com.hpe.cloudfoundryjenkins.CloudFoundryPushPublisher' {
           target "${this.cfapi}"
           organization 'piazza'
-          cloudSpace 'simulator-stage'
+          cloudSpace 'int'
           credentialsId '6ad30d14-e498-11e5-9730-9a79f06e9478'
           selfSigned false
           resetIfExists true
