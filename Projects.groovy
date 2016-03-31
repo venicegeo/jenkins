@@ -63,6 +63,9 @@ class Projects {
       name: 'pzsvc-coordinate-conversion',
       pipeline: ['archive', 'stage']
     ],[
+      name: 'pzsvc-exec',
+      pipeline: ['archive', 'stage']
+    ],[
       name: 'pzsvc-gdaldem',
       pipeline: ['test', 'archive', 'stage', 'blackbox'],
     ],[
