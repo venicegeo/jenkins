@@ -48,6 +48,9 @@ class Projects {
       name: 'pz-search-query',
       pipeline: ['archive', 'stage'],
     ],[
+      name: 'pz-security',
+      pipeline: ['archive', 'stage'],
+    ],[
       name: 'pz-servicecontroller',
       pipeline: ['archive', 'stage', 'blackbox']
     ],[
