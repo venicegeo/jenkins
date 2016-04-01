@@ -1,6 +1,6 @@
 # Jenkins Build Pipelines
 
-This is the repo for Venice's Jenkins Seed Job.
+This is the repo for Venice's Jenkins Seed Job. [More Information](https://github.com/venicegeo/venice/blob/master/docs/devops.md#jenkins).
 
 ## What is a seed job?
 
@@ -8,7 +8,7 @@ The seed job is responsible for generating all other Jenkins jobs.
 
 ## How do I create a Jenkins job?
 
-All jobs are spec'd out in `./Projects.groovy`. To add jobs for your repo, just add your jobs to the `list` collection in `./Projects.groovy`:
+All jobs are spec'd out in `./Projects.groovy`. To add jobs for your repo, just add your jobs to the `projects` collection in `./Projects.groovy`:
 
 ```groovy
 class Projects {
