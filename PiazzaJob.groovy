@@ -178,7 +178,7 @@ class PiazzaJob {
         project / publishers << 'com.hpe.cloudfoundryjenkins.CloudFoundryPushPublisher' {
           target "${this.cfapi}"
           organization 'piazza'
-          cloudSpace 'int'
+          cloudSpace 'simulator-stage'
           credentialsId '6ad30d14-e498-11e5-9730-9a79f06e9478'
           selfSigned false
           resetIfExists true
