@@ -43,13 +43,13 @@ class Projects {
       pipeline: ['test', 'archive', 'stage']
     ],[
       name: 'pz-search-metadata-ingest',
-      pipeline: ['archive', 'stage'],
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pz-search-query',
-      pipeline: ['archive', 'stage'],
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pz-security',
-      pipeline: ['archive', 'stage'],
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pz-servicecontroller',
       pipeline: ['archive', 'stage', 'blackbox']
@@ -73,13 +73,16 @@ class Projects {
       pipeline: ['archive', 'stage']
     ],[
       name: 'pzsvc-gdaldem',
-      pipeline: ['test', 'archive', 'stage', 'blackbox'],
+      pipeline: ['test', 'archive', 'stage', 'blackbox']
     ],[
       name: 'pzsvc-lasinfo',
-      pipeline: ['test', 'archive', 'stage', 'blackbox'],
+      pipeline: ['test', 'archive', 'stage', 'blackbox']
+    ],[
+      name: 'pzsvc-ossim',
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pzsvc-pdal',
-      pipeline: ['test', 'archive', 'stage', 'blackbox'],
+      pipeline: ['test', 'archive', 'stage', 'blackbox']
     ],[
       name: 'pzsvc-preview-generator',
       pipeline: ['archive', 'stage']
