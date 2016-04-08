@@ -144,6 +144,8 @@ class PiazzaJob {
             -DartifactId=\$APP \
             -Dversion=\$version \
             -Dpackaging=\$EXT
+
+          rm \$artifact
         """)
       }
     }
