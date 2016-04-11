@@ -27,6 +27,9 @@ class Projects {
       name: 'pz-dispatcher',
       pipeline: ['archive', 'stage']
     ],[
+      name: 'pz-docs',
+      pipeline: ['archive', 'stage']
+    ],[
       name: 'pz-gateway',
       pipeline: ['archive', 'stage']
     ],[
