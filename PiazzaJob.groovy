@@ -38,9 +38,10 @@ class PiazzaJob {
           export CF_HOME=\$root
 
           set +x
-          cf api ${this.cfapi}
-          cf auth "\$CF_USER" "\$CF_PASSWORD"
-          cf target -o piazza -s ${this.cfspace}
+          cf api ${this.cfapi} > /dev/null
+          cf auth "\$CF_USER" "\$CF_PASSWORD" > /dev/null
+          cf target -o piazza -s ${this.cfspace} > /dev/null
+          set -x
         """
 
   def base() {
@@ -252,6 +253,8 @@ class PiazzaJob {
     this.jobject.with {
       steps {
         shell("""
+          ${this.cfauth}
+
           legacy=`cf routes | grep '${this.reponame} ' | awk '{print \$4}'`
           target=${this.reponame}-`git rev-parse HEAD`
           [ "\$target" = "\$legacy" ] && { echo "nothing to do."; exit 0; }
