@@ -241,7 +241,7 @@ class PiazzaJob {
 
           ${this.cfauth}
 
-          cf app \$APP && cf delete \$APP -f
+          cf app \$APP > /dev/null && cf delete \$APP -f
           cf push -f manifest.jenkins.yml
         """)
       }
