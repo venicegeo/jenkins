@@ -278,15 +278,17 @@ class PiazzaJob {
 
           ${this.cfauth}
 
+          set +e
+
           cf push \$APP-\$version -f manifest.jenkins.yml --hostname \$APP-\$version
 
           if [ \$? != 0 ]; then
             cf delete \$APP-\$version-f -r
-            rm \$artifact
+            rm \$root/\$APP.\$EXT
             exit 1
           fi
 
-          rm \$artifact
+          rm \$root/\$APP.\$EXT
         """)
       }
     }
@@ -300,6 +302,8 @@ class PiazzaJob {
         shell("""
           ${this.shellvars}
           ${this.cfauth}
+
+          set +e
 
           legacy=`cf routes | grep "\$APP " | awk '{print \$4}'`
           target=\$APP-\$version
