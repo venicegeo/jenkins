@@ -19,7 +19,7 @@ class PiazzaJob {
   def jobject
   def targetbranch
   def cfapi = "https://api.devops.geointservices.io"
-  def cfdomain = "int.geointservices.io"
+  def cfdomain = "stage.geointservices.io"
   def cfspace = "simulator-stage"
   def shellvars="""
           root=\$(pwd -P)
