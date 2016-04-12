@@ -250,16 +250,61 @@ class PiazzaJob {
     return this
   }
 
+  def green() {
+    this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          usernamePassword('CF_USER', 'CF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
+        }
+      }
+      steps {
+        shell("""
+          ${this.shellvars}
+
+          mvn dependency:get \
+            -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
+            -DrepositoryId=nexus \
+            -DartifactId=\$APP \
+            -DgroupId=org.venice.piazza \
+            -Dpackaging=\$EXT \
+            -Dtransitive=false \
+            -Dversion=\$version \
+            -Ddest=\$root/\$APP.\$EXT
+
+          [ "bin" = "\$EXT" ] && chmod 755 \$root/\$APP.\$EXT
+          [ "tar.gz" = "\$EXT" ] && tar -xzf \$root/\$APP.\$EXT
+
+          [ -f \$root/\$APP.\$EXT ] || exit 1
+
+          ${this.cfauth}
+
+          cf push \$APP\-$version -f manifest.jenkins.yml -h \$APP.\$version
+
+          if [ \$? != 0 ]; then
+            cf delete \$APP.\$version-f -r
+            rm \$artifact
+            exit 1
+          fi
+
+          rm \$artifact
+        """)
+      }
+    }
+
+    return this
+  }
+
   def deploy() {
     this.jobject.with {
       steps {
         shell("""
+          ${this.shellVars}
           ${this.cfauth}
 
-          legacy=`cf routes | grep '${this.reponame} ' | awk '{print \$4}'`
-          target=${this.reponame}-`git rev-parse HEAD`
+          legacy=`cf routes | grep "\$APP " | awk '{print \$4}'`
+          target=\$APP.\$version
           [ "\$target" = "\$legacy" ] && { echo "nothing to do."; exit 0; }
-          cf map-route ${this.reponame}-`git rev-parse HEAD` ${this.cfdomain} -n ${this.reponame}
+          cf map-route \$APP-\$version ${this.cfdomain} -n \$APP
           s=\$?
           [ -n "\$legacy" ] && cf delete \$legacy -f -r || exit \$s
         """)
