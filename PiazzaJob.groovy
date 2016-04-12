@@ -278,7 +278,7 @@ class PiazzaJob {
 
           ${this.cfauth}
 
-          cf push \$APP\-$version -f manifest.jenkins.yml -h \$APP.\$version
+          cf push \$APP-\$version -f manifest.jenkins.yml -h \$APP.\$version
 
           if [ \$? != 0 ]; then
             cf delete \$APP.\$version-f -r
@@ -298,7 +298,7 @@ class PiazzaJob {
     this.jobject.with {
       steps {
         shell("""
-          ${this.shellVars}
+          ${this.shellvars}
           ${this.cfauth}
 
           legacy=`cf routes | grep "\$APP " | awk '{print \$4}'`

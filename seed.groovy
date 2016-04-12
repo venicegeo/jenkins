@@ -90,6 +90,9 @@ entries.each{ name, entry ->
       case 'clistage':
         data.config.clistage()         // stage artifact in PCF
         break
+      case 'green':
+        data.config.green()         // stage artifact in PCF
+        break
       case 'deploy':
         data.config.deploy()         // blue/green deploy in PCF (credentials needed)
         break
