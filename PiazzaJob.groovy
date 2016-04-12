@@ -241,7 +241,7 @@ class PiazzaJob {
 
           ${this.cfauth}
 
-          cf app \$APP && cf delete -fr \$APP
+          cf app \$APP && cf delete \$APP -f
           cf push -f manifest.jenkins.yml
         """)
       }
@@ -261,7 +261,7 @@ class PiazzaJob {
           [ "\$target" = "\$legacy" ] && { echo "nothing to do."; exit 0; }
           cf map-route ${this.reponame}-`git rev-parse HEAD` ${this.cfdomain} -n ${this.reponame}
           s=\$?
-          [ -n "\$legacy" ] && cf delete -f \$legacy || exit \$s
+          [ -n "\$legacy" ] && cf delete \$legacy -f -r || exit \$s
         """)
       }
     }
