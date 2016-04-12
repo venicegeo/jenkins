@@ -82,7 +82,7 @@ class Projects {
       pipeline: ['test', 'archive', 'stage', 'blackbox']
     ],[
       name: 'pzsvc-ossim',
-      pipeline: ['archive', 'clistage']
+      pipeline: ['archive', 'stage']
     ],[
       name: 'pzsvc-pdal',
       pipeline: ['test', 'archive', 'stage', 'blackbox']
