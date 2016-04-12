@@ -278,7 +278,7 @@ class PiazzaJob {
 
           ${this.cfauth}
 
-          cf push \$APP-\$version -f manifest.jenkins.yml -h \$APP.\$version
+          cf push \$APP-\$version -f manifest.jenkins.yml --hostname \$APP.\$version
 
           if [ \$? != 0 ]; then
             cf delete \$APP.\$version-f -r
