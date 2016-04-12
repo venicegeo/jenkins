@@ -15,6 +15,9 @@
 class Projects {
   static projects = [
     [
+      name: '_cli',
+      pipeline: ['archive', 'clistage']
+    ],[
       name: 'bf-algo',
       pipeline: ['archive', 'stage']
     ],[

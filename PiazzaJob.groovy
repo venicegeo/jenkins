@@ -20,6 +20,7 @@ class PiazzaJob {
   def targetbranch
   def cfapi = "https://api.devops.geointservices.io"
   def cfdomain = "int.geointservices.io"
+  def cfspace = "simulator-stage"
   def shellvars="""
           root=\$(pwd -P)
 
@@ -30,6 +31,15 @@ class PiazzaJob {
 
           version=\$(git describe --long --tags --always)
           artifact=\$APP-\$version.\$EXT
+        """
+  def cfauth="""
+          root=\$(pwd -P)
+
+          export CF_HOME=\$root
+
+          set +x
+          cf auth "\$CF_USER" "\$CF_PASSWORD"
+          cf target -o piazza -s ${this.cfspace}
         """
 
   def base() {
@@ -88,7 +98,7 @@ class PiazzaJob {
 
   def trigger() {
     this.jobject.with {
-      triggers { 
+      triggers {
         githubPush()
       }
     }
@@ -195,6 +205,42 @@ class PiazzaJob {
             noRoute false
           }
         }
+      }
+    }
+
+    return this
+  }
+
+  def clistage() {
+    this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          usernamePassword('CF_USER', 'CF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
+        }
+      }
+      steps {
+        shell("""
+          ${this.shellvars}
+
+          mvn dependency:get \
+            -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
+            -DrepositoryId=nexus \
+            -DartifactId=\$APP \
+            -DgroupId=org.venice.piazza \
+            -Dpackaging=\$EXT \
+            -Dtransitive=false \
+            -Dversion=\$version \
+            -Ddest=\$root/\$APP.\$EXT
+
+          [ "bin" = "\$EXT" ] && chmod 755 \$root/\$APP.\$EXT
+          [ "tar.gz" = "\$EXT" ] && tar -xzf \$root/\$APP.\$EXT
+
+          [ -f \$root/\$APP.\$EXT ] || exit 1
+
+          ${this.cfauth}
+
+          cf push -f manifest.jenkins.yml
+        """)
       }
     }
 
