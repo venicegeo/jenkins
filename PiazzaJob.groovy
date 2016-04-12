@@ -298,6 +298,11 @@ class PiazzaJob {
 
   def deploy() {
     this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          usernamePassword('CF_USER', 'CF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
+        }
+      }
       steps {
         shell("""
           ${this.shellvars}
