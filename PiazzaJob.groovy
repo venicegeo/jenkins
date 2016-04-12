@@ -278,10 +278,10 @@ class PiazzaJob {
 
           ${this.cfauth}
 
-          cf push \$APP-\$version -f manifest.jenkins.yml --hostname \$APP.\$version
+          cf push \$APP-\$version -f manifest.jenkins.yml --hostname \$APP-\$version
 
           if [ \$? != 0 ]; then
-            cf delete \$APP.\$version-f -r
+            cf delete \$APP-\$version-f -r
             rm \$artifact
             exit 1
           fi
@@ -302,7 +302,7 @@ class PiazzaJob {
           ${this.cfauth}
 
           legacy=`cf routes | grep "\$APP " | awk '{print \$4}'`
-          target=\$APP.\$version
+          target=\$APP-\$version
           [ "\$target" = "\$legacy" ] && { echo "nothing to do."; exit 0; }
           cf map-route \$APP-\$version ${this.cfdomain} -n \$APP
           s=\$?
