@@ -38,6 +38,7 @@ class PiazzaJob {
           export CF_HOME=\$root
 
           set +x
+          cf api ${this.cfapi}
           cf auth "\$CF_USER" "\$CF_PASSWORD"
           cf target -o piazza -s ${this.cfspace}
         """
