@@ -15,9 +15,6 @@
 class Projects {
   static projects = [
     [
-      name: 'bf-algo',
-      pipeline: ['archive', 'green', 'deploy']
-    ],[
       name: 'bf-ui',
       pipeline: ['archive', 'stage']
     ],[
@@ -92,9 +89,6 @@ class Projects {
     ],[
       name: 'pztest-integration',
       pipeline: ['blackbox']
-    ],[
-      name: 'time-lapse-viewer',
-      pipeline: ['archive', 'stage']
     ]
   ]
 }
