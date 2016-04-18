@@ -228,7 +228,7 @@ class PiazzaJob {
           legacy=`cf routes | grep "\$APP " | awk '{print \$4}'`
           target=\$APP-\$version
           [ "\$target" = "\$legacy" ] && { echo "nothing to do."; exit 0; }
-          cf map-route \$APP-\$version ${this.cfdomain} -n \$APP
+          cf map-route \$APP-\$version ${this.cfdomain} --hostname \$APP
           s=\$?
           [ -n "\$legacy" ] && cf delete \$legacy -f -r || exit \$s
         """)
