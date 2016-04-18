@@ -52,6 +52,10 @@ class PiazzaJob {
         githubProjectUrl "https://github.com/venicegeo/${this.reponame}"
       }
 
+      parameters {
+        stringParam('commit', '', 'commit sha or tag to build')
+      }
+
       scm {
         git {
           remote {
@@ -64,6 +68,7 @@ class PiazzaJob {
       steps {
         shell("""
           git clean -xffd
+          [ -n "\$commit" ] && git checkout \$commit
           [ -f ./ci/${this.script}.sh ] || { echo "noop"; exit; }
           chmod 700 ./ci/${this.script}.sh
           ./ci/${this.script}.sh
@@ -110,14 +115,13 @@ class PiazzaJob {
 
   def downstream(childname) {
     this.jobject.with {
-      configure { project ->
-        project / publishers << 'hudson.tasks.BuildTrigger' {
-          childProjects "piazza/${this.reponame}/${childname}"
-          threshold {
-            name "SUCCESS"
-            ordinal "0"
-            color "BLUE"
-            completeBuild true
+      publishers {
+        downstreamParameterized {
+          trigger("piazza/${this.reponame}/${childname}") {
+            condition('SUCCESS')
+            parameters {
+              predefinedProp('commit', '$commit')
+            }
           }
         }
       }
