@@ -31,7 +31,7 @@ class PiazzaJob {
 
           version=\$(git describe --long --tags --always)
           artifact=\$APP-\$version.\$EXT
-          cfhostname=\$(echo \$APP-\$version | sed 's/./-/')
+          cfhostname=\$(echo \$APP-\$version | sed 's/\./-/g')
         """
   def cfauth="""
           root=\$(pwd -P)
