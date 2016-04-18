@@ -216,7 +216,9 @@ class PiazzaJob {
 
           set +e
 
-          cf push \$APP-\$version -f manifest.jenkins.yml --hostname \$cfhostname
+          [ -f manifest.\$stage.yml ] && manifest=manifest.\$stage.yml || manifest=manifest.jenkins.yml
+
+          cf push \$APP-\$version -f \$manifest --hostname \$cfhostname
 
           if [ \$? != 0 ]; then
             cf delete \$APP-\$version-f -r
