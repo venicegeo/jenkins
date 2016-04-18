@@ -235,6 +235,7 @@ class PiazzaJob {
           [ "\$target" = "\$legacy" ] && { echo "nothing to do."; exit 0; }
           cf map-route \$APP-\$version ${this.cfdomain} --hostname \$APP
           s=\$?
+          [ -n "\$legacy" ] && cf unmap-route "\$legacy" ${this.cfdomain} --hostname \$APP
           [ -n "\$legacy" ] && cf delete \$legacy -f -r || exit \$s
         """)
       }
