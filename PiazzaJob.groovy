@@ -18,32 +18,45 @@ class PiazzaJob {
   def script
   def jobject
   def targetbranch
-  def cfapi = "https://api.devops.geointservices.io"
-  def cfdomain = "stage.geointservices.io"
-  def cfspace = "simulator-stage"
-  def shellvars="""
-          root=\$(pwd -P)
+  def envs = [
+    stage: [space: 'simulator-stage', domain: 'stage.geointservices.io', api: 'https://api.devops.geointservices.io'],
+    int:   [space: 'int',             domain: 'int.geointservices.io',   api: 'https://api.devops.geointservices.io'],
+    dev:   [space: 'simulator-dev',   domain: 'dev.geointservices.io',   api: 'https://api.devops.geointservices.io'],
+    test:  [space: 'test',            domain: 'test.geointservices.io',  api: 'https://api.devops.geointservices.io'],
+    prod:  [space: 'prod',            domain: 'geointservices.io',       api: 'https://api.devops.geointservices.io']
+  ]
+  def pcfvars="""
+    case \$space in
+      stage) export PCF_SPACE=${envs.stage.space}; export PCF_DOMAIN=${envs.stage.domain}; export PCF_API=${envs.stage.api} ;;
+      int)   export PCF_SPACE=${envs.int.space}  ; export PCF_DOMAIN=${envs.int.domain}  ; export PCF_API=${envs.int.api}   ;;
+      dev)   export PCF_SPACE=${envs.dev.space}  ; export PCF_DOMAIN=${envs.dev.domain}  ; export PCF_API=${envs.dev.api}   ;;
+      test)  export PCF_SPACE=${envs.test.space} ; export PCF_DOMAIN=${envs.test.domain} ; export PCF_API=${envs.test.api}  ;;
+      prod)  export PCF_SPACE=${envs.prod.space} ; export PCF_DOMAIN=${envs.prod.domain} ; export PCF_API=${envs.prod.api}  ;;
+    esac
+  """
+  def appvars="""
+    root=\$(pwd -P)
 
-          [ ! -f \$root/ci/vars.sh ] && echo "No vars.sh" && exit 1
-          source \$root/ci/vars.sh
+    [ ! -f \$root/ci/vars.sh ] && echo "No vars.sh" && exit 1
+    source \$root/ci/vars.sh
 
-          [[ -z "\$APP" || -z "\$EXT" ]] && echo "APP and EXT must be defined" && exit 1
+    [[ -z "\$APP" || -z "\$EXT" ]] && echo "APP and EXT must be defined" && exit 1
 
-          version=\$(git describe --long --tags --always)
-          artifact=\$APP-\$version.\$EXT
-          cfhostname=\$(echo \$APP-\$version | sed 's/\\./-/g')
-        """
+    version=\$(git describe --long --tags --always)
+    artifact=\$APP-\$version.\$EXT
+    cfhostname=\$(echo \$APP-\$version | sed 's/\\./-/g')
+  """
   def cfauth="""
-          root=\$(pwd -P)
+    root=\$(pwd -P)
 
-          export CF_HOME=\$root
+    export CF_HOME=\$root
 
-          set +x
-          cf api ${this.cfapi} > /dev/null
-          cf auth "\$CF_USER" "\$CF_PASSWORD" > /dev/null
-          cf target -o piazza -s ${this.cfspace} > /dev/null
-          set -x
-        """
+    set +x
+    cf api \$PCF_API > /dev/null
+    cf auth "\$CF_USER" "\$CF_PASSWORD" > /dev/null
+    cf target -o piazza -s \$PCF_SPACE > /dev/null
+    set -x
+  """
 
   def base() {
     this.jobject.with {
@@ -53,6 +66,7 @@ class PiazzaJob {
       }
 
       parameters {
+        choiceParam('space', new ArrayList<String>(this.envs.keySet()),'PCF Space to target')
         stringParam('commit', '', 'commit sha or tag to build')
       }
 
@@ -121,6 +135,7 @@ class PiazzaJob {
             condition('SUCCESS')
             parameters {
               predefinedProp('commit', '$commit')
+              predefinedProp('space', '$space')
             }
           }
         }
@@ -134,7 +149,7 @@ class PiazzaJob {
     this.jobject.with {
       steps {
         shell("""
-          ${this.shellvars}
+          ${this.appvars}
 
           mv \$root/\$APP.\$EXT \$artifact
 
@@ -179,7 +194,7 @@ class PiazzaJob {
       }
       steps {
         shell("""
-          ${this.shellvars}
+          ${this.appvars}
 
           mvn dependency:get \
             -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
@@ -196,6 +211,7 @@ class PiazzaJob {
 
           [ -f \$root/\$APP.\$EXT ] || exit 1
 
+          ${this.pcfvars}
           ${this.cfauth}
 
           set +e
@@ -225,7 +241,8 @@ class PiazzaJob {
       }
       steps {
         shell("""
-          ${this.shellvars}
+          ${this.appvars}
+          ${this.pcfvars}
           ${this.cfauth}
 
           set +e
@@ -233,9 +250,9 @@ class PiazzaJob {
           legacy=`cf routes | grep "\$APP " | awk '{print \$4}'`
           target=\$APP-\$version
           [ "\$target" = "\$legacy" ] && { echo "nothing to do."; exit 0; }
-          cf map-route \$APP-\$version ${this.cfdomain} --hostname \$APP
+          cf map-route \$APP-\$version \$PCF_DOMAIN --hostname \$APP
           s=\$?
-          [ -n "\$legacy" ] && cf unmap-route "\$legacy" ${this.cfdomain} --hostname \$APP
+          [ -n "\$legacy" ] && cf unmap-route "\$legacy" \$PCF_DOMAIN --hostname \$APP
           [ -n "\$legacy" ] && cf delete \$legacy -f -r || exit \$s
         """)
       }
