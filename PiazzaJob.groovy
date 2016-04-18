@@ -216,7 +216,7 @@ class PiazzaJob {
 
           set +e
 
-          [ -f manifest.\$stage.yml ] && manifest=manifest.\$stage.yml || manifest=manifest.jenkins.yml
+          [ -f manifest.\$space.yml ] && manifest=manifest.\$space.yml || manifest=manifest.jenkins.yml
 
           cf push \$APP-\$version -f \$manifest --hostname \$cfhostname
 
