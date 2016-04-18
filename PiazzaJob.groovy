@@ -31,6 +31,7 @@ class PiazzaJob {
 
           version=\$(git describe --long --tags --always)
           artifact=\$APP-\$version.\$EXT
+          cfhostname=\$(echo \$APP-\$version | sed 's/./-/')
         """
   def cfauth="""
           root=\$(pwd -P)
@@ -195,7 +196,7 @@ class PiazzaJob {
 
           set +e
 
-          cf push \$APP-\$version -f manifest.jenkins.yml --hostname \$APP-\$version
+          cf push \$APP-\$version -f manifest.jenkins.yml --hostname \$cfhostname
 
           if [ \$? != 0 ]; then
             cf delete \$APP-\$version-f -r
