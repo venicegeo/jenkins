@@ -55,7 +55,7 @@ class Projects {
       pipeline: ['archive', 'stage', 'deploy']
     ],[
       name: 'pz-servicecontroller',
-      pipeline: ['archive', 'stage', 'deploy', 'blackbox']
+      pipeline: ['archive', 'stage', 'deploy']
     ],[
       name: 'pz-swagger',
       pipeline: ['archive', 'stage', 'deploy']
