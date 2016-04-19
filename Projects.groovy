@@ -18,6 +18,9 @@ class Projects {
       name: 'bf-ui',
       pipeline: ['archive', 'stage', 'deploy']
     ],[
+      name: 'ossim-test',
+      pipeline: ['archive', 'stage', 'deploy']
+    ],[
       name: 'pz-access',
       pipeline: ['archive', 'stage', 'deploy']
     ],[
