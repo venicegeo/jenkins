@@ -119,7 +119,7 @@ core_steps.each{ repo, jobkey ->
     }
   }
   core_cps = core_cps + """
-    build job: "${jobkey}", parameters: [ [\$class: 'StringParameterValue', name: 'space', value: "\$space"], [\$class: 'StringParameterValue', name: 'revision', value: "\$${repo.replaceAll('-','_')}_revision"] ], wait: true
+    build job: "${jobkey}", parameters: [ [\$class: 'StringParameterValue', name: 'space', value: "\$space"], [\$class: 'StringParameterValue', name: 'revision', value: "\$${repo.replaceAll('-','_')}_revision"] ], wait: false
 """
 }
 

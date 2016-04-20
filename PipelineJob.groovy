@@ -31,11 +31,11 @@ class PipelineJob {
   ]
   def pcfvars="""
     case \$space in
-      stage) export PCF_SPACE=${envs.stage.space}; export PCF_DOMAIN=${envs.stage.domain}; export PCF_API=${envs.stage.api} ;;
-      int)   export PCF_SPACE=${envs.int.space}  ; export PCF_DOMAIN=${envs.int.domain}  ; export PCF_API=${envs.int.api}   ;;
-      dev)   export PCF_SPACE=${envs.dev.space}  ; export PCF_DOMAIN=${envs.dev.domain}  ; export PCF_API=${envs.dev.api}   ;;
-      test)  export PCF_SPACE=${envs.test.space} ; export PCF_DOMAIN=${envs.test.domain} ; export PCF_API=${envs.test.api}  ;;
-      prod)  export PCF_SPACE=${envs.prod.space} ; export PCF_DOMAIN=${envs.prod.domain} ; export PCF_API=${envs.prod.api}  ;;
+      stage) export PCF_SPACE=${envs.stage.space}; export PCF_DOMAIN=${envs.stage.domain}; export PCF_API=${envs.stage.api}; export PCF_ORG=piazza ;;
+      int)   export PCF_SPACE=${envs.int.space}  ; export PCF_DOMAIN=${envs.int.domain}  ; export PCF_API=${envs.int.api}  ; export PCF_ORG=piazza ;;
+      dev)   export PCF_SPACE=${envs.dev.space}  ; export PCF_DOMAIN=${envs.dev.domain}  ; export PCF_API=${envs.dev.api}  ; export PCF_ORG=piazza ;;
+      test)  export PCF_SPACE=${envs.test.space} ; export PCF_DOMAIN=${envs.test.domain} ; export PCF_API=${envs.test.api} ; export PCF_ORG=piazza ;;
+      prod)  export PCF_SPACE=${envs.prod.space} ; export PCF_DOMAIN=${envs.prod.domain} ; export PCF_API=${envs.prod.api} ; export PCF_ORG=piazza ;;
     esac
   """
   def appvars="""
@@ -58,7 +58,7 @@ class PipelineJob {
     set +x
     cf api \$PCF_API > /dev/null
     cf auth "\$CF_USER" "\$CF_PASSWORD" > /dev/null
-    cf target -o ${this.team} -s \$PCF_SPACE > /dev/null
+    cf target -o \$PCF_ORG -s \$PCF_SPACE > /dev/null
     set -x
   """
 
