@@ -56,6 +56,7 @@ class PipelineJob {
     export CF_HOME=\$root
 
     set +x
+    HISTFILE=/dev/null
     cf api \$PCF_API > /dev/null
     cf auth "\$CF_USER" "\$CF_PASSWORD" > /dev/null
     cf target -o \$PCF_ORG -s \$PCF_SPACE > /dev/null
