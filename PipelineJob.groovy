@@ -227,7 +227,7 @@ class PipelineJob {
 
           [ -f manifest.\$space.yml ] && manifest=manifest.\$space.yml || manifest=manifest.jenkins.yml
 
-          cf push \$APP-\$version -f \$manifest --hostname \$cfhostname
+          cf push \$APP-\$version -f \$manifest --hostname \$cfhostname --domain \$PCF_DOMAIN
 
           if [ \$? != 0 ]; then
             cf delete \$APP-\$version-f -r
