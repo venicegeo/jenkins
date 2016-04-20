@@ -19,7 +19,6 @@ class PipelineJob {
   def idx
   def core
   def core_steps
-  def step
   def script
   def jobject
   def targetbranch
@@ -193,7 +192,7 @@ class PipelineJob {
   def stage() {
 
     if (this.core) {
-      this.core_steps[this.repo] = "${this.repo}/${this.idx}-${this.step}"
+      this.core_steps[this.repo] = "${this.repo}/${this.idx}-${this.script}"
     }
 
     this.jobject.with {
