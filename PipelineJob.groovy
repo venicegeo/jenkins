@@ -264,7 +264,7 @@ class PipelineJob {
           cf map-route \$APP-\$version \$PCF_DOMAIN --hostname \$APP
           s=\$?
           [ -n "\$legacy" ] && cf unmap-route "\$legacy" \$PCF_DOMAIN --hostname \$APP
-          [ -n "\$legacy" ] && cf delete \$legacy -f -r || exit \$s
+          [ -n "\$legacy" ] && cf delete "\$legacy" -f -r || exit \$s
         """)
       }
     }
