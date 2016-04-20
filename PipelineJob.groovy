@@ -111,7 +111,7 @@ class PipelineJob {
             includeTestSummary false
             showCommitList false
             includeCustomMessage true
-            customMessage " revision: `\$revision`\n  space: `\$space`\n  commit sha: `\$GIT_COMMIT`"
+            customMessage "    revision: `\$revision`\n      space: `\$space`\n      commit sha: `\$GIT_COMMIT`"
           }
         }
       }
