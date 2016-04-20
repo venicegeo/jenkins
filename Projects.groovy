@@ -89,6 +89,9 @@ class Projects {
     ],[
       name: 'pztest-integration',
       pipeline: ['blackbox']
+    ],[
+      name: 'tlv',
+      pipeline: ['archive', 'stage', 'deploy']
     ]
   ]
 }
