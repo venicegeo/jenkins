@@ -3,7 +3,7 @@
 pushd `dirname $0`/.. > /dev/null
 base=$(pwd -P)
 
-jarfile=$base/scripts/job-dsl-core-1.43-SNAPSHOT-standalone.jar
+jarfile=$base/scripts/job-dsl-core-1.46-SNAPSHOT-standalone.jar
 
 java -jar $jarfile seed.groovy >/dev/null
 
