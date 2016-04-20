@@ -12,19 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import PiazzaJob
+import PipelineJob
 import static Projects.projects
 
 def entries = [:]
 
+def core_steps = [:]
+def core_cps = ' '
+
+def spaces
+
 def SLACK_TOKEN = binding.variables.get("SLACK_TOKEN")
+def team = 'piazza'
 
 // rearrange the job list for processing.
 for (p in projects) {
   entries[p.name] = [:]
 
   p.pipeline.eachWithIndex { step, idx ->
-    entries[p.name][step] = [index: idx, branch: p.branch, children: [:]]
+    entries[p.name][step] = [index: idx, core: p.core, branch: p.branch, children: [:]]
 
     if (p.pipeline[idx+1]) {
       entries[p.name][step].children[idx+1] = p.pipeline[idx+1]
@@ -42,13 +48,19 @@ entries.each{ name, entry ->
   entry.each{ step, data ->
 
     // base job config
-    data.config = new PiazzaJob([
+    data.config = new PipelineJob([
       jobject: job("${name}/${data.index}-${step}"),
-      reponame: name,
+      idx: data.index,
+      core_steps: core_steps,
+      team: team,
+      repo: name,
+      core: data.core,
       targetbranch: data.branch ? data.branch : 'master',
       slackToken: SLACK_TOKEN,
       script: step
     ])
+
+    spaces=new ArrayList<String>(data.config.envs.keySet())
 
     if (step == 'blackbox') {
       data.config.blackbox()
@@ -60,12 +72,12 @@ entries.each{ name, entry ->
     if (data.index == 0) {
       data.config.trigger()
       // construct the pipeline view
-      buildPipelineView("piazza/${name}/pipeline") {
+      buildPipelineView("${team}/${name}/pipeline") {
         filterBuildQueue()
         filterExecutors()
         title("${name} build pipeline")
         displayedBuilds(5)
-        selectedJob("piazza/${name}/${data.index}-${step}")
+        selectedJob("${team}/${name}/${data.index}-${step}")
         alwaysAllowManualTrigger()
         showPipelineParameters()
         refreshFrequency(60)
@@ -90,6 +102,32 @@ entries.each{ name, entry ->
       case 'deploy':
         data.config.deploy()         // Route switch in PCF
         break
+    }
+  }
+}
+
+def deliveryJob = workflowJob('piazza-core-delivery') {
+  parameters {
+    choiceParam('space', spaces, 'PCF Space to target')
+  }
+}
+
+core_steps.each{ repo, jobkey ->
+  deliveryJob.with {
+    parameters {
+      stringParam("${repo}_revision", 'latest', "commit sha, git branch or tag to build (from the ${repo} repository; default: latest revision).")
+    }
+  }
+  core_cps = core_cps + """
+    build job: "${repo}/${jobkey}", parameters: [ [\$class: 'StringParameterValue', name: 'space', value: "\$space"], [\$class: 'StringParameterValue', name: 'commit', value: "\$${repo}_revision"] ], wait: true
+"""
+}
+
+deliveryJob.with {
+  definition {
+    cps {
+      script(core_cps)
+      sandbox()
     }
   }
 }

@@ -12,16 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-class PiazzaJob {
+class PipelineJob {
   def slackToken
-  def reponame
+  def team
+  def repo
+  def idx
+  def core
+  def core_steps
+  def step
   def script
   def jobject
   def targetbranch
   def envs = [
     stage: [space: 'simulator-stage', domain: 'stage.geointservices.io', api: 'https://api.devops.geointservices.io'],
     int:   [space: 'int',             domain: 'int.geointservices.io',   api: 'https://api.devops.geointservices.io'],
-    dev:   [space: 'simulator-dev',   domain: 'dev.geointservices.io',   api: 'https://api.devops.geointservices.io'],
+    dev:   [space: 'dev',             domain: 'dev.geointservices.io',   api: 'https://api.devops.geointservices.io'],
     test:  [space: 'test',            domain: 'test.geointservices.io',  api: 'https://api.devops.geointservices.io'],
     prod:  [space: 'prod',            domain: 'geointservices.io',       api: 'https://api.devops.geointservices.io']
   ]
@@ -54,7 +59,7 @@ class PiazzaJob {
     set +x
     cf api \$PCF_API > /dev/null
     cf auth "\$CF_USER" "\$CF_PASSWORD" > /dev/null
-    cf target -o piazza -s \$PCF_SPACE > /dev/null
+    cf target -o ${this.team} -s \$PCF_SPACE > /dev/null
     set -x
   """
 
@@ -62,18 +67,18 @@ class PiazzaJob {
     this.jobject.with {
 
       properties {
-        githubProjectUrl "https://github.com/venicegeo/${this.reponame}"
+        githubProjectUrl "https://github.com/venicegeo/${this.repo}"
       }
 
       parameters {
         choiceParam('space', new ArrayList<String>(this.envs.keySet()),'PCF Space to target')
-        stringParam('commit', '', 'commit sha or tag to build')
+        stringParam('revision', 'latest', 'commit sha, git branch or tag to build (default: latest revision)')
       }
 
       scm {
         git {
           remote {
-            github "venicegeo/${this.reponame}"
+            github "venicegeo/${this.repo}"
           }
           branch("${this.targetbranch}")
         }
@@ -82,7 +87,7 @@ class PiazzaJob {
       steps {
         shell("""
           git clean -xffd
-          [ -n "\$commit" ] && git checkout \$commit
+          [ "\$revision" != "latest" ] && git checkout \$revision
           [ -f ./ci/${this.script}.sh ] || { echo "noop"; exit; }
           chmod 700 ./ci/${this.script}.sh
           ./ci/${this.script}.sh
@@ -131,10 +136,10 @@ class PiazzaJob {
     this.jobject.with {
       publishers {
         downstreamParameterized {
-          trigger("piazza/${this.reponame}/${childname}") {
+          trigger("${this.team}/${this.repo}/${childname}") {
             condition('SUCCESS')
             parameters {
-              predefinedProp('commit', '$commit')
+              predefinedProp('revision', '$revision')
               predefinedProp('space', '$space')
             }
           }
@@ -154,10 +159,10 @@ class PiazzaJob {
           mv \$root/\$APP.\$EXT \$artifact
 
           mvn dependency:get \
-            -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
+            -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/${this.team.capitalize()}" \
             -DrepositoryId=nexus \
             -DartifactId=\$APP \
-            -DgroupId=org.venice.piazza\
+            -DgroupId=org.venice.${this.team}\
             -Dpackaging=\$EXT \
             -Dtransitive=false \
             -Dversion=\$version \
@@ -168,11 +173,11 @@ class PiazzaJob {
 
           # push artifact to nexus
           mvn deploy:deploy-file \
-            -Durl="https://nexus.devops.geointservices.io/content/repositories/Piazza" \
+            -Durl="https://nexus.devops.geointservices.io/content/repositories/${this.team.capitalize()}" \
             -DrepositoryId=nexus \
             -Dfile=\$artifact \
             -DgeneratePom=\$genpom \
-            -DgroupId=org.venice.piazza \
+            -DgroupId=org.venice.${this.team}\
             -DartifactId=\$APP \
             -Dversion=\$version \
             -Dpackaging=\$EXT
@@ -186,6 +191,11 @@ class PiazzaJob {
   }
 
   def stage() {
+
+    if (this.core) {
+      this.core_steps[this.repo] = "${this.repo}/${this.idx}-${this.step}"
+    }
+
     this.jobject.with {
       wrappers {
         credentialsBinding {
@@ -197,10 +207,10 @@ class PiazzaJob {
           ${this.appvars}
 
           mvn dependency:get \
-            -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
+            -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/${this.team.capitalize()}" \
             -DrepositoryId=nexus \
             -DartifactId=\$APP \
-            -DgroupId=org.venice.piazza \
+            -DgroupId=org.venice.${this.team}\
             -Dpackaging=\$EXT \
             -Dtransitive=false \
             -Dversion=\$version \
