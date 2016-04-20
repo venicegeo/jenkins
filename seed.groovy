@@ -115,11 +115,11 @@ def deliveryJob = workflowJob('piazza-core-delivery') {
 core_steps.each{ repo, jobkey ->
   deliveryJob.with {
     parameters {
-      stringParam("${repo}_revision", 'latest', "commit sha, git branch or tag to build (from the ${repo} repository; default: latest revision).")
+      stringParam("${repo.replaceAll('-','_')}_revision", 'latest', "commit sha, git branch or tag to build (from the ${repo} repository; default: latest revision).")
     }
   }
   core_cps = core_cps + """
-    build job: "${jobkey}", parameters: [ [\$class: 'StringParameterValue', name: 'space', value: "\$space"], [\$class: 'StringParameterValue', name: 'revision', value: "\$${repo}_revision"] ], wait: true
+    build job: "${jobkey}", parameters: [ [\$class: 'StringParameterValue', name: 'space', value: "\$space"], [\$class: 'StringParameterValue', name: 'revision', value: "\$${repo.replaceAll('-','_')}_revision"] ], wait: true
 """
 }
 
