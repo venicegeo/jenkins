@@ -111,7 +111,7 @@ class PipelineJob {
             includeTestSummary false
             showCommitList false
             includeCustomMessage true
-            customMessage "revision: `\$GIT_COMMIT`\nspace: `\$space`"
+            customMessage " revision: `\$revision`\n  space: `\$space`\n  commit sha: `\$GIT_COMMIT`"
           }
         }
       }
@@ -227,7 +227,7 @@ class PipelineJob {
 
           [ -f manifest.\$space.yml ] && manifest=manifest.\$space.yml || manifest=manifest.jenkins.yml
 
-          cf push \$APP-\$version -f \$manifest --hostname \$cfhostname --domain \$PCF_DOMAIN
+          cf push \$APP-\$version -f \$manifest --hostname \$cfhostname -d \$PCF_DOMAIN
 
           if [ \$? != 0 ]; then
             cf delete \$APP-\$version -f -r
