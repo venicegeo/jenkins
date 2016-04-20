@@ -56,7 +56,7 @@ class PipelineJob {
     export CF_HOME=\$root
 
     set +x
-    HISTFILE=/dev/null
+    export HISTFILE=/dev/null
     cf api \$PCF_API > /dev/null
     cf auth "\$CF_USER" "\$CF_PASSWORD" > /dev/null
     cf target -o \$PCF_ORG -s \$PCF_SPACE > /dev/null
@@ -112,7 +112,7 @@ class PipelineJob {
             includeTestSummary false
             showCommitList false
             includeCustomMessage true
-            customMessage "    revision: `\$revision`\n      space: `\$space`\n      commit sha: `\$GIT_COMMIT`"
+            customMessage "      revision: `\$revision`\n      space: `\$space`\n      commit sha: `\$GIT_COMMIT`"
           }
         }
       }
