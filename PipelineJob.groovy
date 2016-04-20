@@ -230,7 +230,7 @@ class PipelineJob {
           cf push \$APP-\$version -f \$manifest --hostname \$cfhostname --domain \$PCF_DOMAIN
 
           if [ \$? != 0 ]; then
-            cf delete \$APP-\$version-f -r
+            cf delete \$APP-\$version -f -r
             rm \$root/\$APP.\$EXT
             exit 1
           fi
