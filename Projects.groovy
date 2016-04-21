@@ -18,6 +18,9 @@ class Projects {
       name: 'bf-ui',
       pipeline: ['archive', 'stage', 'deploy']
     ],[
+      name: 'ossim-sandbox',
+      pipeline: ['archive']
+    ],[
       name: 'ossim-test',
       pipeline: ['archive', 'stage', 'deploy']
     ],[
