@@ -88,9 +88,6 @@ class PipelineJob {
         shell("""
           git clean -xffd
           [ "\$revision" != "latest" ] && git checkout \$revision
-
-          GIT_BLAME=\$(git log --format='%an' \$(git rev-parse HEAD)...\$GIT_PREVIOUS_SUCCESSFUL_COMMIT | uniq | tr '\\n' ' ')
-
           [ -f ./ci/${this.script}.sh ] || { echo "noop"; exit; }
           chmod 700 ./ci/${this.script}.sh
           ./ci/${this.script}.sh
@@ -115,7 +112,7 @@ class PipelineJob {
             includeTestSummary false
             showCommitList false
             includeCustomMessage true
-            customMessage "      revision: `\$revision`\n      space: `\$space`\n      authors: \$GIT_BLAME\n      commit sha: `\$GIT_COMMIT`"
+            customMessage "      revision: `\$revision`\n      space: `\$space`\n      commit sha: `\$GIT_COMMIT`"
           }
         }
       }
