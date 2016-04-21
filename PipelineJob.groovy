@@ -89,7 +89,7 @@ class PipelineJob {
           git clean -xffd
           [ "\$revision" != "latest" ] && git checkout \$revision
 
-          GIT_BLAME=\$(git log --format='%an' \$(git rev-parse HEAD)...\$GIT_PREVIOUS_SUCCESSFUL_COMMIT | uniq | tr '\n' ' ')
+          GIT_BLAME=\$(git log --format='%an' \$(git rev-parse HEAD)...\$GIT_PREVIOUS_SUCCESSFUL_COMMIT | uniq | tr '\\n' ' ')
 
           [ -f ./ci/${this.script}.sh ] || { echo "noop"; exit; }
           chmod 700 ./ci/${this.script}.sh
