@@ -86,6 +86,7 @@ class PipelineJob {
 
       steps {
         shell("""
+          ${this.pcfvars}
           git clean -xffd
           [ "\$revision" != "latest" ] && git checkout \$revision
           [ -f ./ci/${this.script}.sh ] || { echo "noop"; exit; }
