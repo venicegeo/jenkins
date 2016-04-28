@@ -23,16 +23,16 @@ class PipelineJob {
   def jobject
   def targetbranch
   def envs = [
-    stage: [space: 'simulator-stage', domain: 'stage.geointservices.io', api: 'https://api.devops.geointservices.io'],
     int:   [space: 'int',             domain: 'int.geointservices.io',   api: 'https://api.devops.geointservices.io'],
+    stage: [space: 'simulator-stage', domain: 'stage.geointservices.io', api: 'https://api.devops.geointservices.io'],
     dev:   [space: 'dev',             domain: 'dev.geointservices.io',   api: 'https://api.devops.geointservices.io'],
     test:  [space: 'test',            domain: 'test.geointservices.io',  api: 'https://api.devops.geointservices.io'],
     prod:  [space: 'prod',            domain: 'geointservices.io',       api: 'https://api.devops.geointservices.io']
   ]
   def pcfvars="""
     case \$space in
-      stage) export PCF_SPACE=${envs.stage.space}; export PCF_DOMAIN=${envs.stage.domain}; export PCF_API=${envs.stage.api}; export PCF_ORG=piazza ;;
       int)   export PCF_SPACE=${envs.int.space}  ; export PCF_DOMAIN=${envs.int.domain}  ; export PCF_API=${envs.int.api}  ; export PCF_ORG=piazza ;;
+      stage) export PCF_SPACE=${envs.stage.space}; export PCF_DOMAIN=${envs.stage.domain}; export PCF_API=${envs.stage.api}; export PCF_ORG=piazza ;;
       dev)   export PCF_SPACE=${envs.dev.space}  ; export PCF_DOMAIN=${envs.dev.domain}  ; export PCF_API=${envs.dev.api}  ; export PCF_ORG=piazza ;;
       test)  export PCF_SPACE=${envs.test.space} ; export PCF_DOMAIN=${envs.test.domain} ; export PCF_API=${envs.test.api} ; export PCF_ORG=piazza ;;
       prod)  export PCF_SPACE=${envs.prod.space} ; export PCF_DOMAIN=${envs.prod.domain} ; export PCF_API=${envs.prod.api} ; export PCF_ORG=piazza ;;
