@@ -227,11 +227,17 @@ class PipelineJob {
           ${this.pcfvars}
           ${this.cfauth}
 
-          set +e
-
           [ -f manifest.\$space.yml ] && manifest=manifest.\$space.yml || manifest=manifest.jenkins.yml
 
-          cf push \$APP-\$version -f \$manifest --hostname \$cfhostname -d \$PCF_DOMAIN
+          cat <<- EOF > manifest.final.yml
+inherit: \$manifest
+applications:
+  - name: \$APP-\$version
+    env: {DOMAIN: \$PCF_DOMAIN}
+EOF
+          set +e
+
+          cf push \$APP-\$version -f manifest.final.yml --hostname \$cfhostname -d \$PCF_DOMAIN
 
           if [ \$? != 0 ]; then
             cf delete \$APP-\$version -f -r
