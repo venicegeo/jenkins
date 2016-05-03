@@ -236,7 +236,7 @@ class PipelineJob {
 
           [ -f manifest.\$space.yml ] && manifest=manifest.\$space.yml || manifest=manifest.jenkins.yml
 
-          echo "  env: {DOMAIN: \$PCF_DOMAIN}" >> \$manifest
+          grep -q env \$manifest && echo "    env: \$PCF_DOMAIN" >> \$manifest || echo "  env: {DOMAIN: \$PCF_DOMAIN}" >> \$manifest
 
           cf push \$APP-\$version -f \$manifest --hostname \$cfhostname -d \$PCF_DOMAIN
 
