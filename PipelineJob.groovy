@@ -155,6 +155,11 @@ class PipelineJob {
 
   def archive() {
     this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          usernamePassword('NAQUINKJ_USER', 'NAQUINKJ_PASS', '4728add1-a64f-4bd3-8069-d5312368c8ea')
+        }
+      }
       steps {
         shell("""
           ${this.appvars}
