@@ -241,7 +241,7 @@ class PipelineJob {
           cf push \$APP-\$version -f \$manifest --hostname \$cfhostname -d \$PCF_DOMAIN
 
           if [ \$? != 0 ]; then
-            cf logs --recent \$APP-\$VERSION
+            cf logs --recent \$APP-\$version
             cf delete \$APP-\$version -f -r
             rm \$root/\$APP.\$EXT
             exit 1
