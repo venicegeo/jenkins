@@ -68,6 +68,9 @@ class PipelineJob {
   def base() {
     this.jobject.with {
 
+      wrappers { 
+        colorizeOutput()
+      }
       properties {
         githubProjectUrl "https://github.com/venicegeo/${this.repo}"
       }
