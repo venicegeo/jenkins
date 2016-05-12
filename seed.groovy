@@ -20,7 +20,7 @@ def entries = [:]
 def core_steps = [:]
 def core_cps = ' '
 
-def spaces
+def domains
 
 def SLACK_TOKEN = binding.variables.get("SLACK_TOKEN")
 def team = 'piazza'
@@ -60,7 +60,7 @@ entries.each{ name, entry ->
       script: step
     ])
 
-    spaces=new ArrayList<String>(data.config.envs.keySet())
+    domains=data.config.domains
 
     if (step == 'blackbox') {
       data.config.blackbox()
@@ -108,7 +108,7 @@ entries.each{ name, entry ->
 
 def deliveryJob = workflowJob('piazza-core-delivery') {
   parameters {
-    choiceParam('space', spaces, 'PCF Space to target')
+    choiceParam('domain', domains, 'PCF Space to target')
   }
 }
 
@@ -119,7 +119,7 @@ core_steps.each{ repo, jobkey ->
     }
   }
   core_cps = core_cps + """
-    build job: "${jobkey}", parameters: [ [\$class: 'StringParameterValue', name: 'space', value: "\$space"], [\$class: 'StringParameterValue', name: 'revision', value: "\$${repo.replaceAll('-','_')}_revision"] ], wait: false
+    build job: "${jobkey}", parameters: [ [\$class: 'StringParameterValue', name: 'domain', value: "\$domain"], [\$class: 'StringParameterValue', name: 'revision', value: "\$${repo.replaceAll('-','_')}_revision"] ], wait: false
 """
 }
 

@@ -22,22 +22,23 @@ class PipelineJob {
   def script
   def jobject
   def targetbranch
+  def domains = ['int.geointservices.io', 'stage.geointservices.io', 'dev.geointservices.io', 'test.geointservices.io', 'geointservices.io', 'venicegeo.io']
   def envs = [
     int:    [space: 'int',             domain: 'int.geointservices.io',   api: 'https://api.devops.geointservices.io'],
     stage:  [space: 'stage',           domain: 'stage.geointservices.io', api: 'https://api.devops.geointservices.io'],
-    venice: [space: 'prod',            domain: 'venicegeo.io',            api: 'https://api.venicegeo.io'            ],
     dev:    [space: 'dev',             domain: 'dev.geointservices.io',   api: 'https://api.devops.geointservices.io'],
     test:   [space: 'test',            domain: 'test.geointservices.io',  api: 'https://api.devops.geointservices.io'],
-    prod:   [space: 'prod',            domain: 'geointservices.io',       api: 'https://api.devops.geointservices.io']
+    prod:   [space: 'prod',            domain: 'geointservices.io',       api: 'https://api.devops.geointservices.io'],
+    venice: [space: 'prod',            domain: 'venicegeo.io',            api: 'https://api.venicegeo.io'            ],
   ]
   def pcfvars="""
-    case \$space in
-      int)    export PCF_SPACE=${envs.int.space}  ; export PCF_DOMAIN=${envs.int.domain}  ; export PCF_API=${envs.int.api}  ; export PCF_ORG=piazza ;;
-      stage)  export PCF_SPACE=${envs.stage.space}; export PCF_DOMAIN=${envs.stage.domain}; export PCF_API=${envs.stage.api}; export PCF_ORG=piazza ;;
-      dev)    export PCF_SPACE=${envs.dev.space}  ; export PCF_DOMAIN=${envs.dev.domain}  ; export PCF_API=${envs.dev.api}  ; export PCF_ORG=piazza ;;
-      test)   export PCF_SPACE=${envs.test.space} ; export PCF_DOMAIN=${envs.test.domain} ; export PCF_API=${envs.test.api} ; export PCF_ORG=piazza ;;
-      prod)   export PCF_SPACE=${envs.prod.space} ; export PCF_DOMAIN=${envs.prod.domain} ; export PCF_API=${envs.prod.api} ; export PCF_ORG=piazza ;;
-      venice) export PCF_SPACE=${envs.venice.space}; export PCF_DOMAIN=${envs.venice.domain}; export PCF_API=${envs.venice.api}; export PCF_ORG=piazza ;;
+    case \$domain in
+      int.geointservices.io)    export PCF_SPACE=${envs.int.space}  ; export PCF_DOMAIN=${envs.int.domain}  ; export PCF_API=${envs.int.api}  ; export PCF_ORG=piazza ;;
+      stage.geointservices.io)  export PCF_SPACE=${envs.stage.space}; export PCF_DOMAIN=${envs.stage.domain}; export PCF_API=${envs.stage.api}; export PCF_ORG=piazza ;;
+      dev.geointservices.io)    export PCF_SPACE=${envs.dev.space}  ; export PCF_DOMAIN=${envs.dev.domain}  ; export PCF_API=${envs.dev.api}  ; export PCF_ORG=piazza ;;
+      test.geointservices.io)   export PCF_SPACE=${envs.test.space} ; export PCF_DOMAIN=${envs.test.domain} ; export PCF_API=${envs.test.api} ; export PCF_ORG=piazza ;;
+      geointservices.io)   export PCF_SPACE=${envs.prod.space} ; export PCF_DOMAIN=${envs.prod.domain} ; export PCF_API=${envs.prod.api} ; export PCF_ORG=piazza ;;
+      venicegeo.io) export PCF_SPACE=${envs.venice.space}; export PCF_DOMAIN=${envs.venice.domain}; export PCF_API=${envs.venice.api}; export PCF_ORG=piazza ;;
     esac
   """
   def appvars="""
@@ -76,7 +77,7 @@ class PipelineJob {
       }
 
       parameters {
-        choiceParam('space', new ArrayList<String>(this.envs.keySet()),'PCF Space to target')
+        choiceParam('domain', this.domains,'PCF Domain/Space to target')
         stringParam('revision', 'latest', 'commit sha, git branch or tag to build (default: latest revision)')
       }
 
@@ -118,7 +119,7 @@ class PipelineJob {
             includeTestSummary false
             showCommitList false
             includeCustomMessage true
-            customMessage "      revision: `\$revision`\n      space: `\$space`\n      commit sha: `\$GIT_COMMIT`"
+            customMessage "      revision: `\$revision`\n      domain: `\$domain`\n      commit sha: `\$GIT_COMMIT`"
           }
         }
       }
@@ -146,7 +147,7 @@ class PipelineJob {
             condition('SUCCESS')
             parameters {
               predefinedProp('revision', '$revision')
-              predefinedProp('space', '$space')
+              predefinedProp('domain', '$domain')
             }
           }
         }
@@ -237,7 +238,7 @@ class PipelineJob {
 
           set +e
 
-          [ -f manifest.\$space.yml ] && manifest=manifest.\$space.yml || manifest=manifest.jenkins.yml
+          [ -f manifest.\$PCF_SPACE.yml ] && manifest=manifest.\$PCF_SPACE.yml || manifest=manifest.jenkins.yml
 
           grep -q env \$manifest && echo "    DOMAIN: \$PCF_DOMAIN\n    SPACE: \$PCF_SPACE" >> \$manifest || echo "  env: {DOMAIN: \$PCF_DOMAIN, SPACE: \$PCF_SPACE}" >> \$manifest
 
