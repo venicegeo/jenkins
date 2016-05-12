@@ -77,7 +77,7 @@ class PipelineJob {
       }
 
       parameters {
-        choiceParam('domain', this.domains,'PCF Domain/Space to target')
+        choiceParam('domain', this.domains,'PCF Domain/Space to target\ngeointservices.io = prod\nstage.geointservices.io = beta\nint.geointservices.io = CI')
         stringParam('revision', 'latest', 'commit sha, git branch or tag to build (default: latest revision)')
       }
 
