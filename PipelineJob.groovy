@@ -77,7 +77,7 @@ class PipelineJob {
       }
 
       parameters {
-        choiceParam('domain', this.domains,'PCF Domain/Space to target<br>  <b>geointservices.io</b>: production<br>  <b>stage.geointservices.io</b>: beta<br>  <b>int.geointservices.io</b>: CI')
+        choiceParam('domain', this.domains,'PCF Domain/Space to target<br>&nbsp;&nbsp;<b>geointservices.io</b>: production<br>&nbsp;&nbsp;<b>stage.geointservices.io</b>: beta<br>&nbsp;&nbsp;<b>int.geointservices.io</b>: CI')
         stringParam('revision', 'latest', 'commit sha, git branch or tag to build (default: latest revision)')
       }
 
