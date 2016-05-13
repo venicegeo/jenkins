@@ -311,6 +311,10 @@ class PipelineJob {
           usernamePassword('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', '5893c85e-4cb1-490a-9c57-7b0554d47edd')
         }
       }
+      parameters {
+        choiceParam('domain', ['venicegeo.io'],'S3 Bucket to target')
+        stringParam('revision', 'latest', 'commit sha, git branch or tag to build (default: latest revision)')
+      }
     }
 
     return this
