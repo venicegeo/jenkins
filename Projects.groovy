@@ -70,6 +70,9 @@ class Projects {
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
     ],[
+      name: 'pz-services',
+      pipeline: ['static', 'test', 'archive', 'stage', 'deploy'],
+    ],[
       name: 'pz-swagger',
       pipeline: ['archive', 'stage', 'deploy']
     ],[
