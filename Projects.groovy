@@ -39,6 +39,10 @@ class Projects {
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
     ],[
+      name: 'pzsvc-hello',
+      pipeline: ['archive', 'stage', 'deploy'],
+      core: true
+    ],[
       name: 'pz-ingest',
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
