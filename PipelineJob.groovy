@@ -303,4 +303,16 @@ class PipelineJob {
 
     return this
   }
+
+  def sync() {
+    this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          usernamePassword('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', '5893c85e-4cb1-490a-9c57-7b0554d47edd')
+        }
+      }
+    }
+
+    return this
+  }
 }

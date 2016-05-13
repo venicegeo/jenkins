@@ -108,6 +108,9 @@ class Projects {
     ],[
       name: 'tlv',
       pipeline: ['archive', 'stage', 'deploy']
+    ],[
+      name: 'venicegeo.io',
+      pipeline: ['sync']
     ]
   ]
 }

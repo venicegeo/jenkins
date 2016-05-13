@@ -100,7 +100,10 @@ entries.each{ name, entry ->
         data.config.stage()         // stage artifact in PCF
         break
       case 'deploy':
-        data.config.deploy()         // Route switch in PCF
+        data.config.deploy()        // Route switch in PCF
+        break
+      case 'sync':
+        data.config.sync()        // S3 Sync
         break
     }
   }
