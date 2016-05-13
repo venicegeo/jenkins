@@ -313,7 +313,6 @@ class PipelineJob {
       }
       parameters {
         choiceParam('domain', ['venicegeo.io'],'S3 Bucket to target')
-        stringParam('revision', 'latest', 'commit sha, git branch or tag to build (default: latest revision)')
       }
     }
 
