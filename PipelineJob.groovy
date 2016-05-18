@@ -92,6 +92,7 @@ class PipelineJob {
 
       steps {
         shell("""
+          df -lH
           ${this.pcfvars}
           git clean -xffd
           [ "\$revision" != "latest" ] && git checkout \$revision
