@@ -101,6 +101,9 @@ class Projects {
       name: 'pzsvc-ossim',
       pipeline: ['archive', 'stage', 'deploy']
     ],[
+      name: 'pzsvc-image-catalog',
+      pipeline: ['archive', 'stage', 'deploy']
+    ],[
       name: 'pzsvc-pdal',
       pipeline: ['test', 'archive', 'stage', 'deploy', 'blackbox']
     ],[
