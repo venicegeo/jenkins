@@ -33,13 +33,10 @@ class Projects {
       core: true
     ],[
       name: 'pz-docs',
-      pipeline: ['archive', 'stage', 'deploy']
-    ],[
-      name: 'pz-gateway',
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
     ],[
-      name: 'pzsvc-hello',
+      name: 'pz-gateway',
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
     ],[
@@ -58,6 +55,10 @@ class Projects {
       pipeline: ['test', 'archive', 'stage', 'deploy'],
       core: true
     ],[
+      name: 'pz-sak',
+      pipeline: ['archive', 'stage', 'deploy'],
+      core: true
+    ],[
       name: 'pz-search-metadata-ingest',
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
@@ -74,11 +75,9 @@ class Projects {
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
     ],[
-      name: 'pz-services',
-      pipeline: ['static', 'test', 'archive', 'stage', 'deploy'],
-    ],[
       name: 'pz-swagger',
-      pipeline: ['archive', 'stage', 'deploy']
+      pipeline: ['archive', 'stage', 'deploy'],
+      core: true
     ],[
       name: 'pz-uuidgen',
       pipeline: ['test', 'archive', 'stage', 'deploy'],
@@ -88,12 +87,14 @@ class Projects {
       pipeline: ['test', 'archive', 'stage', 'deploy'],
       core: true
     ],[
-      name: 'pzclient-sak',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
+      name: 'pzinfra-service-health',
+      pipeline: ['static', 'test', 'archive', 'stage', 'deploy'],
     ],[
       name: 'pzsvc-gdaldem',
       pipeline: ['test', 'archive', 'stage', 'deploy', 'blackbox']
+    ],[
+      name: 'pzsvc-hello',
+      pipeline: ['archive', 'stage', 'deploy']
     ],[
       name: 'pzsvc-lasinfo',
       pipeline: ['test', 'archive', 'stage', 'deploy', 'blackbox']
