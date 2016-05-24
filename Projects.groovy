@@ -40,6 +40,10 @@ class Projects {
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
     ],[
+      name: 'pz-hello',
+      pipeline: ['archive', 'stage', 'deploy'],
+      core: true
+    ],[
       name: 'pz-ingest',
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
@@ -92,9 +96,6 @@ class Projects {
     ],[
       name: 'pzsvc-gdaldem',
       pipeline: ['test', 'archive', 'stage', 'deploy', 'blackbox']
-    ],[
-      name: 'pzsvc-hello',
-      pipeline: ['archive', 'stage', 'deploy']
     ],[
       name: 'pzsvc-lasinfo',
       pipeline: ['test', 'archive', 'stage', 'deploy', 'blackbox']
