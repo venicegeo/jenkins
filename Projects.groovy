@@ -15,6 +15,9 @@
 class Projects {
   static projects = [
     [
+      name: 'bf-handle',
+      pipeline: ['archive', 'stage', 'deploy']
+    ],[
       name: 'bf-ui',
       pipeline: ['archive', 'stage', 'deploy']
     ],[
