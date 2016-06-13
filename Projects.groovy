@@ -44,7 +44,7 @@ class Projects {
       core: true
     ],[
       name: 'pz-gocommon',
-      pipeline: ['test'],
+      pipeline: ['archive'],
       core: true
     ],[
       name: 'pz-hello',
