@@ -25,6 +25,8 @@ class Projects {
 
 Then create `./ci/job1.sh` and `./ci/job2.sh` in `your-venicegeo-repo`.
 
+And then, when Jenkins fails to automatically build your project for you, go to your project's "Webooks & Services" page on GitHub and add a new service of type "Jenkins (GitHub)". Set the URL to https://jenkins.devops.geointservices.io/github-webhook/.
+
 ## How do I make Jenkins deploy my app to CloudFoundry?
 
 - add `stage` to your pipeline and a `./manifest.jenkins.yml` in your repo ([more on manifests](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html)).
