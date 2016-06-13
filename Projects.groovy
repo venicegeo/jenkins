@@ -43,6 +43,10 @@ class Projects {
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
     ],[
+      name: 'pz-gocommon',
+      pipeline: ['test'],
+      core: true
+    ],[
       name: 'pz-hello',
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
