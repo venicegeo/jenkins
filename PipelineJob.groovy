@@ -280,8 +280,13 @@ class PipelineJob {
           [ "\$target" = "\$legacy" ] && { echo "nothing to do."; exit 0; }
           cf map-route \$APP-\$version \$PCF_DOMAIN --hostname \$APP
           s=\$?
-          [ -n "\$legacy" ] && cf unmap-route "\$legacy" \$PCF_DOMAIN --hostname \$APP
-          [ -n "\$legacy" ] && cf delete "\$legacy" -f -r || exit \$s
+          [ -n "\$legacy" ] || exit \$s
+          IFS=,
+          for route in "\$legacy" ; do
+            [ "\$target" = "\$route" ] && continue
+            cf unmap-route "\$route" \$PCF_DOMAIN --hostname \$APP
+            cf delete "\$route" -f -r
+          done
         """)
       }
     }
