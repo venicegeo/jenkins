@@ -47,7 +47,7 @@ class Projects {
       pipeline: ['test'],
       core: true
     ],[
-      name: 'pz-hello',
+      name: 'pzsvc-hello',
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
     ],[
