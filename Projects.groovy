@@ -31,10 +31,6 @@ class Projects {
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
     ],[
-      name: 'pz-dispatcher',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
       name: 'pz-docs',
       pipeline: ['archive', 'stage', 'deploy'],
       core: true
