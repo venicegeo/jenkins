@@ -16,6 +16,7 @@ class Repos {
   static repos = [
     [
       reponame: 'pzsvc-hello',
+      team: 'beachfront',
       pipeline: ['archive', 'cf_push_int', 'bg_deploy_int', 'test_int', 'cf_push_stage', 'bg_deploy_stage']
     ]
   ]

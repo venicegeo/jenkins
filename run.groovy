@@ -9,7 +9,13 @@ for (p in repos) {
   entries[p.reponame] = [:]
 
   p.pipeline.eachWithIndex { jobname, idx ->
-    entries[p.reponame][jobname] = [index: idx, branch: p.branch, children: [:]]
+    entries[p.reponame][jobname] = [
+      index: idx,
+      team: p.team,
+      gh_org: p.gh_org,
+      branch: p.branch,
+      children: [:]
+    ]
 
     if (p.pipeline[idx+1]) {
       entries[p.reponame][jobname].children[idx+1] = p.pipeline[idx+1]
@@ -21,12 +27,12 @@ for (p in repos) {
 entries.each{ reponame, entry ->
   def config = [
     gh_repo: reponame,
+    gh_org: entry.gh_org ? entry.gh_org : 'venicegeo',
+    gh_branch: entry.branch ? entry.branch : 'master',
+    team: entry.team ? entry.team : 'piazza',
     slack_token: binding.variables.get("SLACK_TOKEN"),
-    gh_org: "venicegeo",
-    gh_branch: "master",
     slack_domain: "venicegeo",
     pcf_org: "piazza",
-    team: "piazza",
     jenkins_org: "venice",
     nexus_org: "venice",
     envs: [
