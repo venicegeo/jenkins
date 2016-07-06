@@ -41,8 +41,12 @@ entries.each{ reponame, entry ->
     domains_description: 'PCF Domain/Space to target<br>&nbsp;&nbsp;<b>geointservices.io</b>: production<br>&nbsp;&nbsp;<b>stage.geointservices.io</b>: beta<br>&nbsp;&nbsp;<b>int.geointservices.io</b>: CI<br>&nbsp;&nbsp;<b>dev.geointservices.io</b>: developer sandbox<br>&nbsp;&nbsp;<b>test.geointservices.io</b>: test bed<br>&nbsp;&nbsp;<b>venicegeo.io</b>: OSS Production'
   ]
 
-  folder("${config.team}/${config.gh_repo}") {
-    displayName("${config.team}/${config.gh_repo}")
+  folder("${config.jenkins_org}/${config.team}") {
+    displayName("${config.team}")
+  }
+
+  folder("${config.jenkins_org}/${config.team}/${config.gh_repo}") {
+    displayName("${config.gh_repo}")
   }
 
   // job loop
@@ -125,6 +129,10 @@ entries.each{ reponame, entry ->
   }
 
   // manual jobs
+  folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/manual") {
+    displayName("${config.gh_repo}/manual")
+  }
+
   cf_push_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/manual/cf_push")
 
   new Base(
