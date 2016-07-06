@@ -66,11 +66,11 @@ entries.each{ reponame, entry ->
 
     if (jobname == "integration_test") {
 
-      mutant = workflowJob("${config.team}/${config.gh_repo}/${data.index}-integration_test").with {
+      mutant = workflowJob("${config.jenkins_org}/${config.team}/${config.gh_repo}/${data.index}-integration_test").with {
         definition {
           cps {
             script("""
-              build job: "${config.team}/integration_test", wait: true
+              build job: "${config.jenkins_org}/${config.team}/integration_test", wait: true
             """)
             sandbox()
           }
@@ -79,7 +79,7 @@ entries.each{ reponame, entry ->
 
     } else {
 
-      mutant = job("${config.team}/${config.gh_repo}/${data.index}-${jobname}")
+      mutant = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/${data.index}-${jobname}")
 
       new Base(
         jobject: mutant,
@@ -125,7 +125,7 @@ entries.each{ reponame, entry ->
   }
 
   // manual jobs
-  cf_push_job = job("${config.team}/${config.gh_repo}/manual/cf_push")
+  cf_push_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/manual/cf_push")
 
   new Base(
     jobject: cf_push_job,
@@ -140,7 +140,7 @@ entries.each{ reponame, entry ->
 
   cf_push_steps.cf_push()
 
-  bg_deploy_job = job("${config.team}/${config.gh_repo}/manual/bg_deploy")
+  bg_deploy_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/manual/bg_deploy")
 
   new Base(
     jobject: bg_deploy_job,
