@@ -6,19 +6,22 @@ import static Repos.repos
 def entries = [:]
 // rearrange the job list for processing.
 for (p in repos) {
-  entries[p.reponame] = [:]
+  entries[p.reponame] = [
+    team: p.team,
+    gh_org: p.gh_org,
+    branch: p.branch,
+    jobs: [:]
+  ]
 
   p.pipeline.eachWithIndex { jobname, idx ->
-    entries[p.reponame][jobname] = [
+
+    entries[p.reponame].jobs[jobname] = [
       index: idx,
-      team: p.team,
-      gh_org: p.gh_org,
-      branch: p.branch,
       children: [:]
     ]
 
     if (p.pipeline[idx+1]) {
-      entries[p.reponame][jobname].children[idx+1] = p.pipeline[idx+1]
+      entries[p.reponame].jobs[jobname].children[idx+1] = p.pipeline[idx+1]
     }
   }
 }
@@ -56,7 +59,7 @@ entries.each{ reponame, entry ->
   }
 
   // job loop
-  entry.each{ jobname, data ->
+  entry.jobs.each{ jobname, data ->
     def mutant
 
     // construct the pipeline view
