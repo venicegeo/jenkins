@@ -1,4 +1,3 @@
-
 import lib.Base
 import lib.Steps
 import static Repos.repos
@@ -10,6 +9,7 @@ for (p in repos) {
     team: p.team,
     gh_org: p.gh_org,
     branch: p.branch,
+    manual: p.manual,
     jobs: [:]
   ]
 
@@ -111,7 +111,7 @@ entries.each{ reponame, entry ->
 
       // first job in pipeline needs an external trigger.
       if (data.index == 0) {
-        steps.gh_trigger()
+        //steps.gh_trigger()
       }
 
     }
@@ -142,33 +142,40 @@ entries.each{ reponame, entry ->
     displayName("${config.gh_repo}/manual")
   }
 
-  cf_push_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/manual/cf_push")
+  entry.manual.eachWithIndex{ jobname, idx ->
+    def manual_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/manual/${jobname}")
 
-  new Base(
-    jobject: cf_push_job,
-    config: config
-  ).defaults().parameters()
+    new Base(
+      jobject: manual_job,
+      config: config
+    ).defaults().github().parameters()
 
-  def cf_push_steps = new Steps(
-    jobject: cf_push_job,
-    config: config,
-    jobname: "cf_push"
-  ).init().defaults()
+    def manual_steps = new Steps(
+      jobject: manual_job,
+      config: config,
+      jobname: "cf_push"
+    ).init().defaults()
 
-  cf_push_steps.cf_push()
-
-  bg_deploy_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/manual/bg_deploy")
-
-  new Base(
-    jobject: bg_deploy_job,
-    config: config
-  ).defaults().parameters()
-
-  def bg_deploy_steps = new Steps(
-    jobject: bg_deploy_job,
-    config: config,
-    jobname: "bg_deploy"
-  ).init().defaults()
-
-  bg_deploy_steps.bg_deploy()
+    if (manual_steps.metaClass.respondsTo(manual_steps, jobname)) {
+      manual_steps."${jobname}"()
+    }
+  }
 }
+
+
+// Piazza integration test
+integration_test_job = job("venice/piazza/integration_test")
+
+new Base(
+  jobject: integration_test_job,
+  config: [
+    gh_org: 'venicegeo',
+    gh_repo: 'pztest-integration'
+  ]
+).github()
+
+def integration_steps = new Steps(
+  jobject: integration_test_job,
+  config: [],
+  jobname: "blackbox"
+).defaults().blackbox()

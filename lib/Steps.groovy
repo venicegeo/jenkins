@@ -90,7 +90,7 @@ class Steps {
     return this
   }
 
-  def bg_deploy() {
+  def cf_bg_deploy() {
     this.jobject.with {
       wrappers {
         credentialsBinding {
@@ -98,25 +98,25 @@ class Steps {
         }
       }
       steps {
-        shell(this._bg_deploy_script())
+        shell(this._cf_bg_deploy_script())
       }
     }
 
     return this
   }
 
-  def bg_deploy_int() {
+  def cf_bg_deploy_int() {
     this.override = "int"
     this.init()
-    this.bg_deploy()
+    this.cf_bg_deploy()
 
     return this
   }
 
-  def bg_deploy_stage() {
+  def cf_bg_deploy_stage() {
     this.override = "stage"
     this.init()
-    this.bg_deploy()
+    this.cf_bg_deploy()
 
     return this
   }
@@ -273,7 +273,7 @@ class Steps {
     """
   }
 
-  def _bg_deploy_script() {
+  def _cf_bg_deploy_script() {
     return """
       ${this._app_env}
       ${this._pcf_env}
