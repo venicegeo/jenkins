@@ -5,10 +5,6 @@ base=$(pwd -P)
 
 jarfile=$base/scripts/job-dsl-core-1.46-SNAPSHOT-standalone.jar
 
-java -jar $jarfile seed.groovy >/dev/null
-
-ls -1 *.xml | sed 's/^/generated: /'
-
-rm -f *.xml
+java -jar $jarfile run.groovy >/dev/null
 
 popd > /dev/null
