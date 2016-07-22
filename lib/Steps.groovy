@@ -16,7 +16,6 @@ class Steps {
         dev.geointservices.io)    export PCF_SPACE=${this.config.envs.dev.space}   ; export PCF_DOMAIN=${this.config.envs.dev.domain}   ; export PCF_API=${this.config.envs.dev.api}   ; export PCF_ORG=${this.config.pcf_org} ;;
         test.geointservices.io)   export PCF_SPACE=${this.config.envs.test.space}  ; export PCF_DOMAIN=${this.config.envs.test.domain}  ; export PCF_API=${this.config.envs.test.api}  ; export PCF_ORG=${this.config.pcf_org} ;;
         geointservices.io)        export PCF_SPACE=${this.config.envs.prod.space}  ; export PCF_DOMAIN=${this.config.envs.prod.domain}  ; export PCF_API=${this.config.envs.prod.api}  ; export PCF_ORG=${this.config.pcf_org} ;;
-        venicegeo.io)             export PCF_SPACE=${this.config.envs.venice.space}; export PCF_DOMAIN=${this.config.envs.venice.domain}; export PCF_API=${this.config.envs.venice.api}; export PCF_ORG=${this.config.pcf_org} ;;
       esac
     """
 
@@ -131,21 +130,6 @@ class Steps {
 
       steps {
         shell('npm install -g newman@2')
-      }
-    }
-
-    return this
-  }
-
-  def sync() {
-    this.jobject.with {
-      wrappers {
-        credentialsBinding {
-          usernamePassword('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', '5893c85e-4cb1-490a-9c57-7b0554d47edd')
-        }
-      }
-      parameters {
-        choiceParam('domain', ['venicegeo.io'],'S3 Bucket to target')
       }
     }
 
