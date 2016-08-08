@@ -96,13 +96,13 @@ entries.each{ reponame, entry ->
       new Base(
         jobject: mutant,
         config: config
-      ).defaults().parameters()
+      ).defaults().github().parameters()
 
       def steps = new Steps(
         jobject: mutant,
         config: config,
         jobname: jobname
-      ).init().defaults().github()
+      ).init().defaults()
 
       if (steps.metaClass.respondsTo(steps, jobname)) {
         steps."${jobname}"()
