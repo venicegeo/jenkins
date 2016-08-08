@@ -189,7 +189,7 @@ class Steps {
 
       mv \$root/\$APP.\$EXT \$artifact
 
-      // TODO: use Venice instead of Piazza
+      # TODO: use Venice instead of Piazza
       mvn --quiet dependency:get \
         -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
         -DrepositoryId=nexus \
