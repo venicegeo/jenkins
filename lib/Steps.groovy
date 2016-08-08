@@ -244,9 +244,12 @@ class Steps {
 
       grep -q env \$manifest && echo "    DOMAIN: \$PCF_DOMAIN\n    SPACE: \$PCF_SPACE" >> \$manifest || echo "  env: {DOMAIN: \$PCF_DOMAIN, SPACE: \$PCF_SPACE}" >> \$manifest
 
+      cf app \$APP-\$version && { echo " \$APP-\$version already running."; exit 0; } || echo "Pushing \$APP-\$version."
+
       cf push \$APP-\$version -f \$manifest --hostname \$cfhostname -d \$PCF_DOMAIN
 
       if [ \$? != 0 ]; then
+        echo "Printing log output as a result of the failure."
         cf logs --recent \$APP-\$version
         cf delete \$APP-\$version -f -r
         rm \$root/\$APP.\$EXT
