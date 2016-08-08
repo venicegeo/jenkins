@@ -171,7 +171,7 @@ new Base(
   jobject: integration_test_job,
   config: [
     gh_org: 'venicegeo',
-    gh_repo: 'pztest-integration'
+    gh_repo: 'pztest-integration',
     gh_branch: 'master'
   ]
 ).github()
