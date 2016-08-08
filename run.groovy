@@ -110,7 +110,7 @@ entries.each{ reponame, entry ->
 
       // first job in pipeline needs an external trigger.
       if (data.index == 0) {
-        //steps.gh_trigger()
+        steps.gh_trigger()
       }
 
     }

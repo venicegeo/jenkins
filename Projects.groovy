@@ -27,73 +27,6 @@ class Projects {
       name: 'ossim-test',
       pipeline: ['archive', 'stage', 'deploy']
     ],[
-      name: 'pz-access',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-docs',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-gateway',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-gocommon',
-      pipeline: ['test'],
-      core: true
-    ],[
-      name: 'pzsvc-hello',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-ingest',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-jobcommon',
-      pipeline: ['archive']
-    ],[
-      name: 'pz-jobmanager',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-logger',
-      pipeline: ['test', 'archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-sak',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-search-metadata-ingest',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-search-query',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-security',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-servicecontroller',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-swagger',
-      pipeline: ['archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-uuidgen',
-      pipeline: ['test', 'archive', 'stage', 'deploy'],
-      core: true
-    ],[
-      name: 'pz-workflow',
-      pipeline: ['test', 'archive', 'stage', 'deploy'],
-      core: true
-    ],[
       name: 'pzinfra-service-health',
       pipeline: ['static', 'test', 'archive', 'stage', 'deploy'],
     ],[
@@ -120,9 +53,6 @@ class Projects {
     ],[
       name: 'tlv',
       pipeline: ['archive', 'stage', 'deploy']
-    ],[
-      name: 'venicegeo.io',
-      pipeline: ['sync']
     ]
   ]
 }
