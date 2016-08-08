@@ -168,7 +168,7 @@ class Steps {
     return """
       df -lH .
       git clean -xffd
-      [ "\$revision" != "latest" ] && git checkout \$revision
+      [ "\$revision" != "latest" ] && git checkout \$revision || echo "using latest revision"
     """
   }
 
