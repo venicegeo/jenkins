@@ -172,6 +172,7 @@ new Base(
   config: [
     gh_org: 'venicegeo',
     gh_repo: 'pztest-integration'
+    gh_branch: 'master'
   ]
 ).github()
 
