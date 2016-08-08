@@ -74,7 +74,7 @@ class Steps {
   }
 
   def cf_push_int() {
-    this.override = "int"
+    this.override = "int.geointservices.io"
     this.init()
     this.cf_push()
 
@@ -82,7 +82,7 @@ class Steps {
   }
 
   def cf_push_stage() {
-    this.override = "stage"
+    this.override = "stage.geointservices.io"
     this.init()
     this.cf_push()
 
@@ -105,7 +105,7 @@ class Steps {
   }
 
   def cf_bg_deploy_int() {
-    this.override = "int"
+    this.override = "int.geointservices.io"
     this.init()
     this.cf_bg_deploy()
 
@@ -113,7 +113,7 @@ class Steps {
   }
 
   def cf_bg_deploy_stage() {
-    this.override = "stage"
+    this.override = "stage.geointservices.io"
     this.init()
     this.cf_bg_deploy()
 
