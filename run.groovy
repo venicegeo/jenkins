@@ -174,7 +174,7 @@ new Base(
     gh_repo: 'pztest-integration',
     gh_branch: 'master'
   ]
-).github()
+).defaults().github()
 
 def integration_steps = new Steps(
   jobject: integration_test_job,
