@@ -179,4 +179,4 @@ def integration_steps = new Steps(
   jobject: integration_test_job,
   config: [],
   jobname: "blackbox"
-).defaults().blackbox()
+).init().defaults().blackbox()
