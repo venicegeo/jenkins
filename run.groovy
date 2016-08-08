@@ -78,7 +78,9 @@ entries.each{ reponame, entry ->
 
     if (jobname == "integration_test") {
 
-      mutant = workflowJob("${config.jenkins_org}/${config.team}/${config.gh_repo}/${data.index}-integration_test").with {
+      mutant = workflowJob("${config.jenkins_org}/${config.team}/${config.gh_repo}/${data.index}-integration_test")
+
+      mutant.with {
         definition {
           cps {
             script("""
