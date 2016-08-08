@@ -188,7 +188,7 @@ class Steps {
 
       mv \$root/\$APP.\$EXT \$artifact
 
-      mvn dependency:get \
+      mvn --quiet dependency:get \
         -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/${this.config.team.capitalize()}" \
         -DrepositoryId=nexus \
         -DartifactId=\$APP \
@@ -202,7 +202,7 @@ class Steps {
       [ -f \$root/pom.xml ] && genpom=false || genpom=false
 
       # push artifact to nexus
-      mvn deploy:deploy-file \
+      mvn --quiet deploy:deploy-file \
         -Durl="https://nexus.devops.geointservices.io/content/repositories/${this.config.team.capitalize()}" \
         -DrepositoryId=nexus \
         -Dfile=\$artifact \
@@ -220,7 +220,7 @@ class Steps {
     return """
       ${this._app_env}
 
-      mvn dependency:get \
+      mvn --quiet dependency:get \
         -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/${this.config.team.capitalize()}" \
         -DrepositoryId=nexus \
         -DartifactId=\$APP \
