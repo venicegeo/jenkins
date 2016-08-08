@@ -27,9 +27,6 @@ class Projects {
       name: 'ossim-test',
       pipeline: ['archive', 'stage', 'deploy']
     ],[
-      name: 'pzinfra-service-health',
-      pipeline: ['static', 'test', 'archive', 'stage', 'deploy'],
-    ],[
       name: 'pzsvc-gdaldem',
       pipeline: ['test', 'archive', 'stage', 'deploy', 'blackbox']
     ],[
@@ -47,9 +44,6 @@ class Projects {
     ],[
       name: 'pzsvc-preview-generator',
       pipeline: ['archive', 'stage', 'deploy']
-    ],[
-      name: 'pztest-integration',
-      pipeline: ['blackbox']
     ],[
       name: 'tlv',
       pipeline: ['archive', 'stage', 'deploy']
