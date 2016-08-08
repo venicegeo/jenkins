@@ -9,14 +9,16 @@ class Steps {
   def init() {
     this._pcf_env="""
       override="${this.override}"
-      [ -z "\$override" ] && domain=\$override
-      case \$domain in
+      [ -z "\$override" ] && target_domain=\$override
+      case \$target_domain in
         int.geointservices.io)    export PCF_SPACE=${this.config.envs.int.space}   ; export PCF_DOMAIN=${this.config.envs.int.domain}   ; export PCF_API=${this.config.envs.int.api}   ; export PCF_ORG=${this.config.pcf_org} ;;
         stage.geointservices.io)  export PCF_SPACE=${this.config.envs.stage.space} ; export PCF_DOMAIN=${this.config.envs.stage.domain} ; export PCF_API=${this.config.envs.stage.api} ; export PCF_ORG=${this.config.pcf_org} ;;
         dev.geointservices.io)    export PCF_SPACE=${this.config.envs.dev.space}   ; export PCF_DOMAIN=${this.config.envs.dev.domain}   ; export PCF_API=${this.config.envs.dev.api}   ; export PCF_ORG=${this.config.pcf_org} ;;
         test.geointservices.io)   export PCF_SPACE=${this.config.envs.test.space}  ; export PCF_DOMAIN=${this.config.envs.test.domain}  ; export PCF_API=${this.config.envs.test.api}  ; export PCF_ORG=${this.config.pcf_org} ;;
         geointservices.io)        export PCF_SPACE=${this.config.envs.prod.space}  ; export PCF_DOMAIN=${this.config.envs.prod.domain}  ; export PCF_API=${this.config.envs.prod.api}  ; export PCF_ORG=${this.config.pcf_org} ;;
       esac
+
+      echo $PCF_DOMAIN
     """
 
     return this
