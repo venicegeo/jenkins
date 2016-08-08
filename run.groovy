@@ -98,7 +98,7 @@ entries.each{ reponame, entry ->
       new Base(
         jobject: mutant,
         config: config
-      ).defaults().github().parameters()
+      ).defaults().github()
 
       def steps = new Steps(
         jobject: mutant,
