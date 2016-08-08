@@ -15,10 +15,25 @@
 class Repos {
   static repos = [
     [
-      reponame: 'pzsvc-hello',
-      team: 'piazza',
+      reponame: 'bf-handle',
+      team: 'beachfront',
       manual: ['cf_push', 'cf_bg_deploy'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'integration_test', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
+    ],[
+      reponame: 'bf-ui',
+      team: 'beachfront',
+      manual: ['cf_push', 'cf_bg_deploy'],
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
+    ],[
+      reponame: 'pzsvc-ossim',
+      team: 'beachfront',
+      manual: ['cf_push', 'cf_bg_deploy'],
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
+    ],[
+      reponame: 'pzsvc-image-catalog',
+      team: 'beachfront',
+      manual: ['cf_push', 'cf_bg_deploy'],
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
     ],[
       reponame: 'pz-access',
       team: 'piazza',
@@ -38,11 +53,6 @@ class Repos {
       reponame: 'pz-gocommon',
       team: 'piazza',
       pipeline: ['test']
-    ],[
-      reponame: 'pzsvc-hello',
-      team: 'piazza',
-      manual: ['cf_push', 'cf_bg_deploy'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'integration_test', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-ingest',
       team: 'piazza',
@@ -102,6 +112,16 @@ class Repos {
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy'],
       pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'integration_test', 'cf_push_stage', 'cf_bg_deploy_stage']
+    ],[
+      reponame: 'pzsvc-hello',
+      team: 'piazza',
+      manual: ['cf_push', 'cf_bg_deploy'],
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'integration_test', 'cf_push_stage', 'cf_bg_deploy_stage']
+    ],[
+      reponame: 'pzsvc-preview-generator',
+      team: 'piazza',
+      manual: ['cf_push', 'cf_bg_deploy'],
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'integration_test', 'cf_push_stage', 'cf_bg_deploy_stage']
     ]
   ]
 }

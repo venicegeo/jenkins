@@ -12,38 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// NOTE: These projects are being migrated to the Repos list.
 class Projects {
   static projects = [
     [
-      name: 'bf-handle',
-      pipeline: ['archive', 'stage', 'deploy']
-    ],[
-      name: 'bf-ui',
-      pipeline: ['archive', 'stage', 'deploy']
-    ],[
-      name: 'ossim-sandbox',
-      pipeline: ['archive']
-    ],[
-      name: 'ossim-test',
-      pipeline: ['archive', 'stage', 'deploy']
-    ],[
       name: 'pzsvc-gdaldem',
       pipeline: ['test', 'archive', 'stage', 'deploy', 'blackbox']
     ],[
       name: 'pzsvc-lasinfo',
       pipeline: ['test', 'archive', 'stage', 'deploy', 'blackbox']
     ],[
-      name: 'pzsvc-ossim',
-      pipeline: ['archive', 'stage', 'deploy']
-    ],[
-      name: 'pzsvc-image-catalog',
-      pipeline: ['archive', 'stage', 'deploy']
-    ],[
       name: 'pzsvc-pdal',
       pipeline: ['test', 'archive', 'stage', 'deploy', 'blackbox']
-    ],[
-      name: 'pzsvc-preview-generator',
-      pipeline: ['archive', 'stage', 'deploy']
     ],[
       name: 'tlv',
       pipeline: ['archive', 'stage', 'deploy']
