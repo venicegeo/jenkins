@@ -188,8 +188,9 @@ class Steps {
 
       mv \$root/\$APP.\$EXT \$artifact
 
+      // TODO: use Venice instead of Piazza
       mvn --quiet dependency:get \
-        -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/${this.config.team.capitalize()}" \
+        -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
         -DrepositoryId=nexus \
         -DartifactId=\$APP \
         -DgroupId=org.${this.config.nexus_org}.${this.config.team}\
@@ -203,7 +204,7 @@ class Steps {
 
       # push artifact to nexus
       mvn --quiet deploy:deploy-file \
-        -Durl="https://nexus.devops.geointservices.io/content/repositories/${this.config.team.capitalize()}" \
+        -Durl="https://nexus.devops.geointservices.io/content/repositories/Piazza" \
         -DrepositoryId=nexus \
         -Dfile=\$artifact \
         -DgeneratePom=\$genpom \
@@ -221,7 +222,7 @@ class Steps {
       ${this._app_env}
 
       mvn --quiet dependency:get \
-        -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/${this.config.team.capitalize()}" \
+        -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
         -DrepositoryId=nexus \
         -DartifactId=\$APP \
         -DgroupId=org.${this.config.nexus_org}.${this.config.team}\
