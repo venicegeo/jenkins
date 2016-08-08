@@ -102,7 +102,7 @@ entries.each{ reponame, entry ->
         jobject: mutant,
         config: config,
         jobname: jobname
-      ).init().defaults()
+      ).init().defaults().github()
 
       if (steps.metaClass.respondsTo(steps, jobname)) {
         steps."${jobname}"()
