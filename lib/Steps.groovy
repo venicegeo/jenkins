@@ -9,7 +9,7 @@ class Steps {
   def init() {
     this._pcf_env="""
       override="${this.override}"
-      [ -z "\$override" ] && "target_domain = \$target_domain" || target_domain=\$override
+      [ -z "\$override" ] && echo "target_domain: \$target_domain" || target_domain=\$override
       case \$target_domain in
         int.geointservices.io)    export PCF_SPACE=${this.config.envs.int.space}   ; export PCF_DOMAIN=${this.config.envs.int.domain}   ; export PCF_API=${this.config.envs.int.api}   ; export PCF_ORG=${this.config.pcf_org} ;;
         stage.geointservices.io)  export PCF_SPACE=${this.config.envs.stage.space} ; export PCF_DOMAIN=${this.config.envs.stage.domain} ; export PCF_API=${this.config.envs.stage.api} ; export PCF_ORG=${this.config.pcf_org} ;;
