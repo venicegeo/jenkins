@@ -73,6 +73,21 @@ class Steps {
     return this
   }
 
+  def cf_set_version() {
+    this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
+        }
+      }
+      steps {
+        shell(this._cf_set_version_script())
+      }
+    }
+
+    return this
+  }
+
   def cf_push_int() {
     this.override = "int.geointservices.io"
     this.init()
@@ -85,6 +100,19 @@ class Steps {
     this.override = "stage.geointservices.io"
     this.init()
     this.cf_push()
+
+    return this
+  }
+
+  def cf_promote_to_prod() {
+    this.override = "stage.geointservices.io"
+    this.init()
+    this.cf_set_version()
+
+    this.override = "geointservices.io"
+    this.init()
+    this.cf_push()
+    this.cf_bg_deploy()
 
     return this
   }
@@ -146,7 +174,7 @@ class Steps {
 
     [[ -z "\$APP" || -z "\$EXT" ]] && echo "APP and EXT must be defined" && exit 1
 
-    version=\$(git describe --long --tags --always)
+    [ -z \$version ] && version=\$(git describe --long --tags --always) || echo "version detected: \$version"
     artifact=\$APP-\$version.\$EXT
     cfhostname=\$(echo \$APP-\$version | sed 's/\\./-/g')
   """
@@ -284,6 +312,18 @@ class Steps {
         cf unmap-route "\$route" \$PCF_DOMAIN --hostname \$APP
         cf delete "\$route" -f -r
       done
+    """
+  }
+
+  def _cf_set_version_script() {
+    return """
+      ${this._app_env}
+      ${this._pcf_env}
+      ${this._cf_auth}
+
+      x=\$(cf apps | grep \$APP | awk '{print \$1}' | awk -F '-' '{print \$NF}')
+
+      export version=\${x: -7}
     """
   }
 }

@@ -154,7 +154,7 @@ entries.each{ reponame, entry ->
     def manual_steps = new Steps(
       jobject: manual_job,
       config: config,
-      jobname: "cf_push"
+      jobname: "${jobname}"
     ).init().defaults()
 
     if (manual_steps.metaClass.respondsTo(manual_steps, jobname)) {

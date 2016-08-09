@@ -42,7 +42,7 @@ class Repos {
     ],[
       reponame: 'pz-docs',
       team: 'piazza',
-      manual: ['cf_push', 'cf_bg_deploy'],
+      manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'integration_test', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-gateway',
