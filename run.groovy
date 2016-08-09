@@ -151,7 +151,7 @@ entries.each{ reponame, entry ->
       config: config
     ).defaults().github()
 
-    if ("${jobname}" != "cf_promote_to_prod") {
+    if (!jobname.contains("promote")) {
       manual_base.parameters()
     }
 
