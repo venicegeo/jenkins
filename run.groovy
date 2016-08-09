@@ -186,4 +186,4 @@ def integration_steps = new Steps(
   jobject: integration_test_job,
   config: [],
   jobname: "blackbox"
-).init().defaults().blackbox()
+).init().defaults().blackbox().gh_trigger()
