@@ -14,7 +14,5 @@
 
 // NOTE: These projects are being migrated to the Repos list.
 class Projects {
-  static projects = [
-    []
-  ]
+  static projects = []
 }
