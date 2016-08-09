@@ -97,6 +97,7 @@ entries.each{ reponame, entry ->
 
       new Base(
         jobject: mutant,
+        slack_message: "     commit author: \$GIT_AUTHOR_NAME\n      commit sha: `\$GIT_COMMIT`",
         config: config
       ).defaults().github()
 
@@ -148,6 +149,7 @@ entries.each{ reponame, entry ->
 
     def manual_base = new Base(
       jobject: manual_job,
+      slack_message: "      revision: `\$revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`",
       config: config
     ).defaults().github()
 

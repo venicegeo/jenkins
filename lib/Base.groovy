@@ -3,6 +3,7 @@ package lib
 class Base {
   def jobject
   def config
+  def slack_message
 
   def defaults() {
     this.jobject.with {
@@ -29,7 +30,7 @@ class Base {
             includeTestSummary false
             showCommitList false
             includeCustomMessage true
-            customMessage "      revision: `\$revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`"
+            customMessage this.slack_message
           }
         }
       }
