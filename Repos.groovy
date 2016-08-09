@@ -122,6 +122,26 @@ class Repos {
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy'],
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'integration_test', 'cf_push_stage', 'cf_bg_deploy_stage']
+    ],[
+      reponame: 'pzsvc-gdaldem',
+      team: 'pointcloud',
+      manual: ['cf_push', 'cf_bg_deploy'],
+      pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', "blackbox"]
+    ],[
+      reponame: 'pzsvc-lasinfo',
+      team: 'pointcloud',
+      manual: ['cf_push', 'cf_bg_deploy'],
+      pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', "blackbox"]
+    ],[
+      reponame: 'pzsvc-pdal',
+      team: 'pointcloud',
+      manual: ['cf_push', 'cf_bg_deploy'],
+      pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', "blackbox"]
+    ],[
+      reponame: 'tlv',
+      team: 'tlv',
+      manual: ['cf_push', 'cf_bg_deploy'],
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
     ]
   ]
 }

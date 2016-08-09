@@ -15,18 +15,6 @@
 // NOTE: These projects are being migrated to the Repos list.
 class Projects {
   static projects = [
-    [
-      name: 'pzsvc-gdaldem',
-      pipeline: ['test', 'archive', 'stage', 'deploy', 'blackbox']
-    ],[
-      name: 'pzsvc-lasinfo',
-      pipeline: ['test', 'archive', 'stage', 'deploy', 'blackbox']
-    ],[
-      name: 'pzsvc-pdal',
-      pipeline: ['test', 'archive', 'stage', 'deploy', 'blackbox']
-    ],[
-      name: 'tlv',
-      pipeline: ['archive', 'stage', 'deploy']
-    ]
+    []
   ]
 }
