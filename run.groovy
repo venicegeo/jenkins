@@ -146,10 +146,14 @@ entries.each{ reponame, entry ->
   entry.manual.eachWithIndex{ jobname, idx ->
     def manual_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/manual/${jobname}")
 
-    new Base(
+    def manual_base = new Base(
       jobject: manual_job,
       config: config
-    ).defaults().github().parameters()
+    ).defaults().github()
+
+    if ("${jobname}" != "cf_promote_to_prod") {
+      manual_base.parameters()
+    }
 
     def manual_steps = new Steps(
       jobject: manual_job,
