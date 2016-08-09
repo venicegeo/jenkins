@@ -174,7 +174,7 @@ class Steps {
 
     [[ -z "\$APP" || -z "\$EXT" ]] && echo "APP and EXT must be defined" && exit 1
 
-    [ -z \$version ] && version=\$(git describe --long --tags --always) || echo "version detected: \$version"
+    version=\$(git describe --long --tags --always)
     artifact=\$APP-\$version.\$EXT
     cfhostname=\$(echo \$APP-\$version | sed 's/\\./-/g')
   """
@@ -323,7 +323,9 @@ class Steps {
 
       x=\$(cf apps | grep \$APP | awk '{print \$1}' | awk -F '-' '{print \$NF}')
 
-      export version=\${x: -7}
+      version=\${x: -7}
+
+      git checkout \$version
     """
   }
 }
