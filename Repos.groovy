@@ -17,22 +17,22 @@ class Repos {
     [
       reponame: 'bf-handle',
       team: 'beachfront',
-      manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
+      manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
     ],[
       reponame: 'bf-ui',
       team: 'beachfront',
-      manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
+      manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
     ],[
       reponame: 'pzsvc-ossim',
       team: 'beachfront',
-      manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
+      manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
     ],[
       reponame: 'pzsvc-image-catalog',
       team: 'beachfront',
-      manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
+      manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
     ],[
       reponame: 'pz-access',
@@ -140,7 +140,7 @@ class Repos {
     ],[
       reponame: 'tlv',
       team: 'tlv',
-      manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
+      manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
     ]
   ]
