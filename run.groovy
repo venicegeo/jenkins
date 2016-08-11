@@ -178,9 +178,13 @@ new Base(
   config: [
     gh_org: 'venicegeo',
     gh_repo: 'pztest-integration',
-    gh_branch: 'master'
+    gh_branch: 'master',
+    slack_token: binding.variables.get("SLACK_TOKEN"),
+    slack_domain: "venicegeo",
+    domains: ['int.geointservices.io', 'stage.geointservices.io', 'dev.geointservices.io', 'test.geointservices.io', 'geointservices.io'],
+    domains_description: 'PCF Domain/Space to target<br>&nbsp;&nbsp;<b>geointservices.io</b>: production<br>&nbsp;&nbsp;<b>stage.geointservices.io</b>: beta<br>&nbsp;&nbsp;<b>int.geointservices.io</b>: CI<br>&nbsp;&nbsp;<b>dev.geointservices.io</b>: developer sandbox<br>&nbsp;&nbsp;<b>test.geointservices.io</b>: test bed'
   ]
-).defaults().github()
+).parameters().defaults().github()
 
 def integration_steps = new Steps(
   jobject: integration_test_job,
