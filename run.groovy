@@ -190,7 +190,7 @@ def pz_integration_steps = new Steps(
   jobject: pz_integration_test_job,
   config: [],
   jobname: "blackbox"
-).init().defaults().blackbox().gh_trigger()
+).init().defaults().blackbox()
 
 // Beachfront integration test
 bf_integration_test_job = job("venice/beachfront/integration_test")
@@ -212,4 +212,4 @@ def bf_integration_steps = new Steps(
   jobject: bf_integration_test_job,
   config: [],
   jobname: "beachfront"
-).init().defaults().blackbox().gh_trigger()
+).init().defaults().blackbox()
