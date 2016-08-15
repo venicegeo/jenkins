@@ -170,6 +170,10 @@ entries.each{ reponame, entry ->
 }
 
 
+
+
+// HACKS FOR INTEGRATION TESTS
+
 // Piazza integration test
 pz_integration_test_job = job("venice/piazza/integration_test")
 
@@ -213,3 +217,51 @@ def bf_integration_steps = new Steps(
   config: [],
   jobname: "beachfront"
 ).init().defaults().blackbox()
+
+// pz integration test repo
+folder("venice/piazza/pztest-integration") {
+  displayName("venice/piazza/pztest-integration")
+}
+
+pz_gh_integration_test_job = job("venice/piazza/pztest-integration/piazza")
+
+new Base(
+  jobject: pz_gh_integration_test_job,
+  config: [
+    gh_org: 'venicegeo',
+    gh_repo: 'pztest-integration',
+    gh_branch: 'master',
+    slack_token: binding.variables.get("SLACK_TOKEN"),
+    slack_domain: "venicegeo",
+    domains: ['test.geointservices.io', 'stage.geointservices.io', 'dev.geointservices.io', 'int.geointservices.io', 'geointservices.io'],
+    domains_description: 'PCF Domain/Space to target<br>&nbsp;&nbsp;<b>geointservices.io</b>: production<br>&nbsp;&nbsp;<b>stage.geointservices.io</b>: beta<br>&nbsp;&nbsp;<b>int.geointservices.io</b>: CI<br>&nbsp;&nbsp;<b>dev.geointservices.io</b>: developer sandbox<br>&nbsp;&nbsp;<b>test.geointservices.io</b>: test bed'
+  ]
+).parameters().defaults().github()
+
+def pz_gh_integration_steps = new Steps(
+  jobject: pz_gh_integration_test_job,
+  config: [],
+  jobname: "blackbox"
+).init().defaults().blackbox().gh_trigger()
+
+// bf integration test repo
+bf_gh_integration_test_job = job("venice/piazza/pztest-integration/beachfront")
+
+new Base(
+  jobject: bf_gh_integration_test_job,
+  config: [
+    gh_org: 'venicegeo',
+    gh_repo: 'pztest-integration',
+    gh_branch: 'master',
+    slack_token: binding.variables.get("SLACK_TOKEN"),
+    slack_domain: "venicegeo",
+    domains: ['test.geointservices.io', 'stage.geointservices.io', 'dev.geointservices.io', 'int.geointservices.io', 'geointservices.io'],
+    domains_description: 'PCF Domain/Space to target<br>&nbsp;&nbsp;<b>geointservices.io</b>: production<br>&nbsp;&nbsp;<b>stage.geointservices.io</b>: beta<br>&nbsp;&nbsp;<b>int.geointservices.io</b>: CI<br>&nbsp;&nbsp;<b>dev.geointservices.io</b>: developer sandbox<br>&nbsp;&nbsp;<b>test.geointservices.io</b>: test bed'
+  ]
+).parameters().defaults().github()
+
+def bf_gh_integration_steps = new Steps(
+  jobject: bf_gh_integration_test_job,
+  config: [],
+  jobname: "beachfront"
+).init().defaults().blackbox().gh_trigger()
