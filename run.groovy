@@ -220,7 +220,7 @@ def bf_integration_steps = new Steps(
 
 // pz integration test repo
 folder("venice/piazza/pztest-integration") {
-  displayName("venice/piazza/pztest-integration")
+  displayName("pztest-integration")
 }
 
 pz_gh_integration_test_job = job("venice/piazza/pztest-integration/piazza")
