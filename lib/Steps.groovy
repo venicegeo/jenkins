@@ -357,7 +357,7 @@ class Steps {
     """
   }
 
-  def _cf_push_release() {
+  def _cf_push_release_script() {
     return """
       ${this._app_env}
       ${this._pcf_env}
