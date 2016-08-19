@@ -464,6 +464,8 @@ Host github.com
   User git
   IdentityFile \$GIT_KEY
 EOF
+
+      chmod 400 \$HOME/.ssh/config
     """
   }
 }
