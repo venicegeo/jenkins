@@ -111,7 +111,7 @@ entries.each{ reponame, entry ->
     }
 
     if (jobname == "release") {
-      steps.cf_push_bg_stage()
+      steps.cf_release_stage()
     }
 
     if (data.index == 0) {

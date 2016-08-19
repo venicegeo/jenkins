@@ -103,6 +103,21 @@ class Steps {
     return this
   }
 
+  def cf_push_release() {
+    this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
+        }
+      }
+      steps {
+        shell(this._cf_push_release_script())
+      }
+    }
+
+    return this
+  }
+
   def cf_set_version() {
     this.jobject.with {
       wrappers {
@@ -134,10 +149,10 @@ class Steps {
     return this
   }
 
-  def cf_push_bg_stage() {
+  def cf_release_stage() {
     this.override = "stage.geointservices.io"
     this.init()
-    this.cf_push()
+    this.cf_push_release()
     this.cf_bg_deploy()
 
     return this
@@ -317,6 +332,34 @@ class Steps {
 
       [ -f \$root/\$APP.\$EXT ] || exit 1
 
+      ${this._pcf_env}
+      ${this._cf_auth}
+
+      set +e
+
+      [ -f manifest.\$PCF_SPACE.yml ] && manifest=manifest.\$PCF_SPACE.yml || manifest=manifest.jenkins.yml
+
+      grep -q env \$manifest && echo "    DOMAIN: \$PCF_DOMAIN\n    SPACE: \$PCF_SPACE" >> \$manifest || echo "  env: {DOMAIN: \$PCF_DOMAIN, SPACE: \$PCF_SPACE}" >> \$manifest
+
+      cf app \$APP-\$version && { echo " \$APP-\$version already running."; exit 0; } || echo "Pushing \$APP-\$version."
+
+      cf push \$APP-\$version -f \$manifest --hostname \$cfhostname -d \$PCF_DOMAIN
+
+      if [ \$? != 0 ]; then
+        echo "Printing log output as a result of the failure."
+        cf logs --recent \$APP-\$version
+        cf delete \$APP-\$version -f -r
+        rm \$root/\$APP.\$EXT
+        exit 1
+      fi
+
+      rm \$root/\$APP.\$EXT
+    """
+  }
+
+  def _cf_push_release() {
+    return """
+      ${this._app_env}
       ${this._pcf_env}
       ${this._cf_auth}
 
