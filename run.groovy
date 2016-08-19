@@ -104,7 +104,7 @@ entries.each{ reponame, entry ->
 
       new Base(
         jobject: mutant,
-        slack_message: "      commit sha: `\$component_revision`",
+        slack_message: "      commit sha: `\$GIT_COMMIT`",
         config: config
       ).defaults().github()
     }
