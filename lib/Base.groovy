@@ -64,6 +64,7 @@ class Base {
         git {
           remote {
             github "${this.config.gh_org}/${this.config.gh_repo}"
+            credentials "95eee62c-dc20-44d5-a141-14a11856421e"
           }
           branch("${this.config.gh_branch}")
         }
