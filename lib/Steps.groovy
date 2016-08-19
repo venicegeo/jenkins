@@ -460,13 +460,15 @@ class Steps {
       [ -f "\$GIT_KEY" ] && ssh-add "\$GIT_KEY"
       rm \$HOME/.ssh/config
       cat <<- EOF > \$HOME/.ssh/config
-Host github.com
+Host github.com-venice
   HostName github.com
   User git
   IdentityFile \$GIT_KEY
 EOF
 
       chmod 400 \$HOME/.ssh/config
+
+      git remote set-url origin git@github.com-venice:venicegeo/pz-release.git
     """
   }
 }
