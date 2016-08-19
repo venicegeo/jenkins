@@ -380,8 +380,6 @@ class Steps {
         rm \$root/\$APP.\$EXT
         exit 1
       fi
-
-      rm \$root/\$APP.\$EXT
     """
   }
 
