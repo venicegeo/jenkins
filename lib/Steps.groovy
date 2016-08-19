@@ -77,7 +77,7 @@ class Steps {
     this.jobject.with {
       wrappers {
         credentialsBinding {
-          file('GIT_KEY', '95eee62c-dc20-44d5-a141-14a11856421e')
+          file('GIT_KEY', '4C2105AE-41EB-42A0-963F-5CE91B814832')
         }
       }
       steps {
@@ -123,7 +123,7 @@ class Steps {
       wrappers {
         credentialsBinding {
           usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
-          file('GIT_KEY', '95eee62c-dc20-44d5-a141-14a11856421e')
+          file('GIT_KEY', '4C2105AE-41EB-42A0-963F-5CE91B814832')
         }
       }
       steps {
@@ -205,7 +205,7 @@ class Steps {
       wrappers {
         credentialsBinding {
           usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
-          file('GIT_KEY', '95eee62c-dc20-44d5-a141-14a11856421e')
+          file('GIT_KEY', '4C2105AE-41EB-42A0-963F-5CE91B814832')
         }
       }
       steps {
