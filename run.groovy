@@ -2,6 +2,16 @@ import lib.Base
 import lib.Steps
 import static Repos.repos
 
+def global_config = [
+  envs: [
+    int:    [space: 'int',             domain: 'int.geointservices.io',   api: 'https://api.devops.geointservices.io'],
+    stage:  [space: 'stage',           domain: 'stage.geointservices.io', api: 'https://api.devops.geointservices.io'],
+    dev:    [space: 'dev',             domain: 'dev.geointservices.io',   api: 'https://api.devops.geointservices.io'],
+    test:   [space: 'test',            domain: 'test.geointservices.io',  api: 'https://api.devops.geointservices.io'],
+    prod:   [space: 'prod',            domain: 'geointservices.io',       api: 'https://api.devops.geointservices.io']
+  ]
+]
+
 def entries = [:]
 // rearrange the job list for processing.
 for (p in repos) {
@@ -38,13 +48,7 @@ entries.each{ reponame, entry ->
     pcf_org: "piazza",
     jenkins_org: "venice",
     nexus_org: "venice",
-    envs: [
-      int:    [space: 'int',             domain: 'int.geointservices.io',   api: 'https://api.devops.geointservices.io'],
-      stage:  [space: 'stage',           domain: 'stage.geointservices.io', api: 'https://api.devops.geointservices.io'],
-      dev:    [space: 'dev',             domain: 'dev.geointservices.io',   api: 'https://api.devops.geointservices.io'],
-      test:   [space: 'test',            domain: 'test.geointservices.io',  api: 'https://api.devops.geointservices.io'],
-      prod:   [space: 'prod',            domain: 'geointservices.io',       api: 'https://api.devops.geointservices.io']
-    ],
+    envs: global_config.envs,
     domains: ['int.geointservices.io', 'stage.geointservices.io', 'dev.geointservices.io', 'test.geointservices.io', 'geointservices.io'],
     domains_description: 'PCF Domain/Space to target<br>&nbsp;&nbsp;<b>geointservices.io</b>: production<br>&nbsp;&nbsp;<b>stage.geointservices.io</b>: beta<br>&nbsp;&nbsp;<b>int.geointservices.io</b>: CI<br>&nbsp;&nbsp;<b>dev.geointservices.io</b>: developer sandbox<br>&nbsp;&nbsp;<b>test.geointservices.io</b>: test bed'
   ]
@@ -214,7 +218,7 @@ new Base(
 
 def pz_gh_integration_steps = new Steps(
   jobject: pz_gh_integration_test_job,
-  config: [],
+  config: global_config,
   jobname: "blackbox"
 ).init().job_script().git_checkout().blackbox().gh_trigger()
 
@@ -236,6 +240,6 @@ new Base(
 
 def bf_gh_integration_steps = new Steps(
   jobject: bf_gh_integration_test_job,
-  config: [],
+  config: global_config,
   jobname: "beachfront"
 ).init().job_script().git_checkout().blackbox().gh_trigger()
