@@ -45,7 +45,7 @@ class Base {
 
       parameters {
         choiceParam('target_domain', this.config.domains, this.config.domains_description )
-        stringParam('revision', 'latest', 'commit sha, git branch or tag to build (default: latest revision)')
+        stringParam('component_revision', 'latest', 'commit sha, git branch or tag to build (default: latest component_revision)')
       }
 
     }

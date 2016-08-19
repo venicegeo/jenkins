@@ -22,16 +22,36 @@ class Steps {
     return this
   }
 
-  def defaults() {
+  def job_script() {
     this.jobject.with {
       steps {
-        shell(this._git_script())
         shell(this._job_script())
       }
     }
 
     return this
   }
+
+  def git_checkout() {
+    this.jobject.with {
+      steps {
+        shell(this._git_script())
+      }
+    }
+
+    return this
+  }
+
+  def create_properties_file() {
+    this.jobject.with {
+      steps {
+        shell(this._create_properties_file_script())
+      }
+    }
+
+    return this
+  }
+
 
   def gh_trigger() {
     this.jobject.with {
@@ -213,8 +233,8 @@ class Steps {
     return """
       df -lH .
       git clean -xffd
-      [ -z \$revision ] && revision=latest || echo \$revision
-      [ "\$revision" != "latest" ] && git checkout \$revision || echo "using latest revision"
+      [ -z \$component_revision ] && component_revision=latest || echo \$component_revision
+      [ "\$component_revision" != "latest" ] && git checkout \$component_revision || echo "using latest component_revision"
     """
   }
 
@@ -343,6 +363,13 @@ class Steps {
       version=\${x: -7}
 
       git checkout \$version
+    """
+  }
+
+  def _create_properties_file_script() {
+    return """
+      rm -f pipeline.properties
+      echo "component_revision=\$GIT_COMMIT" > pipeline.properties
     """
   }
 }

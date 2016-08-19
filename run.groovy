@@ -59,23 +59,13 @@ entries.each{ reponame, entry ->
 
   // job loop
   entry.jobs.each{ jobname, data ->
-    def mutant
+    def mutant = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/${data.index}-${jobname}")
 
-    // construct the pipeline view
-    if (data.index == 0) {
-      buildPipelineView("${config.jenkins_org}/${config.team}/${config.gh_repo}/pipeline") {
-        filterBuildQueue()
-        filterExecutors()
-        title("${config.gh_repo} build pipeline")
-        displayedBuilds(5)
-        selectedJob("${config.jenkins_org}/${config.team}/${config.gh_repo}/${data.index}-${jobname}")
-        alwaysAllowManualTrigger()
-        showPipelineParameters()
-        refreshFrequency(60)
-      }
-    }
-
-    mutant = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/${data.index}-${jobname}")
+    def steps = new Steps(
+      jobject: mutant,
+      config: config,
+      jobname: jobname
+    ).init()
 
     if (jobname == "run_integration_tests") {
       new Base(
@@ -89,6 +79,9 @@ entries.each{ reponame, entry ->
         ]
       ).defaults().github()
     } else {
+      // Do not checkout integration tests
+      steps.git_checkout()
+
       new Base(
         jobject: mutant,
         slack_message: "      commit sha: `\$GIT_COMMIT`",
@@ -96,21 +89,31 @@ entries.each{ reponame, entry ->
       ).defaults().github()
     }
 
-    def steps = new Steps(
-      jobject: mutant,
-      config: config,
-      jobname: jobname
-    ).init().defaults()
+    steps.job_script()
 
     if (steps.metaClass.respondsTo(steps, jobname)) {
       steps."${jobname}"()
     }
 
-    // first job in pipeline needs an external trigger.
     if (data.index == 0) {
+      // first job in pipeline needs an external trigger.
       steps.gh_trigger()
-    }
 
+      // and our properties file
+      steps.create_properties_file()
+
+      // construct the pipeline view
+      buildPipelineView("${config.jenkins_org}/${config.team}/${config.gh_repo}/pipeline") {
+        filterBuildQueue()
+        filterExecutors()
+        title("${config.gh_repo} build pipeline")
+        displayedBuilds(5)
+        selectedJob("${config.jenkins_org}/${config.team}/${config.gh_repo}/${data.index}-${jobname}")
+        alwaysAllowManualTrigger()
+        showPipelineParameters()
+        refreshFrequency(60)
+      }
+    }
 
     // define downstream jobs
     if (data.children) {
@@ -121,7 +124,7 @@ entries.each{ reponame, entry ->
               trigger("${config.jenkins_org}/${config.team}/${config.gh_repo}/${idx}-${childname}") {
                 condition('SUCCESS')
                 parameters {
-                  gitRevision()
+                  propertiesFile('pipeline.properties', true)
                 }
               }
             }
@@ -142,7 +145,7 @@ entries.each{ reponame, entry ->
 
     def manual_base = new Base(
       jobject: manual_job,
-      slack_message: "      revision: `\$revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`",
+      slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`",
       config: config
     ).defaults().github()
 
@@ -154,7 +157,7 @@ entries.each{ reponame, entry ->
       jobject: manual_job,
       config: config,
       jobname: "${jobname}"
-    ).init().defaults()
+    ).init().git_checkout().job_script()
 
     if (manual_steps.metaClass.respondsTo(manual_steps, jobname)) {
       manual_steps."${jobname}"()
@@ -191,7 +194,7 @@ def pz_gh_integration_steps = new Steps(
   jobject: pz_gh_integration_test_job,
   config: [],
   jobname: "blackbox"
-).init().defaults().blackbox().gh_trigger()
+).init().job_script().git_checkout().blackbox().gh_trigger()
 
 // bf integration test repo
 bf_gh_integration_test_job = job("venice/piazza/pztest-integration/beachfront")
@@ -213,4 +216,4 @@ def bf_gh_integration_steps = new Steps(
   jobject: bf_gh_integration_test_job,
   config: [],
   jobname: "beachfront"
-).init().defaults().blackbox().gh_trigger()
+).init().job_script().git_checkout().blackbox().gh_trigger()
