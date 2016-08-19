@@ -455,9 +455,7 @@ class Steps {
 
   def _github_write_script() {
     return """
-      set +x
-      export HISTFILE=/dev/null
-      ssh-add "\$GIT_KEY"
+      [ -f "\$GIT_KEY" ] && ssh-add "\$GIT_KEY"
     """
   }
 }
