@@ -206,7 +206,7 @@ class Steps {
     return this
   }
 
-  def integration_test() {
+  def run_integration_tests() {
     return this.blackbox()
   }
 
