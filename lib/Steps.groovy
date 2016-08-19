@@ -72,6 +72,21 @@ class Steps {
 
     return this
   }
+
+  def gh_write() {
+    this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          file('GIT_KEY', '95eee62c-dc20-44d5-a141-14a11856421e')
+        }
+      }
+      steps {
+        shell(this._github_write_script())
+      }
+    }
+
+    return this
+  }
   
   def archive() {
     this.jobject.with {
@@ -435,6 +450,14 @@ class Steps {
       rm -f pipeline.properties
       echo "component=\$component" >> pipeline.properties
       echo "component_revision=\$component_revision" >> pipeline.properties
+    """
+  }
+
+  def _github_write_script() {
+    return """
+      set +x
+      export HISTFILE=/dev/null
+      ssh-add "\$GIT_KEY"
     """
   }
 }

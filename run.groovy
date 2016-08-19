@@ -96,6 +96,7 @@ entries.each{ reponame, entry ->
           slack_domain: "venicegeo"
         ]
       ).defaults().github()
+      steps.gh_write()
 
     } else {
       // Do not checkout integration tests
