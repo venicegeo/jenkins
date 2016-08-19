@@ -75,48 +75,42 @@ entries.each{ reponame, entry ->
       }
     }
 
+    mutant = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/${data.index}-${jobname}")
 
     if (jobname == "integration_test") {
-
-      mutant = workflowJob("${config.jenkins_org}/${config.team}/${config.gh_repo}/${data.index}-integration_test")
-
-      mutant.with {
-        definition {
-          cps {
-            script("""
-              build job: "${config.jenkins_org}/${config.team}/integration_test", wait: true
-            """)
-            sandbox()
-          }
-        }
-      }
-
-    } else {
-
-      mutant = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/${data.index}-${jobname}")
-
       new Base(
         jobject: mutant,
-        slack_message: "     commit author: \$GIT_AUTHOR_NAME\n      commit sha: `\$GIT_COMMIT`",
+        config: [
+          gh_org: 'venicegeo',
+          gh_repo: 'pztest-integration',
+          gh_branch: 'master',
+          slack_token: binding.variables.get("SLACK_TOKEN"),
+          slack_domain: "venicegeo"
+        ]
+      ).defaults().github()
+    } else {
+      new Base(
+        jobject: mutant,
+        slack_message: "      commit sha: `\$GIT_COMMIT`",
         config: config
       ).defaults().github()
-
-      def steps = new Steps(
-        jobject: mutant,
-        config: config,
-        jobname: jobname
-      ).init().defaults()
-
-      if (steps.metaClass.respondsTo(steps, jobname)) {
-        steps."${jobname}"()
-      }
-
-      // first job in pipeline needs an external trigger.
-      if (data.index == 0) {
-        steps.gh_trigger()
-      }
-
     }
+
+    def steps = new Steps(
+      jobject: mutant,
+      config: config,
+      jobname: jobname
+    ).init().defaults()
+
+    if (steps.metaClass.respondsTo(steps, jobname)) {
+      steps."${jobname}"()
+    }
+
+    // first job in pipeline needs an external trigger.
+    if (data.index == 0) {
+      steps.gh_trigger()
+    }
+
 
     // define downstream jobs
     if (data.children) {
@@ -127,8 +121,7 @@ entries.each{ reponame, entry ->
               trigger("${config.jenkins_org}/${config.team}/${config.gh_repo}/${idx}-${childname}") {
                 condition('SUCCESS')
                 parameters {
-                  predefinedProp('revision', '$revision')
-                  predefinedProp('domain', '$domain')
+                  gitRevision()
                 }
               }
             }
