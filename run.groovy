@@ -81,13 +81,25 @@ entries.each{ reponame, entry ->
 
       steps.blackbox()
 
+    } else if (jobname == "release") {
+      new Base(
+        jobject: mutant,
+        config: [
+          gh_org: 'venicegeo',
+          gh_repo: 'pz-release',
+          gh_branch: 'rc',
+          slack_token: binding.variables.get("SLACK_TOKEN"),
+          slack_domain: "venicegeo"
+        ]
+      ).defaults().github()
+
     } else {
       // Do not checkout integration tests
       steps.git_checkout()
 
       new Base(
         jobject: mutant,
-        slack_message: "      commit sha: `\$GIT_COMMIT`",
+        slack_message: "      commit sha: `\$component_revision`",
         config: config
       ).defaults().github()
     }
@@ -96,6 +108,10 @@ entries.each{ reponame, entry ->
 
     if (steps.metaClass.respondsTo(steps, jobname)) {
       steps."${jobname}"()
+    }
+
+    if (jobname == "release") {
+      steps.cf_push_bg_stage()
     }
 
     if (data.index == 0) {

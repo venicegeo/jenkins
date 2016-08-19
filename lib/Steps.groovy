@@ -134,6 +134,15 @@ class Steps {
     return this
   }
 
+  def cf_push_bg_stage() {
+    this.override = "stage.geointservices.io"
+    this.init()
+    this.cf_push()
+    this.cf_bg_deploy()
+
+    return this
+  }
+
   def cf_promote_to_prod() {
     this.override = "stage.geointservices.io"
     this.init()
@@ -375,14 +384,16 @@ class Steps {
   def _create_properties_file_script() {
     return """
       rm -f pipeline.properties
-      echo "component_revision=\$GIT_COMMIT" > pipeline.properties
+      echo "component=${this.config.gh_repo}" >> pipeline.properties
+      echo "component_revision=\$GIT_COMMIT" >> pipeline.properties
     """
   }
 
   def _pass_properties_file_script() {
     return """
       rm -f pipeline.properties
-      echo "component_revision=\$component_revision" > pipeline.properties
+      echo "component=\$component" >> pipeline.properties
+      echo "component_revision=\$component_revision" >> pipeline.properties
     """
   }
 }
