@@ -177,6 +177,10 @@ class Steps {
     return this
   }
 
+  def integration_test() {
+    return this.blackbox()
+  }
+
   private String _pcf_env
 
   private String _app_env="""
