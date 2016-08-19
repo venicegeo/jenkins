@@ -52,6 +52,15 @@ class Steps {
     return this
   }
 
+  def pass_properties_file() {
+    this.jobject.with {
+      steps {
+        shell(this._pass_properties_file_script())
+      }
+    }
+
+    return this
+  }
 
   def gh_trigger() {
     this.jobject.with {
@@ -370,6 +379,13 @@ class Steps {
     return """
       rm -f pipeline.properties
       echo "component_revision=\$GIT_COMMIT" > pipeline.properties
+    """
+  }
+
+  def _pass_properties_file_script() {
+    return """
+      rm -f pipeline.properties
+      echo "component_revision=\$component_revision" > pipeline.properties
     """
   }
 }

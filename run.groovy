@@ -113,6 +113,9 @@ entries.each{ reponame, entry ->
         showPipelineParameters()
         refreshFrequency(60)
       }
+    } else {
+      // and our properties file
+      steps.pass_properties_file()
     }
 
     // define downstream jobs
