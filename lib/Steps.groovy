@@ -205,6 +205,7 @@ class Steps {
       wrappers {
         credentialsBinding {
           usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
+          file('GIT_KEY', '95eee62c-dc20-44d5-a141-14a11856421e')
         }
       }
       steps {
