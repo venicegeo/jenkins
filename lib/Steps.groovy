@@ -458,6 +458,7 @@ class Steps {
   def _github_write_script() {
     return """
       [ -f "\$GIT_KEY" ] && ssh-add "\$GIT_KEY"
+      rm \$HOME/.ssh/config
       cat <<- EOF > \$HOME/.ssh/config
 Host github.com
   HostName github.com
