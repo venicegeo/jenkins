@@ -38,17 +38,17 @@ class Repos {
       reponame: 'pz-access',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-docs',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-gateway',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-gocommon',
       team: 'piazza',
@@ -57,7 +57,7 @@ class Repos {
       reponame: 'pz-ingest',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-jobcommon',
       team: 'piazza',
@@ -66,62 +66,62 @@ class Repos {
       reponame: 'pz-jobmanager',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-logger',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-sak',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-search-metadata-ingest',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-search-query',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-security',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-servicecontroller',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-swagger',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-uuidgen',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-workflow',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pzsvc-hello',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pzsvc-preview-generator',
       team: 'piazza',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'ci-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'rc-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pzsvc-gdaldem',
       team: 'pointcloud',

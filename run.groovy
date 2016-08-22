@@ -92,7 +92,7 @@ entries.each{ reponame, entry ->
         config: [
           gh_org: 'venicegeo',
           gh_repo: 'pz-release',
-          gh_branch: (jobname.contains("rc")) ? 'rc' : 'ci',
+          gh_branch: (jobname.contains("stage")) ? 'rc' : 'ci',
           slack_token: binding.variables.get("SLACK_TOKEN"),
           slack_domain: "venicegeo"
         ]
