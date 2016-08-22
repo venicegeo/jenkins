@@ -53,6 +53,19 @@ class Base {
     return this
   }
 
+  def pipeline_parameters() {
+    this.jobject.with {
+
+      parameters {
+        stringParam('component', "${this.config.gh_repo}", 'the component this pipeline builds')
+        stringParam('component_revision', 'latest', 'commit sha, git branch or tag to build (default: latest component_revision)')
+      }
+
+    }
+
+    return this
+  }
+
   def github() {
     this.jobject.with {
 

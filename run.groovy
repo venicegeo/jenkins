@@ -64,6 +64,7 @@ entries.each{ reponame, entry ->
   // job loop
   entry.jobs.each{ jobname, data ->
     def mutant = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/${data.index}-${jobname}")
+    def base_job
 
     def steps = new Steps(
       jobject: mutant,
@@ -72,7 +73,7 @@ entries.each{ reponame, entry ->
     ).init()
 
     if (jobname == "run_integration_tests") {
-      new Base(
+      base_job = new Base(
         jobject: mutant,
         config: [
           gh_org: 'venicegeo',
@@ -86,7 +87,7 @@ entries.each{ reponame, entry ->
       steps.blackbox()
 
     } else if (jobname.contains("release")) {
-      new Base(
+      base_job = new Base(
         jobject: mutant,
         config: [
           gh_org: 'venicegeo',
@@ -103,7 +104,7 @@ entries.each{ reponame, entry ->
       // Do not checkout integration tests
       steps.git_checkout()
 
-      new Base(
+      base_job = new Base(
         jobject: mutant,
         slack_message: "      commit sha: `\$GIT_COMMIT`",
         config: config
@@ -141,6 +142,7 @@ entries.each{ reponame, entry ->
     } else {
       // and our properties file
       steps.pass_properties_file()
+      base_job.pipeline_parameters()
     }
 
     // define downstream jobs
