@@ -117,8 +117,12 @@ entries.each{ reponame, entry ->
       steps."${jobname}"()
     }
 
-    if (jobname == "release") {
+    if (jobname == "stage-release") {
       steps.cf_release_stage()
+    }
+
+    if (jobname == "int-release") {
+      steps.cf_release_int()
     }
 
     if (data.index == 0) {

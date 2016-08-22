@@ -165,6 +165,15 @@ class Steps {
     return this
   }
 
+  def cf_release_int() {
+    this.override = "int.geointservices.io"
+    this.init()
+    this.cf_push_release()
+    this.cf_bg_deploy()
+
+    return this
+  }
+
   def cf_release_stage() {
     this.override = "stage.geointservices.io"
     this.init()
