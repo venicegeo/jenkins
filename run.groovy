@@ -85,7 +85,7 @@ entries.each{ reponame, entry ->
 
       steps.blackbox()
 
-    } else if (!jobname.contains("release")) {
+    } else if (jobname.contains("release")) {
       new Base(
         jobject: mutant,
         config: [
