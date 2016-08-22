@@ -85,17 +85,18 @@ entries.each{ reponame, entry ->
 
       steps.blackbox()
 
-    } else if (jobname == "release") {
+    } else if (!jobname.contains("release")) {
       new Base(
         jobject: mutant,
         config: [
           gh_org: 'venicegeo',
           gh_repo: 'pz-release',
-          gh_branch: 'rc',
+          gh_branch: (!jobname.contains("rc")) ? 'rc' : 'ci',
           slack_token: binding.variables.get("SLACK_TOKEN"),
           slack_domain: "venicegeo"
         ]
       ).defaults().github()
+
       steps.gh_write()
 
     } else {
