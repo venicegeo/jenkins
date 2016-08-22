@@ -458,6 +458,7 @@ class Steps {
   def _github_write_script() {
     return """
       [ -f "\$GIT_KEY" ] && ssh-add "\$GIT_KEY"
+      chmod 600 \$HOME/.ssh/config
       cat <<- EOF > \$HOME/.ssh/config
 Host github.com-venice
   HostName github.com
@@ -465,6 +466,7 @@ Host github.com-venice
   IdentityFile \$GIT_KEY
   IdentitiesOnly yes
 EOF
+      chmod 400 \$HOME/.ssh/config
 
       git remote set-url origin git@github.com-venice:venicegeo/pz-release.git
     """
