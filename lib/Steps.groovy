@@ -183,6 +183,37 @@ class Steps {
     return this
   }
 
+  def cf_release_test() {
+    this.override = "test.geointservices.io"
+    this.init()
+    this.cf_push_release()
+    this.cf_bg_deploy()
+
+    return this
+  }
+
+  def cf_release_prod() {
+    this.override = "geointservices.io"
+    this.init()
+    this.cf_push_release()
+    this.cf_bg_deploy()
+
+    return this
+  }
+
+  def cf_promote_to_test() {
+    this.override = "int.geointservices.io"
+    this.init()
+    this.cf_set_version()
+
+    this.override = "test.geointservices.io"
+    this.init()
+    this.cf_push()
+    this.cf_bg_deploy()
+
+    return this
+  }
+
   def cf_promote_to_prod() {
     this.override = "stage.geointservices.io"
     this.init()
@@ -445,6 +476,9 @@ class Steps {
       version=\${x: -7}
 
       git checkout \$version
+
+      component="${this.config.gh_repo}"
+      component_revision=\$(git rev-parse HEAD)
     """
   }
 

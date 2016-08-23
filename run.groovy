@@ -188,6 +188,111 @@ entries.each{ reponame, entry ->
 
   }
 
+  // -- production pipeline
+  folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/production") {
+    displayName("${config.gh_repo}/production")
+  }
+
+  def promotion_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/production/0-promote")
+  def promotion_base = new Base(
+    jobject: promotion_job,
+    slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`",
+    config: config
+  ).defaults().github().parameters()
+
+  def promotion_steps = new Steps(
+    jobject: promotion_job,
+    config: config,
+    jobname: "promote"
+  ).init().git_checkout().job_script().cf_promote_to_prod().create_properties_file()
+
+  def release_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/production/1-release")
+
+  def release_base = new Base(
+    jobject: release_job,
+    config: [
+      gh_org: 'venicegeo',
+      gh_repo: 'pz-release',
+      gh_branch: 'master',
+      slack_message: "      component: `\$component`\n      component_revision: `\$component_revision`",
+      slack_token: binding.variables.get("SLACK_TOKEN"),
+      slack_domain: "venicegeo"
+    ]
+  ).defaults().github()
+
+  def release_steps = new Steps(
+    jobject: release_job,
+    config: config,
+    jobname: 'prod-release'
+  ).init().gh_write().job_script().cf_release_prod()
+
+  promotion_job.with {
+    publishers {
+      downstreamParameterized {
+        trigger("${config.jenkins_org}/${config.team}/${config.gh_repo}/production/1-release") {
+          condition('SUCCESS')
+          parameters {
+            propertiesFile('pipeline.properties', true)
+          }
+        }
+      }
+    }
+  }
+  // -- end production
+
+  // -- load test pipeline
+  folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/test") {
+    displayName("${config.gh_repo}/test")
+  }
+
+  def test_promotion_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/test/0-promote")
+  def test_promotion_base = new Base(
+    jobject: test_promotion_job,
+    slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`",
+    config: config
+  ).defaults().github().parameters()
+
+  def test_promotion_steps = new Steps(
+    jobject: test_promotion_job,
+    config: config,
+    jobname: "promote"
+  ).init().git_checkout().job_script().cf_promote_to_test().create_properties_file()
+
+  def test_release_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/test/1-release")
+
+  def test_release_base = new Base(
+    jobject: test_release_job,
+    config: [
+      gh_org: 'venicegeo',
+      gh_repo: 'pz-release',
+      gh_branch: 'test',
+      slack_message: "      component: `\$component`\n      component_revision: `\$component_revision`",
+      slack_token: binding.variables.get("SLACK_TOKEN"),
+      slack_domain: "venicegeo"
+    ]
+  ).defaults().github()
+
+  def test_release_steps = new Steps(
+    jobject: test_release_job,
+    config: config,
+    jobname: 'test-release'
+  ).init().gh_write().job_script().cf_release_test()
+
+  promotion_job.with {
+    publishers {
+      downstreamParameterized {
+        trigger("${config.jenkins_org}/${config.team}/${config.gh_repo}/test/1-release") {
+          condition('SUCCESS')
+          parameters {
+            propertiesFile('pipeline.properties', true)
+          }
+        }
+      }
+    }
+  }
+  // -- end load test pipeline
+
+
   // manual jobs
   folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/manual") {
     displayName("${config.gh_repo}/manual")
