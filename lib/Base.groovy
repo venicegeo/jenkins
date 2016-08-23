@@ -4,6 +4,7 @@ class Base {
   def jobject
   def config
   def slack_message
+  def promotion
 
   def defaults() {
     this.jobject.with {
