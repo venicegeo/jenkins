@@ -15,7 +15,9 @@ class Base {
 
       publishers {
 
-        wsCleanup()
+        wsCleanup {
+          excludePattern 'pipeline.properties'
+        }
 
         slackNotifications {
           projectChannel this.promotion ? '#release' : '#jenkins'
