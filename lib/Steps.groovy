@@ -366,7 +366,7 @@ class Steps {
         -Dversion=\$version \
         -Dpackaging=\$EXT
 
-      rm \$artifact
+      rm -f \$artifact
     """
   }
 
@@ -406,11 +406,11 @@ class Steps {
         echo "Printing log output as a result of the failure."
         cf logs --recent \$APP-\$version
         cf delete \$APP-\$version -f -r
-        rm \$root/\$APP.\$EXT
+        rm -f \$root/\$APP.\$EXT
         exit 1
       fi
 
-      rm \$root/\$APP.\$EXT
+      rm -f \$root/\$APP.\$EXT
     """
   }
 
@@ -434,7 +434,7 @@ class Steps {
         echo "Printing log output as a result of the failure."
         cf logs --recent \$APP-\$version
         cf delete \$APP-\$version -f -r
-        rm \$root/\$APP.\$EXT
+        rm -f \$root/\$APP.\$EXT
         exit 1
       fi
     """
