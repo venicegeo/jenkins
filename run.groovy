@@ -108,11 +108,11 @@ entries.each{ reponame, entry ->
 
       base_job = new Base(
         jobject: mutant,
+        slack_message: "      component: `\$component`\n      component_revision: `\$component_revision`",
         config: [
           gh_org: 'venicegeo',
           gh_repo: 'pz-release',
           gh_branch: release_branch,
-          slack_message: "      component: `\$component`\n      component_revision: `\$component_revision`",
           slack_token: binding.variables.get("SLACK_TOKEN"),
           slack_domain: "venicegeo"
         ]
@@ -224,11 +224,11 @@ entries.each{ reponame, entry ->
 
     release_base = new Base(
       jobject: release_job,
+      slack_message: "      component: `\$component`\n      component_revision: `\$component_revision`",
       config: [
         gh_org: 'venicegeo',
         gh_repo: 'pz-release',
         gh_branch: 'master',
-        slack_message: "      component: `\$component`\n      component_revision: `\$component_revision`",
         slack_token: binding.variables.get("SLACK_TOKEN"),
         slack_domain: "venicegeo"
       ]
@@ -276,11 +276,11 @@ entries.each{ reponame, entry ->
 
     test_release_base = new Base(
       jobject: test_release_job,
+      slack_message: "      component: `\$component`\n      component_revision: `\$component_revision`",
       config: [
         gh_org: 'venicegeo',
         gh_repo: 'pz-release',
         gh_branch: 'test',
-        slack_message: "      component: `\$component`\n      component_revision: `\$component_revision`",
         slack_token: binding.variables.get("SLACK_TOKEN"),
         slack_domain: "venicegeo"
       ]
@@ -341,7 +341,7 @@ entries.each{ reponame, entry ->
 
 
 // -- PIAZZA AGGREGATED ROLLOUT
-def production_rollout = workflowJob('venice/piazza/production')
+def production_rollout = workflowJob('venice/piazza/promotion/production')
 
 def production_cps = ' '
 entries.each{ reponame, entry ->
@@ -361,7 +361,7 @@ production_rollout.with {
   }
 }
 
-def test_rollout = workflowJob('venice/piazza/test')
+def test_rollout = workflowJob('venice/piazza/promotion/test')
 
 def test_cps = ' '
 entries.each{ reponame, entry ->

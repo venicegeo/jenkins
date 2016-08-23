@@ -31,7 +31,7 @@ class Base {
             includeTestSummary false
             showCommitList release ? true : false
             includeCustomMessage true
-            customMessage this.slack_message
+            customMessage this.slack_message || this.config.slack_message
           }
         }
       }
