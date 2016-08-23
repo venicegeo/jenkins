@@ -188,7 +188,7 @@ entries.each{ reponame, entry ->
 
   }
 
-  if (entry.team == 'piazza') {
+  if ((entry.team == 'piazza') && (entry.lib != 'true')) {
     // -- production pipeline
     folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/production") {
       displayName("${config.gh_repo}/production")
@@ -251,7 +251,7 @@ entries.each{ reponame, entry ->
       jobject: test_promotion_job,
       slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`",
       config: config
-    ).defaults().github().parameters()
+    ).defaults().github()
 
     def test_promotion_steps = new Steps(
       jobject: test_promotion_job,
@@ -325,6 +325,47 @@ entries.each{ reponame, entry ->
 }
 
 
+// -- PIAZZA AGGREGATED ROLLOUT
+def production_rollout = workflowJob('venice/piazza/production')
+
+def production_cps = ' '
+entries.each{ reponame, entry ->
+  if ((entry.team == 'piazza') && (entry.lib != true)) {
+    production_cps = production_cps + """
+      build job: "venice/piazza/${reponame}/production/0-promote", wait: true
+"""
+  }
+}
+
+production_rollout.with {
+  definition {
+    cps {
+      script(production_cps)
+      sandbox()
+    }
+  }
+}
+
+def test_rollout = workflowJob('venice/piazza/test')
+
+def test_cps = ' '
+entries.each{ reponame, entry ->
+  if ((entry.team == 'piazza') && (entry.lib != true)) {
+    test_cps = test_cps + """
+      build job: "venice/piazza/${reponame}/test/0-promote", wait: true
+"""
+  }
+}
+
+test_rollout.with {
+  definition {
+    cps {
+      script(test_cps)
+      sandbox()
+    }
+  }
+}
+// -- END PIAZZA AGGREGATED ROLLOUT
 
 
 // HACKS FOR INTEGRATION TESTS
