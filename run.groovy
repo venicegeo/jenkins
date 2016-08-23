@@ -188,7 +188,7 @@ entries.each{ reponame, entry ->
 
   }
 
-  if ((entry.team == 'piazza') && (entry.lib != 'true')) {
+  if ((entry.team == 'piazza') && (entry.lib != true)) {
     // -- production pipeline
     folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/production") {
       displayName("${config.gh_repo}/production")
@@ -295,8 +295,10 @@ entries.each{ reponame, entry ->
   }
 
   // manual jobs
-  folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/manual") {
-    displayName("${config.gh_repo}/manual")
+  if (entry.manual) {
+    folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/manual") {
+      displayName("${config.gh_repo}/manual")
+    }
   }
 
   entry.manual.eachWithIndex{ jobname, idx ->
