@@ -87,12 +87,31 @@ entries.each{ reponame, entry ->
       steps.blackbox()
 
     } else if (jobname.contains("release")) {
+      def release_branch
+      switch (jobname) {
+        case 'ci-release':
+          release_branch = 'ci'
+          break
+        case 'test-release':
+          release_branch = 'test'
+          break
+        case 'stage-release':
+          release_branch = 'rc'
+          break
+        case 'prod-release':
+          release_branch = 'master'
+          break
+        default:
+          release_branch = 'ci'
+      }
+
       base_job = new Base(
         jobject: mutant,
         config: [
           gh_org: 'venicegeo',
           gh_repo: 'pz-release',
-          gh_branch: (jobname.contains("stage")) ? 'rc' : 'ci',
+          gh_branch: release_branch,
+          slack_message: "      component: `\$component`\n      component_revision: `\$component_revision`",
           slack_token: binding.variables.get("SLACK_TOKEN"),
           slack_domain: "venicegeo"
         ]
