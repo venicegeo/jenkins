@@ -15,6 +15,9 @@ class Base {
       logRotator { numToKeep 30 }
 
       publishers {
+
+        wsCleanup()
+
         slackNotifications {
           projectChannel release ? '#release' : '#jenkins'
           integrationToken this.config.slack_token
