@@ -126,7 +126,7 @@ entries.each{ reponame, entry ->
 
       base_job = new Base(
         jobject: mutant,
-        promotion: (jobname == 'cf_bg_deploy_stage')
+        promotion: (jobname == 'cf_bg_deploy_stage'),
         slack_message: "      commit sha: `\$GIT_COMMIT`",
         config: config
       ).defaults().github()
