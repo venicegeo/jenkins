@@ -188,28 +188,40 @@ entries.each{ reponame, entry ->
 
   }
 
+  def promotion_job
+  def promotion_base
+  def promotion_steps
+  def release_job
+  def release_base
+  def release_steps
+  def test_promotion_job
+  def test_promotion_base
+  def test_promotion_steps
+  def test_release_job
+  def test_release_base
+  def test_release_steps
   if (entry.team == 'piazza' && entry.lib != true) {
     // -- production pipeline
     folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/production") {
       displayName("${config.gh_repo}/production")
     }
 
-    def promotion_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/production/0-promote")
-    def promotion_base = new Base(
+    promotion_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/production/0-promote")
+    promotion_base = new Base(
       jobject: promotion_job,
       slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`",
       config: config
     ).defaults().github().parameters()
 
-    def promotion_steps = new Steps(
+    promotion_steps = new Steps(
       jobject: promotion_job,
       config: config,
       jobname: "promote"
     ).init().git_checkout().job_script().cf_promote_to_prod().create_properties_file()
 
-    def release_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/production/1-release")
+    release_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/production/1-release")
 
-    def release_base = new Base(
+    release_base = new Base(
       jobject: release_job,
       config: [
         gh_org: 'venicegeo',
@@ -221,7 +233,7 @@ entries.each{ reponame, entry ->
       ]
     ).defaults().github()
 
-    def release_steps = new Steps(
+    release_steps = new Steps(
       jobject: release_job,
       config: config,
       jobname: 'prod-release'
@@ -246,22 +258,22 @@ entries.each{ reponame, entry ->
       displayName("${config.gh_repo}/test")
     }
 
-    def test_promotion_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/test/0-promote")
-    def test_promotion_base = new Base(
+    test_promotion_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/test/0-promote")
+    test_promotion_base = new Base(
       jobject: test_promotion_job,
       slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`",
       config: config
     ).defaults().github()
 
-    def test_promotion_steps = new Steps(
+    test_promotion_steps = new Steps(
       jobject: test_promotion_job,
       config: config,
       jobname: "promote"
     ).init().git_checkout().job_script().cf_promote_to_test().create_properties_file()
 
-    def test_release_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/test/1-release")
+    test_release_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/test/1-release")
 
-    def test_release_base = new Base(
+    test_release_base = new Base(
       jobject: test_release_job,
       config: [
         gh_org: 'venicegeo',
@@ -273,7 +285,7 @@ entries.each{ reponame, entry ->
       ]
     ).defaults().github()
 
-    def test_release_steps = new Steps(
+    test_release_steps = new Steps(
       jobject: test_release_job,
       config: config,
       jobname: 'test-release'
