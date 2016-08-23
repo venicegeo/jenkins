@@ -341,7 +341,7 @@ entries.each{ reponame, entry ->
 
 
 // -- PIAZZA AGGREGATED ROLLOUT
-folder('venice/piazza/promtion') {
+def promotion_folder = folder('venice/piazza/promtion') {
   displayName('promotion')
 }
 
