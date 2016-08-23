@@ -341,8 +341,8 @@ entries.each{ reponame, entry ->
 
 
 // -- PIAZZA AGGREGATED ROLLOUT
-folder("venice/piazza/promtion") {
-  displayName("promotion")
+folder('venice/piazza/promtion') {
+  displayName('promotion')
 }
 
 def production_rollout = workflowJob('venice/piazza/promotion/production')
