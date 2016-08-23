@@ -6,7 +6,6 @@ class Base {
   def slack_message
 
   def defaults() {
-    def release = (this.config.gh_repo == 'pz-release') && (this.config.gh_branch != 'ci')
     this.jobject.with {
       wrappers { 
         colorizeOutput()
@@ -19,20 +18,20 @@ class Base {
         wsCleanup()
 
         slackNotifications {
-          projectChannel release ? '#release' : '#jenkins'
+          projectChannel this.promotion ? '#release' : '#jenkins'
           integrationToken this.config.slack_token
           configure { node ->
             teamDomain this.config.slack_domain
             startNotification false
-            notifySuccess release ? true : false
-            notifyAborted release ? false : true
-            notifyNotBuilt release ? false : true
-            notifyUnstable release ? false : true
+            notifySuccess this.promotion ? true : false
+            notifyAborted this.promotion ? false : true
+            notifyNotBuilt this.promotion ? false : true
+            notifyUnstable this.promotion ? false : true
             notifyFailure true
-            notifyBackToNormal release ? false : true
-            notifyRepeatedFailure release ? false : true
+            notifyBackToNormal this.promotion ? false : true
+            notifyRepeatedFailure this.promotion ? false : true
             includeTestSummary false
-            showCommitList release ? true : false
+            showCommitList this.promotion ? true : false
             includeCustomMessage true
             customMessage this.slack_message || this.config.slack_message
           }

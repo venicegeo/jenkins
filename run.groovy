@@ -126,6 +126,7 @@ entries.each{ reponame, entry ->
 
       base_job = new Base(
         jobject: mutant,
+        promotion: (jobname == 'cf_bg_deploy_stage')
         slack_message: "      commit sha: `\$GIT_COMMIT`",
         config: config
       ).defaults().github()
@@ -210,6 +211,7 @@ entries.each{ reponame, entry ->
     promotion_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/production/0-promote")
     promotion_base = new Base(
       jobject: promotion_job,
+      promotion: true,
       slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`",
       config: config
     ).defaults().github().parameters()
