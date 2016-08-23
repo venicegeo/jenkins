@@ -19,6 +19,7 @@ for (p in repos) {
     team: p.team,
     gh_org: p.gh_org,
     branch: p.branch,
+    lib: p.lib || false,
     manual: p.manual,
     jobs: [:]
   ]
@@ -200,7 +201,7 @@ entries.each{ reponame, entry ->
   def test_release_job
   def test_release_base
   def test_release_steps
-  if (entry.team == 'piazza' && entry.hasProperty('lib') && entry.lib != true) {
+  if (entry.team == 'piazza' && entry.lib != true) {
     // -- production pipeline
     folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/production") {
       displayName("${config.gh_repo}/production")
@@ -344,7 +345,7 @@ def production_rollout = workflowJob('venice/piazza/production')
 
 def production_cps = ' '
 entries.each{ reponame, entry ->
-  if (entry.team == 'piazza' && entry.hasProperty('lib') && entry.lib != true) {
+  if (entry.team == 'piazza' && entry.lib != true) {
     production_cps = production_cps + """
       build job: "venice/piazza/${reponame}/production/0-promote", wait: true
 """
@@ -364,7 +365,7 @@ def test_rollout = workflowJob('venice/piazza/test')
 
 def test_cps = ' '
 entries.each{ reponame, entry ->
-  if (entry.team == 'piazza' && entry.hasProperty('lib') && entry.lib != true) {
+  if (entry.team == 'piazza' && entry.lib != true) {
     test_cps = test_cps + """
       build job: "venice/piazza/${reponame}/test/0-promote", wait: true
 """
