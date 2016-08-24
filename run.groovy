@@ -73,7 +73,7 @@ entries.each{ reponame, entry ->
       jobname: jobname
     ).init()
 
-    if (jobname == "run_integration_tests") {
+    if (jobname.contains("integration_tests")) {
       base_job = new Base(
         jobject: mutant,
         config: [
