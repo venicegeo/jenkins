@@ -202,7 +202,7 @@ class Steps {
   }
 
   def cf_promote_to_test() {
-    this.override = "int.geointservices.io"
+    this.override = "stage.geointservices.io"
     this.init()
     this.cf_set_version()
 
