@@ -34,7 +34,7 @@ class Base {
           startNotification false
           includeTestSummary false
           includeCustomMessage true
-          customMessage this.slack_message || this.config.slack_message
+          customMessage this.slack_message ? this.slack_message : this.config.slack_message
           buildServerUrl 'https://jenkins.devops.geointservices.io'
           sendAs 'jenkins'
           commitInfoChoice 'NONE'
