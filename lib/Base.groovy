@@ -34,10 +34,11 @@ class Base {
           startNotification false
           includeTestSummary false
           includeCustomMessage true
-          configure { node ->
-            showCommitList this.promotion ? true : false
-            #customMessage this.slack_message || this.config.slack_message
-          }
+          customMessage this.slack_message || this.config.slack_message
+          buildServerUrl 'https://jenkins.devops.geointservices.io'
+          sendAs 'jenkins'
+          commitInfoChoice 'NONE'
+          showCommitList this.promotion ? true : false
         }
       }
 
