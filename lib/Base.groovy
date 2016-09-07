@@ -20,9 +20,9 @@ class Base {
           excludePattern 'pipeline.properties'
         }
 
-        slackNotifications {
+        slackNotifier {
           projectChannel this.promotion ? '#release' : '#jenkins'
-          integrationToken this.config.slack_token
+          authToken this.config.slack_token
           configure { node ->
             teamDomain this.config.slack_domain
             startNotification false
@@ -98,7 +98,9 @@ class Base {
   def selenium() {
     this.jobject.with {
       wrappers {
-        xvfb('default')
+        xvfb('default') {
+          screen('1920x1080x24')
+        }
       }
     }
 
