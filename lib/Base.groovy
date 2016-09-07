@@ -34,9 +34,9 @@ class Base {
           startNotification false
           includeTestSummary false
           includeCustomMessage true
-          customMessage this.slack_message || this.config.slack_message
           configure { node ->
             showCommitList this.promotion ? true : false
+            #customMessage this.slack_message || this.config.slack_message
           }
         }
       }
