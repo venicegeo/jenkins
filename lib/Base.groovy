@@ -21,22 +21,22 @@ class Base {
         }
 
         slackNotifier {
-          projectChannel this.promotion ? '#release' : '#jenkins'
+          room this.promotion ? '#release' : '#jenkins'
           authToken this.config.slack_token
+          notifySuccess this.promotion ? true : false
+          notifyAborted this.promotion ? false : true
+          notifyNotBuilt this.promotion ? false : true
+          notifyUnstable this.promotion ? false : true
+          notifyFailure true
+          notifyBackToNormal this.promotion ? false : true
+          notifyRepeatedFailure this.promotion ? false : true
+          teamDomain this.config.slack_domain
+          startNotification false
+          includeTestSummary false
+          includeCustomMessage true
+          customMessage this.slack_message || this.config.slack_message
           configure { node ->
-            teamDomain this.config.slack_domain
-            startNotification false
-            notifySuccess this.promotion ? true : false
-            notifyAborted this.promotion ? false : true
-            notifyNotBuilt this.promotion ? false : true
-            notifyUnstable this.promotion ? false : true
-            notifyFailure true
-            notifyBackToNormal this.promotion ? false : true
-            notifyRepeatedFailure this.promotion ? false : true
-            includeTestSummary false
             showCommitList this.promotion ? true : false
-            includeCustomMessage true
-            customMessage this.slack_message || this.config.slack_message
           }
         }
       }
