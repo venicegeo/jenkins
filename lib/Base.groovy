@@ -38,7 +38,6 @@ class Base {
           buildServerUrl 'https://jenkins.devops.geointservices.io'
           sendAs 'jenkins'
           commitInfoChoice 'NONE'
-          showCommitList this.promotion ? true : false
         }
       }
 
