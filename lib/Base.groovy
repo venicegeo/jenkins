@@ -94,4 +94,14 @@ class Base {
 
     return this
   }
+
+  def selenium() {
+    this.jobject.with {
+      wrappers {
+        xvfb('default')
+      }
+    }
+
+    return this
+  }
 }

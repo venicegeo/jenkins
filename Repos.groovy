@@ -27,7 +27,7 @@ class Repos {
     ],[
       reponame: 'bftest-ui',
       team: 'beachfront',
-      manual: ['test']
+      manual: ['selenium']
     ],[
       reponame: 'pzsvc-ossim',
       team: 'beachfront',
