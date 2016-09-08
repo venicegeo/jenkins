@@ -20,24 +20,23 @@ class Base {
           excludePattern 'pipeline.properties'
         }
 
-        slackNotifier {
-          room this.promotion ? '#release' : '#jenkins'
-          authToken this.config.slack_token
-          notifySuccess this.promotion ? true : false
-          notifyAborted this.promotion ? false : true
-          notifyNotBuilt this.promotion ? false : true
-          notifyUnstable this.promotion ? false : true
-          notifyFailure true
-          notifyBackToNormal this.promotion ? false : true
-          notifyRepeatedFailure this.promotion ? false : true
-          teamDomain this.config.slack_domain
-          startNotification false
-          includeTestSummary false
-          includeCustomMessage true
-          customMessage this.slack_message ? this.slack_message : this.config.slack_message
-          buildServerUrl 'https://jenkins.devops.geointservices.io'
-          sendAs 'jenkins'
-          commitInfoChoice 'NONE'
+        slackNotifications {
+          projectChannel this.promotion ? '#release' : '#jenkins'
+          integrationToken this.config.slack_token
+          configure { node ->
+            notifySuccess this.promotion ? true : false
+            notifyAborted this.promotion ? false : true
+            notifyNotBuilt this.promotion ? false : true
+            notifyUnstable this.promotion ? false : true
+            notifyFailure true
+            notifyBackToNormal this.promotion ? false : true
+            notifyRepeatedFailure this.promotion ? false : true
+            teamDomain this.config.slack_domain
+            startNotification false
+            includeTestSummary false
+            includeCustomMessage true
+            customMessage this.slack_message ? this.slack_message : this.config.slack_message
+          }
         }
       }
 
