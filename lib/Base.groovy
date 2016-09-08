@@ -94,16 +94,4 @@ class Base {
 
     return this
   }
-
-  def selenium() {
-    this.jobject.with {
-      wrappers {
-        xvfb('default') {
-          screen('1920x1080x24')
-        }
-      }
-    }
-
-    return this
-  }
 }
