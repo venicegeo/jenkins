@@ -240,6 +240,15 @@ class Steps {
     return this
   }
 
+  def cf_hotfix_prod() {
+    this.override = "geointservices.io"
+    this.init()
+    this.cf_push()
+    this.cf_bg_deploy()
+
+    return this
+  }
+
   def cf_bg_deploy() {
     this.jobject.with {
       wrappers {

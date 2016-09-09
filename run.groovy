@@ -256,6 +256,86 @@ entries.each{ reponame, entry ->
     }
     // -- end production
 
+    // -- hotfix pipeline
+    folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/hotfix-prod") {
+      displayName("${config.gh_repo}/hotfix-prod")
+    }
+    hotfix_archive_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/hotfix-prod/0-archive")
+    hotfix_archive_base = new Base(
+      jobject: hotfix_archive_job,
+      promotion: false,
+      slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`",
+      config: config
+    ).defaults().github().parameters()
+
+    hotfix_archive_steps = new Steps(
+      jobject: hotfix_archive_job,
+      config: config,
+      jobname: "archive"
+    ).init().git_checkout().job_script().archive().create_properties_file()
+
+
+    hotfix_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/hotfix-prod/1-deploy")
+    hotfix_base = new Base(
+      jobject: hotfix_job,
+      promotion: false,
+      slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`",
+      config: config
+    ).defaults().github().parameters()
+
+    hotfix_steps = new Steps(
+      jobject: hotfix_job,
+      config: config,
+      jobname: "hotfix"
+    ).init().git_checkout().job_script().cf_hotfix_prod().create_properties_file()
+
+    hotfix_release_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/hotfix-prod/2-release")
+
+    hotfix_release_base = new Base(
+      jobject: hotfix_release_job,
+      slack_message: "      component: `\$component`\n      component_revision: `\$component_revision`",
+      config: [
+        gh_org: 'venicegeo',
+        gh_repo: 'pz-release',
+        gh_branch: 'master',
+        slack_token: binding.variables.get("SLACK_TOKEN"),
+        slack_domain: "venicegeo"
+      ]
+    ).defaults().github()
+
+    hotfix_release_steps = new Steps(
+      jobject: release_job,
+      config: config,
+      jobname: 'prod-release'
+    ).init().gh_write().job_script().cf_release_prod()
+
+    hotfix_archive_job.with {
+      publishers {
+        downstreamParameterized {
+          trigger("${config.jenkins_org}/${config.team}/${config.gh_repo}/hotfix-prod/1-deploy") {
+            condition('SUCCESS')
+            parameters {
+              propertiesFile('pipeline.properties', true)
+            }
+          }
+        }
+      }
+    }
+
+    hotfix_job.with {
+      publishers {
+        downstreamParameterized {
+          trigger("${config.jenkins_org}/${config.team}/${config.gh_repo}/hotfix-prod/2-release") {
+            condition('SUCCESS')
+            parameters {
+              propertiesFile('pipeline.properties', true)
+            }
+          }
+        }
+      }
+    }
+    // -- end production
+
     // -- load test pipeline
     folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/test") {
       displayName("${config.gh_repo}/test")
