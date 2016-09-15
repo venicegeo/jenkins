@@ -302,8 +302,7 @@ class Steps {
   private String _app_env="""
     root=\$(pwd -P)
 
-    [ ! -f \$root/ci/vars.sh ] && echo "No vars.sh" && exit 1
-    source \$root/ci/vars.sh
+    [ ! -f \$root/ci/vars.sh ] && source \$root/ci/vars.sh
 
     [[ -z "\$APP" || -z "\$EXT" ]] && echo "APP and EXT must be defined" && exit 1
 
