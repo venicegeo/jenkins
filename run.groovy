@@ -138,6 +138,10 @@ entries.each{ reponame, entry ->
       steps."${jobname}"()
     }
 
+    if (jobname.contains('build')) {
+      steps.archive()
+    }
+
     if (jobname == "stage-release") {
       steps.cf_release_stage()
     }
