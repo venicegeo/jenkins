@@ -139,7 +139,8 @@ class Repos {
     ],[
       reponame: 'gs-jupyterhub',
       team: 'sandbox',
-      pipeline: ['build-rpm', 'build-deb', 'archive']
+      pipeline: ['build-rpm', 'build-deb', 'archive'],
+      branch: '**'
     ]
   ]
 }
