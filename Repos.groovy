@@ -141,6 +141,10 @@ class Repos {
       team: 'sandbox',
       pipeline: ['build-rpm', 'archive'],
       branch: '**'
+    ],[
+      reponame: 'pz-craigflask',
+      team: 'sandbox',
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
     ]
   ]
 }
