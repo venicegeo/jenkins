@@ -461,8 +461,10 @@ class Steps {
       cf app \$target || exit 1
       [ "\$target" = "\$legacy" ] && { echo "nothing to do."; exit 0; }
       cf map-route \$APP-\$version \$PCF_DOMAIN --hostname \$APP
+      [ "\$APP" = "pz-gateway" ] && cf map-route \$APP-\$version \$PCF_DOMAIN --hostname piazza
       s=\$?
       [ -n "\$legacy" ] && cf unmap-route "\$legacy" \$PCF_DOMAIN --hostname \$APP
+      [ -n "\$legacy" ] && [ "\$APP" = "pz-gateway" ] && cf unmap-route "\$legacy" \$PCF_DOMAIN --hostname piazza
       [ -n "\$legacy" ] || exit \$s
       IFS=,
       for route in "\$legacy" ; do
