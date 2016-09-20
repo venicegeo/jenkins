@@ -413,6 +413,10 @@ entries.each{ reponame, entry ->
       manual_base.parameters()
     }
 
+    if (jobname.contains("selenium")) {
+      manual_base.selenium()
+    }
+
     def manual_steps = new Steps(
       jobject: manual_job,
       config: config,
