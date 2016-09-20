@@ -290,7 +290,7 @@ class Steps {
       }
 
       steps {
-        shell('npm install -g newman@2')
+        shell('npm install -g newman')
       }
     }
 
