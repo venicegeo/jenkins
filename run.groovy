@@ -162,6 +162,10 @@ entries.each{ reponame, entry ->
       steps.cf_release_int()
     }
 
+    if (jobname.contains("selenium")) {
+      base_job.selenium()
+    }
+
     if (data.index == 0) {
       // first job in pipeline needs an external trigger.
       steps.gh_trigger()
