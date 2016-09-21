@@ -97,7 +97,7 @@ class Base {
   def selenium() {
     this.jobject.with {
       wrappers {
-        xvfb('default') {
+        xvfb('Default') {
           screen('1920x1080x24')
         }
       }
