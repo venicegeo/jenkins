@@ -103,6 +103,19 @@ class Steps {
     return this
   }
 
+  def ion() {
+    this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          string('IONCHANNEL_SECRET_KEY', '20E6021F-B1DE-4FF5-A53B-D995324775B0')
+        }
+      }
+    }
+
+    return this
+  }
+
+
   def cf_push() {
     this.jobject.with {
       wrappers {
