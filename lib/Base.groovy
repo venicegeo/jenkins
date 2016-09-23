@@ -99,6 +99,7 @@ class Base {
       wrappers {
         xvfb('Default') {
           screen('1920x1080x24')
+          parallelBuild(true)
         }
       }
     }
