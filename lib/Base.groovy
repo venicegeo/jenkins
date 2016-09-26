@@ -10,6 +10,7 @@ class Base {
     this.jobject.with {
       wrappers { 
         colorizeOutput()
+        golang('golang_1.7')
       }
 
       logRotator { numToKeep 30 }
