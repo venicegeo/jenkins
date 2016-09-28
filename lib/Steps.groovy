@@ -103,12 +103,16 @@ class Steps {
     return this
   }
 
-  def ion() {
+  def ionchannel_pom() {
     this.jobject.with {
       wrappers {
         credentialsBinding {
           string('IONCHANNEL_SECRET_KEY', '20E6021F-B1DE-4FF5-A53B-D995324775B0')
         }
+      }
+
+      steps {
+        shell(this._ionchannel_pom_script())
       }
     }
 
@@ -535,6 +539,68 @@ EOF
       chmod 400 \$HOME/.ssh/config
 
       git remote set-url origin git@github.com-venice:venicegeo/pz-release.git
+    """
+  }
+
+  def _ionchannel_pom_script() {
+    return """
+      pushd `dirname \$0`/.. > /dev/null
+      root=\$(pwd -P)
+      popd > /dev/null
+
+      set +x
+      export HISTFILE=/def/null
+      [ -z "\$IONCHANNEL_SECRET_KEY" ] && { echo "IONCHANNEL_SECRET_KEY not set" >&2; exit 1; }
+      [ -z "\$IONCHANNEL_ENDPOINT_URL" ] && IONCHANNEL_ENDPOINT_URL=https://api.private.ionchannel.io
+
+      os=\$(uname -s | tr '[:upper:]' '[:lower:]')
+      srcpom=\$root/pom.xml
+      pomfile=\$root/tmp/pom.xml
+      archive=ion-connect-latest.tar.gz
+
+      mkdir -p \$root/tmp/bin
+
+      # Install jq?
+      if ! type jq >/dev/null 2>&1; then
+
+        if [ "\$os" = "linux" ]; then
+          uname -m | grep -q 64 \
+            && curl -o \$root/tmp/bin/jq -O https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 \
+            || curl -o \$root/tmp/bin/jq -O https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux32
+        elif [ "\$os" = "darwin" ]; then
+          curl -o \$root/tmp/bin/jq -O https://github.com/stedolan/jq/releases/download/jq-1.5/jq-osx-amd64
+        else
+          echo "jq install on \$os not supported by this script; please visit https://stedolan.github.io/jq/download/" >&2
+          exit 1
+        fi
+
+        chmod 700 \$root/tmp/bin/jq
+        jqcmd=\$root/tmp/bin/jq
+      else
+        jqcmd=jq
+      fi
+
+      # Remove private repos from the pomfile
+      cat \$srcpom | perl -000 -ne 'print unless /org.venice.piazza/ && /pz-jobcommon/' > \$pomfile
+
+      # Install ion-connect?
+      curl -o \$root/tmp/\$archive -O https://s3.amazonaws.com/public.ionchannel.io/files/ion-connect/\$archive
+      tar -C \$root/tmp -xzf \$root/tmp/\$archive
+      ioncmd=\$root/tmp/ion-connect/\$os/bin/ion-connect
+
+      \$ioncmd --version
+
+      echo && echo "ION OUTPUT:" && echo
+      \$ioncmd vulnerability get-vulnerabilities-for-list \
+        \$(\$ioncmd dependency resolve-dependencies-in-file --flatten --type maven \$pomfile \
+            | \$jqcmd -c .dependencies)
+      echo
+
+      ion_status=\$?
+
+      rm -rf \$root/tmp
+
+      exit \$ion_status
     """
   }
 }
