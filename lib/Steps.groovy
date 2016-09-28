@@ -583,7 +583,7 @@ EOF
       fi
 
       # Remove private repos from the pomfile
-      cat \$srcpom | perl -000 -ne 'print unless /org.venice.piazza/ && /pz-jobcommon/' > \$pomfile
+      cat \$srcpom | perl -000 -ne 'print unless /org.venice.piazza/ && /pz-jobcommon/ && /dependency/' > \$pomfile
 
       # Install ion-connect?
       curl -o \$root/tmp/\$archive -O https://s3.amazonaws.com/public.ionchannel.io/files/ion-connect/\$archive
