@@ -544,7 +544,7 @@ EOF
 
   def _ionchannel_pom_script() {
     return """
-      root=\$(pwd -P)/..
+      root=\$(pwd -P)
 
       set +x
       export HISTFILE=/def/null
