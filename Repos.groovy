@@ -47,7 +47,7 @@ class Repos {
     ],[
       reponame: 'pz-access',
       team: 'piazza',
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-docs',
       team: 'piazza',
@@ -64,16 +64,16 @@ class Repos {
     ],[
       reponame: 'pz-ingest',
       team: 'piazza',
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-jobcommon',
       lib: true,
       team: 'piazza',
-      pipeline: ['archive']
+      pipeline: ['ionchannel_pom', 'archive']
     ],[
       reponame: 'pz-jobmanager',
       team: 'piazza',
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-logger',
       team: 'piazza',
@@ -85,19 +85,19 @@ class Repos {
     ],[
       reponame: 'pz-search-metadata-ingest',
       team: 'piazza',
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-search-query',
       team: 'piazza',
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-idam',
       team: 'piazza',
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-servicecontroller',
       team: 'piazza',
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-servicemonitor',
       team: 'sandbox',
@@ -121,7 +121,7 @@ class Repos {
     ],[
       reponame: 'pzsvc-preview-generator',
       team: 'piazza',
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pzsvc-gdaldem',
       team: 'pointcloud',
