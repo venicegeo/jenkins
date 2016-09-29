@@ -421,7 +421,7 @@ class Steps {
 
       [ -f manifest.\$PCF_SPACE.yml ] && manifest=manifest.\$PCF_SPACE.yml || manifest=manifest.jenkins.yml
 
-      if [ ! grep -q DOMAIN \$manifest ]; then
+      if ! grep -q DOMAIN \$manifest; then
         grep -q env \$manifest && echo "    DOMAIN: \$PCF_DOMAIN\n    SPACE: \$PCF_SPACE" >> \$manifest || echo "  env: {DOMAIN: \$PCF_DOMAIN, SPACE: \$PCF_SPACE}" >> \$manifest
       fi
 
@@ -451,7 +451,7 @@ class Steps {
 
       [ -f manifest.\$PCF_SPACE.yml ] && manifest=manifest.\$PCF_SPACE.yml || manifest=manifest.jenkins.yml
 
-      if [ ! grep -q DOMAIN \$manifest ]; then
+      if ! grep -q DOMAIN \$manifest; then
         grep -q env \$manifest && echo "    DOMAIN: \$PCF_DOMAIN\n    SPACE: \$PCF_SPACE" >> \$manifest || echo "  env: {DOMAIN: \$PCF_DOMAIN, SPACE: \$PCF_SPACE}" >> \$manifest
       fi
 
