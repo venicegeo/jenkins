@@ -97,7 +97,7 @@ class Repos {
     ],[
       reponame: 'pz-servicecontroller',
       team: 'piazza',
-      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-servicemonitor',
       team: 'sandbox',
