@@ -65,7 +65,7 @@ class Repos {
       reponame: 'pz-ingest',
       team: 'piazza',
       branch: '**',
-      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-jobcommon',
       lib: true,
@@ -78,7 +78,7 @@ class Repos {
     ],[
       reponame: 'pz-logger',
       team: 'piazza',
-      pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
     ],[
       reponame: 'pz-sak',
       team: 'piazza',
