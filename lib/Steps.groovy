@@ -125,7 +125,6 @@ class Steps {
         sonarRunnerBuilder {
           installationName "DevOps Sonar"
           properties "sonar.redmine.api-access-key=\${REDMINE_KEY}\nsonar.links.ci=\${JOB_URL}"
-          javaOpts
           jdk "JDK 1.8u91"
         }
       }
