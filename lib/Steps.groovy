@@ -129,6 +129,7 @@ class Steps {
 
       environmentVariables {
         env('APP', "${this.config.gh_repo}")
+        env('GH_ORG', "${this.config.gh_org}")
         env('JENKINS_ORG', "${this.config.jenkins_org}")
         env('TEAM', "${this.config.team}")
       }
@@ -139,10 +140,15 @@ class Steps {
           sonarScannerName "DevOps Sonar"
           properties """
 sonar.redmine.api-access-key=\${REDMINE_KEY}
-sonar.links.ci=\${JOB_URL}
 sonar.projectKey=\${JENKINS_ORG}:\${TEAM}:\${APP}
 sonar.projectName=\${JENKINS_ORG}:\${TEAM}:\${APP}
 sonar.projectVersion=\${GIT_COMMIT}
+sonar.links.homepage=https://redmine.devops.geointservices.io/projects/\${TEAM}
+sonar.links.ci=\${JOB_URL}
+sonar.links.issue=https://redmine.devops.geointservices.io/projects/\${TEAM}/issues
+sonar.links.scm=https://github.com/\${GH_ORG}/\${APP}
+sonar.links.scm_dev=https://github.com/\${GH_ORG}/\${APP}.git
+sonar.redmine.url=https://redmine.devops.geointservices.io
           """
           jdk "JDK 1.8u91"
           task " "
