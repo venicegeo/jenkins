@@ -124,8 +124,13 @@ class Steps {
       steps {
         sonarRunnerBuilder {
           installationName "DevOps Sonar"
+          sonarScannerName "DevOps Sonar"
+          project "${this.config.gh_repo}"
           properties "sonar.redmine.api-access-key=\${REDMINE_KEY}\nsonar.links.ci=\${JOB_URL}"
           jdk "JDK 1.8u91"
+          task ""
+          additionalArguments ""
+          javaOpts ""
         }
       }
     }
