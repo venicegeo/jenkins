@@ -126,18 +126,19 @@ class Steps {
           string('THREADFIX_KEY', '978C467A-2B26-47AE-AD2F-4AFD5A4AF695')
         }
       }
-      parameters {
-        nodeParam('FORTIFY_HOST') {
-          defaultNodes(['sl161'])
-          allowedNodes(['sl161'])
-        }
+      configure { project ->
+        project << assignedNode('sl61')
       }
       steps {
-        shell '/jslave/tools/hudson.tasks.Maven_MavenInstallation/M3/bin/mvn install:install-file -Dfile=pom.xml -DpomFile=pom.xml'
-        shell "/opt/hp_fortify_sca/bin/sourceanalyzer -b \${BUILD_NUMBER} src/main/java/ingest/Application.java" 
-        shell "/opt/hp_fortify_sca/bin/sourceanalyzer -b \${BUILD_NUMBER}  -scan -Xmx1G -f fortifyResults-\${BUILD_NUMBER}.fpr"
-        shell "/bin/curl -v --insecure -H 'Accept: application/json' -X POST --form file=@fortifyResults-\${BUILD_NUMBER}.fpr https://threadfix.devops.geointservices.io/rest/applications/1/upload?apiKey=\${THREADFIX_KEY}"
-        shell "/opt/hp_fortify_sca/bin/ReportGenerator -format pdf -f pz-ingest-fortify-\${BUILD_NUMBER}.pdf -source fortifyResults-\${BUILD_NUMBER}.fpr"
+        shell """
+          src=\$(find src/main -name Application.java)
+          [ ! -f \$src ] && echo "Source not found." && exit 1
+          /jslave/tools/hudson.tasks.Maven_MavenInstallation/M3/bin/mvn install:install-file -Dfile=pom.xml -DpomFile=pom.xml
+          /opt/hp_fortify_sca/bin/sourceanalyzer -b \${BUILD_NUMBER} \$src
+          /opt/hp_fortify_sca/bin/sourceanalyzer -b \${BUILD_NUMBER}  -scan -Xmx1G -f fortifyResults-\${BUILD_NUMBER}.fpr
+          /bin/curl -v --insecure -H 'Accept: application/json' -X POST --form file=@fortifyResults-\${BUILD_NUMBER}.fpr https://threadfix.devops.geointservices.io/rest/applications/1/upload?apiKey=\${THREADFIX_KEY}
+          /opt/hp_fortify_sca/bin/ReportGenerator -format pdf -f ${this.config.gh_repo}-fortify-\${BUILD_NUMBER}.pdf -source fortifyResults-\${BUILD_NUMBER}.fpr"
+        """
       }
     }
   }
