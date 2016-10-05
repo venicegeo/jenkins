@@ -128,7 +128,7 @@ class Steps {
       }
 
       steps {
-        shell(${this._app_env})
+        shell("${this._app_env}")
         sonarRunnerBuilder {
           installationName "DevOps Sonar"
           sonarScannerName "DevOps Sonar"
