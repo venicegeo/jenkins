@@ -121,16 +121,22 @@ class Steps {
 
   def sonar() {
     this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          string('REDMINE_KEY', 'C0C13D9C-C21F-4DDE-9AC9-6965E31E54B7')
+        }
+      }
+
       steps {
         sonarRunnerBuilder {
           installationName "DevOps Sonar"
           sonarScannerName "DevOps Sonar"
-          project " "
           properties "sonar.redmine.api-access-key=\${REDMINE_KEY} sonar.links.ci=\${JOB_URL} sonar.projectKey=${this.config.gh_repo}"
           jdk "JDK 1.8u91"
           task " "
           additionalArguments " "
           javaOpts " "
+          project " "
         }
       }
     }
