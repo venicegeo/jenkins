@@ -128,6 +128,7 @@ class Steps {
       }
       configure { project ->
         project << assignedNode('sl61')
+        project << canRoam('false')
       }
       steps {
         shell """
