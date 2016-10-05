@@ -127,8 +127,11 @@ class Steps {
         }
       }
 
+      environmentVariables {
+        env('APP', "${this.config.gh_repo}")
+      }
+
       steps {
-        shell("${this._app_env}")
         sonarRunnerBuilder {
           installationName "DevOps Sonar"
           sonarScannerName "DevOps Sonar"
