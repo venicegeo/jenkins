@@ -129,13 +129,15 @@ class Steps {
 
       environmentVariables {
         env('APP', "${this.config.gh_repo}")
+        env('JENKINS_ORG', "${this.config.jenkins_org}")
+        env('TEAM', "${this.config.team}")
       }
 
       steps {
         sonarRunnerBuilder {
           installationName "DevOps Sonar"
           sonarScannerName "DevOps Sonar"
-          properties "sonar.redmine.api-access-key=\${REDMINE_KEY}\nsonar.links.ci=\${JOB_URL}\nsonar.projectKey=\${APP}"
+          properties "sonar.redmine.api-access-key=\${REDMINE_KEY}\nsonar.links.ci=\${JOB_URL}\nsonar.projectKey=\${JENKINS_ORG}:\${TEAM}:\${APP}"
           jdk "JDK 1.8u91"
           task " "
           additionalArguments " "
