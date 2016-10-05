@@ -127,7 +127,6 @@ class Steps {
         }
       }
       parameters {
-        nodeLabel('FORTIFY_HOST', 'sl161')
         nodeParam('FORTIFY_HOST') {
           defaultNodes(['sl161'])
           allowedNodes(['sl161'])
