@@ -128,10 +128,11 @@ class Steps {
       }
 
       steps {
+        shell(${this._app_env})
         sonarRunnerBuilder {
           installationName "DevOps Sonar"
           sonarScannerName "DevOps Sonar"
-          properties "sonar.redmine.api-access-key=\${REDMINE_KEY} sonar.links.ci=\${JOB_URL} sonar.projectKey=\${JOB_NAME}"
+          properties "sonar.redmine.api-access-key=\${REDMINE_KEY}\nsonar.links.ci=\${JOB_URL}\nsonar.projectKey=\${APP}"
           jdk "JDK 1.8u91"
           task " "
           additionalArguments " "
