@@ -136,6 +136,10 @@ entries.each{ reponame, entry ->
       // Do not checkout integration tests
       steps.git_checkout()
 
+      if (jobname == "karma") {
+        steps.blackbox()
+      }
+
       base_job = new Base(
         jobject: mutant,
         promotion: (jobname == 'cf_bg_deploy_stage'),

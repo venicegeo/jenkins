@@ -374,7 +374,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       }
 
       steps {
-        shell('npm install -g newman@2')
+        shell('npm install -g newman@2 karma-cli')
       }
     }
 
