@@ -69,7 +69,7 @@ class Repos {
       reponame: 'pz-jobcommon',
       lib: true,
       team: 'piazza',
-      pipeline: ['ionchannel_pom', 'archive']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive']
     ],[
       reponame: 'pz-jobmanager',
       team: 'piazza',
@@ -85,11 +85,11 @@ class Repos {
     ],[
       reponame: 'pz-search-metadata-ingest',
       team: 'piazza',
-      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
     ],[
       reponame: 'pz-search-query',
       team: 'piazza',
-      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
     ],[
       reponame: 'pz-idam',
       team: 'piazza',
@@ -97,7 +97,7 @@ class Repos {
     ],[
       reponame: 'pz-servicecontroller',
       team: 'piazza',
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['sonar', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-servicemonitor',
       team: 'sandbox',
