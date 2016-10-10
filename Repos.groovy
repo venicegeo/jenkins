@@ -60,7 +60,7 @@ class Repos {
       reponame: 'pz-gocommon',
       lib: true,
       team: 'piazza',
-      pipeline: ['test']
+      pipeline: ['test', 'archive']
     ],[
       reponame: 'pz-ingest',
       branch: '**',
