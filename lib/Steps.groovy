@@ -669,7 +669,7 @@ EOF
 
       rm -rf \$root/tmp
 
-      exit \$ion_status
+      exit 0
     """
   }
 }
