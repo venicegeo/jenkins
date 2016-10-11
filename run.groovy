@@ -170,10 +170,6 @@ entries.each{ reponame, entry ->
       base_job.selenium()
     }
 
-    if (jobname.contains("bf_tideprediction")) {
-      base_job.sl55()
-    }
-
     if (data.index == 0) {
       // first job in pipeline needs an external trigger.
       steps.gh_trigger()
