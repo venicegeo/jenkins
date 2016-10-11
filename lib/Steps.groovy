@@ -119,6 +119,13 @@ class Steps {
     return this
   }
 
+  def sl55() {
+      configure { project ->
+        project << assignedNode('sl55')
+        project << canRoam('false')
+      }
+  }
+
   def fortify() {
     this.jobject.with {
       wrappers {
