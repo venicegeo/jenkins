@@ -478,6 +478,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
 
       [ "bin" = "\$EXT" ] && chmod 755 \$root/\$APP.\$EXT
       [ "tar.gz" = "\$EXT" ] && tar -xzf \$root/\$APP.\$EXT
+      [ "tgz" = "\$EXT" ] && tar -xzf \$root/\$APP.\$EXT
 
       [ -f \$root/\$APP.\$EXT ] || exit 1
 
