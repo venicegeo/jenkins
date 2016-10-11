@@ -134,7 +134,7 @@ class Steps {
         shell """
           src=\$(find src/main -name Application.java)
           [ ! -f \$src ] && echo "Source not found." && exit 1
-          /jslave/tools/hudson.tasks.Maven_MavenInstallation/M3/bin/mvn install:install-file -Dfile=pom.xml -DpomFile=pom.xml
+          mvn install:install-file -Dfile=pom.xml -DpomFile=pom.xml
           /opt/hp_fortify_sca/bin/sourceanalyzer -b \${BUILD_NUMBER} \$src
           /opt/hp_fortify_sca/bin/sourceanalyzer -b \${BUILD_NUMBER}  -scan -Xmx1G -f fortifyResults-\${BUILD_NUMBER}.fpr
           #/bin/curl -v --insecure -H 'Accept: application/json' -X POST --form file=@fortifyResults-\${BUILD_NUMBER}.fpr https://threadfix.devops.geointservices.io/rest/applications/1/upload?apiKey=\${THREADFIX_KEY}
