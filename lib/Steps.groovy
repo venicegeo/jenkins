@@ -137,7 +137,7 @@ class Steps {
           /jslave/tools/hudson.tasks.Maven_MavenInstallation/M3/bin/mvn install:install-file -Dfile=pom.xml -DpomFile=pom.xml
           /opt/hp_fortify_sca/bin/sourceanalyzer -b \${BUILD_NUMBER} \$src
           /opt/hp_fortify_sca/bin/sourceanalyzer -b \${BUILD_NUMBER}  -scan -Xmx1G -f fortifyResults-\${BUILD_NUMBER}.fpr
-          /bin/curl -v --insecure -H 'Accept: application/json' -X POST --form file=@fortifyResults-\${BUILD_NUMBER}.fpr https://threadfix.devops.geointservices.io/rest/applications/1/upload?apiKey=\${THREADFIX_KEY}
+          #/bin/curl -v --insecure -H 'Accept: application/json' -X POST --form file=@fortifyResults-\${BUILD_NUMBER}.fpr https://threadfix.devops.geointservices.io/rest/applications/1/upload?apiKey=\${THREADFIX_KEY}
           /opt/hp_fortify_sca/bin/ReportGenerator -format pdf -f ${this.config.gh_repo}-fortify-\${BUILD_NUMBER}.pdf -source fortifyResults-\${BUILD_NUMBER}.fpr"
         """
       }
