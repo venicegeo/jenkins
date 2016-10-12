@@ -148,6 +148,11 @@ class Steps {
 
   def sonar() {
     this.jobject.with {
+      configure { project ->
+        project << assignedNode('sl55')
+        project << canRoam('false')
+      }
+
       wrappers {
         credentialsBinding {
           string('REDMINE_KEY', 'C0C13D9C-C21F-4DDE-9AC9-6965E31E54B7')
