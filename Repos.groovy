@@ -35,6 +35,11 @@ class Repos {
       pipeline: ['selenium'],
       manual: ['selenium']
     ],[
+      reponame: 'osh-core',
+      gh_org: 'OpenSensorHub',
+      team: 'osh',
+      pipeline: ['archive']
+    ],[
       reponame: 'pzsvc-ossim',
       team: 'beachfront',
       manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
