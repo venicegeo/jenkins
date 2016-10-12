@@ -135,10 +135,10 @@ class Steps {
         shell """
           src=\$(find src/main -name *.java)
           [ ! -f \$src ] && echo "Source not found." && exit 1
-          #/opt/apache-maven-3.2.5/bin/mvn install:install-file -Dfile=pom.xml -DpomFile=pom.xml 
+          /bin/mvn install:install-file -Dfile=pom.xml -DpomFile=pom.xml 
           /opt/hp_fortify_sca/bin/sourceanalyzer -b \${BUILD_NUMBER} \$src
           /opt/hp_fortify_sca/bin/sourceanalyzer -b \${BUILD_NUMBER}  -scan -Xmx1G -f fortifyResults-\${BUILD_NUMBER}.fpr
-          # All Piazza projects are id 10 in threadfix
+          # All Piazza projects are id 10 in threadfix ie applications/10 in the curl
           /bin/curl -v --insecure -H 'Accept: application/json' -X POST --form file=@fortifyResults-\${BUILD_NUMBER}.fpr https://threadfix.devops.geointservices.io/rest/applications/10/upload?apiKey=\${THREADFIX_KEY}
           #/opt/hp_fortify_sca/bin/ReportGenerator -format pdf -f ${this.config.gh_repo}-fortify-\${BUILD_NUMBER}.pdf -source fortifyResults-\${BUILD_NUMBER}.fpr"
         """
