@@ -148,10 +148,6 @@ entries.each{ reponame, entry ->
       ).defaults().github()
     }
 
-    if (config.gh_repo == "pz-idam") {
-      steps.jks()
-    }
-
     steps.job_script()
 
     if (steps.metaClass.respondsTo(steps, jobname)) {
