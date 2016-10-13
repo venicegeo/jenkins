@@ -182,7 +182,7 @@ sonar.links.scm=https://github.com/\${GH_ORG}/\${APP}
 sonar.links.scm_dev=https://github.com/\${GH_ORG}/\${APP}.git
 sonar.redmine.url=https://redmine.devops.geointservices.io
           """
-          jdk "JDK 1.8u91"
+          jdk "JDK 1.8uLATEST"
           task " "
           additionalArguments " "
           javaOpts " "
@@ -199,6 +199,11 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       wrappers {
         credentialsBinding {
           usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
+          if (this.config.gh_repo == 'pz-idam') {
+            file('JKS', 'ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8')
+            string('JKS_PASSPHRASE', 'ff7148c6-2855-4f3d-bd2e-3aa296b09d98')
+            string('PZ_PASSPHRASE', 'da3092c4-d13d-4078-ab91-a630c61547aa')
+          }
         }
       }
       steps {
@@ -498,6 +503,13 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
 
       if ! grep -q DOMAIN \$manifest; then
         grep -q env \$manifest && echo "    DOMAIN: \$PCF_DOMAIN\n    SPACE: \$PCF_SPACE" >> \$manifest || echo "  env: {DOMAIN: \$PCF_DOMAIN, SPACE: \$PCF_SPACE}" >> \$manifest
+      fi
+
+      if [ -n "\$JKS" ]; then
+        mv \$JKS \$root/pz.jks
+        echo "    JKS_FILE: /home/vcap/app/pz.jks" >> \$manifest
+        echo "    JKS_PASSPHRASE: \$JKS_PASSPHRASE" >> \$manifest
+        echo "    PZ_PASSPHRASE: \$PZ_PASSPHRASE" >> \$manifest
       fi
 
       cf app \$APP-\$version && { echo " \$APP-\$version already running."; exit 0; } || echo "Pushing \$APP-\$version."
