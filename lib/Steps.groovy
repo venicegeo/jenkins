@@ -128,7 +128,7 @@ class Steps {
       }
       // # NOTE: Fortify is only installed on sl61-be2c3fee
       configure { project ->
-        project << assignedNode('sl61-be23c3fee')
+        project << assignedNode('sl61-be2c3fee')
         project << canRoam('false')
       }
       steps {
