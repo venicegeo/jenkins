@@ -516,7 +516,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
 
       if [ -n "\$JKS" ]; then
         mv \$JKS \$root\/pz.jks
-        echo "    JKS_FILE: \/home\/vcap\/app\/pz.jks" >> \$manifest
+        echo "    JKS_FILE: /home/vcap/app/pz.jks" >> \$manifest
         echo "    JKS_PASSPHRASE: \$JKS_PASSPHRASE" >> \$manifest
         echo "    PZ_PASSPHRASE: \$PZ_PASSPHRASE" >> \$manifest
       fi
