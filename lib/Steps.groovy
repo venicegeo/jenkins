@@ -128,14 +128,14 @@ class Steps {
       }
       // # NOTE: Fortify is only installed on sl61-be2c3fee
       configure { project ->
-        project << assignedNode('sl61-be2c3fee')
+        project << assignedNode('sl61')
         project << canRoam('false')
       }
       steps {
         shell """
           src=\$(find src/main -name *.java)
           [ ! -f \$src ] && echo "Source not found." && exit 1
-          /bin/mvn install:install-file -Dfile=pom.xml -DpomFile=pom.xml 
+          /jslave/tools/hudson.tasks.Maven_MavenInstallation/M3/bin/mvn install:install-file -Dfile=pom.xml -DpomFile=pom.xml 
           /opt/hp_fortify_sca/bin/sourceanalyzer -b \${BUILD_NUMBER} \$src
           /opt/hp_fortify_sca/bin/sourceanalyzer -b \${BUILD_NUMBER}  -scan -Xmx1G -f fortifyResults-\${BUILD_NUMBER}.fpr
           # All Piazza projects are id 10 in threadfix ie applications/10 in the curl
