@@ -182,7 +182,7 @@ sonar.links.scm=https://github.com/\${GH_ORG}/\${APP}
 sonar.links.scm_dev=https://github.com/\${GH_ORG}/\${APP}.git
 sonar.redmine.url=https://redmine.devops.geointservices.io
           """
-          jdk "JDK 1.8u91"
+          jdk "JDK 1.8uLATEST"
           task " "
           additionalArguments " "
           javaOpts " "
