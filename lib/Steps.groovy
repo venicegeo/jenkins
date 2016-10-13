@@ -103,7 +103,7 @@ class Steps {
     return this
   }
 
-  def jks {
+  def jks() {
     this.jobject.with {
       wrappers {
         credentialsBinding {
