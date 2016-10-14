@@ -637,7 +637,7 @@ EOF
     return """
       root=\$(pwd -P)
 
-      set +x
+      set +ex
       export HISTFILE=/def/null
       [ -z "\$IONCHANNEL_SECRET_KEY" ] && { echo "IONCHANNEL_SECRET_KEY not set" >&2; exit 1; }
       [ -z "\$IONCHANNEL_ENDPOINT_URL" ] && IONCHANNEL_ENDPOINT_URL=https://api.private.ionchannel.io
