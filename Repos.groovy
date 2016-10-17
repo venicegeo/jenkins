@@ -35,7 +35,32 @@ class Repos {
       pipeline: ['selenium'],
       manual: ['selenium']
     ],[
+      reponame: 'osh-comm',
+      gh_org: 'OpenSensorHub',
+      team: 'osh',
+      pipeline: ['archive']
+    ],[
       reponame: 'osh-core',
+      gh_org: 'OpenSensorHub',
+      team: 'osh',
+      pipeline: ['archive']
+    ],[
+      reponame: 'osh-processing',
+      gh_org: 'OpenSensorHub',
+      team: 'osh',
+      pipeline: ['archive']
+    ],[
+      reponame: 'osh-security',
+      gh_org: 'OpenSensorHub',
+      team: 'osh',
+      pipeline: ['archive']
+    ],[
+      reponame: 'osh-sensors',
+      gh_org: 'OpenSensorHub',
+      team: 'osh',
+      pipeline: ['archive']
+    ],[
+      reponame: 'osh-services',
       gh_org: 'OpenSensorHub',
       team: 'osh',
       pipeline: ['archive']
