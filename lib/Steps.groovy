@@ -93,6 +93,9 @@ class Steps {
       wrappers {
         credentialsBinding {
           usernamePassword('NAQUINKJ_USER', 'NAQUINKJ_PASS', '4728add1-a64f-4bd3-8069-d5312368c8ea')
+          if (this.config.gh_repo == 'pz-idam') {
+            file('JKS', 'ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8')
+          }
         }
       }
       steps {
@@ -200,7 +203,6 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
         credentialsBinding {
           usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
           if (this.config.gh_repo == 'pz-idam') {
-            file('JKS', 'ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8')
             string('JKS_PASSPHRASE', 'ff7148c6-2855-4f3d-bd2e-3aa296b09d98')
             string('PZ_PASSPHRASE', 'da3092c4-d13d-4078-ab91-a630c61547aa')
           }
@@ -505,9 +507,9 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
         grep -q env \$manifest && echo "    DOMAIN: \$PCF_DOMAIN\n    SPACE: \$PCF_SPACE" >> \$manifest || echo "  env: {DOMAIN: \$PCF_DOMAIN, SPACE: \$PCF_SPACE}" >> \$manifest
       fi
 
-      if [ -n "\$JKS" ]; then
+      if [ -n "\$JKS_PASSPHRASE" ]; then
         mv \$JKS \$root/pz.jks
-        echo "    JKS_FILE: /home/vcap/app/pz.jks" >> \$manifest
+        echo "    JKS_FILE: pz.jks" >> \$manifest
         echo "    JKS_PASSPHRASE: \$JKS_PASSPHRASE" >> \$manifest
         echo "    PZ_PASSPHRASE: \$PZ_PASSPHRASE" >> \$manifest
       fi
