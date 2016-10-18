@@ -644,7 +644,6 @@ EOF
       [ -z "\$IONCHANNEL_ENDPOINT_URL" ] && IONCHANNEL_ENDPOINT_URL=https://api.private.ionchannel.io
 
       os=\$(uname -s | tr '[:upper:]' '[:lower:]')
-      srcpom=\$root/pom.xml
       pomfile=\$root/tmp/pom.xml
       archive=ion-connect-latest.tar.gz
 
@@ -670,9 +669,6 @@ EOF
         jqcmd=jq
       fi
 
-      # Remove private repos from the pomfile
-      cat \$srcpom | perl -000 -ne 'print unless /org.venice.piazza/ && /pz-jobcommon/ && /dependency/' > \$pomfile
-
       # Install ion-connect?
       curl -o \$root/tmp/\$archive -O https://s3.amazonaws.com/public.ionchannel.io/files/ion-connect/\$archive
       tar -C \$root/tmp -xzf \$root/tmp/\$archive
@@ -680,13 +676,17 @@ EOF
 
       \$ioncmd --version
 
-      echo && echo "ION OUTPUT:" && echo
-      \$ioncmd vulnerability get-vulnerabilities-for-list \
-        \$(\$ioncmd dependency resolve-dependencies-in-file --flatten --type maven \$pomfile \
-            | \$jqcmd -c .dependencies)
-      echo
 
-      ion_status=\$?
+      for srcpom in \$(find . -name pom.xml); do
+        # Remove private repos from the pomfile
+        cat \$srcpom | perl -000 -ne 'print unless /org.venice.piazza/ && /pz-jobcommon/ && /dependency/' > \$pomfile
+
+        echo && echo "ION OUTPUT:" && echo
+        \$ioncmd vulnerability get-vulnerabilities-for-list \
+          \$(\$ioncmd dependency resolve-dependencies-in-file --flatten --type maven \$pomfile \
+              | \$jqcmd -c .dependencies)
+        echo
+      done
 
       rm -rf \$root/tmp
 
