@@ -35,7 +35,32 @@ class Repos {
       pipeline: ['selenium'],
       manual: ['selenium']
     ],[
+      reponame: 'osh-comm',
+      gh_org: 'OpenSensorHub',
+      team: 'osh',
+      pipeline: ['archive']
+    ],[
       reponame: 'osh-core',
+      gh_org: 'OpenSensorHub',
+      team: 'osh',
+      pipeline: ['archive']
+    ],[
+      reponame: 'osh-processing',
+      gh_org: 'OpenSensorHub',
+      team: 'osh',
+      pipeline: ['archive']
+    ],[
+      reponame: 'osh-security',
+      gh_org: 'OpenSensorHub',
+      team: 'osh',
+      pipeline: ['archive']
+    ],[
+      reponame: 'osh-sensors',
+      gh_org: 'OpenSensorHub',
+      team: 'osh',
+      pipeline: ['archive']
+    ],[
+      reponame: 'osh-services',
       gh_org: 'OpenSensorHub',
       team: 'osh',
       pipeline: ['archive']
@@ -104,7 +129,7 @@ class Repos {
     ],[
       reponame: 'pz-servicecontroller',
       team: 'piazza',
-      pipeline: ['sonar', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
     ],[
       reponame: 'pz-servicemonitor',
       team: 'sandbox',
