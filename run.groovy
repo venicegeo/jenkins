@@ -226,7 +226,7 @@ entries.each{ reponame, entry ->
   def test_release_job
   def test_release_base
   def test_release_steps
-  if (entry.team == 'piazza' && entry.lib != true) {
+  if ((entry.team == 'piazza' || entry.team == 'beachfront' ) && entry.lib != true) {
     // -- production pipeline
     folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/production") {
       displayName("${config.gh_repo}/production")
@@ -495,6 +495,32 @@ test_rollout.with {
   }
 }
 // -- END PIAZZA AGGREGATED ROLLOUT
+
+// -- BEACHFRONT AGGREGATED ROLLOUT
+folder('venice/beachfront/promotion') {
+  displayName('promotion')
+}
+
+def bf_production_rollout = workflowJob('venice/beachfront/promotion/production')
+
+def bf_production_cps = ' '
+entries.each{ reponame, entry ->
+  if (entry.team == 'beachfront' && entry.lib != true) {
+    bf_production_cps = bf_production_cps + """
+      build job: "venice/beachfront/${reponame}/production/0-promote", wait: true
+"""
+  }
+}
+
+bf_production_rollout.with {
+  definition {
+    cps {
+      script(bf_production_cps)
+      sandbox()
+    }
+  }
+}
+// -- END BEACHFRONT AGGREGATED ROLLOUT
 
 
 // HACKS FOR INTEGRATION TESTS
