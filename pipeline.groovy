@@ -21,6 +21,7 @@ for(i in pzprojects) {
           git {
             remote {
               url("${gitprefix}${i}")
+              branch("*/master")
             }
           }
         }
@@ -44,6 +45,7 @@ for(i in bfprojects) {
           git {
             remote {
               url("${gitprefix}${i}")
+              branch("*/master")
             }
           }
        }
