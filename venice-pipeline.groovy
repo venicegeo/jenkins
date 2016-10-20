@@ -4,9 +4,11 @@
 // that denotes the steps to take when building.
 
 def gitprefix = 'https://github.com/venicegeo/pz-'
-def projects = ['ingest', 'idam', 'gateway']
+def projects = ['access', 'gateway', 'idam', 'ingest', 'jobcommon',
+   'jobmanager', 'search-metadata-ingest', 'search-query', 'servicecontroller']
+
 for(i in projects) {
-  pipelineJob("shiro-4-${i}") {
+  pipelineJob("venice-pz-${i}-pipeline") {
   triggers {
     gitHubPushTrigger()
   }
