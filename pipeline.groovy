@@ -33,8 +33,8 @@ for(i in pzprojects) {
 def bfprojects = ['bf_TidePrediction']
 
 for(i in bfprojects) {                                                               
-  description("Beachfront fortify pipeline")
   pipelineJob("venice/beachfront/${i}-pipeline") {
+    description("Beachfront fortify pipeline")
     triggers {
       gitHubPushTrigger()
     }
