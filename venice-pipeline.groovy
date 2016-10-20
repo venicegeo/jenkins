@@ -3,9 +3,6 @@
 // other pipeline jobs. Each repo must contain a JenkinsFile
 // that denotes the steps to take when building.
 
-InputStream  configFile = streamFileFromWorkspace('projects.yml')
-
-
 def gitprefix = 'https://github.com/venicegeo/pz-'
 def projects = ['ingest', 'idam', 'gateway']
 for(i in projects) {
