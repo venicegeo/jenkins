@@ -9,44 +9,46 @@ def gitprefix = 'https://github.com/venicegeo/'
 def pzprojects = ['pz-access', 'pz-gateway', 'pz-idam', 'pz-ingest', 'pz-jobcommon',                
    'pz-jobmanager', 'pz-search-metadata-ingest', 'pz-search-query', 'pz-servicecontroller'] 
 
-for(i in pzprojects) {                                                               
-  pipelineJob("venic/piazza/${i}-pipeline") {                                                                                                     
-  triggers {                                                                    
-    gitHubPushTrigger()                                                         
-  }                                                                             
-  definition {                                                                  
-    cpsScm {                                                                    
-      scm {                                                                     
-        git {                                                                   
-          remote {                                                              
-            url("${gitprefix}${i}")                                             
-            }                                                                   
-          }                                                                     
-        }                                                                       
-      }                                                                         
-    }                                                                           
-  }                                                                                
+for(i in pzprojects) {
+  pipelineJob("venice/piazza/${i}-pipeline") {
+    descriptions("Piazza fortify pipeline")
+    triggers {
+      gitHubPushTrigger()
+    }
+    definition {
+      cpsScm {
+        scm {
+          git {
+            remote {
+              url("${gitprefix}${i}")
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 // BF Projects
 def bfprojects = ['bf_TidePrediction']
 
 for(i in bfprojects) {                                                               
-  pipelineJob("venice/beachfront/${i}-pipeline") {                                                                                                     
-  triggers {                                                                    
-    gitHubPushTrigger()                                                         
-  }                                                                             
-  definition {                                                                  
-    cpsScm {                                                                    
-      scm {                                                                     
-        git {                                                                   
-          remote {                                                              
-            url("${gitprefix}${i}")                                             
-            }                                                                   
-          }                                                                     
-        }                                                                       
-      }                                                                         
-    }                                                                           
-  }                                                                                
+  descriptions("Beachfront fortify pipeline")
+  pipelineJob("venice/beachfront/${i}-pipeline") {
+    triggers {
+      gitHubPushTrigger()
+    }
+    definition {
+      cpsScm {
+        scm {
+          git {
+            remote {
+              url("${gitprefix}${i}")
+            }
+          }
+       }
+     }
+   }
+  }
 }
 
