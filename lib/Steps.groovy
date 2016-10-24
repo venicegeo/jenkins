@@ -110,7 +110,7 @@ class Steps {
     this.jobject.with {
       wrappers {
         credentialsBinding {
-          string('IONCHANNEL_SECRET_KEY', '20E6021F-B1DE-4FF5-A53B-D995324775B0')
+          string('IONCHANNEL_SECRET_KEY', 'fbbfbbd2-7e31-46ac-b3ac-b66c4f2ae2e4')
         }
       }
 
