@@ -77,6 +77,9 @@ class Base {
 
       properties {
         githubProjectUrl "https://github.com/${this.config.gh_org}/${this.config.gh_repo}"
+        gitLabConnectionProperty {
+          gitLabConnection "GitLab.d.gs.io"
+        }
       }
 
       scm {
