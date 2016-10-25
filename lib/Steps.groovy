@@ -710,7 +710,7 @@ EOF
 
       git push git@gitlab.devops.geointservices.io:${this.config.gh_org}/${this.config.gh_repo} master
 
-      exit $?
+      exit \$?
     """
   }
 }
