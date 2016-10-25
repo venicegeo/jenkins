@@ -106,6 +106,16 @@ class Steps {
     return this
   }
 
+  def gitlab_push() {
+    this.jobject.with {
+      steps {
+        shell(this._gitlab_push_script())
+      }
+    }
+
+    return this
+  }
+
   def ionchannel_pom() {
     this.jobject.with {
       wrappers {
@@ -691,6 +701,16 @@ EOF
       rm -rf \$root/tmp
 
       exit 0
+    """
+  }
+
+  def _gitlab_push_script() {
+    return """
+      root=\$(pwd -P)
+
+      git push git@gitlab.devops.geointservices.io:${this.config.gh_org}/${this.config.gh_repo} master
+
+      exit $?
     """
   }
 }
