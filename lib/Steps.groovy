@@ -539,7 +539,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
         exit 1
       fi
 
-      rm -f \$root/\$APP.\$EXT
+      [ ! -f \$root/\$APP.\$EXT ] || rm -f \$root/\$APP.\$EXT
     """
   }
 
