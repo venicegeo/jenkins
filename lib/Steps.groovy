@@ -482,7 +482,11 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
         -Dversion=\$version \
         -Dpackaging=\$EXT
 
-      rm -f \$artifact
+      push_status=\$?
+
+      [ ! -f \$artifact ] || rm -f \$artifact
+
+      exit \$push_status
     """
   }
 
