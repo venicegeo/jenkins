@@ -310,7 +310,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
   }
 
   def cf_promote_to_test() {
-    this.override = "stage.geointservices.io"
+    this.override = "int.geointservices.io"
     this.init()
     this.cf_set_version()
 
