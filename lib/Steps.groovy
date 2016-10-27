@@ -78,6 +78,10 @@ class Steps {
       wrappers {
         credentialsBinding {
           file('GIT_KEY', '4C2105AE-41EB-42A0-963F-5CE91B814832')
+          if (this.config.gh_repo == 'pz-idam') {
+            string('JKS_PASSPHRASE', 'ff7148c6-2855-4f3d-bd2e-3aa296b09d98')
+            string('PZ_PASSPHRASE', 'da3092c4-d13d-4078-ab91-a630c61547aa')
+          }
         }
       }
       steps {
@@ -232,6 +236,10 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
         credentialsBinding {
           usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
           file('GIT_KEY', '4C2105AE-41EB-42A0-963F-5CE91B814832')
+          if (this.config.gh_repo == 'pz-idam') {
+            string('JKS_PASSPHRASE', 'ff7148c6-2855-4f3d-bd2e-3aa296b09d98')
+            string('PZ_PASSPHRASE', 'da3092c4-d13d-4078-ab91-a630c61547aa')
+          }
         }
       }
       steps {
@@ -367,6 +375,10 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
         credentialsBinding {
           usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
           file('GIT_KEY', '4C2105AE-41EB-42A0-963F-5CE91B814832')
+          if (this.config.gh_repo == 'pz-idam') {
+            string('JKS_PASSPHRASE', 'ff7148c6-2855-4f3d-bd2e-3aa296b09d98')
+            string('PZ_PASSPHRASE', 'da3092c4-d13d-4078-ab91-a630c61547aa')
+          }
         }
       }
       steps {
