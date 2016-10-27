@@ -7,7 +7,8 @@ def gitprefix = 'https://github.com/venicegeo/'
 
 // PZ Projects
 def pzprojects = ['pz-access', 'pz-gateway', 'pz-idam', 'pz-ingest', 'pz-jobcommon',                
-   'pz-jobmanager', 'pz-search-metadata-ingest', 'pz-search-query', 'pz-servicecontroller'] 
+   'pz-jobmanager', 'pz-search-metadata-ingest', 'pz-search-query', 'pz-servicecontroller',
+   'pz-sak'] 
 
 for(i in pzprojects) {
   pipelineJob("venice/piazza/${i}-pipeline") {
