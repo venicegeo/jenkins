@@ -708,13 +708,9 @@ EOF
 
 
       for srcpom in \$(find . -name pom.xml); do
-        # Remove private repos from the pomfile
-        cat \$srcpom | perl -000 -ne 'print unless /org.venice.piazza/ && /pz-jobcommon/ && /dependency/' > \$pomfile
 
         echo && echo "ION OUTPUT:" && echo
-        \$ioncmd vulnerability get-vulnerabilities-for-list \
-          \$(\$ioncmd dependency resolve-dependencies-in-file --flatten --type maven \$pomfile \
-              | \$jqcmd -c .dependencies)
+		deps=$(\$ioncmd dependency resolve-dependencies-in-file --flatten --type maven \$pomfile | \$jqcmd .dependencies) && \$ioncmd --debug  vulnerability get-vulnerabilities-for-list "${deps}"
         echo
       done
 
