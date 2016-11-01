@@ -13,11 +13,6 @@ class Base {
         golang('golang_1.7')
       }
 
-      configure { project ->
-        project << assignedNode('sl61')
-        project << canRoam('false')
-      }
-
       logRotator { numToKeep 30 }
 
       publishers {

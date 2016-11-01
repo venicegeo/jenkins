@@ -144,6 +144,11 @@ class Steps {
           string('THREADFIX_KEY', '978C467A-2B26-47AE-AD2F-4AFD5A4AF695')
         }
       }
+      // # NOTE: Fortify is only installed on sl61-be2c3fee
+      configure { project ->
+        project << assignedNode('sl61')
+        project << canRoam('false')
+      }
       steps {
         shell """
           src=\$(find src/main -name *.java)
