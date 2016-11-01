@@ -35,6 +35,22 @@ class Repos {
       pipeline: ['selenium'],
       manual: ['selenium']
     ],[
+      reponame: 'pzsvc-exec',
+      lib: true,
+      team: 'beachfront',
+      manual: ['gitlab_push'],
+      pipeline: ['archive']
+    ],[
+      reponame: 'pzsvc-image-catalog',
+      team: 'beachfront',
+      manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'beachfront_integration_tests']
+    ],[
+      reponame: 'pzsvc-ossim',
+      team: 'beachfront',
+      manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'beachfront_integration_tests']
+    ],[
       reponame: 'osh-comm',
       gh_org: 'OpenSensorHub',
       team: 'osh',
@@ -65,16 +81,6 @@ class Repos {
       team: 'osh',
       pipeline: ['archive']
     ],[
-      reponame: 'pzsvc-ossim',
-      team: 'beachfront',
-      manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'beachfront_integration_tests']
-    ],[
-      reponame: 'pzsvc-image-catalog',
-      team: 'beachfront',
-      manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'beachfront_integration_tests']
-    ],[
       reponame: 'pz-access',
       team: 'piazza',
       manual: ['gitlab_push'],
@@ -95,6 +101,11 @@ class Repos {
       team: 'piazza',
       manual: ['gitlab_push'],
       pipeline: ['test', 'archive']
+    ],[
+      reponame: 'pz-idam',
+      team: 'piazza',
+      manual: ['gitlab_push'],
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
     ],[
       reponame: 'pz-ingest',
       branch: '**',
@@ -133,19 +144,10 @@ class Repos {
       manual: ['gitlab_push'],
       pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
     ],[
-      reponame: 'pz-idam',
-      team: 'piazza',
-      manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
-    ],[
       reponame: 'pz-servicecontroller',
       team: 'piazza',
       manual: ['gitlab_push'],
       pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
-    ],[
-      reponame: 'pz-servicemonitor',
-      team: 'sandbox',
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
     ],[
       reponame: 'pz-swagger',
       team: 'piazza',
@@ -187,11 +189,6 @@ class Repos {
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
       pipeline: ['test', 'archive', 'cf_push_int', 'cf_bg_deploy_int', "blackbox"]
     ],[
-      reponame: 'tlv',
-      team: 'tlv',
-      manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
-    ],[
       reponame: 'gs-jupyterhub',
       team: 'sandbox',
       pipeline: ['build-rpm', 'archive'],
@@ -199,6 +196,15 @@ class Repos {
     ],[
       reponame: 'pz-craigflask',
       team: 'sandbox',
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
+    ],[
+      reponame: 'pz-servicemonitor',
+      team: 'sandbox',
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
+    ],[
+      reponame: 'tlv',
+      team: 'tlv',
+      manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
     ]
   ]
