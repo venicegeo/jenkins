@@ -21,23 +21,23 @@ class Base {
           excludePattern 'pipeline.properties'
         }
 
-        slackNotifier {
-          sendAs 'jenkins'
-          buildServerUrl ''
-          room this.promotion ? '#release' : '#jenkins'
-          authToken this.config.slack_token
-          teamDomain this.config.slack_domain
-          startNotification false
-          notifySuccess this.promotion ? true : false
-          notifyAborted this.promotion ? false : true
-          notifyNotBuilt this.promotion ? false : true
-          notifyUnstable this.promotion ? false : true
-          notifyFailure true
-          notifyBackToNormal this.promotion ? false : true
-          notifyRepeatedFailure this.promotion ? false : true
-          includeTestSummary false
-          includeCustomMessage true
-          customMessage this.slack_message ? this.slack_message : this.config.slack_message
+        slackNotifications {
+          projectChannel this.promotion ? '#release' : '#jenkins'
+          integrationToken this.config.slack_token
+          configure { node ->
+            notifySuccess this.promotion ? true : false
+            notifyAborted this.promotion ? false : true
+            notifyNotBuilt this.promotion ? false : true
+            notifyUnstable this.promotion ? false : true
+            notifyFailure true
+            notifyBackToNormal this.promotion ? false : true
+            notifyRepeatedFailure this.promotion ? false : true
+            teamDomain this.config.slack_domain
+            startNotification false
+            includeTestSummary false
+            includeCustomMessage true
+            customMessage this.slack_message ? this.slack_message : this.config.slack_message
+          }
         }
       }
 
@@ -88,6 +88,7 @@ class Base {
             github("${this.config.gh_org}/${this.config.gh_repo}", 'ssh')
             credentials "95eee62c-dc20-44d5-a141-14a11856421e"
           }
+          localBranch("${this.config.gh_branch}")
           branch("${this.config.gh_branch}")
         }
       }
