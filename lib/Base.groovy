@@ -8,6 +8,11 @@ class Base {
 
   def defaults() {
     this.jobject.with {
+      configure { project ->
+        project << assignedNode('sl61')
+        project << canRoam('false')
+      }
+
       wrappers { 
         colorizeOutput()
         golang('golang_1.7')
