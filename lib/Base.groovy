@@ -15,6 +15,7 @@ class Base {
 
       wrappers { 
         colorizeOutput()
+        preBuildCleanup()
         golang('golang_1.7')
       }
 
