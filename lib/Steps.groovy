@@ -171,6 +171,10 @@ class Steps {
         credentialsBinding {
           string('REDMINE_KEY', 'C0C13D9C-C21F-4DDE-9AC9-6965E31E54B7')
         }
+        customTools(['Maven3 custom tool']) {
+          skipMasterInstallation true
+          convertHomesToUppercase true
+        }
       }
 
       environmentVariables {
@@ -181,6 +185,12 @@ class Steps {
       }
 
       steps {
+        shell """
+          for bin in \$(find /jslave/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/Maven3_custom_tool -name bin); do
+            export PATH=\$PATH:\$bin
+          done
+        """
+
         sonarRunnerBuilder {
           installationName "DevOps Sonar"
           sonarScannerName "DevOps Sonar"
