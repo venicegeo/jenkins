@@ -471,6 +471,8 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
     return """
       ${this._app_env}
 
+      export PATH=\$PATH:/jslave/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/Maven3_custom_tool/bin
+
       mv \$root/\$APP.\$EXT \$artifact
 
       # TODO: use Venice instead of Piazza
