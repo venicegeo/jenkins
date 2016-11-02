@@ -103,7 +103,8 @@ class Steps {
         }
 
         customTools(['Maven3 custom tool']) {
-          skipMasterInstallation()
+          skipMasterInstallation true
+          convertHomesToUppercase true
         }
       }
       steps {
