@@ -102,16 +102,8 @@ class Steps {
           }
         }
 
-        customToolInstallWrapper {
-          selectedTools {
-            selectedTool {
-              name('M3')
-            }
-            multiconfigOptions {
-              skipInstallationOnMaster true
-            }
-            convertHomesToUppercase true
-          }
+        customTools(['M3']) {
+          skipMasterInstallation()
         }
       }
       steps {
