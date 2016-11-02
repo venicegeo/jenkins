@@ -165,6 +165,8 @@ class Steps {
 
   def sonar() {
     this.jobject.with {
+      jdk "JDK 1.8uLATEST"
+
       wrappers {
         credentialsBinding {
           string('REDMINE_KEY', 'C0C13D9C-C21F-4DDE-9AC9-6965E31E54B7')
