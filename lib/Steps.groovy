@@ -102,7 +102,7 @@ class Steps {
           }
         }
 
-        customTools(['M3']) {
+        customTools(['Maven3 custom tool']) {
           skipMasterInstallation()
         }
       }
