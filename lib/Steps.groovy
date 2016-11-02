@@ -460,6 +460,11 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
   def _job_script() {
     return """
       ${this._pcf_env}
+
+      for bin in $(find /jslave/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/Maven3_custom_tool -name bin); do
+        export PATH=$PATH:$bin
+      done
+
       [ -f ./ci/${this.jobname}.sh ] || { echo "noop"; exit; }
       chmod 700 ./ci/${this.jobname}.sh
       ./ci/${this.jobname}.sh
@@ -471,7 +476,9 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
     return """
       ${this._app_env}
 
-      export PATH=\$PATH:/jslave/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/Maven3_custom_tool/bin
+      for bin in $(find /jslave/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/Maven3_custom_tool -name bin); do
+        export PATH=$PATH:$bin
+      done
 
       mv \$root/\$APP.\$EXT \$artifact
 
@@ -511,6 +518,10 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
   def _cf_push_script() {
     return """
       ${this._app_env}
+
+      for bin in $(find /jslave/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/Maven3_custom_tool -name bin); do
+        export PATH=$PATH:$bin
+      done
 
       mvn --quiet dependency:get \
         -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
