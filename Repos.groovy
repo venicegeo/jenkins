@@ -35,6 +35,18 @@ class Repos {
       pipeline: ['selenium'],
       manual: ['selenium']
     ],[
+      reponame: 'geojson-geos-go',
+      lib: true,
+      team: 'beachfront',
+      manual: ['gitlab_push'],
+      pipeline: ['archive']
+    ],[
+      reponame: 'geojson-go',
+      lib: true,
+      team: 'beachfront',
+      manual: ['gitlab_push'],
+      pipeline: ['archive']
+    ],[
       reponame: 'pzsvc-exec',
       lib: true,
       team: 'beachfront',
