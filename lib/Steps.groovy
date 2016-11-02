@@ -102,7 +102,7 @@ class Steps {
           }
         }
 
-        customTools(['Maven3 custom tool']) {
+        customTools(['Maven3_custom_tool']) {
           skipMasterInstallation true
           convertHomesToUppercase true
         }
@@ -171,7 +171,7 @@ class Steps {
         credentialsBinding {
           string('REDMINE_KEY', 'C0C13D9C-C21F-4DDE-9AC9-6965E31E54B7')
         }
-        customTools(['Maven3 custom tool']) {
+        customTools(['Maven3_custom_tool']) {
           skipMasterInstallation true
           convertHomesToUppercase true
         }
@@ -228,7 +228,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
             string('PZ_PASSPHRASE', 'da3092c4-d13d-4078-ab91-a630c61547aa')
           }
         }
-        customTools(['Maven3 custom tool']) {
+        customTools(['Maven3_custom_tool']) {
           skipMasterInstallation true
           convertHomesToUppercase true
         }
