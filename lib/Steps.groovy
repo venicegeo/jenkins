@@ -101,6 +101,14 @@ class Steps {
             file('JKS', 'ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8')
           }
         }
+
+        customToolInstallWrapper {
+          selectedTools {
+            selectedTool {
+              name('M3')
+            }
+          }
+        }
       }
       steps {
         shell(this._archive_script())
