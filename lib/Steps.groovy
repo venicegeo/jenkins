@@ -107,6 +107,10 @@ class Steps {
             selectedTool {
               name('M3')
             }
+            multiconfigOptions {
+              skipInstallationOnMaster true
+            }
+            convertHomesToUppercase true
           }
         }
       }
