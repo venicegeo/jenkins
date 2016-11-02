@@ -27,7 +27,6 @@ class Base {
           room this.promotion ? '#release' : '#jenkins'
           authToken this.config.slack_token
           teamDomain this.config.slack_domain
-          startNotification false
           notifySuccess this.promotion ? true : false
           notifyAborted this.promotion ? false : true
           notifyNotBuilt this.promotion ? false : true
