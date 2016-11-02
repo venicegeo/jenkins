@@ -221,6 +221,10 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
             string('PZ_PASSPHRASE', 'da3092c4-d13d-4078-ab91-a630c61547aa')
           }
         }
+        customTools(['Maven3 custom tool']) {
+          skipMasterInstallation true
+          convertHomesToUppercase true
+        }
       }
       steps {
         shell(this._cf_push_script())
