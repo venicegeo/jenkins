@@ -125,6 +125,26 @@ class Steps {
     return this
   }
 
+  def zap() {
+    this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
+          string('THREADFIX_KEY', '978C467A-2B26-47AE-AD2F-4AFD5A4AF695')
+        }
+        customTools(['ZAProxy']) {
+          skipMasterInstallation true
+          convertHomesToUppercase true
+        }
+      }
+      steps {
+        shell(this._zap_script())
+      }
+    }
+
+    return this
+  }
+
   def ionchannel_pom() {
     this.jobject.with {
       wrappers {
@@ -158,28 +178,6 @@ class Steps {
           # All Piazza projects are id 10 in threadfix ie applications/10 in the curl
           /bin/curl -v --insecure -H 'Accept: application/json' -X POST --form file=@fortifyResults-\${BUILD_NUMBER}.fpr https://threadfix.devops.geointservices.io/rest/applications/10/upload?apiKey=\${THREADFIX_KEY}
           #/opt/hp_fortify_sca/bin/ReportGenerator -format pdf -f ${this.config.gh_repo}-fortify-\${BUILD_NUMBER}.pdf -source fortifyResults-\${BUILD_NUMBER}.fpr"
-        """
-      }
-    }
-  }
-
-  def zap() {
-    this.jobject.with {
-      wrappers {
-        credentialsBinding {
-          string('THREADFIX_KEY', '978C467A-2B26-47AE-AD2F-4AFD5A4AF695')
-        }
-      }
-      steps {
-        shell """
-          ${this._app_env}
-          ${this._pcf_env}
-          ${this._cf_auth}
-
-          set +e
-
-          target=\$APP-\$version
-          cf app \$target || exit 1
         """
       }
     }
@@ -780,6 +778,21 @@ EOF
       git push git@gitlab.devops.geointservices.io:${this.config.gh_org}/${this.config.gh_repo} master
 
       exit \$?
+    """
+  }
+
+  def _zap_script() {
+    return """
+      ${this._app_env}
+      ${this._pcf_env}
+      ${this._cf_auth}
+
+      set +e
+
+      target=\$APP-\$version
+      cf app \$target || exit 1
+
+      \$ZAP_HOME/zap.sh -cmd -quickurl https://\$target.\$PCF_DOMAIN
     """
   }
 }
