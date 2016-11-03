@@ -793,7 +793,7 @@ EOF
         -quickout \$root/out/\$cfhostname.xml \
         -quickurl https://\$cfhostname.\$PCF_DOMAIN
 
-      cat \$cfhostname.xml
+      cat \$root/out/\$cfhostname.xml
       rm -rf \$root/out
     """
   }
