@@ -782,7 +782,7 @@ EOF
 
   def _zap_script() {
     return """
-      root=\$(pwd -p)
+      root=\$(pwd -P)
       ${this._app_env}
 
       set +e
