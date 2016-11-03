@@ -170,7 +170,7 @@ class Repos {
       reponame: 'pz-swagger',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'int-release', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-uuidgen',
       team: 'piazza',

@@ -163,6 +163,28 @@ class Steps {
     }
   }
 
+  def zap() {
+    this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          string('THREADFIX_KEY', '978C467A-2B26-47AE-AD2F-4AFD5A4AF695')
+        }
+      }
+      steps {
+        shell """
+          ${this._app_env}
+          ${this._pcf_env}
+          ${this._cf_auth}
+
+          set +e
+
+          target=\$APP-\$version
+          cf app \$target || exit 1
+        """
+      }
+    }
+  }
+
   def sonar() {
     this.jobject.with {
       jdk "JDK 1.8uLATEST"
