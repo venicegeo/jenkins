@@ -129,7 +129,6 @@ class Steps {
     this.jobject.with {
       wrappers {
         credentialsBinding {
-          usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
           string('THREADFIX_KEY', '978C467A-2B26-47AE-AD2F-4AFD5A4AF695')
         }
         customTools(['ZAProxy']) {
@@ -784,19 +783,14 @@ EOF
   def _zap_script() {
     return """
       ${this._app_env}
-      ${this._pcf_env}
-      ${this._cf_auth}
 
       set +e
 
-      target=\$APP-\$version
-      cf app \$target || exit 1
-
       \$ZAPROXY_HOME/zap.sh -cmd \
-        -quickout \$target.xml \
-        -quickurl https://\$target.\$PCF_DOMAIN
+        -quickout \$cfhostname.xml \
+        -quickurl https://\$cfhostname.\$PCF_DOMAIN
 
-      cat \$target.xml
+      cat \$cfhostname.xml
     """
   }
 }
