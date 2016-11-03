@@ -782,6 +782,7 @@ EOF
 
   def _zap_script() {
     return """
+      root=\$(pwd -p)
       ${this._app_env}
 
       set +e
@@ -789,11 +790,11 @@ EOF
       mkdir -p out
       chmod 777 out
       \$ZAPROXY_HOME/zap.sh -cmd \
-        -quickout out/\$cfhostname.xml \
+        -quickout \$root/out/\$cfhostname.xml \
         -quickurl https://\$cfhostname.\$PCF_DOMAIN
 
       cat \$cfhostname.xml
-      rm -rf out
+      rm -rf \$root/out
     """
   }
 }
