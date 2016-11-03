@@ -792,7 +792,11 @@ EOF
       target=\$APP-\$version
       cf app \$target || exit 1
 
-      \$ZAPROXY_HOME/zap.sh -cmd -quickurl https://\$target.\$PCF_DOMAIN
+      \$ZAPROXY_HOME/zap.sh -cmd \
+        -quickout \$target.xml \
+        -quickurl https://\$target.\$PCF_DOMAIN
+
+      cat \$target.xml
     """
   }
 }
