@@ -784,6 +784,7 @@ EOF
     return """
       root=\$(pwd -P)
       ${this._app_env}
+      ${this._pcf_env}
 
       set +e
 
