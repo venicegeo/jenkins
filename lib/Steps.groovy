@@ -177,6 +177,12 @@ class Steps {
         }
       }
 
+      configure { project ->
+        project / buildWrappers << 'jenkins.plugins.nodejs.tools.NpmPackagesBuildWrapper' {
+          nodeJSInstallationName "Node 5.7.0"
+        }
+      }
+
       environmentVariables {
         env('APP', "${this.config.gh_repo}")
         env('GH_ORG', "${this.config.gh_org}")
