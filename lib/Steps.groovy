@@ -795,7 +795,16 @@ EOF
         -quickurl https://\$cfhostname.\$PCF_DOMAIN
 
       cat \$root/out/\$cfhostname.xml
+
+      curl --silent  --fail  --trace-ascii "threadfix-zap-upload-curl-trace.log" \
+        -H 'Accept: application/json'  -X POST  --form file=@\$root/out/\$cfhostname.xml \
+        https://threadfix.devops.geointservices.io/rest/applications/10/upload?apiKey=\${THREADFIX_KEY}
+
+      exit_status=\$?
+
       rm -rf \$root/out
+
+      exit \$exit_status
     """
   }
 }
