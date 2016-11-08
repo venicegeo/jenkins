@@ -760,7 +760,7 @@ EOF
       for srcpom in \$(find . -name pom.xml); do
 
         echo && echo "ION OUTPUT:" && echo
-		    deps=\$(\$ioncmd dependency resolve-dependencies-in-file --flatten --type maven \$pomfile | \$jqcmd .dependencies) && \$ioncmd --debug  vulnerability get-vulnerabilities-for-list "\${deps}"
+		    deps=\$(\$ioncmd dependency resolve-dependencies-in-file --flatten --type maven \$pomfile | \$jqcmd .dependencies) && \$ioncmd --debug vulnerability get-vulnerabilities-for-list "\${deps}"
         echo
       done
 
