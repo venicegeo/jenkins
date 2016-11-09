@@ -549,7 +549,7 @@ def pz_gh_integration_steps = new Steps(
   jobject: pz_gh_integration_test_job,
   config: global_config,
   jobname: "blackbox"
-).init().job_script().git_checkout().blackbox().gh_trigger()
+).init().blackbox().job_script().git_checkout().gh_trigger()
 
 // bf integration test repo
 bf_gh_integration_test_job = job("venice/piazza/pztest-integration/beachfront")
@@ -571,4 +571,4 @@ def bf_gh_integration_steps = new Steps(
   jobject: bf_gh_integration_test_job,
   config: global_config,
   jobname: "beachfront"
-).init().job_script().git_checkout().blackbox().gh_trigger()
+).init().blackbox().job_script().git_checkout().gh_trigger()
