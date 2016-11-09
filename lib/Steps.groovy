@@ -788,8 +788,8 @@ EOF
 
       set +e
 
-      mkdir -p out
-      chmod 777 out
+      mkdir -p \$root/out
+      chmod 777 \$root/out
       \$ZAPROXY_HOME/zap.sh -cmd \
         -quickout \$root/out/\$cfhostname.xml \
         -quickurl https://\$cfhostname.\$PCF_DOMAIN
