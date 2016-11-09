@@ -9,7 +9,11 @@ class Base {
   def defaults() {
     this.jobject.with {
       configure { project ->
-        project << assignedNode('sl61')
+        if (this.config.gh_repo == 'pzsvc-image-catalog') {
+          project << assignedNode('sl62')
+        } else {
+          project << assignedNode('sl61')
+        }
         project << canRoam('false')
       }
 
