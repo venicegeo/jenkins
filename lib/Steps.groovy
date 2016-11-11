@@ -736,7 +736,8 @@ EOF
         ioncmd=ion-connect
       else
         test -n "\$ION_CONNECT_LATEST_HOME" || { echo "ION_CONNECT_LATEST_HOME not set" >&2; exit 1; }
-        ioncmd=\$(echo \$ION_CONNECT_LATEST_HOME | sed 's/-latest\$//')
+        os=\$(uname -s | tr '[:upper:]' '[:lower:]')
+        ioncmd=\$(echo \$ION_CONNECT_LATEST_HOME | sed 's/-latest\$//')/\$os/bin/ion-connect
         test -x \$ioncmd || { echo "\$ioncmd not available." >&2; exit 1; }
       fi
 
