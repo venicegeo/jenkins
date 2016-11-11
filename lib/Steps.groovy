@@ -150,6 +150,10 @@ class Steps {
         credentialsBinding {
           string('IONCHANNEL_SECRET_KEY', 'fbbfbbd2-7e31-46ac-b3ac-b66c4f2ae2e4')
         }
+        customTools(['jq1_5', 'ion_connect_latest']) {
+          skipMasterInstallation true
+          convertHomesToUppercase true
+        }
       }
 
       steps {
@@ -718,55 +722,43 @@ EOF
     return """
       root=\$(pwd -P)
 
-      set +ex
-      export HISTFILE=/def/null
-      [ -z "\$IONCHANNEL_SECRET_KEY" ] && { echo "IONCHANNEL_SECRET_KEY not set" >&2; exit 1; }
-      [ -z "\$IONCHANNEL_ENDPOINT_URL" ] && IONCHANNEL_ENDPOINT_URL=https://api.private.ionchannel.io
-
-      os=\$(uname -s | tr '[:upper:]' '[:lower:]')
-      pomfile=\$root/tmp/pom.xml
-      archive=ion-connect-latest.tar.gz
-
-      mkdir -p \$root/tmp/bin
-
-      # Install jq?
-      if ! type jq >/dev/null 2>&1; then
-
-        if [ "\$os" = "linux" ]; then
-          uname -m | grep -q 64 \
-            && curl -o \$root/tmp/bin/jq -O https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 \
-            || curl -o \$root/tmp/bin/jq -O https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux32
-        elif [ "\$os" = "darwin" ]; then
-          curl -o \$root/tmp/bin/jq -O https://github.com/stedolan/jq/releases/download/jq-1.5/jq-osx-amd64
-        else
-          echo "jq install on \$os not supported by this script; please visit https://stedolan.github.io/jq/download/" >&2
-          exit 1
-        fi
-
-        chmod 700 \$root/tmp/bin/jq
-        jqcmd=\$root/tmp/bin/jq
-      else
+      # jq required for json processing
+      if type jq >/dev/null 2>&1; then
         jqcmd=jq
+      else
+        test -n "\$JQ1_5_HOME" || { echo "JQ1_5_HOME not set" >&2; exit 1; }
+        jqcmd=\$JQ1_5_HOME/jq
+        test -x \$jqcmd || { echo "\$jqcmd not available." >&2; exit 1; }
       fi
 
-      # Install ion-connect?
-      curl -o \$root/tmp/\$archive -O https://s3.amazonaws.com/public.ionchannel.io/files/ion-connect/\$archive
-      tar -C \$root/tmp -xzf \$root/tmp/\$archive
-      ioncmd=\$root/tmp/ion-connect/\$os/bin/ion-connect
+      # ion-connect is required
+      if type ion-connect >/dev/null 2>&1; then
+        ioncmd=ion-connect
+      else
+        test -n "\$ION_CONNECT_LATEST_HOME" || { echo "ION_CONNECT_LATEST_HOME not set" >&2; exit 1; }
+        ioncmd=\$(echo \$ION_CONNECT_LATEST_HOME | sed 's/-latest\$//')
+        test -x \$ioncmd || { echo "\$ioncmd not available." >&2; exit 1; }
+      fi
 
       \$ioncmd --version
 
+      do_xtrace=\$(echo \$SHELLOPTS | grep -o xtrace | cat)
+      set +x
+      oldhistfile="\$HISTFILE"
+      export HISTFILE=/dev/null
 
-      for srcpom in \$(find . -name pom.xml); do
+      test -n "\$IONCHANNEL_SECRET_KEY"   || { echo "IONCHANNEL_SECRET_KEY not set" >&2; exit 1; }
+      test -n "\$IONCHANNEL_ENDPOINT_URL" || IONCHANNEL_ENDPOINT_URL=https://api.private.ionchannel.io
 
+      export HISTFILE="\$oldhistfile"
+      [ -z "\$do_xtrace" ] || set -x
+
+
+      for pomfile in \$(find \$root -name pom.xml); do
         echo && echo "ION OUTPUT:" && echo
-		    deps=\$(\$ioncmd dependency resolve-dependencies-in-file --flatten --type maven \$pomfile | \$jqcmd .dependencies) && \$ioncmd --debug  vulnerability get-vulnerabilities-for-list "\${deps}"
+        deps=\$(\$ioncmd dependency resolve-dependencies-in-file --flatten --type maven \$pomfile | \$jqcmd .dependencies) && \$ioncmd --debug  vulnerability get-vulnerabilities-for-list "\${deps}"
         echo
       done
-
-      rm -rf \$root/tmp
-
-      exit 0
     """
   }
 
