@@ -11,6 +11,8 @@ class Base {
       configure { project ->
         if (this.config.gh_repo == 'pzsvc-image-catalog') {
           project << assignedNode('sl62')
+        } else if (this.config.gh_repo == 'bf-handle') {
+          project << assignedNode('sl62')
         } else {
           project << assignedNode('sl61')
         }
