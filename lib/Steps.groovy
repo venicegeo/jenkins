@@ -797,7 +797,7 @@ EOF
 
       rm -rf \$root/out
 
-      exit \$exit_status
+      exit 0
     """
   }
 }
