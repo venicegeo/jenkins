@@ -703,7 +703,6 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
 
   def _github_write_script() {
     return """
-      eval "$(ssh-agent -s)"
       [ -f "\$GIT_KEY" ] && ssh-add "\$GIT_KEY"
       chmod 600 \$HOME/.ssh/config
       cat <<- EOF > \$HOME/.ssh/config
