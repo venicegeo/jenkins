@@ -195,7 +195,7 @@ class Repos {
       reponame: 'pzsvc-hello',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pzsvc-preview-generator',
       team: 'piazza',
