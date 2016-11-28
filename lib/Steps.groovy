@@ -480,12 +480,12 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
 
     export CF_HOME=\$root
 
+    set +x
     export HISTFILE=/dev/null
     cf api \$PCF_API > /dev/null
-    set +x
     cf auth "\$PCF_USER" "\$PCF_PASSWORD" > /dev/null
-    set -x
     cf target -o \$PCF_ORG -s \$PCF_SPACE > /dev/null
+    set -x
   """
 
   def _git_script() {
