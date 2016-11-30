@@ -107,6 +107,11 @@ class Steps {
           convertHomesToUppercase true
         }
       }
+     configure { project ->
+        project / buildWrappers << 'jenkins.plugins.nodejs.tools.NpmPackagesBuildWrapper' {
+          nodeJSInstallationName "Node 5.7.0"
+        }
+      }
       steps {
         shell(this._archive_script())
       }
