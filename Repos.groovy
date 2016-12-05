@@ -134,7 +134,7 @@ class Repos {
       branch: '**',
       team: 'piazza',
       manual: ['cf_promote_to_prod', 'gitlab_push'],
-      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
     ],[
       reponame: 'pz-jobcommon',
       lib: true,
