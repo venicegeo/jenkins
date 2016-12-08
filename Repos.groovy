@@ -20,6 +20,11 @@ class Repos {
       manual: ['sonar', 'archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
       pipeline: ['sonar', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
+      reponame: 'bf-ia-broker',
+      team: 'beachfront',
+      manual: ['sonar', 'archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
+      pipeline: ['sonar', 'archive', 'cf_push_int', 'cf_bg_deploy_int', 'beachfront_ua_tests_int', 'cf_push_stage', 'cf_bg_deploy_stage']
+    ],[
       reponame: 'bf-tideprediction',
       team: 'beachfront',
       manual: ['sonar', 'archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
