@@ -261,7 +261,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
         credentialsBinding {
           usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
           if (this.config.gh_repo == 'bf-api') {
-            string('SYSTEM_API_KEY', '04d8983f-a9c3-45ad-9aa5-1419f1a3f59a')
+            usernamePassword('BEACHFRONT_PIAZZA_AUTH', '93a0311a-caac-4f5a-bfcb-9ad18b0c0cd1')
           }
           if (this.config.gh_repo == 'pz-idam') {
             string('JKS_PASSPHRASE', 'ff7148c6-2855-4f3d-bd2e-3aa296b09d98')
@@ -600,10 +600,6 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
 
       if ! grep -q DOMAIN \$manifest; then
         grep -q env \$manifest && echo "    DOMAIN: \$PCF_DOMAIN\n    SPACE: \$PCF_SPACE" >> \$manifest || echo "  env: {DOMAIN: \$PCF_DOMAIN, SPACE: \$PCF_SPACE}" >> \$manifest
-      fi
-
-      if [ -n "\$SYSTEM_API_KEY" ]; then
-        echo "    SYSTEM_API_KEY: \$SYSTEM_API_KEY" >> \$manifest
       fi
 
       if [ -n "\$JKS_PASSPHRASE" ]; then
