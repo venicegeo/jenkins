@@ -261,7 +261,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
         credentialsBinding {
           usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
           if (this.config.gh_repo == 'bf-api') {
-            string('SYSTEM_API_KEY', 'bf-api--piazza-api-key')
+            string('SYSTEM_API_KEY', '04ca6b6b-4846-4df4-ae0c-57d7c1cc9666')
           }
           if (this.config.gh_repo == 'pz-idam') {
             string('JKS_PASSPHRASE', 'ff7148c6-2855-4f3d-bd2e-3aa296b09d98')
