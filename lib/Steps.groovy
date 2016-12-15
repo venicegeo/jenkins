@@ -460,8 +460,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
     this.jobject.with {
       wrappers {
         credentialsBinding {
-          file('POSTMAN_FILE', '2acc5205-3cad-428a-b245-fbc5ed2cd4e0')
-          string('BF_PASSWORD', '8f3825e6-410f-417c-ae89-1f89de0607af')
+          file('POSTMAN_FILE', '579f8660-01e6-4feb-8764-ec132432ebb1')
         }
       }
       configure { project ->
