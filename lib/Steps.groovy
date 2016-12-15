@@ -458,6 +458,12 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
 
   def blackbox() {
     this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          file('POSTMAN_FILE', '2acc5205-3cad-428a-b245-fbc5ed2cd4e0')
+          string('BF_PASSWORD', '8f3825e6-410f-417c-ae89-1f89de0607af')
+        }
+      }
       configure { project ->
         project / buildWrappers << 'jenkins.plugins.nodejs.tools.NpmPackagesBuildWrapper' {
           nodeJSInstallationName "Node 5.7.0"
