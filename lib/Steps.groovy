@@ -110,7 +110,7 @@ class Steps {
           convertHomesToUppercase true
         }
       }
-      if (this.config.gh_repo == '') {
+      if (this.config.gh_repo == 'bf-ui') {
        configure { project ->
           project / buildWrappers << 'jenkins.plugins.nodejs.tools.NpmPackagesBuildWrapper' {
             nodeJSInstallationName "Node 5.7.0"
