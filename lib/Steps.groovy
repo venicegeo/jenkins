@@ -226,6 +226,7 @@ class Steps {
           for bin in \$(find /jslave/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/Maven3_custom_tool -name bin); do
             export PATH=\$PATH:\$bin
           done
+          export PATH=\$PATH:\$HOME/bin
         """
 
         sonarRunnerBuilder {
