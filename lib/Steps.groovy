@@ -110,9 +110,11 @@ class Steps {
           convertHomesToUppercase true
         }
       }
-     configure { project ->
-        project / buildWrappers << 'jenkins.plugins.nodejs.tools.NpmPackagesBuildWrapper' {
-          nodeJSInstallationName "Node 5.7.0"
+      if (this.config.gh_repo == '') {
+       configure { project ->
+          project / buildWrappers << 'jenkins.plugins.nodejs.tools.NpmPackagesBuildWrapper' {
+            nodeJSInstallationName "Node 5.7.0"
+          }
         }
       }
       steps {
@@ -226,7 +228,6 @@ class Steps {
           for bin in \$(find /jslave/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/Maven3_custom_tool -name bin); do
             export PATH=\$PATH:\$bin
           done
-          export PATH=\$PATH:\$HOME/bin
         """
 
         sonarRunnerBuilder {
@@ -521,6 +522,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       for bin in \$(find /jslave/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/Maven3_custom_tool -name bin); do
         export PATH=\$PATH:\$bin
       done
+      export PATH=\$PATH:\$HOME/bin
 
       [ -f ./ci/${this.jobname}.sh ] || { echo "noop"; exit; }
       chmod 700 ./ci/${this.jobname}.sh
