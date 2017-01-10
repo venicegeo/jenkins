@@ -15,13 +15,15 @@ class Base {
           project << assignedNode('python35')
         } else if (this.config.gh_repo == 'bf-api') {
           project << assignedNode('python35')
+        } else if (this.config.gh_repo == 'pztest-integration') {
+          project << assignedNode('sl62')
         } else {
           project << assignedNode('sl61')
         }
         project << canRoam('false')
       }
 
-      wrappers { 
+      wrappers {
         colorizeOutput()
         preBuildCleanup()
         golang('golang_1.7')
