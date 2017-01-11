@@ -18,7 +18,7 @@ class Repos {
       reponame: 'bf-api',
       team: 'beachfront',
       manual: ['sonar', 'archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'fortify']
     ],[
       reponame: 'bf-ia-broker',
       team: 'beachfront',
@@ -29,12 +29,12 @@ class Repos {
       reponame: 'bf-tideprediction',
       team: 'beachfront',
       manual: ['sonar', 'archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_ua_tests_int', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_ua_tests_int', 'cf_push_stage', 'cf_bg_deploy_stage', 'fortify']
     ],[
       reponame: 'bf-ui',
       team: 'beachfront',
       manual: ['sonar', 'archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_ua_tests_int', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_ua_tests_int', 'cf_push_stage', 'cf_bg_deploy_stage', 'fortify']
     ],[
       reponame: 'bftest-ui',
       team: 'beachfront',
