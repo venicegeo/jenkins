@@ -57,7 +57,7 @@ class Repos {
       lib: true,
       team: 'beachfront',
       manual: ['gitlab_push'],
-      pipeline: ['archive']
+      pipeline: ['archive', 'zap']
     ],[
       reponame: 'pzsvc-image-catalog',
       team: 'beachfront',
