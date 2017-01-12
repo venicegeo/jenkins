@@ -44,6 +44,7 @@ entries.each{ reponame, entry ->
     gh_org: entry.gh_org ? entry.gh_org : 'venicegeo',
     gh_branch: entry.branch ? entry.branch : 'master',
     team: entry.team ? entry.team : 'piazza',
+    threadfix_id: entry.team == 'beachfront' ? '57' : '10',
     slack_token: binding.variables.get("SLACK_TOKEN"),
     slack_domain: "venicegeo",
     pcf_org: "piazza",
