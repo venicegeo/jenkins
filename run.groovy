@@ -573,3 +573,12 @@ def bf_gh_integration_steps = new Steps(
   config: global_config,
   jobname: "beachfront"
 ).init().blackbox().job_script().git_checkout().gh_trigger()
+
+bf_gh_integration_test_job.with {
+  wrappers {
+    credentialsBinding {
+      string('bf_username', 'e3799eb1-95df-4285-a24e-6721cd690daa')
+      string('bf_password', '40ce94f3-3c14-40d6-a75b-b48556a0c560')
+    }
+  }
+}
