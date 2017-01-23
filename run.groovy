@@ -171,6 +171,10 @@ entries.each{ reponame, entry ->
       base_job.selenium()
     }
 
+    if (config.gh_repo == "bf-ui" && jobname.contains("sonar")) {
+      base_job.selenium()
+    }
+
     if (data.index == 0) {
       // first job in pipeline needs an external trigger.
       steps.gh_trigger()
