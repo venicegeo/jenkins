@@ -1,14 +1,14 @@
-#!groovy                                                                           
-// This is the initial seed job for venicegeo which creates all of ther            
-// other pipeline jobs. Each repo must contain a JenkinsFile                       
-// that denotes the steps to take when building.                                   
-                                                                                   
-def gitprefix = 'https://github.com/venicegeo/'                                 
+#!groovy
+// This is the initial seed job for venicegeo which creates all of ther
+// other pipeline jobs. Each repo must contain a JenkinsFile
+// that denotes the steps to take when building.
+
+def gitprefix = 'https://github.com/venicegeo/'
 
 // PZ Projects
-def pzprojects = ['pz-access', 'pz-gateway', 'pz-idam', 'pz-ingest', 'pz-jobcommon',                
+def pzprojects = ['pz-access', 'pz-gateway', 'pz-idam', 'pz-ingest', 'pz-jobcommon',
    'pz-jobmanager', 'pz-search-metadata-ingest', 'pz-search-query', 'pz-servicecontroller',
-   'pz-sak'] 
+   'pz-sak']
 
 for(i in pzprojects) {
   pipelineJob("venice/piazza/${i}-pipeline") {
@@ -32,9 +32,9 @@ for(i in pzprojects) {
 }
 
 // BF Projects
-def bfprojects = ['bf_TidePrediction']
+def bfprojects = ['bf_TidePrediction', 'bf-ui']
 
-for(i in bfprojects) {                                                               
+for(i in bfprojects) {
   pipelineJob("venice/beachfront/${i}-pipeline") {
     description("Beachfront fortify pipeline")
     triggers {
@@ -54,4 +54,30 @@ for(i in bfprojects) {
    }
   }
 }
+
+// Boundless Projects
+//def boundlessgitprefix = 'https://github.com/boundlessgeo/'
+//
+//def boundlessprojects = ['exchange', 'storyscapes', 'registry']
+//
+//for(i in boundlessprojects) {
+//  pipelineJob("venice/boundless/${i}-pipeline") {
+//    description("Boundless security pipeline")
+//    triggers {
+//      gitHubPushTrigger()
+//    }
+//    definition {
+//      cpsScm {
+//        scm {
+//          git {
+//            remote {
+//              url("${boundlessgitprefix}${i}")
+//              branch("*/master")
+//            }
+//          }
+//       }
+//     }
+//   }
+//  }
+//}
 
