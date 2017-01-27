@@ -17,6 +17,8 @@ class Base {
           project << assignedNode('python35')
         } else if (this.config.gh_repo == 'bf-ui') {
           project << assignedNode('xvfb')
+        } else if (this.config.gh_repo == 'bftest-integration') {
+          project << assignedNode('sl62')
         } else if (this.config.gh_repo == 'pztest-integration') {
           project << assignedNode('sl62')
         } else {

@@ -74,7 +74,21 @@ entries.each{ reponame, entry ->
       jobname: jobname
     ).init()
 
-    if (jobname.contains("integration_tests")) {
+    if (jobname.contains("beachfront_integration_tests")) {
+      base_job = new Base(
+        jobject: mutant,
+        config: [
+          gh_org: 'venicegeo',
+          gh_repo: 'bftest-integration',
+          gh_branch: 'master',
+          slack_token: binding.variables.get("SLACK_TOKEN"),
+          slack_domain: "venicegeo"
+        ]
+      ).defaults().github()
+
+      steps.blackbox()
+
+    } else if (jobname.contains("integration_tests")) {
       base_job = new Base(
         jobject: mutant,
         config: [
@@ -557,13 +571,13 @@ def pz_gh_integration_steps = new Steps(
 ).init().blackbox().job_script().git_checkout().gh_trigger()
 
 // bf integration test repo
-bf_gh_integration_test_job = job("venice/piazza/pztest-integration/beachfront")
+bf_gh_integration_test_job = job("venice/beachfront/bftest-integration/beachfront")
 
 new Base(
   jobject: bf_gh_integration_test_job,
   config: [
     gh_org: 'venicegeo',
-    gh_repo: 'pztest-integration',
+    gh_repo: 'bftest-integration',
     gh_branch: 'master',
     slack_token: binding.variables.get("SLACK_TOKEN"),
     slack_domain: "venicegeo",
@@ -572,11 +586,13 @@ new Base(
   ]
 ).parameters().defaults().github()
 
+
 def bf_gh_integration_steps = new Steps(
   jobject: bf_gh_integration_test_job,
   config: global_config,
   jobname: "beachfront"
 ).init().blackbox().job_script().git_checkout().gh_trigger()
+
 
 bf_gh_integration_test_job.with {
   wrappers {
@@ -586,3 +602,4 @@ bf_gh_integration_test_job.with {
     }
   }
 }
+
