@@ -480,7 +480,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       }
 
       steps {
-        shell('npm install -g newman@2 karma-cli')
+        shell('npm set cache \$(pwd)/.npmcache; npm install -g newman@2 karma-cli')
       }
     }
 
