@@ -549,6 +549,11 @@ folder("venice/piazza/pztest-integration") {
   displayName("pztest-integration")
 }
 
+// pz integration test repo
+folder("venice/beachfront/bftest-integration") {
+  displayName("bftest-integration")
+}
+
 pz_gh_integration_test_job = job("venice/piazza/pztest-integration/piazza")
 
 new Base(
