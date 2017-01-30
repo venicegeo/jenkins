@@ -113,17 +113,17 @@ class Repos {
       reponame: 'pz-access',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-docs',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-gateway',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-gocommon',
       lib: true,
@@ -134,13 +134,13 @@ class Repos {
       reponame: 'pz-idam',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-ingest',
       branch: '**',
       team: 'piazza',
       manual: ['cf_promote_to_prod', 'gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-jobcommon',
       lib: true,
@@ -157,37 +157,37 @@ class Repos {
       reponame: 'pz-jobmanager',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-logger',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-sak',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['karma', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['karma', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-search-metadata-ingest',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-search-query',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-servicecontroller',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-swagger',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'bf-swagger',
       team: 'beachfront',
@@ -197,22 +197,22 @@ class Repos {
       reponame: 'pz-uuidgen',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-workflow',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pzsvc-hello',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
+      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pzsvc-preview-generator',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release', 'fortify']
+      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pzsvc-gdaldem',
       team: 'pointcloud',
