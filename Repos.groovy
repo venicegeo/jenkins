@@ -137,7 +137,6 @@ class Repos {
       pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-ingest',
-      branch: '**',
       team: 'piazza',
       manual: ['cf_promote_to_prod', 'gitlab_push'],
       pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
