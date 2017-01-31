@@ -636,7 +636,7 @@ bf_gh_integration_test_job.with {
     credentialsBinding {
       string('bf_username', 'e3799eb1-95df-4285-a24e-6721cd690daa')
       string('bf_password', '40ce94f3-3c14-40d6-a75b-b48556a0c560')
-      string('POSTMAN_FILE', '579f8660-01e6-4feb-8764-ec132432ebb1')
+      file('POSTMAN_FILE', '579f8660-01e6-4feb-8764-ec132432ebb1')
     }
   }
 }
