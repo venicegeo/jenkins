@@ -592,7 +592,7 @@ new Base(
 ).parameters().defaults().github()
 
 // bf integration test repo
-bf_gh_integration_test_job = job("venice/beachfront/bftest-integration/beachfront") //craigtest1
+bf_gh_integration_test_job = job("venice/beachfront/bftest-integration/beachfront") //craigtest2
 
 new Base(
   jobject: bf_gh_integration_test_job,
