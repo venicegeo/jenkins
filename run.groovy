@@ -624,7 +624,7 @@ new Base(
 ).parameters().defaults().github()
 
 
-def bf_gh_integration_steps = new Steps(
+bf_gh_integration_steps = new Steps(
   jobject: bf_gh_integration_test_job,
   config: global_config,
   jobname: "beachfront"
