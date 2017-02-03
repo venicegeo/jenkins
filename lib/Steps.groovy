@@ -101,7 +101,7 @@ class Steps {
             file('JKS', 'ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8')
           }
           if (this.config.gh_repo == 'bf-ia-broker') {
-            string('PL_API_KEY', '7a64953f-283a-4a28-824f-4e96760574e8')
+            string('PL_API_KEY', 'e5b7076b-885a-43ba-9626-30ff950bd790')
           }
         }
 
