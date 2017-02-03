@@ -575,37 +575,6 @@ def pz_gh_integration_steps = new Steps(
   jobname: "blackbox"
 ).init().blackbox().job_script().git_checkout().gh_trigger()
 
-// bf integration test repo (old)
-bf_gh_integration_test_job = job("venice/piazza/pztest-integration/beachfront")
-
-new Base(
-  jobject: bf_gh_integration_test_job,
-  config: [
-    gh_org: 'venicegeo',
-    gh_repo: 'pztest-integration',
-    gh_branch: 'master',
-    slack_token: binding.variables.get("SLACK_TOKEN"),
-    slack_domain: "venicegeo",
-    domains: ['test.geointservices.io', 'stage.geointservices.io', 'dev.geointservices.io', 'int.geointservices.io', 'geointservices.io'],
-    domains_description: 'PCF Domain/Space to target<br>&nbsp;&nbsp;<b>geointservices.io</b>: production<br>&nbsp;&nbsp;<b>stage.geointservices.io</b>: beta<br>&nbsp;&nbsp;<b>int.geointservices.io</b>: CI<br>&nbsp;&nbsp;<b>dev.geointservices.io</b>: developer sandbox<br>&nbsp;&nbsp;<b>test.geointservices.io</b>: test bed'
-  ]
-).parameters().defaults().github()
-
-def bf_gh_integration_steps = new Steps(
-  jobject: bf_gh_integration_test_job,
-  config: global_config,
-  jobname: "beachfront"
-).init().blackbox().job_script().git_checkout().gh_trigger()
-
-
-bf_gh_integration_test_job.with {
-  wrappers {
-    credentialsBinding {
-      string('bf_username', 'e3799eb1-95df-4285-a24e-6721cd690daa')
-      string('bf_password', '40ce94f3-3c14-40d6-a75b-b48556a0c560')
-    }
-  }
-}
 
 // bf integration test repo
 bf_gh_integration_test_job = job("venice/beachfront/bftest-integration/beachfront") //craigtest2
