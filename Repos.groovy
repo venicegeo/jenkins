@@ -110,6 +110,11 @@ class Repos {
       team: 'osh',
       pipeline: ['archive']
     ],[
+      reponame: 'pz-logger',
+      team: 'piazza',
+      manual: ['gitlab_push'],
+      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+    ],[
       reponame: 'pz-access',
       team: 'piazza',
       manual: ['gitlab_push'],
@@ -157,11 +162,6 @@ class Repos {
       team: 'piazza',
       manual: ['gitlab_push'],
       pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
-    ],[
-      reponame: 'pz-logger',
-      team: 'piazza',
-      manual: ['gitlab_push'],
-      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'pz-sak',
       team: 'piazza',
