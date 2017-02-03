@@ -110,6 +110,7 @@ class Repos {
       team: 'osh',
       pipeline: ['archive']
     ],[
+      //intentionally first among Piazza repos: see task#15556
       reponame: 'pz-logger',
       team: 'piazza',
       manual: ['gitlab_push'],
