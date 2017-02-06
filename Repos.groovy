@@ -26,6 +26,11 @@ class Repos {
       manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
       pipeline: ['archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests']
     ],[
+      reponame: 'bf-swagger',
+      team: 'beachfront',
+      manual: ['gitlab_push'],
+      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+    ],[
       reponame: 'bf-tideprediction',
       team: 'beachfront',
       manual: ['sonar', 'archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
@@ -188,11 +193,6 @@ class Repos {
       team: 'piazza',
       manual: ['gitlab_push'],
       pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
-    ],[
-      reponame: 'bf-swagger',
-      team: 'beachfront',
-      manual: ['gitlab_push'],
-      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
     ],[
       reponame: 'pz-uuidgen',
       team: 'piazza',
