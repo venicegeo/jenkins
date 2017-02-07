@@ -112,7 +112,7 @@ entries.each{ reponame, entry ->
           slack_token: binding.variables.get("SLACK_TOKEN"),
           slack_domain: "venicegeo"
         ]
-      ).defaults().github().selenium().bfuapasswords()
+      ).defaults().github().selenium().bfuapasswords().overrideBfuaAssignedNode()
 
     } else if (jobname.contains("release")) {
       def release_branch
