@@ -138,6 +138,7 @@ class Base {
           string('bf_username', 'e3799eb1-95df-4285-a24e-6721cd690daa')
           string('bf_password', '40ce94f3-3c14-40d6-a75b-b48556a0c560')
         }
+      }
     }
     return this
   }
