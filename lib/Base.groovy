@@ -149,5 +149,6 @@ class Base {
         project << assignedNode('sl62')
       }
     }
+    return this
   }  
 }
