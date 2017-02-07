@@ -129,4 +129,24 @@ class Base {
 
     return this
   }
+  
+  def bfuapasswords() {
+    this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          string('PL API KEY',  '7a64953f-283a-4a28-824f-4e96760574e8')
+          string('bf_username', 'e3799eb1-95df-4285-a24e-6721cd690daa')
+          string('bf_password', '40ce94f3-3c14-40d6-a75b-b48556a0c560')
+        }
+    }
+    return this
+  }
+    
+  def overrideBfuaAssignedNode() {
+    this.jobject.with {
+      configure { project ->
+        project << assignedNode('sl62')
+      }
+    }
+  }  
 }
