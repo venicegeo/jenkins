@@ -32,7 +32,7 @@ for(i in pzprojects) {
 }
 
 // BF Projects
-def bfprojects = ['bf_TidePrediction', 'bf-ui', 'bf-swagger']
+def bfprojects = ['bf_TidePrediction', 'bf-ui', 'bf-swagger', 'bf-api']
 
 for(i in bfprojects) {
   pipelineJob("venice/beachfront/${i}-pipeline") {
