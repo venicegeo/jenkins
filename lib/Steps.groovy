@@ -470,6 +470,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
           if (this.config.team == 'beachfront') {
             string('bf_username', 'e3799eb1-95df-4285-a24e-6721cd690daa')
             string('bf_password', '40ce94f3-3c14-40d6-a75b-b48556a0c560')
+            string('PL_API_KEY', 'e5b7076b-885a-43ba-9626-30ff950bd790')
           }
         }
       }
