@@ -124,7 +124,7 @@ class Repos {
       reponame: 'pz-access',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
     ],[
       reponame: 'pz-docs',
       team: 'piazza',
