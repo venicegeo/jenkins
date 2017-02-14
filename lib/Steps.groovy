@@ -462,7 +462,6 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
     return this
   }
 
-
   def blackbox() {
     this.jobject.with {
       wrappers {
