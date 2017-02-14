@@ -462,6 +462,14 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
     return this
   }
 
+  def run_integration_tests_stage() {
+    this.override = "stage.geointservices.io"
+    this.init()
+    this.run_integration_tests_stage()
+
+    return this
+  }
+
   def blackbox() {
     this.jobject.with {
       wrappers {
