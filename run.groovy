@@ -118,6 +118,7 @@ entries.each{ reponame, entry ->
       
       steps.override = 'stage.geointservices.io'
       steps.init()
+      println "This is expected output for run.groovy when jobname.contains('integration_tests_stage') "
 
     } else if (jobname.contains("ua_tests")) {
       base_job = new Base(
