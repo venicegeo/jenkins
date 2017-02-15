@@ -88,21 +88,6 @@ entries.each{ reponame, entry ->
 
       steps.blackbox()
 
-    } else if (jobname.contains("integration_tests")) {
-      out.println "This is expected output for run.groovy when jobname.contains('integration_tests') "      
-      base_job = new Base(
-        jobject: mutant,
-        config: [
-          gh_org: 'venicegeo',
-          gh_repo: 'pztest-integration',
-          gh_branch: 'master',
-          slack_token: binding.variables.get("SLACK_TOKEN"),
-          slack_domain: "venicegeo"
-        ]
-      ).defaults().github()
-
-      steps.blackbox()
-
     } else if (jobname.contains("integration_tests_stage")) {
       out.println "This is expected output for run.groovy when jobname.contains('integration_tests_stage') "      
       base_job = new Base(
@@ -121,6 +106,20 @@ entries.each{ reponame, entry ->
       steps.override = 'stage.geointservices.io'
       steps.init()
 
+    } else if (jobname.contains("integration_tests")) {
+      out.println "This is expected output for run.groovy when jobname.contains('integration_tests') "      
+      base_job = new Base(
+        jobject: mutant,
+        config: [
+          gh_org: 'venicegeo',
+          gh_repo: 'pztest-integration',
+          gh_branch: 'master',
+          slack_token: binding.variables.get("SLACK_TOKEN"),
+          slack_domain: "venicegeo"
+        ]
+      ).defaults().github()
+
+      steps.blackbox()
 
     } else if (jobname.contains("ua_tests")) {
       out.println "This is expected output for run.groovy when jobname.contains('ua_tests') "      
