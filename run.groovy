@@ -117,6 +117,7 @@ entries.each{ reponame, entry ->
       steps.blackbox()
       
       steps.override = 'stage.geointservices.io'
+      steps.init()
 
     } else if (jobname.contains("ua_tests")) {
       base_job = new Base(
