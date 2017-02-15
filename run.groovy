@@ -104,6 +104,7 @@ entries.each{ reponame, entry ->
       steps.blackbox()
 
     } else if (jobname.contains("integration_tests_stage")) {
+      out.println "This is expected output for run.groovy when jobname.contains('integration_tests_stage') "      
       base_job = new Base(
         jobject: mutant,
         config: [
@@ -119,9 +120,10 @@ entries.each{ reponame, entry ->
       
       steps.override = 'stage.geointservices.io'
       steps.init()
-      out.println "This is expected output for run.groovy when jobname.contains('integration_tests_stage') "
+
 
     } else if (jobname.contains("ua_tests")) {
+      out.println "This is expected output for run.groovy when jobname.contains('ua_tests') "      
       base_job = new Base(
         jobject: mutant,
         config: [
