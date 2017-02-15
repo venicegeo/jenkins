@@ -89,6 +89,7 @@ entries.each{ reponame, entry ->
       steps.blackbox()
 
     } else if (jobname.contains("integration_tests")) {
+      println "This is expected output for run.groovy when jobname.contains('integration_tests') "      
       base_job = new Base(
         jobject: mutant,
         config: [
