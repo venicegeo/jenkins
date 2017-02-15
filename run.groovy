@@ -101,7 +101,6 @@ entries.each{ reponame, entry ->
       ).defaults().github()
 
       steps.blackbox()
-      
       steps.override = 'stage.geointservices.io'
 
     } else if (jobname.contains("integration_tests")) {
