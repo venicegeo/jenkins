@@ -102,6 +102,22 @@ entries.each{ reponame, entry ->
 
       steps.blackbox()
 
+    } else if (jobname.contains("integration_tests_stage")) {
+      base_job = new Base(
+        jobject: mutant,
+        config: [
+          gh_org: 'venicegeo',
+          gh_repo: 'pztest-integration',
+          gh_branch: 'master',
+          slack_token: binding.variables.get("SLACK_TOKEN"),
+          slack_domain: "venicegeo"
+        ]
+      ).defaults().github()
+
+      steps.blackbox()
+      
+      steps.override = 'stage.geointservices.io'
+
     } else if (jobname.contains("ua_tests")) {
       base_job = new Base(
         jobject: mutant,
