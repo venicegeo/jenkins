@@ -118,12 +118,27 @@ entries.each{ reponame, entry ->
 
       steps.blackbox()
 
+    } else if (jobname.contains("ua_tests_stage")) {
+      base_job = new Base(
+        jobject: mutant,
+        config: [
+          gh_org: 'venicegeo',
+          gh_repo: 'bftest-integration',
+          gh_branch: 'master',
+          slack_token: binding.variables.get("SLACK_TOKEN"),
+          slack_domain: "venicegeo"
+        ]
+      ).defaults().github().selenium().bfuapasswords().overrideBfuaAssignedNode()
+
+      steps.override = 'stage.geointservices.io'
+      steps.init()
+      
     } else if (jobname.contains("ua_tests")) {
       base_job = new Base(
         jobject: mutant,
         config: [
           gh_org: 'venicegeo',
-          gh_repo: 'bftest-ui',
+          gh_repo: 'bftest-integration',
           gh_branch: 'master',
           slack_token: binding.variables.get("SLACK_TOKEN"),
           slack_domain: "venicegeo"
