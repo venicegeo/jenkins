@@ -130,6 +130,7 @@ class Base {
     return this
   }
   
+  // Use this method when creating a bf integration test job.
   def bfuapasswords() {
     this.jobject.with {
       wrappers {
@@ -138,6 +139,7 @@ class Base {
           string('bf_username', 'e3799eb1-95df-4285-a24e-6721cd690daa')
           string('bf_password', '40ce94f3-3c14-40d6-a75b-b48556a0c560')
           usernamePassword('sauce_user', 'sauce_key', '1ba84f72-0a02-45e2-8869-cfa62df01251')
+          file('POSTMAN_FILE', '579f8660-01e6-4feb-8764-ec132432ebb1')
         }
       }
     }
