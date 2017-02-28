@@ -628,4 +628,4 @@ def bf_gh_integration_steps = new Steps(
   jobject: bf_gh_integration_test_job,
   config: global_config,
   jobname: "beachfront"
-).init().blackbox().job_script().git_checkout().gh_trigger()
+).init().blackbox().job_script().git_checkout().gh_trigger().bf_test_secrets()
