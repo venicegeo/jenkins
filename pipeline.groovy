@@ -12,7 +12,7 @@ def pzprojects = ['pz-access', 'pz-gateway', 'pz-idam', 'pz-ingest', 'pz-jobcomm
 
 for(i in pzprojects) {
   pipelineJob("venice/piazza/${i}-pipeline") {
-    description("Piazza fortify pipeline")
+    description("Piazza pipeline")
     triggers {
       gitHubPushTrigger()
     }
@@ -36,7 +36,7 @@ def bfprojects = ['bf_TidePrediction', 'bf-ui', 'bf-swagger', 'bf-api']
 
 for(i in bfprojects) {
   pipelineJob("venice/beachfront/${i}-pipeline") {
-    description("Beachfront fortify pipeline")
+    description("Beachfront pipeline")
     triggers {
       gitHubPushTrigger()
     }
