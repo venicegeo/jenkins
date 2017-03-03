@@ -192,20 +192,6 @@ class Repos {
       reponame: 'pz-swagger',
       team: 'piazza',
       manual: ['gitlab_push'],
-<<<<<<< HEAD
-      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
-    ],[
-      reponame: 'bf-swagger',
-      team: 'beachfront',
-      manual: ['gitlab_push'],
-      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
-    ],[
-      reponame: 'pz-uuidgen',
-      team: 'piazza',
-      manual: ['gitlab_push'],
-      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
-    ],[
-
       pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
     ],[
       reponame: 'pz-uuidgen',
@@ -213,7 +199,6 @@ class Repos {
       manual: ['gitlab_push'],
       pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
     ],[
->>>>>>> master
       reponame: 'pz-workflow',
       team: 'piazza',
       manual: ['gitlab_push'],
