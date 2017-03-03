@@ -132,7 +132,7 @@ entries.each{ reponame, entry ->
 
       steps.override = 'stage.geointservices.io'
       steps.init()
-      
+
     } else if (jobname.contains("ua_tests")) {
       base_job = new Base(
         jobject: mutant,
@@ -505,7 +505,7 @@ folder('venice/piazza/promotion') {
   displayName('promotion')
 }
 
-def production_rollout = workflowJob('venice/piazza/promotion/production')
+def production_rollout = pipelineJob('venice/piazza/promotion/production')
 
 def production_cps = ' '
 entries.each{ reponame, entry ->
@@ -525,7 +525,7 @@ production_rollout.with {
   }
 }
 
-def test_rollout = workflowJob('venice/piazza/promotion/test')
+def test_rollout = pipelineJob('venice/piazza/promotion/test')
 
 def test_cps = ' '
 entries.each{ reponame, entry ->
@@ -551,7 +551,7 @@ folder('venice/beachfront/promotion') {
   displayName('promotion')
 }
 
-def bf_production_rollout = workflowJob('venice/beachfront/promotion/production')
+def bf_production_rollout = pipelineJob('venice/beachfront/promotion/production')
 
 def bf_production_cps = ' '
 entries.each{ reponame, entry ->
