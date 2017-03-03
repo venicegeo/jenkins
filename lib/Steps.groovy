@@ -101,7 +101,7 @@ class Steps {
             file('JKS', 'ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8')
           }
           if (this.config.gh_repo == 'bf-ia-broker') {
-            string('PL_API_KEY', '7a64953f-283a-4a28-824f-4e96760574e8')
+            string('PL_API_KEY', 'e5b7076b-885a-43ba-9626-30ff950bd790')
           }
         }
 
@@ -484,6 +484,20 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       }
     }
 
+    return this
+  }
+  def bf_test_secrets() {
+    this.jobject.with {
+      wrappers {
+        credentialsBinding {
+          string('PL_API_KEY',  '7a64953f-283a-4a28-824f-4e96760574e8')
+          string('bf_username', 'e3799eb1-95df-4285-a24e-6721cd690daa')
+          string('bf_password', '40ce94f3-3c14-40d6-a75b-b48556a0c560')
+          usernamePassword('sauce_user', 'sauce_key', '1ba84f72-0a02-45e2-8869-cfa62df01251')
+          file('POSTMAN_FILE', '579f8660-01e6-4feb-8764-ec132432ebb1')
+        }
+	  }
+	}
     return this
   }
 

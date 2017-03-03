@@ -1,4 +1,4 @@
-// Copyright 2016, RadiantBlue Technologies, Inc.
+// Copyright 2016, RadiantBlue Technologies, Inc. 
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ class Repos {
       reponame: 'bf-api',
       team: 'beachfront',
       manual: ['sonar', 'archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
-      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'fortify']
+      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'bf-ia-broker',
       team: 'beachfront',
@@ -26,15 +26,20 @@ class Repos {
       manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
       pipeline: ['archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests']
     ],[
+      reponame: 'bf-swagger',
+      team: 'beachfront',
+      manual: ['gitlab_push'],
+      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+    ],[
       reponame: 'bf-tideprediction',
       team: 'beachfront',
       manual: ['sonar', 'archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
-      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'fortify']
+      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'bf-ui',
       team: 'beachfront',
       manual: ['sonar', 'archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
-      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_ua_tests_int', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_ua_tests_int', 'cf_push_stage', 'cf_bg_deploy_stage', 'beachfront_ua_tests_stage']
     ],[
       reponame: 'bftest-ui',
       team: 'beachfront',
@@ -110,20 +115,26 @@ class Repos {
       team: 'osh',
       pipeline: ['archive']
     ],[
+      //intentionally first among Piazza repos: see task#15556
+      reponame: 'pz-logger',
+      team: 'piazza',
+      manual: ['gitlab_push'],
+      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
+    ],[
       reponame: 'pz-access',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
     ],[
       reponame: 'pz-docs',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
     ],[
       reponame: 'pz-gateway',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
     ],[
       reponame: 'pz-gocommon',
       lib: true,
@@ -134,12 +145,12 @@ class Repos {
       reponame: 'pz-idam',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
     ],[
       reponame: 'pz-ingest',
       team: 'piazza',
       manual: ['cf_promote_to_prod', 'gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
     ],[
       reponame: 'pz-jobcommon',
       lib: true,
@@ -156,65 +167,67 @@ class Repos {
       reponame: 'pz-jobmanager',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
-    ],[
-      reponame: 'pz-logger',
-      team: 'piazza',
-      manual: ['gitlab_push'],
-      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
     ],[
       reponame: 'pz-sak',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['karma', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['karma', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
     ],[
       reponame: 'pz-search-metadata-ingest',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
     ],[
       reponame: 'pz-search-query',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
     ],[
       reponame: 'pz-servicecontroller',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
     ],[
       reponame: 'pz-swagger',
       team: 'piazza',
       manual: ['gitlab_push'],
+<<<<<<< HEAD
       pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
     ],[
       reponame: 'bf-swagger',
       team: 'beachfront',
       manual: ['gitlab_push'],
       pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'stage-release']
-    ],
-     //removing UUIDGen from this script 
-     //[
-     // reponame: 'pz-uuidgen',
-     // team: 'piazza',
-     // manual: ['gitlab_push'],
-     // pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
-    //],
-        [
-      reponame: 'pz-workflow',
+    ],[
+      reponame: 'pz-uuidgen',
       team: 'piazza',
       manual: ['gitlab_push'],
       pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+    ],[
+
+      pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
+    ],[
+      reponame: 'pz-uuidgen',
+      team: 'piazza',
+      manual: ['gitlab_push'],
+      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
+    ],[
+>>>>>>> master
+      reponame: 'pz-workflow',
+      team: 'piazza',
+      manual: ['gitlab_push'],
+      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
     ],[
       reponame: 'pzsvc-hello',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
     ],[
       reponame: 'pzsvc-preview-generator',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage']
+      pipeline: ['ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
     ],[
       reponame: 'pzsvc-gdaldem',
       team: 'pointcloud',
