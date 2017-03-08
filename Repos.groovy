@@ -194,11 +194,6 @@ class Repos {
       manual: ['gitlab_push'],
       pipeline: ['sonar', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
     ],[
-      reponame: 'pz-uuidgen',
-      team: 'piazza',
-      manual: ['gitlab_push'],
-      pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
-    ],[
       reponame: 'pz-workflow',
       team: 'piazza',
       manual: ['gitlab_push'],
