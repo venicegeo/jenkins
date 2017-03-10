@@ -103,6 +103,9 @@ class Steps {
           if (this.config.gh_repo == 'bf-ia-broker') {
             string('PL_API_KEY', 'e5b7076b-885a-43ba-9626-30ff950bd790')
           }
+          if (this.config.gh_repo == 'bf-ui') {
+            string('CONSENT_BANNER_TEXT', '824eee31-0408-49e2-9a7e-70b59297b1b9')
+          }
         }
 
         customTools(['Maven3_custom_tool']) {
