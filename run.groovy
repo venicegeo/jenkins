@@ -88,6 +88,11 @@ entries.each{ reponame, entry ->
 
       steps.blackbox()
 
+      if (jobname.contains("stage")) {
+        steps.override = 'stage.geointservices.io'
+        steps.init()
+      }
+
     } else if (jobname.contains("integration_tests_stage")) {
       base_job = new Base(
         jobject: mutant,
