@@ -172,7 +172,7 @@ class Repos {
       reponame: 'pz-sak',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['karma', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
+      pipeline: []
     ],[
       reponame: 'pz-search-metadata-ingest',
       team: 'piazza',
