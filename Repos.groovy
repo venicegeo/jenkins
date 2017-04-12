@@ -232,7 +232,7 @@ class Repos {
       team: 'sandbox',
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
     ],[
-      reponame: 'example-resh',
+      reponame: 'example-resh1',
       team: 'sandbox',
       pipeline: ['sonar','archive', 'cf_push_int', 'cf_bg_deploy_int']
     ],[
