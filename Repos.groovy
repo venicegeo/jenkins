@@ -232,6 +232,10 @@ class Repos {
       team: 'sandbox',
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int']
     ],[
+      reponame: 'example-resh1',
+      team: 'sandbox',
+      pipeline: ['sonar','archive', 'cf_push_int', 'cf_bg_deploy_int']
+    ],[
       reponame: 'tlv',
       team: 'tlv',
       manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
