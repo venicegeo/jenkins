@@ -24,7 +24,7 @@ class Repos {
       team: 'beachfront',
       team: 'beachfront',
       manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'beachfront_integration_tests_stage']
+      pipeline: ['archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'beachfront_integration_tests_stage']
     ],[
       reponame: 'bf-swagger',
       team: 'beachfront',
