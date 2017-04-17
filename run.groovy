@@ -93,7 +93,6 @@ entries.each{ reponame, entry ->
         steps.init()
       }
 
-
     } else if (jobname.contains("integration_tests_stage")) {
       base_job = new Base(
         jobject: mutant,
