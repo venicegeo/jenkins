@@ -84,9 +84,15 @@ entries.each{ reponame, entry ->
           slack_token: binding.variables.get("SLACK_TOKEN"),
           slack_domain: "venicegeo"
         ]
-      ).defaults().github()
+      ).defaults().github().gh_trigger()
 
       steps.blackbox()
+
+      if (jobname.contains("stage")) {
+        steps.override = 'stage.geointservices.io'
+        steps.init()
+      }
+
 
     } else if (jobname.contains("integration_tests_stage")) {
       base_job = new Base(
