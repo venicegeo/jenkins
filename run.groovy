@@ -596,6 +596,26 @@ bf_test_rollout.with {
   }
 }
 
+def bf_dev_rollout = pipelineJob('venice/beachfront/promotion/dev')
+
+def bf_dev_cps = ' '
+entries.each{ reponame, entry ->
+  if (entry.team == 'beachfront' && entry.lib != true) {
+    bf_dev_cps = bf_dev_cps + """
+      build job: "venice/beachfront/${reponame}/dev/0-promote", wait: true
+"""
+  }
+}
+
+bf_dev_rollout.with {
+  definition {
+    cps {
+      script(bf_dev_cps)
+      sandbox()
+    }
+  }
+}
+
 // HACKS FOR INTEGRATION TESTS
 
 // pz integration test repo
