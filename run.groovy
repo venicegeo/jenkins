@@ -275,6 +275,9 @@ entries.each{ reponame, entry ->
   def release_job
   def release_base
   def release_steps
+  def dev_promotion_job
+  def dev_promotion_base
+  def dev_promotion_steps
   def test_promotion_job
   def test_promotion_base
   def test_promotion_steps
@@ -333,7 +336,27 @@ entries.each{ reponame, entry ->
         }
       }
     }
-    // -- end production
+      // -- end production
+
+     // -- dev pipeline
+     folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/dev") { 
+         displayName("${config.gh_repo}/dev") 
+        } 
+        
+        dev_promotion_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/dev/0-promote") 
+        dev_promotion_base = new Base( 
+          jobject: dev_promotion_job, 
+          slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit           sha: `\$GIT_COMMIT`", 
+          config: config 
+        ).defaults().github().parameters() 
+    
+ 
+        dev_promotion_steps = new Steps( 
+          jobject: dev_promotion_job, 
+          config: config, 
+          jobname: "promote" 
+        ).init().git_checkout().job_script().cf_promote_to_prod().create_properties_file()
+    // -- end dev pipeline
 
     // -- hotfix pipeline
     folder("${config.jenkins_org}/${config.team}/${config.gh_repo}/hotfix-prod") {
