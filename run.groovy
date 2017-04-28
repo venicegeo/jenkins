@@ -345,7 +345,8 @@ entries.each{ reponame, entry ->
         
         dev_promotion_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/dev/0-promote") 
         dev_promotion_base = new Base( 
-          jobject: dev_promotion_job, 
+          jobject: dev_promotion_job,
+          promotion: true, 
           slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit           sha: `\$GIT_COMMIT`", 
           config: config 
         ).defaults().github().parameters() 
