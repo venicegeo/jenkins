@@ -566,8 +566,11 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
 
       mv \$root/\$APP.\$EXT \$artifact
 
+      mkdir -p \$root/.m2/repository
+
       # TODO: use Venice instead of Piazza
       mvn --quiet dependency:get \
+        -Dmaven.repo.local="\$root/.m2/repository" \
         -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
         -DrepositoryId=nexus \
         -DartifactId=\$APP \
@@ -582,6 +585,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
 
       # push artifact to nexus
       mvn --quiet deploy:deploy-file \
+        -Dmaven.repo.local="\$root/.m2/repository" \
         -Durl="https://nexus.devops.geointservices.io/content/repositories/Piazza" \
         -DrepositoryId=nexus \
         -Dfile=\$artifact \
