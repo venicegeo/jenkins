@@ -356,7 +356,7 @@ entries.each{ reponame, entry ->
           jobject: dev_promotion_job, 
           config: config, 
           jobname: "promote" 
-        ).init().git_checkout().job_script().cf_promote_to_dev().create_properties_file()
+        ).init().git_checkout().job_script().cf_promote_to_prod().create_properties_file()
     // -- end dev pipeline
 
     // -- hotfix pipeline
