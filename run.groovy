@@ -347,7 +347,7 @@ entries.each{ reponame, entry ->
         dev_promotion_base = new Base( 
           jobject: dev_promotion_job,
           promotion: true, 
-          slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit           sha: `\$GIT_COMMIT`", 
+          slack_message: "      component_revision: `\$component_revision`\n      domain: `\$target_domain`\n      commit sha: `\$GIT_COMMIT`", 
           config: config 
         ).defaults().github().parameters() 
     
@@ -356,7 +356,7 @@ entries.each{ reponame, entry ->
           jobject: dev_promotion_job, 
           config: config, 
           jobname: "promote" 
-        ).init().git_checkout().job_script().cf_promote_to_prod().create_properties_file()
+        ).init().git_checkout().job_script().cf_promote_to_dev().create_properties_file()
     // -- end dev pipeline
 
     // -- hotfix pipeline
