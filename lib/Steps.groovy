@@ -363,6 +363,15 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
     return this
   }
 
+  def cf_release_dev() { 
+        this.override = "dev.geointservices.io" 
+        this.init() 
+        this.cf_push_release() 
+        this.cf_bg_deploy() 
+    
+    return this 
+  }
+ 
   def cf_release_test() {
     this.override = "test.geointservices.io"
     this.init()
