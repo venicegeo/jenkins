@@ -394,6 +394,19 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
     return this
   }
 
+  def cf_promote_to_dev() {
+    this.override = "int.geointservices.io"
+    this.init()
+    this.cf_set_version()
+
+    this.override = "dev.geointservices.io"
+    this.init()
+    this.cf_push()
+    this.cf_bg_deploy()
+
+    return this
+  }
+
   def cf_promote_to_prod() {
     this.override = "stage.geointservices.io"
     this.init()
