@@ -586,6 +586,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
         export PATH=\$PATH:\$bin
       done
 
+      root=\$(pwd -P)
       mv \$root/\$APP.\$EXT \$artifact
 
       mkdir -p \$root/.m2/repository
