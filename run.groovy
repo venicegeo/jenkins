@@ -278,6 +278,9 @@ entries.each{ reponame, entry ->
   def dev_promotion_job
   def dev_promotion_base
   def dev_promotion_steps
+  def dev_release_job 
+  def dev_release_base 
+  def dev_release_steps
   def test_promotion_job
   def test_promotion_base
   def test_promotion_steps
@@ -357,6 +360,39 @@ entries.each{ reponame, entry ->
           config: config, 
           jobname: "promote" 
         ).init().git_checkout().job_script().cf_promote_to_dev().create_properties_file()
+
+        dev_release_job = job("${config.jenkins_org}/${config.team}/${config.gh_repo}/dev/1-release") 
+ 
+        dev_release_base = new Base( 
+          jobject: dev_release_job, 
+          slack_message: "      component: `\$component`\n      component_revision: `\$component_revision`", 
+          config: [ 
+            gh_org: 'venicegeo', 
+            gh_repo: 'pz-release', 
+            gh_branch: 'master', 
+            slack_token: binding.variables.get("SLACK_TOKEN"), 
+            slack_domain: "venicegeo" 
+          ] 
+        ).defaults().github() 
+    
+        dev_release_steps = new Steps( 
+          jobject: dev_release_job, 
+          config: config, 
+          jobname: 'dev-release' 
+        ).init().gh_write().job_script().cf_release_dev() 
+    
+        dev_promotion_job.with { 
+          publishers { 
+            downstreamParameterized { 
+              trigger("${config.jenkins_org}/${config.team}/${config.gh_repo}/dev/1-release") { 
+                condition('SUCCESS') 
+                parameters { 
+                  propertiesFile('pipeline.properties', true) 
+                } 
+              } 
+            } 
+          } 
+        } 
     // -- end dev pipeline
 
     // -- hotfix pipeline
