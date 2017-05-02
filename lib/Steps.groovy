@@ -634,8 +634,11 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
         export PATH=\$PATH:\$bin
       done
 
+      root=\$(pwd -P)
+      mkdir -p \$root/.m2/repository
 
       mvn --quiet dependency:get \
+        -Dmaven.repo.local="\$root/.m2/repository" \
         -DremoteRepositories="nexus::default::https://nexus.devops.geointservices.io/content/repositories/Piazza" \
         -DrepositoryId=nexus \
         -DartifactId=\$APP \
