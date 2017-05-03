@@ -47,12 +47,6 @@ class Repos {
       manual: ['gitlab_push'],
       pipeline: ['archive']
     ],[
-      reponame: 'bf-geojson-geopkg-converter',
-      lib: true,
-      team: 'beachfront',
-      manual: ['gitlab_push'],
-      pipeline: ['archive']
-    ],[
       reponame: 'geojson-go',
       lib: true,
       team: 'beachfront',
@@ -116,6 +110,12 @@ class Repos {
       team: 'osh',
       pipeline: ['archive']
     ],[
+      reponame: 'bf-geojson-geopkg-converter', 
+      lib: true,      
+      team: 'beachfront', 
+      manual: ['gitlab_push'], 
+      pipeline: ['archive']    
+   ],[ 
       //intentionally first among Piazza repos: see task#15556
       reponame: 'pz-logger',
       team: 'piazza',
