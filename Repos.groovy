@@ -151,7 +151,7 @@ class Repos {
       lib: true,
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'fortify']
+      pipeline: ['sonar', 'ionchannel_pom', 'archive']
     ],[
       reponame: 'pz-javalogger',
       lib: true,
