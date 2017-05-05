@@ -214,7 +214,7 @@ class Steps {
 
       configure { project ->
         project / buildWrappers << 'jenkins.plugins.nodejs.tools.NpmPackagesBuildWrapper' {
-          nodeJSInstallationName "Node 5.7.0"
+          nodeJSInstallationName "NodeJS_6_3_1"
         }
       }
 
@@ -500,7 +500,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       }
       configure { project ->
         project / buildWrappers << 'jenkins.plugins.nodejs.tools.NpmPackagesBuildWrapper' {
-          nodeJSInstallationName "Node 5.7.0"
+          nodeJSInstallationName "NodeJS_6_3_1"
         }
       }
 
