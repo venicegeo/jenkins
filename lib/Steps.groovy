@@ -116,7 +116,7 @@ class Steps {
       if (this.config.gh_repo == 'bf-ui') {
        configure { project ->
           project / buildWrappers << 'jenkins.plugins.nodejs.tools.NpmPackagesBuildWrapper' {
-            nodeJSInstallationName "Node 5.7.0"
+            nodeJSInstallationName "NodeJS_6"
           }
         }
       }
