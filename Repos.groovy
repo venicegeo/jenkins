@@ -110,16 +110,6 @@ class Repos {
       manual: ['gitlab_push'],
       pipeline: ['test', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
     ],[
-      reponame: 'pz-access',
-      team: 'piazza',
-      manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
-    ],[
-      reponame: 'pz-gateway',
-      team: 'piazza',
-      manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
-    ],[
       reponame: 'pz-gocommon',
       lib: true,
       team: 'piazza',
@@ -129,11 +119,6 @@ class Repos {
       reponame: 'pz-idam',
       team: 'piazza',
       manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
-    ],[
-      reponame: 'pz-ingest',
-      team: 'piazza',
-      manual: ['cf_promote_to_prod', 'gitlab_push'],
       pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
     ],[
       reponame: 'pz-jobcommon',
@@ -148,27 +133,12 @@ class Repos {
       manual: ['gitlab_push'],
       pipeline: ['ionchannel_pom', 'archive', 'fortify']
     ],[
-      reponame: 'pz-jobmanager',
-      team: 'piazza',
-      manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
-    ],[
-      reponame: 'pz-sak',
-      team: 'piazza',
-      manual: ['gitlab_push'],
-      pipeline: []
-    ],[
       reponame: 'pz-search-metadata-ingest',
       team: 'piazza',
       manual: ['gitlab_push'],
       pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
     ],[
       reponame: 'pz-search-query',
-      team: 'piazza',
-      manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
-    ],[
-      reponame: 'pz-servicecontroller',
       team: 'piazza',
       manual: ['gitlab_push'],
       pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage','run_integration_tests_stage']
