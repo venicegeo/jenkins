@@ -74,6 +74,11 @@ class Repos {
       manual: ['archive', 'cf_push', 'cf_bg_deploy'],
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'beachfront_integration_tests']
     ],[
+      reponame: 'pz-gateway',
+      team: 'piazza',
+      manual: [],
+      pipeline: []
+    ],[
       reponame: 'osh-comm',
       gh_org: 'OpenSensorHub',
       team: 'osh',
