@@ -24,6 +24,13 @@ ensure you have a `JenkinsFile` in your repository. You can find out more about 
 ./scripts/test.sh
 ```
 
+## Replicating repos for disconnected environments using gitlab
+
+First, install the [gitlab cli](http://narkoz.github.io/gitlab/installation).
+
+You can then script the mirroring of your private or public github repos
+automatically.
+
 ## License
 
 Copyright 2016, RadiantBlue Technologies, Inc.
