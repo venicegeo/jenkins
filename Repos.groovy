@@ -104,11 +104,6 @@ class Repos {
       team: 'osh',
       pipeline: ['archive']
     ],[
-      reponame: 'pz-idam',
-      team: 'piazza',
-      manual: ['gitlab_push'],
-      pipeline: ['sonar', 'ionchannel_pom', 'archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'run_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'run_integration_tests_stage']
-    ],[
       reponame: 'pzsvc-gdaldem',
       team: 'pointcloud',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
