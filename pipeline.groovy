@@ -32,7 +32,7 @@ for(i in pzprojects) {
 }
 
 // BF Projects
-def bfprojects = ['bf_TidePrediction', 'bf-ui', 'bf-swagger', 'bf-api', 'pzsvc-ndwi-py', 'bf-geojson-geopkg-converter', 'bf-ui-health']
+def bfprojects = ['bf_TidePrediction', 'bf-ui', 'bf-swagger', 'bf-api', 'pzsvc-ndwi-py', 'bf-geojson-geopkg-converter', 'bftest-integration']
 
 for(i in bfprojects) {
   pipelineJob("venice/beachfront/${i}-pipeline") {
