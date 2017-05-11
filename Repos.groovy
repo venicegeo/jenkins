@@ -75,9 +75,58 @@ class Repos {
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'beachfront_integration_tests']
     ],[
       reponame: 'pz-gateway',
-      team: 'piazza',
-      manual: [],
-      pipeline: []
+      team: 'piazza'
+    ],[
+      reponame: 'pz-access',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-gateway',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-idam',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-ingest',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-jobcommon',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-jobmanager',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-search-metadata-ingest',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-search-query',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-servicecontroller',
+      team: 'piazza'
+    ],[
+      reponame: 'pzsvc-preview-generator',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-gocommon',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-logger',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-workflow',
+      team: 'piazza'
+    ],[
+      reponame: 'pzsvc-hello',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-docs',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-swagger',
+      team: 'piazza'
+    ],[
+      reponame: 'pz-sak',
+      team: 'piazza'
     ],[
       reponame: 'osh-comm',
       gh_org: 'OpenSensorHub',
