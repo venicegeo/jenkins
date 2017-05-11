@@ -128,36 +128,6 @@ class Repos {
       reponame: 'pz-sak',
       team: 'piazza'
     ],[
-      reponame: 'osh-comm',
-      gh_org: 'OpenSensorHub',
-      team: 'osh',
-      pipeline: ['archive']
-    ],[
-      reponame: 'osh-core',
-      gh_org: 'OpenSensorHub',
-      team: 'osh',
-      pipeline: ['archive']
-    ],[
-      reponame: 'osh-processing',
-      gh_org: 'OpenSensorHub',
-      team: 'osh',
-      pipeline: ['archive']
-    ],[
-      reponame: 'osh-security',
-      gh_org: 'OpenSensorHub',
-      team: 'osh',
-      pipeline: ['archive']
-    ],[
-      reponame: 'osh-sensors',
-      gh_org: 'OpenSensorHub',
-      team: 'osh',
-      pipeline: ['archive']
-    ],[
-      reponame: 'osh-services',
-      gh_org: 'OpenSensorHub',
-      team: 'osh',
-      pipeline: ['archive']
-    ],[
       reponame: 'pzsvc-gdaldem',
       team: 'pointcloud',
       manual: ['cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
