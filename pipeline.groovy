@@ -3,6 +3,11 @@
 // other pipeline jobs. Each repo must contain a JenkinsFile
 // that denotes the steps to take when building.
 
+
+folder("venice/piazza") {
+  displayName("piazza")
+}
+
 def gitprefix = 'https://github.com/venicegeo/'
 
 // PZ Projects
@@ -29,6 +34,10 @@ for(i in pzprojects) {
       }
     }
   }
+}
+
+folder("venice/beachfront") {
+  displayName("beachfront")
 }
 
 // BF Projects
