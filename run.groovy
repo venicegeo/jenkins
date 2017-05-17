@@ -734,10 +734,10 @@ def bf_gh_integration_steps = new Steps(
 ).init().blackbox().job_script().git_checkout().gh_trigger().bf_test_secrets()
 
 // bf integration test repo for beachfront health job
-bf_gh_integration_test_job = job("venice/beachfront/bftest-integration/beachfront-health") //afrojetest
+bf_gh_integration_test_healthjob = job("venice/beachfront/bftest-integration/beachfront-health") //afrojetest
 
 new Base(
-  jobject: bf_gh_integration_test_job,
+  jobject: bf_gh_integration_test_healthjob,
   config: [
     gh_org: 'venicegeo',
     gh_repo: 'bftest-integration',
@@ -750,8 +750,8 @@ new Base(
 ).parameters().defaults().github().bfuapasswords()
 
 
-def bf_gh_integration_steps = new Steps(
-  jobject: bf_gh_integration_test_job,
+def bf_gh_integration_test_healthjob_steps = new Steps(
+  jobject: bf_gh_integration_test_healthjob,
   config: global_config,
   jobname: "beachfront-health"
 ).init().blackbox().job_script().git_checkout().gh_trigger().bf_test_secrets()
