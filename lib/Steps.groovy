@@ -505,7 +505,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       }
 
       steps {
-        shell('npm set cache \$(pwd)/.npmcache; npm install newman@2 karma-cli')
+        shell(this._blackbox_script())
       }
     }
 
@@ -848,6 +848,16 @@ EOF
       git push git@gitlab.devops.geointservices.io:${this.config.gh_org}/${this.config.gh_repo} master
 
       exit \$?
+    """
+  }
+  
+  def _blackbox_script() {
+    return """
+	  HOME=$WORKSPACE
+	  export root=$(pwd)
+	  mkdir -p $root/.npmcache
+	  export NPM_CONFIG_CACHE=$root/.npmcache
+	  npm set cache \$(pwd)/.npmcache; npm install newman@2 karma-cli
     """
   }
 
