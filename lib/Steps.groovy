@@ -853,11 +853,11 @@ EOF
   
   def _blackbox_script() {
     return """
-	  HOME=$WORKSPACE
-	  export root=$(pwd)
-	  mkdir -p $root/.npmcache
-	  export NPM_CONFIG_CACHE=$root/.npmcache
-	  npm set cache \$(pwd)/.npmcache; npm install newman@2 karma-cli
+      HOME=\$WORKSPACE
+      export root=\$(pwd)
+      mkdir -p \$root/.npmcache
+      export NPM_CONFIG_CACHE=\$root/.npmcache
+      npm set cache \$(pwd)/.npmcache; npm install newman@2 karma-cli
     """
   }
 
