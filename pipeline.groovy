@@ -32,7 +32,7 @@ for(i in pzprojects) {
 }
 
 // BF Projects
-def bfprojects = ['bf_TidePrediction', 'bf-ui', 'bf-swagger', 'bf-api', 'pzsvc-ndwi-py', 'bf-geojson-geopkg-converter', 'bftest-integration']
+def bfprojects = ['bf_TidePrediction', 'bf-ui', 'bf-swagger', 'bf-api', 'pzsvc-ndwi-py', 'bf-geojson-geopkg-converter']
 
 for(i in bfprojects) {
   pipelineJob("venice/beachfront/${i}-pipeline") {
@@ -54,6 +54,26 @@ for(i in bfprojects) {
    }
   }
 }
+
+//Beachfront health test job
+  pipelineJob("venice/beachfront/beachfront-health-pipeline") {
+    description("Beachfront pipeline")
+    triggers {
+      cron('H 8 * * *')
+    }
+    definition {
+      cpsScm {
+        scm {
+          git {
+            remote {
+              url("https://github.com/venicegeo/bftest-integration")
+              branch("*/master")
+            }
+          }
+        }
+     }
+   }
+ }
 
 // Boundless Projects
 //def boundlessgitprefix = 'https://github.com/boundlessgeo/'
