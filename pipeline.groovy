@@ -55,7 +55,7 @@ for(i in bfprojects) {
   }
 }
 
-//Beachfront health test job
+//Beachfront health-test job
   pipelineJob("venice/beachfront/beachfront-health-pipeline") {
     description("Beachfront pipeline")
     triggers {
