@@ -59,7 +59,7 @@ for(i in bfprojects) {
   pipelineJob("venice/beachfront/beachfront-health-pipeline") {
     description("Beachfront pipeline")
     triggers {
-      cron('H 8 * * *')
+      cron('* * * * *')
     }
     definition {
       cpsScm {
