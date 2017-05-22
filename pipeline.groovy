@@ -11,22 +11,80 @@ folder("venice/piazza") {
 def gitprefix = 'https://github.com/venicegeo/'
 
 // PZ Projects
-def pzprojects = ['pz-access', 'pz-docs', 'pz-gateway', 'pz-gocommon', 'pz-idam', 'pz-ingest', 'pz-jobcommon',
-   'pz-jobmanager', 'pz-logger', 'pz-search-metadata-ingest', 'pz-search-query', 'pz-servicecontroller',
-   'pz-sak', 'pz-swagger', 'pz-workflow', 'pzsvc-hello', 'pzsvc-preview-generator', 'pztest-integration']
+def pzprojects = [
+  [
+    name: 'pz-access',
+    threadfixId: '115'
+  ],[
+    name: 'pz-docs',
+    threadfixId: '115'
+  ],[
+    name: 'pz-gateway',
+    threadfixId: '115'
+  ],[
+    name: 'pz-gocommon',
+    threadfixId: '115'
+  ],[
+    name: 'pz-idam',
+    threadfixId: '115'
+  ],[
+    name: 'pz-ingest',
+    threadfixId: '115'
+  ],[
+    name: 'pz-jobcommon',
+    threadfixId: '115'
+  ],[
+    name: 'pz-jobmanager',
+    threadfixId: '115'
+  ],[
+    name: 'pz-logger',
+    threadfixId: '115'
+  ],[
+    name: 'pz-search-metadata-ingest',
+    threadfixId: '115'
+  ],[
+    name: 'pz-search-query',
+    threadfixId: '115'
+  ],[
+    name: 'pz-servicecontroller',
+    threadfixId: '115'
+  ],[
+    name: 'pz-sak',
+    threadfixId: '115'
+  ],[
+    name: 'pz-swagger',
+    threadfixId: '115'
+  ],[
+    name: 'pz-workflow',
+    threadfixId: '115'
+  ],[
+    name: 'pzsvc-hello',
+    threadfixId: '115'
+  ],[
+    name: 'pzsvc-preview-generator',
+    threadfixId: '115'
+  ],[
+    name: 'pztest-integration',
+    threadfixId: '115'
+  ]
+]
 
 for(i in pzprojects) {
-  pipelineJob("venice/piazza/${i}-pipeline") {
+  pipelineJob("venice/piazza/${i.name}-pipeline") {
     description("Piazza pipeline")
     triggers {
       gitHubPushTrigger()
+    }
+    environmentVariables {
+      env('THREADFIX_ID', i.threadfixId)
+      env('INT_CF_DOMAIN', 'int.geointservices.io')
     }
     definition {
       cpsScm {
         scm {
           git {
             remote {
-              url("${gitprefix}${i}")
+              url("${gitprefix}${i.name}")
               branch("*/master")
             }
           }
