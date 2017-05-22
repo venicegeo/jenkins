@@ -76,7 +76,7 @@ for(i in bfhealthprojects) {
      }
    }
  }
-
+}
 // Boundless Projects
 //def boundlessgitprefix = 'https://github.com/boundlessgeo/'
 //
