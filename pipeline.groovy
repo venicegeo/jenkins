@@ -56,7 +56,9 @@ for(i in bfprojects) {
 }
 
 //Beachfront health-test job
-  pipelineJob("venice/beachfront/beachfront-health-pipeline") {
+def bfhealthprojects = ['bftest-integration']
+for(i in bfhealthprojects) {
+  pipelineJob("venice/beachfront/${i}-pipeline") {
     description("Beachfront pipeline")
     triggers {
       cron('* * * * *')
@@ -66,7 +68,7 @@ for(i in bfprojects) {
         scm {
           git {
             remote {
-              url("https://github.com/venicegeo/bftest-integration")
+              url("${gitprefix}${i}")
               branch("*/master")
             }
           }
