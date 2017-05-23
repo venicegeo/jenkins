@@ -67,7 +67,7 @@ class Repos {
       reponame: 'pzsvc-ndwi-py',
       team: 'beachfront',
       manual: ['archive', 'cf_push', 'cf_bg_deploy'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'beachfront_integration_tests']
+      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'beachfront_integration_tests_stage']
     ],[
       reponame: 'pzsvc-ossim',
       team: 'beachfront',
