@@ -270,7 +270,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
             string('BEACHFRONT_GEOAXIS_SECRET', 'e83dfc65-4462-4a80-a04d-57ab8da20ebd')
           }
           if (this.config.gh_repo == 'pzsvc-ossim' || this.config.gh_repo == 'pzsvc-ndwi-py') {
-            usernamePassword('BEACHFRONT_PIAZZA_AUTH', '93a0311a-caac-4f5a-bfcb-9ad18b0c0cd1')
+            usernamePassword('BEACHFRONT_PIAZZA_AUTH', 'Bf-Api-GeoAxis-PKI-Credentials')
           }
           if (this.config.gh_repo == 'pz-idam') {
             string('JKS_PASSPHRASE', 'ff7148c6-2855-4f3d-bd2e-3aa296b09d98')
