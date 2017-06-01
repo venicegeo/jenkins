@@ -141,10 +141,10 @@ for(i in bfhealthprojects) {
           }
         }
      }
+      paramaters {
+        stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", "Artifact storage location for Maven and others.")
+      }
    }
-    paramaters {
-      stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", "Artifact storage location for Maven and others.")
-    }
   }
 }
 
