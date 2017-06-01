@@ -91,6 +91,9 @@ for(i in pzprojects) {
         }
       }
     }
+   parameters {
+     stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/conten    t/repositories/Piazza-Group/", "Artifact storage location for Maven and others.")
+   }
   }
 }
 
@@ -142,9 +145,6 @@ for(i in bfhealthprojects) {
         }
      }
    }
-   parameters {
-     stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/conten    t/repositories/Piazza-Group/", "Artifact storage location for Maven and others.")
-  }
  }
 }
 // Boundless Projects
