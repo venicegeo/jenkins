@@ -92,7 +92,7 @@ for(i in pzprojects) {
       }
     }
    parameters {
-     stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/conten    t/repositories/Piazza-Group/", "Artifact storage location for Maven and others.")
+     stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", "Artifact storage location for Maven and others.")
    }
   }
 }
