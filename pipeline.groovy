@@ -103,7 +103,7 @@ folder("venice/beachfront") {
 }
 
 // BF Projects
-def bfprojects = ['bf_TidePrediction', 'bf-ui', 'bf-swagger', 'bf-api', 'pzsvc-ndwi-py', 'bf-geojson-geopkg-converter', 'pzsvc-wta-py']
+def bfprojects = ['bf_TidePrediction', 'bf-ui', 'bf-swagger', 'bf-api', 'pzsvc-ndwi-py', 'bf-geojson-geopkg-converter']
 
 for(i in bfprojects) {
   pipelineJob("venice/beachfront/${i}-pipeline") {
