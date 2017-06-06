@@ -93,6 +93,7 @@ for(i in pzprojects) {
     }
    parameters {
      stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", "Artifact storage location for Maven and others.")
+     stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
    }
   }
 }
@@ -122,6 +123,11 @@ for(i in bfprojects) {
        }
      }
    }
+   parameters {
+     stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", "Artifact storage location for Maven and others.")
+     stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
+   }
+
   }
 }
 
