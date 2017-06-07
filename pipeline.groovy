@@ -94,7 +94,7 @@ for(i in pzprojects) {
    parameters {
      stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", "Artifact storage location for Maven and others.")
      stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
-     stringParam("GIT_URL", "https://github.com/venicegeo", "Git repository base URL")
+     stringParam("GIT_URL", "https://github.com/venicegeo/${i.name}.git", "Git URL")
      stringParam("GIT_BRANCH", "master", "Default git branch")
    }
   }
