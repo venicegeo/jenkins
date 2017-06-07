@@ -96,6 +96,9 @@ for(i in pzprojects) {
      stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
      stringParam("GIT_URL", "https://github.com/venicegeo/${i.name}.git", "Git URL")
      stringParam("GIT_BRANCH", "master", "Default git branch")
+     stringParam("PCF_SPACE", "int", "Cloudfoundry space")
+     stringParam("PCF_DOMAIN", "int.geointservices.io", "Cloudfoundry domain")
+     stringParam("PCF_API_ENDPOINT", "api.system.dev.east.paas.geointservices.io", "Cloudfoundry API endpoint)
    }
   }
 }
