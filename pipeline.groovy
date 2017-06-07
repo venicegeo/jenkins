@@ -98,7 +98,7 @@ for(i in pzprojects) {
      stringParam("GIT_BRANCH", "master", "Default git branch")
      stringParam("PCF_SPACE", "int", "Cloudfoundry space")
      stringParam("PCF_DOMAIN", "int.geointservices.io", "Cloudfoundry domain")
-     stringParam("PCF_API_ENDPOINT", "api.system.dev.east.paas.geointservices.io", "Cloudfoundry API endpoint)
+     stringParam("PCF_API_ENDPOINT", "api.system.dev.east.paas.geointservices.io", "Cloudfoundry API endpoint")
      stringParam("PCF_ORG", "Optimus", "PCF Organization")
    }
   }
