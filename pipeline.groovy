@@ -100,7 +100,7 @@ for(i in pzprojects) {
       stringParam("PCF_SPACE", "int", "Cloudfoundry space")
       stringParam("PCF_DOMAIN", "int.geointservices.io", "Cloudfoundry domain")
       stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
-      stringParam("PCF_ORG", "Optimus", "PCF Organization")
+      stringParam("PCF_ORG", "piazza", "PCF Organization")
       credentialsParam("THREADFIX_API_KEY") {
         defaultValue("PZ_THREADFIX_API_KEY")
         description("Piazza's Threadfix API Key")
