@@ -93,13 +93,13 @@ for(i in pzprojects) {
     }
    parameters {
      stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", "Artifact storage location for external maven dependencies.")
-     stringParam("ARTIFACT_STORAGE_DEPLOY_URL", "https://nexus.gs.mil/content/repositories/venice-release/", "Project artifact storage location for maven and others.")
+     stringParam("ARTIFACT_STORAGE_DEPLOY_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza/", "Project artifact storage location for maven and others.")
      stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
      stringParam("GIT_URL", "https://github.com/venicegeo/${i.name}.git", "Git URL")
      stringParam("GIT_BRANCH", "master", "Default git branch")
      stringParam("PCF_SPACE", "int", "Cloudfoundry space")
      stringParam("PCF_DOMAIN", "int.geointservices.io", "Cloudfoundry domain")
-     stringParam("PCF_API_ENDPOINT", "api.system.dev.east.paas.geointservices.io", "Cloudfoundry API endpoint")
+     stringParam("PCF_API_ENDPOINT", "api.system.geointservices.io", "Cloudfoundry API endpoint")
      stringParam("PCF_ORG", "Optimus", "PCF Organization")
      stringParam("PZ_THREADFIX_API_KEY", "app-piazza", "Threadfix API Key")
    }
