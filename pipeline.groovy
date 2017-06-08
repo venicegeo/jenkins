@@ -100,9 +100,10 @@ for(i in pzprojects) {
       stringParam("PHASE_ONE_PCF_SPACE", "int", "Phase one Cloudfoundry space")
       stringParam("PHASE_ONE_PCF_DOMAIN", "int.geointservices.io", "Phase one Cloudfoundry domain")
       stringParam("PHASE_TWO_PCF_SPACE", "stage", "Phase two Cloudfoundry space")
-      stringParam("PHASE_TWO_PCF_DOMAIN", "stage.geointservices.io", "Phase two Cloudfoundry domain")      
+      stringParam("PHASE_TWO_PCF_DOMAIN", "stage.geointservices.io", "Phase two Cloudfoundry domain")
       stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
       stringParam("PCF_ORG", "piazza", "PCF Organization")
+      stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
       credentialsParam("THREADFIX_API_KEY") {
         defaultValue("PZ_THREADFIX_API_KEY")
