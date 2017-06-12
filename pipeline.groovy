@@ -105,6 +105,7 @@ for(i in pzprojects) {
       stringParam("PCF_ORG", "piazza", "PCF Organization")
       stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
+      booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       credentialsParam("THREADFIX_API_KEY") {
         defaultValue("PZ_THREADFIX_API_KEY")
         description("Piazza's Threadfix API Key")
