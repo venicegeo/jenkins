@@ -95,6 +95,7 @@ for(i in pzprojects) {
       //stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", "Artifact storage location for external maven dependencies.")
       stringParam("ARTIFACT_STORAGE_DEPLOY_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza/", "Project artifact storage location for maven and others.")
       stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
+      stringParam("SONAR_URL", "https://sonar.geointservices.io", "URL to upload data to sonar.")
       stringParam("GIT_URL", "https://github.com/venicegeo/${i.name}.git", "Git URL")
       stringParam("GIT_BRANCH", "master", "Default git branch")
       stringParam("PHASE_ONE_PCF_SPACE", "int", "Phase one Cloudfoundry space")
@@ -109,6 +110,10 @@ for(i in pzprojects) {
       credentialsParam("THREADFIX_API_KEY") {
         defaultValue("PZ_THREADFIX_API_KEY")
         description("Piazza's Threadfix API Key")
+      }
+      credentialsParam("SONAR_TOKEN") {
+        defaultValue("sonar-publish-token")
+        description("Sonar Upload Token")
       }
     }
     environmentVariables {
