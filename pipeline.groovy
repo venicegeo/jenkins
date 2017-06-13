@@ -115,6 +115,14 @@ for(i in pzprojects) {
         defaultValue("sonar-publish-token")
         description("Sonar Upload Token")
       }
+      credentialsParam("PCF_CREDS") {
+        defaultValue("ldap_baxtersh")
+        description("Cloud Foundry Credentials")
+      }
+      credentialsParam("ARTIFACT_STORAGE_CREDS") {
+        defaultValue("baxtersh_npm_credentials")
+        description("Nexus Repository Credentials")
+      }      
     }
     environmentVariables {
       env("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/")
