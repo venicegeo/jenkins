@@ -120,7 +120,7 @@ for(i in pzprojects) {
         description("Cloud Foundry Credentials")
       }
       credentialsParam("ARTIFACT_STORAGE_CREDS") {
-        defaultValue("baxtersh_npm_credentials")
+        defaultValue("7851d06c-58a9-4012-8127-0071f2242987")
         description("Nexus Repository Credentials")
       }      
     }
