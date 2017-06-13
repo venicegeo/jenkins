@@ -108,6 +108,7 @@ for(i in pzprojects) {
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Secuirty Scan Pass/Fail archive package")
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
+      booleanParam("SECENV", false, "Enable security banner and configurations")
       credentialsParam("THREADFIX_API_KEY") {
         defaultValue("PZ_THREADFIX_API_KEY")
         description("Piazza's Threadfix API Key")
@@ -123,7 +124,7 @@ for(i in pzprojects) {
       credentialsParam("ARTIFACT_STORAGE_CREDS") {
         defaultValue("nexus-deployment")
         description("Nexus Repository Credentials")
-      }      
+      }
     }
     environmentVariables {
       env("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/")
