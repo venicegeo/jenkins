@@ -121,6 +121,10 @@ for(i in pzprojects) {
         defaultValue("ldap_baxtersh")
         description("Cloud Foundry Credentials")
       }
+      credentialsParam("POSTMAN_SECRET_FILE") {
+        defaultValue("579f8660-01e6-4feb-8764-ec132432ebb1")
+        description("Environment file containing credentials for Postman")
+      }
       credentialsParam("ARTIFACT_STORAGE_CREDS") {
         defaultValue("nexus-deployment")
         description("Nexus Repository Credentials")
