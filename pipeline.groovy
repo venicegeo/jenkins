@@ -140,14 +140,8 @@ for(i in pzprojects) {
           defaultValue("ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8")
           description("Java Key Store")
         }
-        stringParam("JKS_PASSPHRASE") {
-          defaultValue("ff7148c6-2855-4f3d-bd2e-3aa296b09d98")
-          description("Java Key Store Passphrase")
-        }
-        stringParam("PZ_PASSPHRASE") {
-          defaultValue("da3092c4-d13d-4078-ab91-a630c61547aa")
-          description("PZ Passphrase")
-        }
+        stringParam("JKS_PASSPHRASE", "ff7148c6-2855-4f3d-bd2e-3aa296b09d98", "Java Key Store Passphrase")
+        stringParam("PZ_PASSPHRASE", "da3092c4-d13d-4078-ab91-a630c61547aa", "PZ Passphrase")
       }
     }
     environmentVariables {
