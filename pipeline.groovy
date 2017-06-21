@@ -67,6 +67,10 @@ def pzprojects = [
   ],[
     name: 'pztest-integration',
     threadfixId: '115'
+  ],[
+    name: 'pz-release',
+    threadfixId: '115',
+    requiresTagging: true
   ]
 ]
 
@@ -113,6 +117,9 @@ for(i in pzprojects) {
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
+      if (i.requiresTagging) {
+        booleanParam("TAG_AND_RELEASE", false, "Tag and release all repos to bump versions")
+      }
       credentialsParam("THREADFIX_API_KEY") {
         defaultValue("PZ_THREADFIX_API_KEY")
         description("Piazza's Threadfix API Key")
