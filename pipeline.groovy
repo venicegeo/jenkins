@@ -111,7 +111,7 @@ for(i in pzprojects) {
       stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
       stringParam("PCF_ORG", "piazza", "PCF Organization")
       stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
-      stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Secuirty Scan Pass/Fail archive package")
+      stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
       stringParam("INTEGRATION_GIT_URL", "https://github.com/venicegeo/pztest-integration.git", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
@@ -185,8 +185,49 @@ for(i in bfprojects) {
      }
    }
    parameters {
-     stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", "Artifact storage location for Maven and others.")
-     stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
+      stringParam("ARTIFACT_STORAGE_DEPLOY_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza/", "Project artifact storage location for maven and others.")
+      stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
+      stringParam("SONAR_URL", "https://sonar.geointservices.io", "URL to upload data to sonar.")
+      stringParam("IONCHANNEL_ENDPOINT_URL", "https://api.ionchannel.io/", "URL to connect to ionchannel.")
+      stringParam("GIT_URL", "https://github.com/venicegeo/${i.name}.git", "Git URL")
+      stringParam("GIT_BRANCH", "master", "Default git branch")
+      stringParam("PHASE_ONE_PCF_SPACE", "int", "Phase one Cloudfoundry space")
+      stringParam("PHASE_ONE_PCF_DOMAIN", "int.geointservices.io", "Phase one Cloudfoundry domain")
+      stringParam("PHASE_TWO_PCF_SPACE", "stage", "Phase two Cloudfoundry space")
+      stringParam("PHASE_TWO_PCF_DOMAIN", "stage.geointservices.io", "Phase two Cloudfoundry domain")
+      stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
+      stringParam("PCF_ORG", "piazza", "PCF Organization")
+      stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
+      stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
+      stringParam("INTEGRATION_GIT_URL", "https://github.com/venicegeo/bftest-integration.git", "Integration Tests Git URL")
+      stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
+      booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
+      booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
+      booleanParam("SECENV", false, "Enable security banner and configurations")
+      credentialsParam("THREADFIX_API_KEY") {
+        defaultValue("PZ_THREADFIX_API_KEY")
+        description("Piazza's Threadfix API Key")
+      }
+      credentialsParam("SONAR_TOKEN") {
+        defaultValue("sonar-publish-token")
+        description("Sonar Upload Token")
+      }
+      credentialsParam("IONCHANNEL_SECRET_KEY") {
+        defaultValue("venice_ionchannel_key")
+        description("IonChannel Credentials")
+      }
+      credentialsParam("PCF_CREDS") {
+        defaultValue("ldap_baxtersh")
+        description("Cloud Foundry Credentials")
+      }
+      credentialsParam("POSTMAN_SECRET_FILE") {
+        defaultValue("579f8660-01e6-4feb-8764-ec132432ebb1")
+        description("Environment file containing credentials for Postman")
+      }
+      credentialsParam("ARTIFACT_STORAGE_CREDS") {
+        defaultValue("nexus-deployment")
+        description("Nexus Repository Credentials")
+      }
    }
 
   }
