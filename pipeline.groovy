@@ -167,11 +167,11 @@ def bfprojects = [
   [
     name: 'bf_TidePrediction'
   ],[
-    name: 'bf-ui''115'
+    name: 'bf-ui'
   ],[
     name: 'bf-swagger'
   ],[
-    name: 'bf-api'115'
+    name: 'bf-api'
   ],[
     name: 'pzsvc-ndwi-py'
   ],[
