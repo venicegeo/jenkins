@@ -165,24 +165,17 @@ folder("venice/beachfront") {
 // BF Projects
 def bfprojects = [
   [
-    name: 'bf_TidePrediction',
-    threadfixId: '115'
+    name: 'bf_TidePrediction'
   ],[
-    name: 'bf-ui',
-    threadfixId: '115'
+    name: 'bf-ui''115'
   ],[
-    name: 'bf-swagger',
-    threadfixId: '115'
+    name: 'bf-swagger'
   ],[
-    name: 'bf-api',
-    threadfixId: '115'
+    name: 'bf-api'115'
   ],[
-    name: 'pzsvc-ndwi-py',
-    threadfixId: '115',
-    requiresJksCreds: true
+    name: 'pzsvc-ndwi-py'
   ],[
-    name: 'bf-geojson-geopkg-converter',
-    threadfixId: '115'
+    name: 'bf-geojson-geopkg-converter'
   ]
 ]
 
