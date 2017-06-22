@@ -82,7 +82,6 @@ for(i in pzprojects) {
     }
     environmentVariables {
       env('THREADFIX_ID', i.threadfixId)
-      env('INT_CF_DOMAIN', 'int.geointservices.io')
     }
     definition {
       cpsScm {
@@ -164,10 +163,32 @@ folder("venice/beachfront") {
 }
 
 // BF Projects
-def bfprojects = ['bf_TidePrediction', 'bf-ui', 'bf-swagger', 'bf-api', 'pzsvc-ndwi-py', 'bf-geojson-geopkg-converter']
+def bfprojects = [
+  [
+    name: 'bf_TidePrediction',
+    threadfixId: '115'
+  ],[
+    name: 'bf-ui',
+    threadfixId: '115'
+  ],[
+    name: 'bf-swagger',
+    threadfixId: '115'
+  ],[
+    name: 'bf-api',
+    threadfixId: '115'
+  ],[
+    name: 'pzsvc-ndwi-py',
+    threadfixId: '115',
+    requiresJksCreds: true
+  ],[
+    name: 'bf-geojson-geopkg-converter',
+    threadfixId: '115'
+  ]
+]
+
 
 for(i in bfprojects) {
-  pipelineJob("venice/beachfront/${i}-pipeline") {
+  pipelineJob("venice/beachfront/${i.name}-pipeline") {
     description("Beachfront pipeline")
     triggers {
       gitHubPushTrigger()
@@ -177,7 +198,7 @@ for(i in bfprojects) {
         scm {
           git {
             remote {
-              url("${gitprefix}${i}")
+              url("${gitprefix}${i.name}")
               branch("*/master")
             }
           }
@@ -188,7 +209,7 @@ for(i in bfprojects) {
       stringParam("ARTIFACT_STORAGE_DEPLOY_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza/", "Project artifact storage location for maven and others.")
       stringParam("SONAR_URL", "https://sonar.geointservices.io", "URL to upload data to sonar.")
       stringParam("IONCHANNEL_ENDPOINT_URL", "https://api.ionchannel.io/", "URL to connect to ionchannel.")
-      stringParam("GIT_URL", "https://github.com/venicegeo/${i}.git", "Git URL")
+      stringParam("GIT_URL", "https://github.com/venicegeo/${i.name}.git", "Git URL")
       stringParam("GIT_BRANCH", "master", "Default git branch")
       stringParam("PHASE_ONE_PCF_SPACE", "int", "Phase one Cloudfoundry space")
       stringParam("PHASE_ONE_PCF_DOMAIN", "int.geointservices.io", "Phase one Cloudfoundry domain")
@@ -222,8 +243,15 @@ for(i in bfprojects) {
         defaultValue("nexus-deployment")
         description("Nexus Repository Credentials")
       }
+      if (i.requiresJksCreds) {
+        credentialsParam("JKS_FILE") {
+          defaultValue("ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8")
+          description("Java Key Store")
+        }
+        stringParam("JKS_PASSPHRASE", "ff7148c6-2855-4f3d-bd2e-3aa296b09d98", "Java Key Store Passphrase")
+        stringParam("PZ_PASSPHRASE", "da3092c4-d13d-4078-ab91-a630c61547aa", "PZ Passphrase")
+      }	  
    }
-
   }
 }
 
