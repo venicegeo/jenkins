@@ -189,7 +189,7 @@ for(i in bfprojects) {
       stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
       stringParam("SONAR_URL", "https://sonar.geointservices.io", "URL to upload data to sonar.")
       stringParam("IONCHANNEL_ENDPOINT_URL", "https://api.ionchannel.io/", "URL to connect to ionchannel.")
-      stringParam("GIT_URL", "https://github.com/venicegeo/${i.name}.git", "Git URL")
+      stringParam("GIT_URL", "https://github.com/venicegeo/${i}.git", "Git URL")
       stringParam("GIT_BRANCH", "master", "Default git branch")
       stringParam("PHASE_ONE_PCF_SPACE", "int", "Phase one Cloudfoundry space")
       stringParam("PHASE_ONE_PCF_DOMAIN", "int.geointservices.io", "Phase one Cloudfoundry domain")
