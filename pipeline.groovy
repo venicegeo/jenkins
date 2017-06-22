@@ -165,17 +165,23 @@ folder("venice/beachfront") {
 // BF Projects
 def bfprojects = [
   [
-    name: 'bf_TidePrediction'
+    name: 'bf_TidePrediction',
+	threadfixId: '67'
   ],[
-    name: 'bf-ui'
+    name: 'bf-ui',
+	threadfixId: '63'
   ],[
-    name: 'bf-swagger'
+    name: 'bf-swagger',
+	threadfixId: '68'
   ],[
-    name: 'bf-api'
+    name: 'bf-api',
+	threadfixId: '57'
   ],[
     name: 'pzsvc-ndwi-py'
   ],[
     name: 'bf-geojson-geopkg-converter'
+  ],[
+	name: 'bf-ia-broker'
   ]
 ]
 
@@ -210,6 +216,7 @@ for(i in bfprojects) {
       stringParam("PHASE_TWO_PCF_DOMAIN", "stage.geointservices.io", "Phase two Cloudfoundry domain")
       stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
       stringParam("PCF_ORG", "piazza", "PCF Organization")
+	  stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
       stringParam("INTEGRATION_GIT_URL", "https://github.com/venicegeo/bftest-integration.git", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
@@ -219,6 +226,10 @@ for(i in bfprojects) {
       credentialsParam("SONAR_TOKEN") {
         defaultValue("sonar-publish-token")
         description("Sonar Upload Token")
+      }
+      credentialsParam("THREADFIX_API_KEY") {
+        defaultValue("BF_THREADFIX_API_KEY")
+        description("Beachfront's Threadfix API Key")
       }
       credentialsParam("IONCHANNEL_SECRET_KEY") {
         defaultValue("venice_ionchannel_key")
