@@ -219,7 +219,7 @@ for(i in bfprojects) {
       stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
       stringParam("PCF_ORG", "piazza", "PCF Organization")
       stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
-	  if (${.threadfixId} != null) {
+	  if (i.threadfixId != null) {
 		stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
 	  }
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
