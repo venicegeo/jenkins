@@ -177,8 +177,7 @@ def bfprojects = [
     name: 'bf-api',
 	threadfixId: '57'
   ],[
-    name: 'pzsvc-ndwi-py',
-	threadfixId: 'null'
+    name: 'pzsvc-ndwi-py'
   ],[
     name: 'bf-geojson-geopkg-converter',
 	threadfixId: '117'
@@ -220,7 +219,9 @@ for(i in bfprojects) {
       stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
       stringParam("PCF_ORG", "piazza", "PCF Organization")
       stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
-      stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
+	  if (${.threadfixId} != null) {
+		stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
+	  }
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
       stringParam("INTEGRATION_GIT_URL", "https://github.com/venicegeo/bftest-integration.git", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
