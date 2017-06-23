@@ -177,7 +177,8 @@ def bfprojects = [
     name: 'bf-api',
 	threadfixId: '57'
   ],[
-    name: 'pzsvc-ndwi-py'
+    name: 'pzsvc-ndwi-py',
+	threadfixId: 'null'
   ],[
     name: 'bf-geojson-geopkg-converter',
 	threadfixId: '117'
