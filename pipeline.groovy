@@ -179,9 +179,11 @@ def bfprojects = [
   ],[
     name: 'pzsvc-ndwi-py'
   ],[
-    name: 'bf-geojson-geopkg-converter'
+    name: 'bf-geojson-geopkg-converter',
+	threadfixId: '117'
   ],[
-	name: 'bf-ia-broker'
+	name: 'bf-ia-broker',
+	threadfixId: '116'
   ]
 ]
 
