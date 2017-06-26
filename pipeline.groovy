@@ -252,6 +252,24 @@ for(i in bfprojects) {
         defaultValue("nexus-deployment")
         description("Nexus Repository Credentials")
       }
+      credentialsParam("BEACHFRONT_PIAZZA_AUTH"){
+  	defaultValue("Bf-Api-GeoAxis-PKI-Credentials")
+  	description("Beachfront's Piazza access key")
+      }
+      stringParam("GEOAXIS_DOMAIN") {
+  	defaultValue("gxisaccess.gxaccess.com")
+  	description("Geoaxis URL")
+      }
+      stringParam("PIAZZA_URL") {
+ 	 defaultValue("geointservices.io")
+  	description("Piazza's URL without prefixes, which allows for the changing of spaces. Ex: piazza.{SPACE}.{PIAZZA_URL}")
+      }
+      credentialsParam("GEOAXIS_CLIENT_ID") {
+  	defaultValue("b81d7d20-3576-4f02-ac90-4e6fd5a9d453")
+      }
+      credentialsParam("GEOAXIS_SECRET") {
+  	defaultValue("e83dfc65-4462-4a80-a04d-57ab8da20ebd")
+      }
       if (i.requiresJksCreds) {
         credentialsParam("JKS_FILE") {
           defaultValue("ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8")
