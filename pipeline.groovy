@@ -264,6 +264,12 @@ for(i in bfprojects) {
       credentialsParam("GEOAXIS_SECRET") {
   	defaultValue("e83dfc65-4462-4a80-a04d-57ab8da20ebd")
       }
+      credentialsParam("BF_USERNAME") {
+	defaultValue("e3799eb1-95df-4285-a24e-6721cd690daa")
+      }
+      credentialsParam("BF_PASSWORD") {
+	defaultValue("40ce94f3-3c14-40d6-a75b-b48556a0c560")
+      }
       if (i.requiresJksCreds) {
         credentialsParam("JKS_FILE") {
           defaultValue("ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8")
