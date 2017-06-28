@@ -108,6 +108,7 @@ for(i in pzprojects) {
       stringParam("PHASE_TWO_PCF_SPACE", "stage", "Phase two Cloudfoundry space")
       stringParam("PHASE_TWO_PCF_DOMAIN", "stage.geointservices.io", "Phase two Cloudfoundry domain")
       stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
+      stringParam("JAVA_BUILDPACK_NAME", "java_buildpack", "Name for the Java Buildpack")
       stringParam("PCF_ORG", "piazza", "PCF Organization")
       stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
