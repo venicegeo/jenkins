@@ -274,6 +274,9 @@ for(i in bfprojects) {
       credentialsParam("SAUCELAB_ACCESS") {
       	defaultValue("1ba84f72-0a02-45e2-8869-cfa62df01251")
       }
+      credentialsParam("PL_API_KEY") {
+	defaultValue("7a64953f-283a-4a28-824f-4e96760574e8")
+      }
       if (i.requiresJksCreds) {
         credentialsParam("JKS_FILE") {
           defaultValue("ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8")
