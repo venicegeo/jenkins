@@ -229,6 +229,10 @@ for(i in bfprojects) {
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
+      credentialsParam("CONSENT_BANNER_TEXT") {
+        defaultValue("824eee31-0408-49e2-9a7e-70b59297b1b9")
+        description("Consent banner text")
+      }
       credentialsParam("SONAR_TOKEN") {
         defaultValue("sonar-publish-token")
         description("Sonar Upload Token")
