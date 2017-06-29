@@ -277,6 +277,9 @@ for(i in bfprojects) {
       credentialsParam("PL_API_KEY") {
 	defaultValue("7a64953f-283a-4a28-824f-4e96760574e8")
       }
+      credentialsParam("GX_TEST_USER") {
+	defaultValue("gx_test_account")
+      }
       if (i.requiresJksCreds) {
         credentialsParam("JKS_FILE") {
           defaultValue("ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8")
