@@ -109,7 +109,6 @@ for(i in pzprojects) {
       stringParam("PHASE_TWO_PCF_DOMAIN", "stage.geointservices.io", "Phase two Cloudfoundry domain")
       stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
       stringParam("JAVA_BUILDPACK_NAME", "java_buildpack", "Name for the Java Buildpack")
-      stringParam("PYTHON_BUILDPACK_NAME", "python_buildpack_v1_5_18", "Name for the Python Buildpack")
       stringParam("PCF_ORG", "piazza", "PCF Organization")
       stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
@@ -227,6 +226,8 @@ for(i in bfprojects) {
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
       stringParam("INTEGRATION_GIT_URL", "https://github.com/venicegeo/bftest-integration.git", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
+      stringParam("JAVA_BUILDPACK_NAME", "java_buildpack", "Name for the Java Buildpack")
+      stringParam("PYTHON_BUILDPACK_NAME", "python_buildpack_v1_5_18", "Name for the Python Buildpack")
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
@@ -269,12 +270,6 @@ for(i in bfprojects) {
       }
       credentialsParam("GEOAXIS_SECRET") {
   	defaultValue("e83dfc65-4462-4a80-a04d-57ab8da20ebd")
-      }
-      credentialsParam("BF_USERNAME") {
-	defaultValue("e3799eb1-95df-4285-a24e-6721cd690daa")
-      }
-      credentialsParam("BF_PASSWORD") {
-	defaultValue("40ce94f3-3c14-40d6-a75b-b48556a0c560")
       }
       credentialsParam("SAUCELAB_ACCESS") {
       	defaultValue("1ba84f72-0a02-45e2-8869-cfa62df01251")
