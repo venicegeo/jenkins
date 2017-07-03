@@ -117,6 +117,7 @@ for(i in pzprojects) {
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
+      booleanParam("USE_MONGO_SSL", false, "Determines if MongoSSL should be enabled")
       if (i.requiresTagging) {
         booleanParam("TAG_AND_RELEASE", false, "Tag and release all repos to bump versions")
       }
