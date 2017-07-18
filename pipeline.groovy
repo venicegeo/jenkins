@@ -77,9 +77,6 @@ def pzprojects = [
 for(i in pzprojects) {
   pipelineJob("venice/piazza/${i.name}-pipeline") {
     description("Piazza pipeline")
-    triggers {
-      gitHubPushTrigger()
-    }
     environmentVariables {
       env('THREADFIX_ID', i.threadfixId)
     }
