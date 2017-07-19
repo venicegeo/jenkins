@@ -183,6 +183,8 @@ def bfprojects = [
   ],[
 	name: 'bf-ia-broker',
 	threadfixId: '116'
+  ],[
+	name: 'bfalg-shape'
   ]
 ]
 
