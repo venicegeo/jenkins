@@ -71,9 +71,6 @@ def pzprojects = [
     name: 'pz-release',
     threadfixId: '115',
     requiresTagging: true
-  ],[
-    name: 'conda-channel',
-    threadfixId: '115'
   ]
 ]
 
