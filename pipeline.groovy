@@ -185,6 +185,8 @@ def bfprojects = [
 	threadfixId: '116'
   ],[
 	name: 'bfalg-shape'
+  ],[
+	name: 'pzsvc-exec'
   ]
 ]
 
