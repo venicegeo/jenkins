@@ -71,8 +71,6 @@ def pzprojects = [
     name: 'pz-release',
     threadfixId: '115',
     requiresTagging: true
-  ],[
-    name: 'venicegeo-conda-recipes'
   ]
 ]
 
@@ -189,6 +187,8 @@ def bfprojects = [
 	name: 'bfalg-shape'
   ],[
 	name: 'pzsvc-exec'
+  ],[
+    name: 'venicegeo-conda-recipes'
   ]
 ]
 
