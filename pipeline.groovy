@@ -71,6 +71,8 @@ def pzprojects = [
     name: 'pz-release',
     threadfixId: '115',
     requiresTagging: true
+  ],[
+    name: 'venicegeo-conda-recipes'
   ]
 ]
 
