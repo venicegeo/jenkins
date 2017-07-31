@@ -78,7 +78,7 @@ for(i in pzprojects) {
   pipelineJob("venice/piazza/${i.name}-pipeline") {
     description("Piazza pipeline")
     triggers {
-      gitHubPushTrigger
+      githubPush
     }
     environmentVariables {
       env('THREADFIX_ID', i.threadfixId)
