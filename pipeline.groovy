@@ -114,6 +114,7 @@ for(i in pzprojects) {
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
       stringParam("INTEGRATION_GIT_URL", "https://gitlab.devops.geointservices.io/venicegeo/pztest-integration-source", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
+      stringParam("INTEGRATION_GITLAB_CREDS", "f2c7630d-3c0c-4a57-a9d7-8cc3e43f11c0", "credentials for integration test repo in gitlab")
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
