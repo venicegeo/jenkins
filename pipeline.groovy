@@ -77,6 +77,9 @@ def pzprojects = [
 for(i in pzprojects) {
   pipelineJob("venice/piazza/${i.name}-pipeline") {
     description("Piazza pipeline")
+    triggers {
+      gitHubPushTrigger
+    }
     environmentVariables {
       env('THREADFIX_ID', i.threadfixId)
     }
@@ -109,7 +112,7 @@ for(i in pzprojects) {
       stringParam("PCF_ORG", "piazza", "PCF Organization")
       stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
-      stringParam("INTEGRATION_GIT_URL", "https://github.com/venicegeo/pztest-integration.git", "Integration Tests Git URL")
+      stringParam("INTEGRATION_GIT_URL", "https://gitlab.devops.geointservices.io/venicegeo/pztest-integration-source", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
