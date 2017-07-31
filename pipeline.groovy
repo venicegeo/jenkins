@@ -112,7 +112,7 @@ for(i in pzprojects) {
       stringParam("PCF_ORG", "piazza", "PCF Organization")
       stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
-      stringParam("INTEGRATION_GIT_URL", "https://gitlab.devops.geointservices.io/venicegeo/pztest-integration-source", "Integration Tests Git URL")
+      stringParam("INTEGRATION_GIT_URL", "git@gitlab.devops.geointservices.io:venicegeo/pztest-integration-source.git", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
       stringParam("INTEGRATION_GITLAB_CREDS", "gitlab-piazza-jenkins", "credentials for integration test repo in gitlab")
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
