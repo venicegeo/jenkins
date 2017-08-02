@@ -570,7 +570,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       ${this._pcf_env}
       ${this._cf_auth}
 
-      ! test -f \$root/ci/cf_push_\${PCF_SPACE} || \$root/ci/cf_push_\${PCF_SPACE}
+      ! test -f \$root/ci/cf_push_\${PCF_SPACE}.sh || \$root/ci/cf_push_\${PCF_SPACE}.sh
 
       set +e
 
