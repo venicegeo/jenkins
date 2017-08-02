@@ -73,25 +73,6 @@ class Steps {
     return this
   }
 
-  def gh_write() {
-    this.jobject.with {
-      wrappers {
-        credentialsBinding {
-          file('GIT_KEY', '4C2105AE-41EB-42A0-963F-5CE91B814832')
-          if (this.config.gh_repo == 'pz-idam') {
-            string('JKS_PASSPHRASE', 'ff7148c6-2855-4f3d-bd2e-3aa296b09d98')
-            string('PZ_PASSPHRASE', 'da3092c4-d13d-4078-ab91-a630c61547aa')
-          }
-        }
-      }
-      steps {
-        shell(this._github_write_script())
-      }
-    }
-
-    return this
-  }
-  
   def archive() {
     this.jobject.with {
       wrappers {
@@ -769,27 +750,6 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       rm -f pipeline.properties
       echo "component=\$component" >> pipeline.properties
       echo "component_revision=\$component_revision" >> pipeline.properties
-    """
-  }
-
-  def _github_write_script() {
-    return """
-      eval "\$(ssh-agent -s)"
-      if [ ! -f \$HOME/.ssh/config ]; then
-            touch \$HOME/.ssh/config
-      fi
-      [ -f "\$GIT_KEY" ] && ssh-add "\$GIT_KEY"
-      chmod 600 \$HOME/.ssh/config
-      cat <<- EOF > \$HOME/.ssh/config
-Host github.com-venice
-  HostName github.com
-  User git
-  IdentityFile \$GIT_KEY
-  IdentitiesOnly yes
-EOF
-      chmod 400 \$HOME/.ssh/config
-
-      git remote set-url origin git@github.com-venice:venicegeo/pz-release.git
     """
   }
 
