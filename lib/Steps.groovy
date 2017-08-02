@@ -264,14 +264,9 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       wrappers {
         credentialsBinding {
           usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
-          if (this.config.gh_repo == 'bf-api' || this.config.gh_repo == 'bftest-integration') {
-            usernamePassword('BEACHFRONT_PIAZZA_AUTH', 'Bf-Api-GeoAxis-PKI-Credentials')
-            string('BEACHFRONT_GEOAXIS_CLIENT_ID', 'b81d7d20-3576-4f02-ac90-4e6fd5a9d453')
-            string('BEACHFRONT_GEOAXIS_SECRET', 'e83dfc65-4462-4a80-a04d-57ab8da20ebd')
-          }
-          if (this.config.gh_repo == 'pzsvc-ossim' || this.config.gh_repo == 'pzsvc-ndwi-py') {
-            usernamePassword('BEACHFRONT_PIAZZA_AUTH', 'Bf-Api-GeoAxis-PKI-Credentials')
-          }
+          usernamePassword('BEACHFRONT_PIAZZA_AUTH', 'Bf-Api-GeoAxis-PKI-Credentials')
+          string('BEACHFRONT_GEOAXIS_CLIENT_ID', 'b81d7d20-3576-4f02-ac90-4e6fd5a9d453')
+          string('BEACHFRONT_GEOAXIS_SECRET', 'e83dfc65-4462-4a80-a04d-57ab8da20ebd')
           if (this.config.gh_repo == 'pz-idam') {
             string('JKS_PASSPHRASE', 'ff7148c6-2855-4f3d-bd2e-3aa296b09d98')
             string('PZ_PASSPHRASE', 'da3092c4-d13d-4078-ab91-a630c61547aa')
