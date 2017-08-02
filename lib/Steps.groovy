@@ -266,26 +266,6 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
     return this
   }
 
-  def cf_push_release() {
-    this.jobject.with {
-      wrappers {
-        credentialsBinding {
-          usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
-          file('GIT_KEY', '4C2105AE-41EB-42A0-963F-5CE91B814832')
-          if (this.config.gh_repo == 'pz-idam') {
-            string('JKS_PASSPHRASE', 'ff7148c6-2855-4f3d-bd2e-3aa296b09d98')
-            string('PZ_PASSPHRASE', 'da3092c4-d13d-4078-ab91-a630c61547aa')
-          }
-        }
-      }
-      steps {
-        shell(this._cf_push_release_script())
-      }
-    }
-
-    return this
-  }
-
   def cf_set_version() {
     this.jobject.with {
       wrappers {
@@ -317,51 +297,6 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
     this.override = "stage.geointservices.io"
     this.init()
     this.cf_push()
-
-    return this
-  }
-
-  def cf_release_int() {
-    this.override = "int.geointservices.io"
-    this.init()
-    this.cf_push_release()
-    this.cf_bg_deploy()
-
-    return this
-  }
-
-  def cf_release_stage() {
-    this.override = "stage.geointservices.io"
-    this.init()
-    this.cf_push_release()
-    this.cf_bg_deploy()
-
-    return this
-  }
-
-  def cf_release_dev() { 
-        this.override = "dev.geointservices.io" 
-        this.init() 
-        this.cf_push_release() 
-        this.cf_bg_deploy() 
-    
-    return this 
-  }
- 
-  def cf_release_test() {
-    this.override = "test.geointservices.io"
-    this.init()
-    this.cf_push_release()
-    this.cf_bg_deploy()
-
-    return this
-  }
-
-  def cf_release_prod() {
-    this.override = "geointservices.io"
-    this.init()
-    this.cf_push_release()
-    this.cf_bg_deploy()
 
     return this
   }
@@ -432,7 +367,9 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       wrappers {
         credentialsBinding {
           usernamePassword('PCF_USER', 'PCF_PASSWORD', '6ad30d14-e498-11e5-9730-9a79f06e9478')
-          file('GIT_KEY', '4C2105AE-41EB-42A0-963F-5CE91B814832')
+          usernamePassword('BEACHFRONT_PIAZZA_AUTH', 'Bf-Api-GeoAxis-PKI-Credentials')
+          string('BEACHFRONT_GEOAXIS_CLIENT_ID', 'b81d7d20-3576-4f02-ac90-4e6fd5a9d453')
+          string('BEACHFRONT_GEOAXIS_SECRET', 'e83dfc65-4462-4a80-a04d-57ab8da20ebd')
           if (this.config.gh_repo == 'pz-idam') {
             string('JKS_PASSPHRASE', 'ff7148c6-2855-4f3d-bd2e-3aa296b09d98')
             string('PZ_PASSPHRASE', 'da3092c4-d13d-4078-ab91-a630c61547aa')
@@ -662,34 +599,6 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       fi
 
       [ ! -f \$root/\$APP.\$EXT ] || rm -f \$root/\$APP.\$EXT
-    """
-  }
-
-  def _cf_push_release_script() {
-    return """
-      ${this._app_env}
-      ${this._pcf_env}
-      ${this._cf_auth}
-
-      set +e
-
-      [ -f manifest.\$PCF_SPACE.yml ] && manifest=manifest.\$PCF_SPACE.yml || manifest=manifest.jenkins.yml
-
-      if ! grep -q DOMAIN \$manifest; then
-        grep -q env \$manifest && echo "    DOMAIN: \$PCF_DOMAIN\n    SPACE: \$PCF_SPACE" >> \$manifest || echo "  env: {DOMAIN: \$PCF_DOMAIN, SPACE: \$PCF_SPACE}" >> \$manifest
-      fi
-
-      cf app \$APP-\$version && { echo " \$APP-\$version already running."; exit 0; } || echo "Pushing \$APP-\$version."
-
-      cf push \$APP-\$version -f \$manifest --hostname \$cfhostname -d \$PCF_DOMAIN
-
-      if [ \$? != 0 ]; then
-        echo "Printing log output as a result of the failure."
-        cf logs --recent \$APP-\$version
-        cf delete \$APP-\$version -f -r
-        rm -f \$root/\$APP.\$EXT
-        exit 1
-      fi
     """
   }
 
