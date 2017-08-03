@@ -208,6 +208,7 @@ for(i in bfprojects) {
           upstream(job, 'SUCCESS')
         }
       }
+    }
     definition {
       cpsScm {
         scm {
@@ -217,10 +218,10 @@ for(i in bfprojects) {
               branch("*/master")
             }
           }
-       }
-     }
-   }
-   parameters {
+        }
+      }
+    }
+    parameters {
       stringParam("ARTIFACT_STORAGE_DEPLOY_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza/", "Project artifact storage location for maven and others.")
       stringParam("SONAR_URL", "https://sonar.geointservices.io", "URL to upload data to sonar.")
       stringParam("IONCHANNEL_ENDPOINT_URL", "https://api.ionchannel.io/", "URL to connect to ionchannel.")
@@ -233,9 +234,9 @@ for(i in bfprojects) {
       stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
       stringParam("PCF_ORG", "piazza", "PCF Organization")
       stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
-	  if (i.threadfixId != null) {
-		stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
-	  }
+      if (i.threadfixId != null) {
+       stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
+      }
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
       stringParam("INTEGRATION_GIT_URL", "https://github.com/venicegeo/bftest-integration.git", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
@@ -273,27 +274,27 @@ for(i in bfprojects) {
         description("Nexus Repository Credentials")
       }
       credentialsParam("BEACHFRONT_PIAZZA_AUTH"){
-  	defaultValue("Bf-Api-GeoAxis-PKI-Credentials")
-  	description("Beachfront's Piazza access key")
+        defaultValue("Bf-Api-GeoAxis-PKI-Credentials")
+        description("Beachfront's Piazza access key")
       }
       stringParam("GEOAXIS_DOMAIN", "gxisaccess.gxaccess.com", "Geoaxis URL")
       stringParam("PIAZZA_URL", "geointservices.io", "Piazza's URL without prefixes, which allows for the changing of spaces. Ex: piazza.{SPACE}.{PIAZZA_URL}")
       credentialsParam("GEOAXIS_CLIENT_ID") {
-  	defaultValue("b81d7d20-3576-4f02-ac90-4e6fd5a9d453")
+        defaultValue("b81d7d20-3576-4f02-ac90-4e6fd5a9d453")
       }
       credentialsParam("GEOAXIS_SECRET") {
-  	defaultValue("e83dfc65-4462-4a80-a04d-57ab8da20ebd")
+        defaultValue("e83dfc65-4462-4a80-a04d-57ab8da20ebd")
       }
       credentialsParam("SAUCELAB_ACCESS") {
-      	defaultValue("1ba84f72-0a02-45e2-8869-cfa62df01251")
+        defaultValue("1ba84f72-0a02-45e2-8869-cfa62df01251")
       }
       credentialsParam("PL_API_KEY") {
-	defaultValue("7a64953f-283a-4a28-824f-4e96760574e8")
+        defaultValue("7a64953f-283a-4a28-824f-4e96760574e8")
       }
       credentialsParam("GX_TEST_USER") {
-	defaultValue("gx_test_account")
+        defaultValue("gx_test_account")
       }
-      if (i.requiresJksCreds) {
+      if(i.requiresJksCreds) {
         credentialsParam("JKS_FILE") {
           defaultValue("ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8")
           description("Java Key Store")
@@ -301,7 +302,7 @@ for(i in bfprojects) {
         stringParam("JKS_PASSPHRASE", "ff7148c6-2855-4f3d-bd2e-3aa296b09d98", "Java Key Store Passphrase")
         stringParam("PZ_PASSPHRASE", "da3092c4-d13d-4078-ab91-a630c61547aa", "PZ Passphrase")
       }
-   }
+    }
   }
 }
 
@@ -352,4 +353,4 @@ for(i in bfhealthprojects) {
 //   }
 //  }
 //}
-}
+
