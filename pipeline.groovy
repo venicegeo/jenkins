@@ -169,30 +169,31 @@ folder("venice/beachfront") {
 def bfprojects = [
   [
     name: 'bf_TidePrediction',
-	threadfixId: '67'
+    threadfixId: '67'
   ],[
     name: 'bf-ui',
-	threadfixId: '63'
+    threadfixId: '63'
   ],[
     name: 'bf-swagger',
-	threadfixId: '68'
+    threadfixId: '68'
   ],[
     name: 'bf-api',
-	threadfixId: '57'
+    threadfixId: '57'
   ],[
     name: 'pzsvc-ndwi-py'
   ],[
     name: 'bf-geojson-geopkg-converter',
-	threadfixId: '117'
+    threadfixId: '117'
   ],[
-	name: 'bf-ia-broker',
-	threadfixId: '116'
+    name: 'bf-ia-broker',
+    threadfixId: '116'
   ],[
-	name: 'bfalg-shape'
+    name: 'bfalg-shape'
   ],[
-	name: 'pzsvc-exec'
+    name: 'pzsvc-exec'
   ],[
-    name: 'venicegeo-conda-recipes'
+    name: 'venicegeo-conda-recipes',
+    childjobs: ['pzsvc-exec-pipeline']
   ]
 ]
 
@@ -202,7 +203,11 @@ for(i in bfprojects) {
     description("Beachfront pipeline")
     triggers {
       gitHubPushTrigger()
-    }
+      if(i.childjobs) {
+        for(job in i.childjobs) {
+          upstream(job, 'SUCCESS')
+        }
+      }
     definition {
       cpsScm {
         scm {
@@ -295,7 +300,7 @@ for(i in bfprojects) {
         }
         stringParam("JKS_PASSPHRASE", "ff7148c6-2855-4f3d-bd2e-3aa296b09d98", "Java Key Store Passphrase")
         stringParam("PZ_PASSPHRASE", "da3092c4-d13d-4078-ab91-a630c61547aa", "PZ Passphrase")
-      }	  
+      }
    }
   }
 }
