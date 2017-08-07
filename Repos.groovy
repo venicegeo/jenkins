@@ -60,11 +60,6 @@ class Repos {
       manual: ['archive', 'cf_push', 'cf_bg_deploy'],
       pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'beachfront_integration_tests', 'cf_push_stage', 'cf_bg_deploy_stage', 'beachfront_integration_tests_stage']
     ],[
-      reponame: 'pzsvc-ossim',
-      team: 'beachfront',
-      manual: ['archive', 'cf_push', 'cf_bg_deploy'],
-      pipeline: ['archive', 'cf_push_int', 'cf_bg_deploy_int', 'beachfront_integration_tests']
-    ],[
       reponame: 'pz-gateway',
       team: 'piazza'
     ],[
