@@ -49,11 +49,6 @@ class Repos {
       manual: ['gitlab_push'],
       pipeline: ['archive', 'zap']
     ],[
-      reponame: 'pzsvc-image-catalog',
-      team: 'beachfront',
-      manual: ['archive', 'cf_push', 'cf_bg_deploy', 'cf_promote_to_stage', 'cf_promote_to_prod'],
-      pipeline: ['archive', 'cf_push_int', 'zap', 'cf_bg_deploy_int', 'beachfront_integration_tests']
-    ],[
       reponame: 'pzsvc-lib',
       lib: true,
       team: 'beachfront',
