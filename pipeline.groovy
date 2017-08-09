@@ -115,7 +115,6 @@ for(i in pzprojects) {
       stringParam("INTEGRATION_GIT_URL", "git@gitlab.devops.geointservices.io:venicegeo/pztest-integration-source.git", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
       stringParam("INTEGRATION_GITLAB_CREDS", "gitlab-piazza-jenkins", "credentials for integration test repo in gitlab")
-      stringParam("CONDA_CHANNEL", "https://NEXUSUSER:NEXUSPASS@nexus.devops.geointservices.io/content/repositories/beachfront-conda")
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
@@ -181,7 +180,8 @@ def bfprojects = [
     name: 'bf-api',
     threadfixId: '57'
   ],[
-    name: 'pzsvc-ndwi-py'
+    name: 'pzsvc-ndwi-py',
+    requires_conda: true
   ],[
     name: 'bf-geojson-geopkg-converter',
     threadfixId: '117'
@@ -189,11 +189,13 @@ def bfprojects = [
     name: 'bf-ia-broker',
     threadfixId: '116'
   ],[
-    name: 'bfalg-shape'
+    name: 'bfalg-shape',
+    requires_conda: true
   ],[
     name: 'pzsvc-exec'
   ],[
     name: 'venicegeo-conda-recipes',
+    requires_conda: true,
     childjobs: ['pzsvc-exec-pipeline']
   ]
 ]
@@ -302,6 +304,9 @@ for(i in bfprojects) {
         }
         stringParam("JKS_PASSPHRASE", "ff7148c6-2855-4f3d-bd2e-3aa296b09d98", "Java Key Store Passphrase")
         stringParam("PZ_PASSPHRASE", "da3092c4-d13d-4078-ab91-a630c61547aa", "PZ Passphrase")
+      }
+      if(i.requires_conda) {
+        stringParam("CONDA_CHANNEL", "https://NEXUSUSER:NEXUSPASS@nexus.devops.geointservices.io/content/repositories/beachfront-conda")
       }
     }
   }
