@@ -192,6 +192,9 @@ def bfprojects = [
     name: 'pzsvc-shape-py',
     requires_conda: true
   ],[
+    name: 'bfalg-shape',
+    requires_conda: true
+  ],[
     name: 'pzsvc-exec'
   ],[
     name: 'venicegeo-conda-recipes',
