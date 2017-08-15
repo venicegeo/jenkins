@@ -189,7 +189,7 @@ def bfprojects = [
     name: 'bf-ia-broker',
     threadfixId: '116'
   ],[
-    name: 'bfalg-shape',
+    name: 'pzsvc-shape-py',
     requires_conda: true
   ],[
     name: 'pzsvc-exec'
