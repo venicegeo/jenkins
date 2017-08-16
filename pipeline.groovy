@@ -181,6 +181,7 @@ def bfprojects = [
     threadfixId: '57'
   ],[
     name: 'pzsvc-ndwi-py',
+    threadfixId: '92',
     requires_conda: true
   ],[
     name: 'bf-geojson-geopkg-converter',
