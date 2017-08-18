@@ -194,6 +194,7 @@ def bfprojects = [
     requires_conda: true
   ],[
     name: 'bfalg-shape',
+    threadfixId: '125',
     requires_conda: true
   ],[
     name: 'pzsvc-exec'
