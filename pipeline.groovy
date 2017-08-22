@@ -122,6 +122,10 @@ for(i in pzprojects) {
       if (i.requiresTagging) {
         booleanParam("TAG_AND_RELEASE", false, "Tag and release all repos to bump versions")
       }
+      credentialsParam("ARTIFACT_READ_ONLY_CREDS") {
+        defaultValue("NEXUS_READ_ONLY")
+        description("Read-only credentials for Nexus")
+      }
       credentialsParam("THREADFIX_API_KEY") {
         defaultValue("PZ_THREADFIX_API_KEY")
         description("Piazza's Threadfix API Key")
