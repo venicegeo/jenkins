@@ -285,6 +285,10 @@ for(i in bfprojects) {
         defaultValue("nexus-deployment")
         description("Nexus Repository Credentials")
       }
+      credentialsParam("ARTIFACT_READ_ONLY_CREDS") {
+        defaultValue("NEXUS_READ_ONLY")
+        description("Read-only credentials for Nexus")
+      }
       credentialsParam("BEACHFRONT_PIAZZA_AUTH"){
         defaultValue("Bf-Api-GeoAxis-PKI-Credentials")
         description("Beachfront's Piazza access key")
