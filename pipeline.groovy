@@ -180,7 +180,9 @@ def bfprojects = [
     name: 'bf-api',
     threadfixId: '57'
   ],[
-    name: 'pzsvc-ndwi-py'
+    name: 'pzsvc-ndwi-py',
+    threadfixId: '92',
+    requires_conda: true
   ],[
     name: 'bf-geojson-geopkg-converter',
     threadfixId: '117'
@@ -188,11 +190,17 @@ def bfprojects = [
     name: 'bf-ia-broker',
     threadfixId: '116'
   ],[
-    name: 'bfalg-shape'
+    name: 'pzsvc-shape-py',
+    requires_conda: true
+  ],[
+    name: 'bfalg-shape',
+    threadfixId: '125',
+    requires_conda: true
   ],[
     name: 'pzsvc-exec'
   ],[
     name: 'venicegeo-conda-recipes',
+    requires_conda: true,
     childjobs: ['pzsvc-exec-pipeline']
   ]
 ]
@@ -301,6 +309,9 @@ for(i in bfprojects) {
         }
         stringParam("JKS_PASSPHRASE", "ff7148c6-2855-4f3d-bd2e-3aa296b09d98", "Java Key Store Passphrase")
         stringParam("PZ_PASSPHRASE", "da3092c4-d13d-4078-ab91-a630c61547aa", "PZ Passphrase")
+      }
+      if(i.requires_conda) {
+        stringParam("CONDA_CHANNEL_URL", "https://NEXUSUSER:NEXUSPASS@nexus.devops.geointservices.io/content/repositories/beachfront-conda")
       }
     }
   }
