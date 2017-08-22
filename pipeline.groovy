@@ -319,7 +319,8 @@ for(i in bfprojects) {
         stringParam("PZ_PASSPHRASE", "da3092c4-d13d-4078-ab91-a630c61547aa", "PZ Passphrase")
       }
       if(i.requires_conda) {
-        stringParam("CONDA_CHANNEL_URL", "https://NEXUSUSER:NEXUSPASS@nexus.devops.geointservices.io/content/repositories/beachfront-conda")
+        stringParam("CONDA_CHANNEL_CREDS_URL", "https://NEXUSUSER:NEXUSPASS@nexus.devops.geointservices.io/content/repositories/beachfront-conda")
+        stringParam("CONDA_CHANNEL_URL", "https://nexus.devops.geointservices.io/content/repositories/beachfront-conda")
       }
     }
   }
