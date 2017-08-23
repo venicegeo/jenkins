@@ -207,6 +207,10 @@ def bfprojects = [
     name: 'venicegeo-conda-recipes',
     requires_conda: true,
     childjobs: ['pzsvc-exec-pipeline']
+  ],[
+    name: 'beachfront-py',
+    requires_conda: true,
+    threadfixId: '91'
   ]
 ]
 
