@@ -176,7 +176,8 @@ def bfprojects = [
     threadfixId: '67'
   ],[
     name: 'bf-ui',
-    threadfixId: '63'
+    threadfixId: '63',
+    requires_map_data: true
   ],[
     name: 'bf-swagger',
     threadfixId: '68'
@@ -321,6 +322,10 @@ for(i in bfprojects) {
       if(i.requires_conda) {
         stringParam("CONDA_CHANNEL_CREDS_URL", "https://NEXUSUSER:NEXUSPASS@nexus.devops.geointservices.io/content/repositories/beachfront-conda")
         stringParam("CONDA_CHANNEL_URL", "https://nexus.devops.geointservices.io/content/repositories/beachfront-conda")
+      }
+      if(i.requires_map_data) {
+        stringParam("OSM_BASE_URL", "osm.geointservices.io")
+        stringParam("PLANET_BASE_URL", "planet.com")
       }
     }
   }
