@@ -178,7 +178,8 @@ def bfprojects = [
   ],[
     name: 'bf-ui',
     threadfixId: '63',
-    requires_map_data: true
+    requires_map_data: true,
+    requires_npm: true
   ],[
     name: 'bf-swagger',
     threadfixId: '68'
@@ -331,6 +332,9 @@ for(i in bfprojects) {
       if(i.requires_map_data) {
         stringParam("OSM_BASE_URL", "osm.geointservices.io")
         stringParam("PLANET_BASE_URL", "planet.com")
+      }
+      if(i.requires_npm) {
+        stringParam("NPM_REPOSITORY_URL", "https://nexus.devops.geointservices.io/content/repositories/npmjs/")
       }
     }
   }
