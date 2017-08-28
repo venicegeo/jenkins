@@ -187,9 +187,13 @@ def bfprojects = [
     name: 'bf-api',
     threadfixId: '57'
   ],[
-    name: 'pzsvc-ndwi-py',
+    name: 'bfalg-ndwi',
     threadfixId: '92',
-    requires_conda: true
+    requires_conda: true,
+  ],[
+    name: 'pzsvc-ndwi-py',
+    requires_conda: true,
+    childjobs: ['venicegeo-conda-recipes-pipeline']
   ],[
     name: 'bf-geojson-geopkg-converter',
     threadfixId: '117'
@@ -198,7 +202,8 @@ def bfprojects = [
     threadfixId: '116'
   ],[
     name: 'pzsvc-shape-py',
-    requires_conda: true
+    requires_conda: true,
+    childjobs: ['venicegeo-conda-recipes-pipeline']
   ],[
     name: 'bfalg-shape',
     threadfixId: '125',
@@ -208,7 +213,7 @@ def bfprojects = [
   ],[
     name: 'venicegeo-conda-recipes',
     requires_conda: true,
-    childjobs: ['pzsvc-exec-pipeline']
+    childjobs: ['pzsvc-exec-pipeline','bfalg-ndwi-pipeline','bfalg-shape-pipeline']
   ],[
     name: 'beachfront-py',
     requires_conda: true,
