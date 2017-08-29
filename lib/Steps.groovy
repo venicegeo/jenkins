@@ -448,7 +448,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
 
     [[ -z "\$APP" || -z "\$EXT" ]] && echo "APP and EXT must be defined" && exit 1
 
-    version=\$(git describe --long --tags --always)
+    version=\$(git describe --long --tags --always | sed 's/\\./-/'g)
     artifact=\$APP-\$version.\$EXT
     cfhostname=\$(echo \$APP-\$version | sed 's/\\./-/g')
   """
