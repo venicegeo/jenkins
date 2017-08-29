@@ -199,7 +199,8 @@ def bfprojects = [
     threadfixId: '117'
   ],[
     name: 'bf-ia-broker',
-    threadfixId: '116'
+    threadfixId: '116',
+    requires_host_urls: true
   ],[
     name: 'pzsvc-shape-py',
     requires_conda: true,
@@ -266,6 +267,10 @@ for(i in bfprojects) {
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
       stringParam("JAVA_BUILDPACK_NAME", "java_buildpack", "Name for the Java Buildpack")
       stringParam("PYTHON_BUILDPACK_NAME", "python_buildpack_v1_5_18", "Name for the Python Buildpack")
+      if (i.requires_host_urls) {
+        stringParam("LANDSAT_HOST", "https://landsat-pds.s3.amazonaws.com", "The base URL for landsat data")
+        stringParam("SENTINEL_HOST", "https://sentinel-s2-l1c.s3.amazonaws.com", "The base URL for sentinel data")
+      }
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
