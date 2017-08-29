@@ -74,7 +74,8 @@ class Repos {
       team: 'piazza'
     ],[
       reponame: 'pz-jobcommon',
-      team: 'piazza'
+      team: 'piazza',
+      lib: true
     ],[
       reponame: 'pz-jobmanager',
       team: 'piazza'
@@ -92,7 +93,8 @@ class Repos {
       team: 'piazza'
     ],[
       reponame: 'pz-gocommon',
-      team: 'piazza'
+      team: 'piazza',
+      lib: true
     ],[
       reponame: 'pz-logger',
       team: 'piazza'
