@@ -116,6 +116,7 @@ for(i in pzprojects) {
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
       stringParam("INTEGRATION_GITLAB_CREDS", "gitlab-piazza-jenkins", "credentials for integration test repo in gitlab")
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
+	  booleanParam("SKIP_SCANS", false, "Disabling the running of static/security scans")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
       booleanParam("USE_MONGO_SSL", false, "Determines if MongoSSL should be enabled")
@@ -272,6 +273,7 @@ for(i in bfprojects) {
         stringParam("SENTINEL_HOST", "https://sentinel-s2-l1c.s3.amazonaws.com", "The base URL for sentinel data")
       }
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
+	  booleanParam("SKIP_SCANS", false, "Disabling the running of static/security scans")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
       credentialsParam("CONSENT_BANNER_TEXT") {
