@@ -366,7 +366,7 @@ for(i in bfhealthprojects) {
           git {
             remote {
               //url("${gitprefix}${i}")
-              url("${gitprefix}/bftest-integration")
+              url("${gitprefix}bftest-integration")
               branch("*/master")
             }
           }
