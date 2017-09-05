@@ -353,7 +353,7 @@ for(i in bfprojects) {
 }
 
 //Beachfront health-test job
-def bfhealthprojects = ['bftest-integration']
+def bfhealthprojects = ['bf-healthtest']
 for(i in bfhealthprojects) {
   pipelineJob("venice/beachfront/${i}-pipeline") {
     description("Beachfront pipeline")
