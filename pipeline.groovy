@@ -365,7 +365,8 @@ for(i in bfhealthprojects) {
         scm {
           git {
             remote {
-              url("${gitprefix}${i}")
+              //url("${gitprefix}${i}")
+              url("${gitprefix}/bftest-integration")
               branch("*/master")
             }
           }
