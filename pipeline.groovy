@@ -173,7 +173,7 @@ folder("venice/beachfront") {
 // BF Projects
 def bfprojects = [
   [
-    name: 'bf_TidePrediction',
+    name: 'bf-tideprediction',
     threadfixId: '67',
     requires_conda: true
   ],[
