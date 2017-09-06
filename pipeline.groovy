@@ -220,8 +220,12 @@ def bfprojects = [
     name: 'beachfront-py',
     requires_conda: true,
     threadfixId: '91'
+  ],[
+    name: 'bftest-integration',
+    threadfixId: '',
+    requires_npm: true
+   ]
   ]
-]
 
 
 for(i in bfprojects) {
