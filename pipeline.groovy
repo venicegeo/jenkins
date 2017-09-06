@@ -222,7 +222,7 @@ def bfprojects = [
     threadfixId: '91'
   ],[
     name: 'bftest-integration',
-    threadfixId: '',
+    threadfixId: '135',
     requires_npm: true
    ]
   ]
