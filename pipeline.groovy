@@ -366,12 +366,13 @@ for(i in bfhealthprojects) {
     }
     definition {
       cpsScm {
-        scm {
-          git {
-            remote {
+        scriptPath(JenkinsFile.healthtest)
+         scm {
+           git {
+             remote {
               //url("${gitprefix}${i}")
-              url("${gitprefix}bftest-integration")
-              branch("*/master")
+               url("${gitprefix}bftest-integration")
+               branch("*/master")
             }
           }
         }
