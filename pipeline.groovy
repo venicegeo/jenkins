@@ -366,7 +366,7 @@ for(i in bfhealthprojects) {
     }
     definition {
       cpsScm {
-        scriptPath(JenkinsFile.healthtest)
+        scriptPath("JenkinsFile.healthtest")
          scm {
            git {
              remote {
