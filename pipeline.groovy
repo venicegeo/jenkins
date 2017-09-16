@@ -211,6 +211,9 @@ def bfprojects = [
     threadfixId: '125',
     requires_conda: true
   ],[
+    name: 'bfalg_WTA',
+    requires_conda: true
+  ],[
     name: 'pzsvc-exec'
   ],[
     name: 'venicegeo-conda-recipes',
