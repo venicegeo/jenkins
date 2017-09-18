@@ -214,6 +214,9 @@ def bfprojects = [
     name: 'bfalg_WTA',
     requires_conda: true
   ],[
+    name: 'pzsvc-wta-py',
+    requires_conda: true
+  ],[
     name: 'pzsvc-exec'
   ],[
     name: 'venicegeo-conda-recipes',
