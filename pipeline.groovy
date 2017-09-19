@@ -230,9 +230,11 @@ def bfprojects = [
     name: 'bftest-integration',
     threadfixId: '135',
     requires_npm: true
-   ]
+  ],[
+    name: 'geojson-go',
+    threadfixId: '115'
   ]
-
+]
 
 for(i in bfprojects) {
   pipelineJob("venice/beachfront/${i.name}-pipeline") {
