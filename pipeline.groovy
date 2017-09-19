@@ -276,8 +276,9 @@ for(i in bfprojects) {
        stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
       }
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
-      stringParam("INTEGRATION_GIT_URL", "https://github.com/venicegeo/bftest-integration.git", "Integration Tests Git URL")
+      stringParam("INTEGRATION_GIT_URL", "git@gitlab.devops.geointservices.io:venicegeo/bftest-integration-source.git", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
+      stringParam("INTEGRATION_GITLAB_CREDS", "gitlab-piazza-jenkins", "credentials for integration test repo in gitlab")
       stringParam("JAVA_BUILDPACK_NAME", "java_buildpack", "Name for the Java Buildpack")
       stringParam("PYTHON_BUILDPACK_NAME", "python_buildpack_v1_5_18", "Name for the Python Buildpack")
       if (i.requires_host_urls) {
