@@ -366,6 +366,9 @@ for(i in bfprojects) {
         stringParam("NPM_REPOSITORY_URL", "https://nexus.devops.geointservices.io/content/repositories/npmjs/")
       }
     }
+	environmentVariables {
+		env("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/")
+    }
   }
 }
 
