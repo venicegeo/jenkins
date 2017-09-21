@@ -180,7 +180,8 @@ def bfprojects = [
     name: 'bf-ui',
     threadfixId: '63',
     requires_map_data: true,
-    requires_npm: true
+    requires_npm: true,
+    requires_xvfb: true
   ],[
     name: 'bf-swagger',
     threadfixId: '68'
@@ -285,8 +286,11 @@ for(i in bfprojects) {
         stringParam("LANDSAT_HOST", "https://landsat-pds.s3.amazonaws.com", "The base URL for landsat data")
         stringParam("SENTINEL_HOST", "https://sentinel-s2-l1c.s3.amazonaws.com", "The base URL for sentinel data")
       }
+      if (i.requires_xvfb) {
+        booleanParam("SKIP_XVFB", true, "Disabling the xvfb dependency")
+      }
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
-	  booleanParam("SKIP_SCANS", false, "Disabling the running of static/security scans")
+      booleanParam("SKIP_SCANS", false, "Disabling the running of static/security scans")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
       credentialsParam("CONSENT_BANNER_TEXT") {
