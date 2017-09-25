@@ -14,7 +14,8 @@ def gitprefix = 'https://github.com/venicegeo/'
 def pzprojects = [
   [
     name: 'pz-access',
-    threadfixId: '115'
+    threadfixId: '115',
+    requiresJksCreds: true
   ],[
     name: 'pz-docs',
     threadfixId: '115'
