@@ -581,7 +581,7 @@ sonar.redmine.url=https://redmine.devops.geointservices.io
       fi
 
       if [ -n "\$JKS_PASSPHRASE" ]; then
-        echo "    JKS_FILE: pz-idam.jks" >> \$manifest
+        echo "    JKS_FILE: piazza.jks" >> \$manifest
         echo "    JKS_PASSPHRASE: \$JKS_PASSPHRASE" >> \$manifest
         echo "    PZ_PASSPHRASE: \$PZ_PASSPHRASE" >> \$manifest
       fi
