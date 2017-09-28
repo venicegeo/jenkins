@@ -302,6 +302,10 @@ for(i in bfprojects) {
         defaultValue("sonar-publish-token")
         description("Sonar Upload Token")
       }
+      credentialsParam("BF_GPKG_KEY") {
+        defaultValue("bf_test_key")
+        description("API Key for GeoPackage Tests")
+      }
       credentialsParam("THREADFIX_API_KEY") {
         defaultValue("BF_THREADFIX_API_KEY")
         description("Beachfront's Threadfix API Key")
