@@ -273,6 +273,7 @@ for(i in bfprojects) {
       stringParam("PHASE_TWO_PCF_DOMAIN", "stage.geointservices.io", "Phase two Cloudfoundry domain")
       stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
       stringParam("PCF_ORG", "piazza", "PCF Organization")
+      stringParam("GIT_BASE_URL", "git@github.com:venicegeo/", "Git Base URL")
       stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
       if (i.threadfixId != null) {
        stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
