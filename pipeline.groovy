@@ -408,7 +408,7 @@ Parameters {
     }
    }
  }
-}
+
 // Boundless Projects
 //def boundlessgitprefix = 'https://github.com/boundlessgeo/'
 //
