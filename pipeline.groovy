@@ -407,7 +407,11 @@ for(i in bfhealthprojects) {
    }     
    credentialsParam("SAUCELAB_ACCESS") {
         defaultValue("1ba84f72-0a02-45e2-8869-cfa62df01251")
-       }
+   }
+   credentialsParam("PL_API_KEY") {
+        defaultValue("7a64953f-283a-4a28-824f-4e96760574e8")
+   }  
+
     }
    }
  }
