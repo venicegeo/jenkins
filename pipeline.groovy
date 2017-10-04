@@ -404,7 +404,10 @@ for(i in bfhealthprojects) {
    credentialsParam("POSTMAN_SECRET_FILE") {
         defaultValue("579f8660-01e6-4feb-8764-ec132432ebb1")
         description("Environment file containing credentials for Postman")
-     }
+   }     
+   credentialsParam("SAUCELAB_ACCESS") {
+        defaultValue("1ba84f72-0a02-45e2-8869-cfa62df01251")
+       }
     }
    }
  }
