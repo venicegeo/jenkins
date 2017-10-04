@@ -400,7 +400,7 @@ for(i in bfhealthprojects) {
         }
        }
       }
-Parameters {
+ parameters {
    credentialsParam("POSTMAN_SECRET_FILE") {
         defaultValue("579f8660-01e6-4feb-8764-ec132432ebb1")
         description("Environment file containing credentials for Postman")
