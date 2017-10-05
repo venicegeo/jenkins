@@ -414,9 +414,6 @@ for(i in bfhealthprojects) {
    credentialsParam("GEOAXIS") {
          defaultValue("0efdaa83-18d6-4513-8a7c-c52ef5b07910")
    }
-   credentialsParam("GX_TEST_USER") {
-        defaultValue("gx_test_account")
-   }
 
 
     }
