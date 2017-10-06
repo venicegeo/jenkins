@@ -411,9 +411,6 @@ for(i in bfhealthprojects) {
    credentialsParam("PL_API_KEY") {
         defaultValue("7a64953f-283a-4a28-824f-4e96760574e8")
    }  
-   credentialsParam("GEOAXIS") {
-         defaultValue("0efdaa83-18d6-4513-8a7c-c52ef5b07910")
-   }
 
 
     }
