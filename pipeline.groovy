@@ -335,6 +335,10 @@ for(i in bfprojects) {
         defaultValue("Bf-Api-GeoAxis-PKI-Credentials")
         description("Beachfront's Piazza access key")
       }
+      credentialsParam("BEACHFRONT_PIAZZA_AUTH_TEXT"){
+        defaultValue("Bf-Api-GeoAxis-PKI")
+        description("Beachfront's Piazza access key in secret text form")
+      }
       stringParam("GEOAXIS_DOMAIN", "gxisaccess.gxaccess.com", "Geoaxis URL")
       stringParam("PIAZZA_URL", "geointservices.io", "Piazza's URL without prefixes, which allows for the changing of spaces. Ex: piazza.{SPACE}.{PIAZZA_URL}")
       credentialsParam("GEOAXIS_CLIENT_ID") {
