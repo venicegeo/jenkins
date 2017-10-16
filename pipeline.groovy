@@ -140,7 +140,7 @@ for(i in pzprojects) {
         description("IonChannel Credentials")
       }
       credentialsParam("PCF_CREDS") {
-        defaultValue("L2 PCF Credentials")
+        defaultValue("L2-PCF-Creds")
         description("Cloud Foundry Credentials")
       }
       credentialsParam("POSTMAN_SECRET_FILE") {
@@ -312,7 +312,7 @@ for(i in bfprojects) {
         description("IonChannel Credentials")
       }
       credentialsParam("PCF_CREDS") {
-        defaultValue("L2 PCF Credentials")
+        defaultValue("L2-PCF-Creds")
         description("Cloud Foundry Credentials")
       }
       credentialsParam("POSTMAN_SECRET_FILE") {
