@@ -3,7 +3,7 @@
 // other pipeline jobs. Each repo must contain a JenkinsFile
 // that denotes the steps to take when building.
 
-  
+folder("venice/l2")
 folder("venice/l2/piazza") {
   displayName("piazza")
 }
