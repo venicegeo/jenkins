@@ -3,8 +3,8 @@
 // other pipeline jobs. Each repo must contain a JenkinsFile
 // that denotes the steps to take when building.
 
-
-folder("venice/piazza") {
+  
+folder("venice/l2/piazza") {
   displayName("piazza")
 }
 
@@ -76,14 +76,14 @@ def pzprojects = [
 ]
 
 for(i in pzprojects) {
-  pipelineJob("venice/piazza/${i.name}-pipeline") {
-    description("Piazza pipeline")
+  pipelineJob("venice/l2/piazza/${i.name}-pipeline") {
+    description("Piazza L2 pipeline")
     triggers {
       gitHubPushTrigger()
     }
-    environmentVariables {
+    /*environmentVariables {
       env('THREADFIX_ID', i.threadfixId)
-    }
+    }*/
     definition {
       cpsScm {
         scm {
@@ -97,30 +97,29 @@ for(i in pzprojects) {
       }
     }
     parameters {
-      //stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", "Artifact storage location for external maven dependencies.")
+      stringParam("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", "Repo Group proxy in Nexus")
       stringParam("ARTIFACT_STORAGE_DEPLOY_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza/", "Project artifact storage location for maven and others.")
       stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
       stringParam("SONAR_URL", "https://sonar.geointservices.io", "URL to upload data to sonar.")
       stringParam("IONCHANNEL_ENDPOINT_URL", "https://api.ionchannel.io/", "URL to connect to ionchannel.")
       stringParam("GIT_URL", "https://github.com/venicegeo/${i.name}.git", "Git URL")
       stringParam("GIT_BRANCH", "master", "Default git branch")
-      stringParam("PHASE_ONE_PCF_SPACE", "int", "Phase one Cloudfoundry space")
-      stringParam("PHASE_ONE_PCF_DOMAIN", "int.geointservices.io", "Phase one Cloudfoundry domain")
-      stringParam("PHASE_TWO_PCF_SPACE", "stage", "Phase two Cloudfoundry space")
-      stringParam("PHASE_TWO_PCF_DOMAIN", "stage.geointservices.io", "Phase two Cloudfoundry domain")
-      stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
-      stringParam("JAVA_BUILDPACK_NAME", "java_buildpack", "Name for the Java Buildpack")
-      stringParam("PCF_ORG", "piazza", "PCF Organization")
+      stringParam("PHASE_ONE_PCF_SPACE", "pz-dev", "Phase one Cloudfoundry space")
+      stringParam("PHASE_ONE_PCF_DOMAIN", "pz-dev.dev.east.paas.geointservices.io", "Phase one Cloudfoundry domain")
+      stringParam("PHASE_TWO_PCF_SPACE", "pz-stage", "Phase two Cloudfoundry space")
+      stringParam("PHASE_TWO_PCF_DOMAIN", "pz-stage.dev.east.paas.geointservices.io", "Phase two Cloudfoundry domain")
+      stringParam("PCF_API_ENDPOINT", "api.system.dev.east.paas.geointservices.io", "Cloudfoundry API endpoint")
+      stringParam("JAVA_BUILDPACK_NAME", "java_buildpack_offline", "Name for the Java Buildpack")
+      stringParam("PCF_ORG", "Optimus", "PCF Organization")
       stringParam("THREADFIX_ID", "${i.threadfixId}", "Threadfix app id")
       stringParam("SSPF_PACKAGE", "https://github.com/venicegeo/sspf/archive/master.zip", "Security Scan Pass/Fail archive package")
       stringParam("INTEGRATION_GIT_URL", "git@gitlab.devops.geointservices.io:venicegeo/pztest-integration-source.git", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
       stringParam("INTEGRATION_GITLAB_CREDS", "gitlab-piazza-jenkins", "credentials for integration test repo in gitlab")
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
-	  booleanParam("SKIP_SCANS", false, "Disabling the running of static/security scans")
-      booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
+	  booleanParam("SKIP_SCANS", true, "Disabling the running of static/security scans")
+      booleanParam("DEPLOY_PHASE_TWO", false, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
-      booleanParam("USE_MONGO_SSL", false, "Determines if MongoSSL should be enabled")
       if (i.requiresTagging) {
         booleanParam("TAG_AND_RELEASE", false, "Tag and release all repos to bump versions")
       }
@@ -141,7 +140,7 @@ for(i in pzprojects) {
         description("IonChannel Credentials")
       }
       credentialsParam("PCF_CREDS") {
-        defaultValue("ldap_baxtersh")
+        defaultValue("L2 PCF Credentials")
         description("Cloud Foundry Credentials")
       }
       credentialsParam("POSTMAN_SECRET_FILE") {
@@ -161,13 +160,10 @@ for(i in pzprojects) {
         stringParam("PZ_PASSPHRASE", "da3092c4-d13d-4078-ab91-a630c61547aa", "PZ Passphrase")
       }
     }
-    environmentVariables {
-      env("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/")
-    }
   }
 }
 
-folder("venice/beachfront") {
+folder("venice/l2/beachfront") {
   displayName("beachfront")
 }
 
@@ -239,8 +235,8 @@ def bfprojects = [
 ]
 
 for(i in bfprojects) {
-  pipelineJob("venice/beachfront/${i.name}-pipeline") {
-    description("Beachfront pipeline")
+  pipelineJob("venice/l2/beachfront/${i.name}-pipeline") {
+    description("Beachfront L2 pipeline")
     triggers {
       gitHubPushTrigger()
       if(i.childjobs) {
@@ -267,12 +263,12 @@ for(i in bfprojects) {
       stringParam("IONCHANNEL_ENDPOINT_URL", "https://api.ionchannel.io/", "URL to connect to ionchannel.")
       stringParam("GIT_URL", "https://github.com/venicegeo/${i.name}.git", "Git URL")
       stringParam("GIT_BRANCH", "master", "Default git branch")
-      stringParam("PHASE_ONE_PCF_SPACE", "int", "Phase one Cloudfoundry space")
-      stringParam("PHASE_ONE_PCF_DOMAIN", "int.geointservices.io", "Phase one Cloudfoundry domain")
-      stringParam("PHASE_TWO_PCF_SPACE", "stage", "Phase two Cloudfoundry space")
-      stringParam("PHASE_TWO_PCF_DOMAIN", "stage.geointservices.io", "Phase two Cloudfoundry domain")
-      stringParam("PCF_API_ENDPOINT", "api.devops.geointservices.io", "Cloudfoundry API endpoint")
-      stringParam("PCF_ORG", "piazza", "PCF Organization")
+      stringParam("PHASE_ONE_PCF_SPACE", "pz-dev", "Phase one Cloudfoundry space")
+      stringParam("PHASE_ONE_PCF_DOMAIN", "pz-dev.dev.east.paas.geointservices.io", "Phase one Cloudfoundry domain")
+      stringParam("PHASE_TWO_PCF_SPACE", "pz-stage", "Phase two Cloudfoundry space")
+      stringParam("PHASE_TWO_PCF_DOMAIN", "pz-stage.dev.east.paas.geointservices.io", "Phase two Cloudfoundry domain")
+      stringParam("PCF_API_ENDPOINT", "api.system.dev.east.paas.geointservices.io", "Cloudfoundry API endpoint")
+      stringParam("PCF_ORG", "Optimus", "PCF Organization")
       stringParam("GIT_BASE_URL", "https://github.com/venicegeo/", "Git Base URL")
       stringParam("THREADFIX_URL", "https://threadfix.devops.geointservices.io", "URL to upload data to threadfix.")
       if (i.threadfixId != null) {
@@ -282,8 +278,8 @@ for(i in bfprojects) {
       stringParam("INTEGRATION_GIT_URL", "git@gitlab.devops.geointservices.io:venicegeo/bftest-integration-source.git", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "master", "Default integration tests git branch")
       stringParam("INTEGRATION_GITLAB_CREDS", "gitlab-piazza-jenkins", "credentials for integration test repo in gitlab")
-      stringParam("JAVA_BUILDPACK_NAME", "java_buildpack", "Name for the Java Buildpack")
-      stringParam("PYTHON_BUILDPACK_NAME", "python_buildpack_v1_5_18", "Name for the Python Buildpack")
+      stringParam("JAVA_BUILDPACK_NAME", "java_buildpack_offline", "Name for the Java Buildpack")
+      stringParam("PYTHON_BUILDPACK_NAME", "python_buildpack", "Name for the Python Buildpack")
       if (i.requires_host_urls) {
         stringParam("LANDSAT_HOST", "https://landsat-pds.s3.amazonaws.com", "The base URL for landsat data")
         stringParam("SENTINEL_HOST", "https://sentinel-s2-l1c.s3.amazonaws.com", "The base URL for sentinel data")
@@ -292,8 +288,8 @@ for(i in bfprojects) {
         booleanParam("SKIP_XVFB", true, "Disabling the xvfb dependency")
       }
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
-      booleanParam("SKIP_SCANS", false, "Disabling the running of static/security scans")
-      booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
+      booleanParam("SKIP_SCANS", true, "Disabling the running of static/security scans")
+      booleanParam("DEPLOY_PHASE_TWO", false, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
       credentialsParam("CONSENT_BANNER_TEXT") {
         defaultValue("824eee31-0408-49e2-9a7e-70b59297b1b9")
@@ -316,7 +312,7 @@ for(i in bfprojects) {
         description("IonChannel Credentials")
       }
       credentialsParam("PCF_CREDS") {
-        defaultValue("ldap_baxtersh")
+        defaultValue("L2 PCF Credentials")
         description("Cloud Foundry Credentials")
       }
       credentialsParam("POSTMAN_SECRET_FILE") {
@@ -331,16 +327,12 @@ for(i in bfprojects) {
         defaultValue("NEXUS_READ_ONLY")
         description("Read-only credentials for Nexus")
       }
-      credentialsParam("BEACHFRONT_PIAZZA_AUTH"){
-        defaultValue("Bf-Api-GeoAxis-PKI-Credentials")
-        description("Beachfront's Piazza access key")
-      }
       credentialsParam("BEACHFRONT_PIAZZA_AUTH_TEXT"){
         defaultValue("Bf-Api-GeoAxis-PKI")
         description("Beachfront's Piazza access key in secret text form")
       }
       stringParam("GEOAXIS_DOMAIN", "gxisaccess.gxaccess.com", "Geoaxis URL")
-      stringParam("PIAZZA_URL", "geointservices.io", "Piazza's URL without prefixes, which allows for the changing of spaces. Ex: piazza.{SPACE}.{PIAZZA_URL}")
+      stringParam("PIAZZA_URL", "dev.east.paas.geointservices.io", "Piazza's URL without prefixes, which allows for the changing of spaces. Ex: piazza.{SPACE}.{PIAZZA_URL}")
       credentialsParam("GEOAXIS_CLIENT_ID") {
         defaultValue("b81d7d20-3576-4f02-ac90-4e6fd5a9d453")
       }
@@ -384,9 +376,10 @@ for(i in bfprojects) {
 
 //Beachfront health-test job
 def bfhealthprojects = ['bf-healthtest']
+
 for(i in bfhealthprojects) {
-  pipelineJob("venice/beachfront/${i}-pipeline") {
-    description("Beachfront pipeline")
+  pipelineJob("venice/l2/beachfront/${i}-pipeline") {
+    description("Beachfront L2 pipeline")
     triggers {
       cron('H 2 * * *')
     }
@@ -396,7 +389,6 @@ for(i in bfhealthprojects) {
          scm {
            git {
              remote {
-              //url("${gitprefix}${i}")
                url("${gitprefix}bftest-integration")
                branch("*/master")
             }
@@ -420,30 +412,3 @@ for(i in bfhealthprojects) {
     }
    }
  }
-
-// Boundless Projects
-//def boundlessgitprefix = 'https://github.com/boundlessgeo/'
-//
-//def boundlessprojects = ['exchange', 'storyscapes', 'registry']
-//
-//for(i in boundlessprojects) {
-//  pipelineJob("venice/boundless/${i}-pipeline") {
-//    description("Boundless security pipeline")
-//    triggers {
-//      gitHubPushTrigger()
-//    }
-//    definition {
-//      cpsScm {
-//        scm {
-//          git {
-//            remote {
-//              url("${boundlessgitprefix}${i}")
-//              branch("*/master")
-//            }
-//          }
-//       }
-//     }
-//   }
-//  }
-//}
-
