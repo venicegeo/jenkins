@@ -285,7 +285,8 @@ for(i in bfprojects) {
       stringParam("JAVA_BUILDPACK_NAME", "java_buildpack", "Name for the Java Buildpack")
       stringParam("PYTHON_BUILDPACK_NAME", "python_buildpack_v1_5_18", "Name for the Python Buildpack")
       if (i.requires_host_urls) {
-        stringParam("LANDSAT_HOST", "https://landsat-pds.s3.amazonaws.com", "The base URL for landsat data")
+      stringParam("PL_API_URL", "https://api.planet.com", "The base URL for the Planet Labs API")
+      stringParam("LANDSAT_HOST", "https://landsat-pds.s3.amazonaws.com", "The base URL for landsat data")
         stringParam("SENTINEL_HOST", "https://sentinel-s2-l1c.s3.amazonaws.com", "The base URL for sentinel data")
       }
       if (i.requires_xvfb) {
