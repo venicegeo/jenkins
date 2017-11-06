@@ -90,7 +90,7 @@ for(i in pzprojects) {
           git {
             remote {
               url("${gitprefix}${i.name}")
-              branch("*/master")
+              branch("*/UC-Stable")
             }
           }
         }
@@ -103,7 +103,7 @@ for(i in pzprojects) {
       stringParam("SONAR_URL", "https://sonar.geointservices.io", "URL to upload data to sonar.")
       stringParam("IONCHANNEL_ENDPOINT_URL", "https://api.ionchannel.io/", "URL to connect to ionchannel.")
       stringParam("GIT_URL", "https://github.com/venicegeo/${i.name}.git", "Git URL")
-      stringParam("GIT_BRANCH", "master", "Default git branch")
+      stringParam("GIT_BRANCH", "UC-Stable", "Default git branch")
       stringParam("PHASE_ONE_PCF_SPACE", "int", "Phase one Cloudfoundry space")
       stringParam("PHASE_ONE_PCF_DOMAIN", "int.geointservices.io", "Phase one Cloudfoundry domain")
       stringParam("PHASE_TWO_PCF_SPACE", "stage", "Phase two Cloudfoundry space")
@@ -255,7 +255,7 @@ for(i in bfprojects) {
           git {
             remote {
               url("${gitprefix}${i.name}")
-              branch("*/master")
+              branch("*/UC-Stable")
             }
           }
         }
@@ -266,7 +266,7 @@ for(i in bfprojects) {
       stringParam("SONAR_URL", "https://sonar.geointservices.io", "URL to upload data to sonar.")
       stringParam("IONCHANNEL_ENDPOINT_URL", "https://api.ionchannel.io/", "URL to connect to ionchannel.")
       stringParam("GIT_URL", "https://github.com/venicegeo/${i.name}.git", "Git URL")
-      stringParam("GIT_BRANCH", "master", "Default git branch")
+      stringParam("GIT_BRANCH", "UC-Stable", "Default git branch")
       stringParam("PHASE_ONE_PCF_SPACE", "int", "Phase one Cloudfoundry space")
       stringParam("PHASE_ONE_PCF_DOMAIN", "int.geointservices.io", "Phase one Cloudfoundry domain")
       stringParam("PHASE_TWO_PCF_SPACE", "stage", "Phase two Cloudfoundry space")
@@ -398,7 +398,7 @@ for(i in bfhealthprojects) {
              remote {
               //url("${gitprefix}${i}")
                url("${gitprefix}bftest-integration")
-               branch("*/master")
+               branch("*/UC-Stable")
             }
           }
         }
