@@ -79,10 +79,7 @@ for(i in pzprojects) {
   pipelineJob("venice/l2/piazza/${i.name}-pipeline") {
     description("Piazza L2 pipeline")
     triggers {
-      gitlabPush {
-		  includeBranches('master')
-		  excludeBranches('UC-Stable')
-	  }
+      gitHubPushTrigger()
     }
     /*environmentVariables {
       env('THREADFIX_ID', i.threadfixId)
