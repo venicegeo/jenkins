@@ -90,7 +90,7 @@ for(i in pzprojects) {
           git {
             remote {
               url("${gitprefix}${i.name}")
-              branch("master")
+              branch("refs/heads/master")
             }
           }
         }
@@ -251,7 +251,7 @@ for(i in bfprojects) {
           git {
             remote {
               url("${gitprefix}${i.name}")
-              branch("master")
+              branch("refs/heads/master")
             }
           }
         }
