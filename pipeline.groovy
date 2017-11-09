@@ -90,7 +90,7 @@ for(i in pzprojects) {
           git {
             remote {
               url("${gitprefix}${i.name}")
-              branch("*/master")
+              branch("master")
             }
           }
         }
