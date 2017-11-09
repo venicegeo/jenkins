@@ -79,7 +79,7 @@ for(i in pzprojects) {
   pipelineJob("venice/l2/piazza/${i.name}-pipeline") {
     description("Piazza L2 pipeline")
     triggers {
-      gitHubPush()
+      githubPush()
     }
     /*environmentVariables {
       env('THREADFIX_ID', i.threadfixId)
@@ -238,7 +238,7 @@ for(i in bfprojects) {
   pipelineJob("venice/l2/beachfront/${i.name}-pipeline") {
     description("Beachfront L2 pipeline")
     triggers {
-      gitHubPush()
+      githubPush()
       if(i.childjobs) {
         for(job in i.childjobs) {
           upstream(job, 'SUCCESS')
