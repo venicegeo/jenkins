@@ -78,9 +78,6 @@ def pzprojects = [
 for(i in pzprojects) {
   pipelineJob("venice/piazza/${i.name}-pipeline") {
     description("Piazza pipeline")
-    triggers {
-      gitHubPushTrigger()
-    }
     environmentVariables {
       env('THREADFIX_ID', i.threadfixId)
     }
@@ -241,14 +238,6 @@ def bfprojects = [
 for(i in bfprojects) {
   pipelineJob("venice/beachfront/${i.name}-pipeline") {
     description("Beachfront pipeline")
-    triggers {
-      gitHubPushTrigger()
-      if(i.childjobs) {
-        for(job in i.childjobs) {
-          upstream(job, 'SUCCESS')
-        }
-      }
-    }
     definition {
       cpsScm {
         scm {
