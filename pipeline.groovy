@@ -440,8 +440,7 @@ for(i in bfhealthprojects) {
 //          git {
 //            remote {
 //              url("${boundlessgitprefix}${i}")
-//              branch("*/
-")
+//              branch("*/master")
 //            }
 //          }
 //       }
