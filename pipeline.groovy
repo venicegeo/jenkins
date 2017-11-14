@@ -185,7 +185,8 @@ def bfprojects = [
     threadfixId: '68'
   ],[
     name: 'bf-api',
-    threadfixId: '57'
+    threadfixId: '57',
+    requires_geoserver_ssl_creds: true,
   ],[
     name: 'bfalg-ndwi',
     threadfixId: '92',
@@ -366,6 +367,12 @@ for(i in bfprojects) {
       if(i.requires_npm) {
         stringParam("NPM_REPOSITORY_URL", "https://nexus.devops.geointservices.io/content/repositories/npmjs/")
       }
+      if(i.requires_geoserver_ssl_creds) {
+        credentialsParam("GEOSERVER_CERT_FILE") {
+          defaultValue("geoserver-client-ssl-cert__dev.mil")
+          description("Geoserver Client SSL Certificate, for two-way SSL; if missing, vcap creds will be used")
+        }
+      }
     }
 	environmentVariables {
 		env("ARTIFACT_STORAGE_URL", "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/")
@@ -399,13 +406,13 @@ for(i in bfhealthprojects) {
    credentialsParam("POSTMAN_SECRET_FILE") {
         defaultValue("579f8660-01e6-4feb-8764-ec132432ebb1")
         description("Environment file containing credentials for Postman")
-   }     
+   }
    credentialsParam("SAUCELAB_ACCESS") {
         defaultValue("1ba84f72-0a02-45e2-8869-cfa62df01251")
    }
    credentialsParam("PL_API_KEY") {
         defaultValue("7a64953f-283a-4a28-824f-4e96760574e8")
-   }  
+   }
 
 
     }
@@ -437,4 +444,3 @@ for(i in bfhealthprojects) {
 //   }
 //  }
 //}
-
