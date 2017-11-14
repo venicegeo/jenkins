@@ -23,9 +23,6 @@ def pzprojects = [
     name: 'pz-gateway',
     threadfixId: '115'
   ],[
-    name: 'pz-gocommon',
-    threadfixId: '115'
-  ],[
     name: 'pz-idam',
     threadfixId: '115',
     requiresJksCreds: true
@@ -37,9 +34,6 @@ def pzprojects = [
     threadfixId: '115'
   ],[
     name: 'pz-jobmanager',
-    threadfixId: '115'
-  ],[
-    name: 'pz-logger',
     threadfixId: '115'
   ],[
     name: 'pz-search-metadata-ingest',
@@ -55,9 +49,6 @@ def pzprojects = [
     threadfixId: '115'
   ],[
     name: 'pz-swagger',
-    threadfixId: '115'
-  ],[
-    name: 'pz-workflow',
     threadfixId: '115'
   ],[
     name: 'pzsvc-hello',
