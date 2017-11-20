@@ -361,7 +361,7 @@ for(i in bfprojects) {
         stringParam("CONDA_CHANNEL_URL", "https://nexus.devops.geointservices.io/content/repositories/beachfront-conda")
       }
       if(i.requires_map_data) {
-        stringParam("OSM_BASE_URL", "osm.geointservices.io")
+        stringParam("OSM_BASE_URL", "tile.openstreetmap.org")
         stringParam("PLANET_BASE_URL", "planet.com")
       }
       if(i.requires_npm) {
