@@ -1,0 +1,50 @@
+{
+   "projects":[
+      {
+         "credparams":[
+            {
+               "defaultvalue":"venice-geoaxis-client-id",
+               "description":"Piazza Geoaxis Client ID",
+               "name":"VENICE_GEOAXIS_CLIENT_ID"
+            },
+            {
+               "defaultvalue":"venice-geoaxis-token",
+               "description":"Piazza GeoAxis token",
+               "name":"VENICE_GEOAXIS_TOKEN"
+            },
+            {
+               "defaultvalue":"paas-l4-ops-venice-service",
+               "description":"GeoServer Credentials",
+               "name":"GEOSERVER_CREDS"
+            },
+            {
+               "defaultvalue":"paas-l4-ops-venice-service",
+               "description":"CloudFoundry Credentials",
+               "name":"PCF_CREDS"
+            }
+         ],
+         "jobparams":[
+            {
+               "defaultvalue":"piazza",
+               "type":"stringParam",
+               "description":"Piazza Postgres db name",
+               "name":"PZ_DB_NAME"
+            },
+            {
+               "defaultvalue":"piazza",
+               "type":"stringParam",
+               "description":"Piazza postgres db username",
+               "name":"PZ_DB_USERNAME"
+            },
+            {
+               "defaultvalue":"piazza-stage",
+               "type":"stringParam",
+               "description":"Phase two Cloudfoundry space",
+               "name":"PHASE_TWO_PCF_SPACE"
+            }
+            //add in domain for phase 2, phase 3 space/domain and all the repos etc. 
+            //Look at L2 pipeline.groovy and make sure everything is in there
+         ]
+      }
+   ]
+}
