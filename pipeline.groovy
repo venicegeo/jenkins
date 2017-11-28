@@ -10,11 +10,11 @@ def slurper = new groovy.json.JsonSlurper()
 def veniceprojects = slurper.parseText(configfile)
 
 for (project in veniceprojects.projects) {
-  folder("venice/${project.foldername}") {
+  folder("venice/l2/${project.foldername}") {
     displayName("${project.foldername} pipelines")
   }
   for (repo in project.repos) {
-    pipelineJob("venice/${project.foldername}/${repo.name}-pipeline") {
+    pipelineJob("venice/l2/${project.foldername}/${repo.name}-pipeline") {
       description("${repo.name} pipeline")
       triggers {
         gitlabPush()
