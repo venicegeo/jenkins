@@ -42,6 +42,12 @@
                 "description": "Java Key Store",
                 "name": "JKS_FILE"
             } 
+            {
+                "defaultvalue": "geoserver-client-ssl-cert__dev.mil", 
+                "type": "stringParam", 
+                "description": "Geoserver Client SSL Certificate, for two-way SSL; if missing, vcap creds will be used", 
+                "name": "GEOSERVER_CERT_FILE"
+            }
          ],
          "jobparams":[
             {
@@ -580,12 +586,6 @@
                 "defaultvalue": "planet.com", 
                 "type": "stringParam",  
                 "name": "PLANET_BASE_URL"
-            },
-            {
-                "defaultvalue": "geoserver-client-ssl-cert__dev.mil", 
-                "type": "stringParam", 
-                "description": "Geoserver Client SSL Certificate, for two-way SSL; if missing, vcap creds will be used", 
-                "name": "GEOSERVER_CERT_FILE"
             },
             {
                 "defaultvalue": "false", 
