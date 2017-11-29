@@ -7,11 +7,11 @@
 
 String configfile = readFileFromWorkspace("venice.json")
 
-def folder = "venice/l2-test"
+def baseFolderName = "venice/l2-test"
 def slurper = new groovy.json.JsonSlurper()
 def veniceprojects = slurper.parseText(configfile)
 
-folder(folder)
+folder("${baseFolderName}")
 folder("{$folder}/piazza")
 folder("{$folder}/beachfront")
 //remove above "test" folder when it passes
