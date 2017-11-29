@@ -41,7 +41,7 @@
                 "defaultvalue": "ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8",
                 "description": "Java Key Store",
                 "name": "JKS_FILE"
-            } 
+            }, 
             {
                 "defaultvalue": "geoserver-client-ssl-cert__dev.mil", 
                 "type": "stringParam", 
