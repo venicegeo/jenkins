@@ -75,12 +75,6 @@
                 "name": "IONCHANNEL_ENDPOINT_URL"
             }, 
             {
-                "defaultvalue": "https://github.com/venicegeo/${i.name}.git", 
-                "type": "stringParam", 
-                "description": "Git URL", 
-                "name": "GIT_URL"
-            }, 
-            {
                 "defaultvalue": "master", 
                 "type": "stringParam", 
                 "description": "Default git branch", 
@@ -489,12 +483,6 @@
                 "description": "URL to upload data to threadfix.", 
                 "name": "THREADFIX_URL"
             },
-            {
-                "defaultvalue": "${i.threadfixId}", 
-                "type": "stringParam", 
-                "description": "Threadfix app id", 
-                "name": "THREADFIX_ID"
-            }, 
             {
                 "defaultvalue": "https://github.com/venicegeo/sspf/archive/master.zip", 
                 "type": "stringParam", 
