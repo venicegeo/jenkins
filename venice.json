@@ -412,12 +412,6 @@
                 "name": "IONCHANNEL_ENDPOINT_URL"
             }, 
             {
-                "defaultvalue": "https://github.com/venicegeo/${i.name}.git", 
-                "type": "stringParam", 
-                "description": "Git URL", 
-                "name": "GIT_URL"
-            }, 
-            {
                 "defaultvalue": "master", 
                 "type": "stringParam", 
                 "description": "Default git branch", 
