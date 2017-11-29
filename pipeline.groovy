@@ -113,8 +113,9 @@ for(i in pzprojects) {
       stringParam("INTEGRATION_GIT_URL", "git@gitlab.devops.geointservices.io:venicegeo/pztest-integration-source.git", "Integration Tests Git URL")
       stringParam("INTEGRATION_GIT_BRANCH", "UC-Stable", "Default integration tests git branch")
       stringParam("INTEGRATION_GITLAB_CREDS", "gitlab-piazza-jenkins", "credentials for integration test repo in gitlab")
+      stringParam("ACTIVE_SPRING_PROFILES", "", "Active Spring Framework profiles (for Java+Spring apps)")
       booleanParam("SKIP_INTEGRATION_TESTS", false, "Skipping postman tests")
-	  booleanParam("SKIP_SCANS", false, "Disabling the running of static/security scans")
+      booleanParam("SKIP_SCANS", false, "Disabling the running of static/security scans")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
       booleanParam("USE_MONGO_SSL", false, "Determines if MongoSSL should be enabled")
@@ -399,13 +400,13 @@ for(i in bfhealthprojects) {
    credentialsParam("POSTMAN_SECRET_FILE") {
         defaultValue("579f8660-01e6-4feb-8764-ec132432ebb1")
         description("Environment file containing credentials for Postman")
-   }     
+   }
    credentialsParam("SAUCELAB_ACCESS") {
         defaultValue("1ba84f72-0a02-45e2-8869-cfa62df01251")
    }
    credentialsParam("PL_API_KEY") {
         defaultValue("7a64953f-283a-4a28-824f-4e96760574e8")
-   }  
+   }
 
 
     }
@@ -437,4 +438,3 @@ for(i in bfhealthprojects) {
 //   }
 //  }
 //}
-
