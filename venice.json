@@ -761,8 +761,3 @@
 
    ]
 }
-            //add in domain for phase 2, phase 3 space/domain and all the repos etc. 
-            //Look at L2 pipeline.groovy and make sure everything is in there
-            //geoaxis URI/ Geoserver host/hostname/port etc need to be added
-            // still using UC-stable?
-            //github creds

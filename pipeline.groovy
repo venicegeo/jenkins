@@ -3,6 +3,10 @@
 // This is the seed job that creates all of the other jobs
 // By adding to the venice.json, you can create new jobs
 // and update parameters without needing to edit this file
+folder("venice/l2-test")
+folder("venice/l2-test/piazza")
+//remove above "test" folder when it passes
+
 
 String configfile = readFileFromWorkspace("venice.json")
 
@@ -10,11 +14,11 @@ def slurper = new groovy.json.JsonSlurper()
 def veniceprojects = slurper.parseText(configfile)
 
 for (project in veniceprojects.projects) {
-  folder("venice/l2/${project.foldername}") {
+  folder("venice/l2-test/${project.foldername}") {
     displayName("${project.foldername} pipelines")
   }
   for (repo in project.repos) {
-    pipelineJob("venice/l2/${project.foldername}/${repo.name}-pipeline") {
+    pipelineJob("venice/l2-test/${project.foldername}/${repo.name}-pipeline") {
       description("${repo.name} pipeline")
       triggers {
         gitlabPush()
@@ -27,9 +31,7 @@ for (project in veniceprojects.projects) {
       definition {
         cpsScm {
           scm {
-          if (repo.scriptpath) {
-            scriptPath("${repo.scriptpath}")
-          }
+            scriptPath("JenkinsFile")
             git {
               remote {
                 url("${repo.url}")
