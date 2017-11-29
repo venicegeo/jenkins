@@ -12,16 +12,14 @@ def slurper = new groovy.json.JsonSlurper()
 def veniceprojects = slurper.parseText(configfile)
 
 folder("${baseFolderName}")
-folder("{$baseFolderName}/piazza")
-folder("{$baseFolderName}/beachfront")
 //remove above "test" folder when it passes
 
 for (project in veniceprojects.projects) {
-  folder("{$baseFolderName}/${project.foldername}") {
+  folder("${baseFolderName}/${project.foldername}") {
     displayName("${project.foldername} pipelines")
   }
   for (repo in project.repos) {
-    pipelineJob("{$baseFolderName}/${project.foldername}/${repo.name}-pipeline") {
+    pipelineJob("${baseFolderName}/${project.foldername}/${repo.name}-pipeline") {
       description("${repo.name} pipeline")
       triggers {
         gitlabPush()
@@ -63,7 +61,7 @@ for (project in veniceprojects.projects) {
     }
 
     //promotion jobs
-    pipelineJob("{$baseFolderName}/${project.foldername}/${repo.name}-promote-pipeline") {
+    pipelineJob("${baseFolderName}/${project.foldername}/${repo.name}-promote-pipeline") {
       description("${repo.name} promotion pipeline")
       definition {
         cpsScm {
