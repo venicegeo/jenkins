@@ -111,6 +111,7 @@ for(i in pzprojects) {
 	  booleanParam("SKIP_SCANS", true, "Disabling the running of static/security scans")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
+      booleanParam("USE_GEOSERVER_PKI_AUTH", true, "Determines if the GeoServer PKI Auth should be applied to apps or not")
       if (i.requiresTagging) {
         booleanParam("TAG_AND_RELEASE", false, "Tag and release all repos to bump versions")
       }
@@ -284,6 +285,7 @@ for(i in bfprojects) {
       booleanParam("SKIP_SCANS", true, "Disabling the running of static/security scans")
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
+      booleanParam("USE_GEOSERVER_PKI_AUTH", true, "Determines if the GeoServer PKI Auth should be applied to apps or not")
       credentialsParam("CONSENT_BANNER_TEXT") {
         defaultValue("824eee31-0408-49e2-9a7e-70b59297b1b9")
         description("Consent banner text")
