@@ -99,13 +99,13 @@
                 "name": "PHASE_ONE_PCF_DOMAIN"
             }, 
             {
-                "defaultvalue": "pz-stage", 
+                "defaultvalue": "pz-test", 
                 "type": "stringParam", 
                 "description": "Phase two Cloudfoundry space", 
                 "name": "PHASE_TWO_PCF_SPACE"
             },
             {
-                "defaultvalue": "stage.dev.east.paas.geointservices.io", 
+                "defaultvalue": "test.dev.east.paas.geointservices.io", 
                 "type": "stringParam", 
                 "description": "Phase two Cloudfoundry domain", 
                 "name": "PHASE_TWO_PCF_DOMAIN"
@@ -211,7 +211,13 @@
                 "type": "booleanParam", 
                 "description": "Tag and release all repos to bump versions", 
                 "name": "TAG_AND_RELEASE"
-            }      
+            },
+            {
+                "defaultvalue": false, 
+                "type": "booleanParam", 
+                "description": "Determines if the GeoServer PKI Auth should be applied to apps or not", 
+                "name": "USE_GEOSERVER_PKI_AUTH"
+            }       
 
             
          ],
@@ -436,13 +442,13 @@
                 "name": "PHASE_ONE_PCF_DOMAIN"
             }, 
             {
-                "defaultvalue": "pz-stage", 
+                "defaultvalue": "pz-test", 
                 "type": "stringParam", 
                 "description": "Phase two Cloudfoundry space", 
                 "name": "PHASE_TWO_PCF_SPACE"
             },
             {
-                "defaultvalue": "stage.dev.east.paas.geointservices.io", 
+                "defaultvalue": "test.dev.east.paas.geointservices.io", 
                 "type": "stringParam", 
                 "description": "Phase two Cloudfoundry domain", 
                 "name": "PHASE_TWO_PCF_DOMAIN"
@@ -588,35 +594,41 @@
                 "name": "PLANET_BASE_URL"
             },
             {
-                "defaultvalue": "false", 
+                "defaultvalue": false, 
                 "type": "booleanParam", 
                 "description": "Skipping postman tests", 
                 "name": "SKIP_INTEGRATION_TESTS"
             },
             {
-                "defaultvalue": "true", 
+                "defaultvalue": true, 
                 "type": "booleanParam", 
                 "description": "Disabling the running of static/security scans", 
                 "name": "SKIP_SCANS"
             },
             {
-                "defaultvalue": "true", 
+                "defaultvalue": true, 
                 "type": "booleanParam", 
                 "description": "Perform two phase CF deployment", 
                 "name": "DEPLOY_PHASE_TWO"
             },
             {
-                "defaultvalue": "false", 
+                "defaultvalue": false, 
                 "type": "booleanParam", 
                 "description": "Enable security banner and configurations", 
                 "name": "SECENV"
             },
             {
-                "defaultvalue": "true", 
+                "defaultvalue": true, 
                 "type": "booleanParam", 
                 "description": "Tag and release all repos to bump versions", 
                 "name": "TAG_AND_RELEASE"
             },
+            {
+                "defaultvalue": false, 
+                "type": "booleanParam", 
+                "description": "Determines if the GeoServer PKI Auth should be applied to apps or not", 
+                "name": "USE_GEOSERVER_PKI_AUTH"
+            } 
          ],
          "repos":[
             {
