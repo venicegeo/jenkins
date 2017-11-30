@@ -118,6 +118,7 @@ for(i in pzprojects) {
       booleanParam("DEPLOY_PHASE_TWO", true, "Perform two phase CF deployment")
       booleanParam("SECENV", false, "Enable security banner and configurations")
       booleanParam("USE_MONGO_SSL", false, "Determines if MongoSSL should be enabled")
+      booleanParam("USE_GEOSERVER_PKI_AUTH", true, "Determines if the GeoServer PKI Auth should be applied to apps or not")
       if (i.requiresTagging) {
         booleanParam("TAG_AND_RELEASE", false, "Tag and release all repos to bump versions")
       }
@@ -274,10 +275,11 @@ for(i in bfprojects) {
       stringParam("INTEGRATION_GITLAB_CREDS", "gitlab-piazza-jenkins", "credentials for integration test repo in gitlab")
       stringParam("JAVA_BUILDPACK_NAME", "java_buildpack", "Name for the Java Buildpack")
       stringParam("PYTHON_BUILDPACK_NAME", "python_buildpack_v1_5_18", "Name for the Python Buildpack")
+      booleanParam("USE_GEOSERVER_PKI_AUTH", true, "Determines if the GeoServer PKI Auth should be applied to apps or not")
       if (i.requires_host_urls) {
       stringParam("PL_API_URL", "https://api.planet.com", "The base URL for the Planet Labs API")
       stringParam("LANDSAT_HOST", "https://landsat-pds.s3.amazonaws.com", "The base URL for landsat data")
-        stringParam("SENTINEL_HOST", "https://sentinel-s2-l1c.s3.amazonaws.com", "The base URL for sentinel data")
+      stringParam("SENTINEL_HOST", "https://sentinel-s2-l1c.s3.amazonaws.com", "The base URL for sentinel data")
       }
       if (i.requires_xvfb) {
         booleanParam("SKIP_XVFB", true, "Disabling the xvfb dependency")
