@@ -328,6 +328,7 @@ for(i in bfprojects) {
       }
       stringParam("GEOAXIS_DOMAIN", "gxisapi.gxaccess.com", "Geoaxis URL for tokens and profile")
       stringParam("GEOAXIS_AUTH_DOMAIN", "geoaxis.gxaccess.com", "Geoaxis URL for authorize")
+      stringParam("GEOAXIS_LOGOUT_DOMAIN", "gxisaccess.gxaccess.com", "Geoaxis URL for logout")
       stringParam("PIAZZA_URL", "dev.east.paas.geointservices.io", "Piazza's URL without prefixes, which allows for the changing of spaces. Ex: piazza.{SPACE}.{PIAZZA_URL}")
       credentialsParam("GEOAXIS_CLIENT_ID") {
         defaultValue("b81d7d20-3576-4f02-ac90-4e6fd5a9d453")
