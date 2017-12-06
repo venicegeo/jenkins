@@ -36,7 +36,9 @@ for (project in veniceprojects.projects) {
             git {
               remote {
                 url("${repo.url}")
-                branch("*/master")
+/////////////////////////////////////////////////////////////////////////////////
+//change this to master when done testing
+                branch("*/l2-test")
               }
             }
           }
@@ -70,7 +72,9 @@ for (project in veniceprojects.projects) {
             git {
               remote {
                 url("${repo.url}")
-                branch("*/master")
+/////////////////////////////////////////////////////////////////////////////////
+//change this to master when done testing
+                branch("*/l2-test")
               }
             }
           }
