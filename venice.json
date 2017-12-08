@@ -1,0 +1,758 @@
+{
+   "basefolder": "venice/l2",
+   "projects":[
+      {
+         "credparams":[
+            {
+                "defaultvalue": "NEXUS_READ_ONLY",
+                "description": "Read-only credentials for Nexus",
+                "name": "ARTIFACT_READ_ONLY_CREDS"
+            },
+            {
+                "defaultvalue": "PZ_THREADFIX_API_KEY",
+                "description": "Piazza's Threadfix API Key",
+                "name": "THREADFIX_API_KEY"
+            },
+            {
+                "defaultvalue": "sonar-publish-token",
+                "description": "Sonar Upload Token",
+                "name": "SONAR_TOKEN"
+            },
+            {
+                "defaultvalue": "venice_ionchannel_key",
+                "description": "IonChannel Credentials",
+                "name": "IONCHANNEL_SECRET_KEY"
+            },
+            {
+                "defaultvalue": "L2-PCF-Creds",
+                "description": "Cloud Foundry Credentials",
+                "name": "PCF_CREDS"
+            },
+            {
+                "defaultvalue": "579f8660-01e6-4feb-8764-ec132432ebb1",
+                "description": "Environment file containing credentials for Postman",
+                "name": "POSTMAN_SECRET_FILE"
+            },
+            {
+                "defaultvalue": "nexus-deployment",
+                "description": "Nexus Repository Credentials",
+                "name": "ARTIFACT_STORAGE_CREDS"
+            },
+            {
+                "defaultvalue": "ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8",
+                "description": "Java Key Store",
+                "name": "JKS_FILE"
+            }, 
+            {
+                "defaultvalue": "geoserver-client-ssl-cert__dev.mil", 
+                "type": "stringParam", 
+                "description": "Geoserver Client SSL Certificate, for two-way SSL; if missing, vcap creds will be used", 
+                "name": "GEOSERVER_CERT_FILE"
+            }
+         ],
+         "jobparams":[
+            {
+                "defaultvalue": "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", 
+                "type": "stringParam", 
+                "description": "Repo Group proxy in Nexus", 
+                "name": "ARTIFACT_STORAGE_URL"
+            },
+            {
+                "defaultvalue": "https://nexus.devops.geointservices.io/content/repositories/Piazza/", 
+                "type": "stringParam", 
+                "description": "Project artifact storage location for maven and others.", 
+                "name": "ARTIFACT_STORAGE_DEPLOY_URL"
+            },
+            {
+                "defaultvalue": "https://threadfix.devops.geointservices.io", 
+                "type": "stringParam", 
+                "description": "URL to upload data to threadfix.", 
+                "name": "THREADFIX_URL"
+            }, 
+            {
+                "defaultvalue": "https://sonar.geointservices.io", 
+                "type": "stringParam", 
+                "description": "URL to upload data to sonar.", 
+                "name": "SONAR_URL"
+            }, 
+            {
+                "defaultvalue": "https://api.ionchannel.io/", 
+                "type": "stringParam", 
+                "description": "URL to connect to ionchannel.", 
+                "name": "IONCHANNEL_ENDPOINT_URL"
+            }, 
+            {
+                "defaultvalue": "master", 
+                "type": "stringParam", 
+                "description": "Default git branch", 
+                "name": "GIT_BRANCH"
+            }, 
+            {
+                "defaultvalue": "pz-int", 
+                "type": "stringParam", 
+                "description": "Phase one Cloudfoundry space", 
+                "name": "PHASE_ONE_PCF_SPACE"
+            }, 
+            {
+                "defaultvalue": "int.dev.east.paas.geointservices.io", 
+                "type": "stringParam", 
+                "description": "Phase one Cloudfoundry domain", 
+                "name": "PHASE_ONE_PCF_DOMAIN"
+            }, 
+            {
+                "defaultvalue": "pz-test", 
+                "type": "stringParam", 
+                "description": "Phase two Cloudfoundry space", 
+                "name": "PHASE_TWO_PCF_SPACE"
+            },
+            {
+                "defaultvalue": "test.dev.east.paas.geointservices.io", 
+                "type": "stringParam", 
+                "description": "Phase two Cloudfoundry domain", 
+                "name": "PHASE_TWO_PCF_DOMAIN"
+            }, 
+            {
+                "defaultvalue": "pz-prod", 
+                "type": "stringParam", 
+                "description": "Prod Cloudfoundry space", 
+                "name": "PROD_PCF_SPACE"
+            },
+            {
+                "defaultvalue": "prod.dev.east.paas.geointservices.io", 
+                "type": "stringParam", 
+                "description": "Prod Cloudfoundry domain", 
+                "name": "PROD_PCF_DOMAIN"
+            },
+            {
+                "defaultvalue": "api.system.dev.east.paas.geointservices.io", 
+                "type": "stringParam", 
+                "description": "Cloudfoundry API endpoint", 
+                "name": "PCF_API_ENDPOINT"
+            },
+            {
+                "defaultvalue": "java_buildpack_offline", 
+                "type": "stringParam", 
+                "description": "Name for the Java Buildpack", 
+                "name": "JAVA_BUILDPACK_NAME"
+            },
+            {
+                "defaultvalue": "Optimus", 
+                "type": "stringParam", 
+                "description": "PCF Organization", 
+                "name": "PCF_ORG"
+            }, 
+            {
+                "defaultvalue": "${i.threadfixId}", 
+                "type": "stringParam", 
+                "description": "Threadfix app id", 
+                "name": "THREADFIX_ID"
+            }, 
+            {
+                "defaultvalue": "https://github.com/venicegeo/sspf/archive/master.zip", 
+                "type": "stringParam", 
+                "description": "Security Scan Pass/Fail archive package", 
+                "name": "SSPF_PACKAGE"
+            },
+            {
+                "defaultvalue": "git@gitlab.devops.geointservices.io:venicegeo/pztest-integration-source.git", 
+                "type": "stringParam", 
+                "description": "Integration Tests Git URL", 
+                "name": "INTEGRATION_GIT_URL"
+            },
+            {
+                "defaultvalue": "master", 
+                "type": "stringParam", 
+                "description": "Default integration tests git branch", 
+                "name": "INTEGRATION_GIT_BRANCH"
+            },
+            {
+                "defaultvalue": "gitlab-piazza-jenkins", 
+                "type": "stringParam", 
+                "description": "credentials for integration test repo in gitlab", 
+                "name": "INTEGRATION_GITLAB_CREDS"
+            },
+            {
+                "defaultvalue": "ff7148c6-2855-4f3d-bd2e-3aa296b09d98", 
+                "type": "stringParam", 
+                "description": "Java Key Store Passphrase", 
+                "name": "JKS_PASSPHRASE"
+            },
+            {
+                "defaultvalue": "da3092c4-d13d-4078-ab91-a630c61547aa", 
+                "type": "stringParam", 
+                "description": "PZ Passphrase", 
+                "name": "PZ_PASSPHRASE"
+            },
+            {
+                "defaultvalue": false, 
+                "type": "booleanParam", 
+                "description": "Skipping postman tests", 
+                "name": "SKIP_INTEGRATION_TESTS"
+            },
+            {
+                "defaultvalue": true, 
+                "type": "booleanParam", 
+                "description": "Disabling the running of static/security scans", 
+                "name": "SKIP_SCANS"
+            },
+            {
+                "defaultvalue": true, 
+                "type": "booleanParam", 
+                "description": "Perform two phase CF deployment", 
+                "name": "DEPLOY_PHASE_TWO"
+            },
+            {
+                "defaultvalue": false, 
+                "type": "booleanParam", 
+                "description": "Enable security banner and configurations", 
+                "name": "SCENV"
+            }, 
+            {
+                "defaultvalue": false, 
+                "type": "booleanParam", 
+                "description": "Tag and release all repos to bump versions", 
+                "name": "TAG_AND_RELEASE"
+            },
+            {
+                "defaultvalue": false, 
+                "type": "booleanParam", 
+                "description": "Determines if the GeoServer PKI Auth should be applied to apps or not", 
+                "name": "USE_GEOSERVER_PKI_AUTH"
+            }       
+
+            
+         ],
+         "repos":[
+            {
+                "url": "https://github.com/venicegeo/pz-access.git", 
+                "threadfixId": "115", 
+                "requiresJksCreds": true,
+                "name": "pz-access",
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pz-docs.git", 
+                "threadfixId": "115", 
+                "name": "pz-docs"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pz-gateway.git", 
+                "threadfixId": "115", 
+                "name": "pz-gateway"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pz-idam.git", 
+                "threadfixId": "115",
+                "requiresJksCreds": true, 
+                "name": "pz-idam"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pz-ingest.git", 
+                "threadfixId": "115", 
+                "name": "pz-ingest"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pz-jobcommon.git", 
+                "threadfixId": "115", 
+                "name": "pz-jobcommon"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pz-jobmanager.git", 
+                "threadfixId": "115", 
+                "name": "pz-jobmanager"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pz-search-metadata-ingest.git", 
+                "threadfixId": "115", 
+                "name": "pz-search-metadata-ingest"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pz-search-query.git", 
+                "threadfixId": "115", 
+                "name": "pz-search-query"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pz-servicecontroller.git", 
+                "threadfixId": "115", 
+                "name": "pz-servicecontroller"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pz-sak.git", 
+                "threadfixId": "115", 
+                "name": "pz-sak"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pz-swagger.git", 
+                "threadfixId": "115", 
+                "name": "pz-swagger"
+
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pzsvc-hello.git", 
+                "threadfixId": "115", 
+                "name": "pzsvc-hello"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pzsvc-preview-generator.git", 
+                "threadfixId": "115", 
+                "name": "pzsvc-preview-generator"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pztest-integration.git", 
+                "threadfixId": "115", 
+                "name": "pztest-integration"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pz-release.git", 
+                "threadfixId": "115",
+                "requiresTagging": true, 
+                "name": "pz-release"
+
+            }
+         ],
+         "foldername":"piazza"
+      },
+      {
+         "credparams":[
+            {
+                "defaultvalue": "sonar-publish-token",
+                "description": "Sonar Upload Token",
+                "name": "SONAR_TOKEN"
+            },
+            {
+                "defaultvalue": "bf_test_key",
+                "description": "API Key for GeoPackage Tests",
+                "name": "BF_GPKG_KEY"
+            },
+            {
+                "defaultvalue": "BF_THREADFIX_API_KEY",
+                "description": "Beachfront's Threadfix API Key",
+                "name": "THREADFIX_API_KEY"
+            },
+            {
+                "defaultvalue": "venice_ionchannel_key",
+                "description": "IonChannel Credentials",
+                "name": "IONCHANNEL_SECRET_KEY"
+            },
+            {
+                "defaultvalue": "L2-PCF-Creds",
+                "description": "Cloud Foundry Credentials",
+                "name": "PCF_CREDS"
+            },
+            {
+                "defaultvalue": "579f8660-01e6-4feb-8764-ec132432ebb1",
+                "description": "Environment file containing credentials for Postman",
+                "name": "POSTMAN_SECRET_FILE"
+            },
+            {
+                "defaultvalue": "nexus-deployment",
+                "description": "Nexus Repository Credentials",
+                "name": "ARTIFACT_STORAGE_CREDS"
+            },
+            {
+                "defaultvalue": "NEXUS_READ_ONLY",
+                "description": "Read-only credentials for Nexus",
+                "name": "ARTIFACT_READ_ONLY_CREDS"
+            },
+            {
+                "defaultvalue": "Bf-Api-GeoAxis-PKI",
+                "description": "Beachfront's Piazza access key in secret text form",
+                "name": "BEACHFRONT_PIAZZA_AUTH_TEXT"
+            },
+            {
+                "defaultvalue": "b81d7d20-3576-4f02-ac90-4e6fd5a9d453",
+                "name": "GEOAXIS_CLIENT_ID"
+            },
+            {
+                "defaultvalue": "e83dfc65-4462-4a80-a04d-57ab8da20ebd",
+                "name": "GEOAXIS_SECRET"
+            },
+            {
+                "defaultvalue": "1ba84f72-0a02-45e2-8869-cfa62df01251",
+                "name": "SAUCELAB_ACCESS"
+            },
+            {
+                "defaultvalue": "7a64953f-283a-4a28-824f-4e96760574e8",
+                "name": "PL_API_KEY"
+            },
+            {
+                "defaultvalue": "gx_test_account",
+                "name": "GX_TEST_USER"
+            },
+            {
+                "defaultvalue": "ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8",
+                "description": "Java Key Store",
+                "name": "JKS_FILE"
+            },
+            {
+                "defaultvalue": "geoserver-client-ssl-cert__dev.mil",
+                "description": "Geoserver Client SSL Certificate, for two-way SSL; if missing, vcap creds will be used",
+                "name": "GEOSERVER_CERT_FILE"
+            }
+  
+         ],
+         "jobparams":[
+            {
+                "defaultvalue": "https://nexus.devops.geointservices.io/content/repositories/Piazza/", 
+                "type": "stringParam", 
+                "description": "Project artifact storage location for maven and others.", 
+                "name": "ARTIFACT_STORAGE_DEPLOY_URL"
+            },
+            {
+                "defaultvalue": "https://sonar.geointservices.io", 
+                "type": "stringParam", 
+                "description": "URL to upload data to sonar.", 
+                "name": "SONAR_URL"
+            }, 
+            {
+                "defaultvalue": "https://api.ionchannel.io/", 
+                "type": "stringParam", 
+                "description": "URL to connect to ionchannel.", 
+                "name": "IONCHANNEL_ENDPOINT_URL"
+            }, 
+            {
+                "defaultvalue": "master", 
+                "type": "stringParam", 
+                "description": "Default git branch", 
+                "name": "GIT_BRANCH"
+            }, 
+            {
+                "defaultvalue": "pz-int", 
+                "type": "stringParam", 
+                "description": "Phase one Cloudfoundry space", 
+                "name": "PHASE_ONE_PCF_SPACE"
+            }, 
+            {
+                "defaultvalue": "int.dev.east.paas.geointservices.io", 
+                "type": "stringParam", 
+                "description": "Phase one Cloudfoundry domain", 
+                "name": "PHASE_ONE_PCF_DOMAIN"
+            }, 
+            {
+                "defaultvalue": "pz-test", 
+                "type": "stringParam", 
+                "description": "Phase two Cloudfoundry space", 
+                "name": "PHASE_TWO_PCF_SPACE"
+            },
+            {
+                "defaultvalue": "test.dev.east.paas.geointservices.io", 
+                "type": "stringParam", 
+                "description": "Phase two Cloudfoundry domain", 
+                "name": "PHASE_TWO_PCF_DOMAIN"
+            }, 
+            {
+                "defaultvalue": "pz-prod", 
+                "type": "stringParam", 
+                "description": "Prod Cloudfoundry space", 
+                "name": "PROD_PCF_SPACE"
+            },
+            {
+                "defaultvalue": "prod.dev.east.paas.geointservices.io", 
+                "type": "stringParam", 
+                "description": "Prod Cloudfoundry domain", 
+                "name": "PROD_PCF_DOMAIN"
+            },
+            {
+                "defaultvalue": "api.system.dev.east.paas.geointservices.io", 
+                "type": "stringParam", 
+                "description": "Cloudfoundry API endpoint", 
+                "name": "PCF_API_ENDPOINT"
+            },
+            {
+                "defaultvalue": "Optimus", 
+                "type": "stringParam", 
+                "description": "PCF Organization", 
+                "name": "PCF_ORG"
+            },
+            {
+                "defaultvalue": "https://github.com/venicegeo/", 
+                "type": "stringParam", 
+                "description": "Git Base URL", 
+                "name": "GIT_BASE_URL"
+            },
+            {
+                "defaultvalue": "https://threadfix.devops.geointservices.io", 
+                "type": "stringParam", 
+                "description": "URL to upload data to threadfix.", 
+                "name": "THREADFIX_URL"
+            },
+            {
+                "defaultvalue": "https://github.com/venicegeo/sspf/archive/master.zip", 
+                "type": "stringParam", 
+                "description": "Security Scan Pass/Fail archive package", 
+                "name": "SSPF_PACKAGE"
+            },
+            {
+                "defaultvalue": "git@gitlab.devops.geointservices.io:venicegeo/bftest-integration-source.git", 
+                "type": "stringParam", 
+                "description": "Integration Tests Git URL", 
+                "name": "INTEGRATION_GIT_URL"
+            },
+            {
+                "defaultvalue": "master", 
+                "type": "stringParam", 
+                "description": "Default integration tests git branch", 
+                "name": "INTEGRATION_GIT_BRANCH"
+            },
+            {
+                "defaultvalue": "gitlab-piazza-jenkins", 
+                "type": "stringParam", 
+                "description": "credentials for integration test repo in gitlab", 
+                "name": "INTEGRATION_GITLAB_CREDS"
+            },
+            {
+                "defaultvalue": "java_buildpack_offline", 
+                "type": "stringParam", 
+                "description": "Name for the Java Buildpack", 
+                "name": "JAVA_BUILDPACK_NAME"
+            },
+            {
+                "defaultvalue": "python_buildpack", 
+                "type": "stringParam", 
+                "description": "Name for the Python Buildpack", 
+                "name": "PYTHON_BUILDPACK_NAME"
+            },
+            {
+                "defaultvalue": "https://api.planet.com", 
+                "type": "stringParam", 
+                "description": "The base URL for the Planet Labs API", 
+                "name": "PL_API_URL"
+            },
+            {
+                "defaultvalue": "https://landsat-pds.s3.amazonaws.com", 
+                "type": "stringParam", 
+                "description": "The base URL for landsat data", 
+                "name": "LANDSAT_HOST"
+            },
+            {
+                "defaultvalue": "https://sentinel-s2-l1c.s3.amazonaws.com", 
+                "type": "stringParam", 
+                "description": "The base URL for sentinel data", 
+                "name": "SENTINEL_HOST"
+            },
+            {
+                "defaultvalue": "gxisapi.gxaccess.com", 
+                "type": "stringParam", 
+                "description": "Geoaxis URL for tokens and profile", 
+                "name": "GEOAXIS_DOMAIN"
+            },
+            {
+                "defaultvalue": "geoaxis.gxaccess.com", 
+                "type": "stringParam", 
+                "description": "Geoaxis URL for authorize", 
+                "name": "GEOAXIS_AUTH_DOMAIN"
+            },
+            {
+                "defaultvalue": "dev.east.paas.geointservices.io", 
+                "type": "stringParam", 
+                "description": "Piazza's URL without prefixes, which allows for the changing of spaces. Ex: piazza.{SPACE}.{PIAZZA_URL}", 
+                "name": "PIAZZA_URL"
+            },
+            {
+                "defaultvalue": "ff7148c6-2855-4f3d-bd2e-3aa296b09d98", 
+                "type": "stringParam", 
+                "description": "Java Key Store Passphrase", 
+                "name": "JKS_PASSPHRASE"
+            },
+            {
+                "defaultvalue": "da3092c4-d13d-4078-ab91-a630c61547aa", 
+                "type": "stringParam", 
+                "description": "PZ Passphrase", 
+                "name": "PZ_PASSPHRASE"
+            },
+            {
+                "defaultvalue": "https://NEXUSUSER:NEXUSPASS@nexus.devops.geointservices.io/content/repositories/beachfront-conda", 
+                "type": "stringParam", 
+                "name": "CONDA_CHANNEL_CREDS_URL"
+            },
+            {
+                "defaultvalue": "https://nexus.devops.geointservices.io/content/repositories/beachfront-conda", 
+                "type": "stringParam",  
+                "name": "CONDA_CHANNEL_URL"
+            },
+            {
+                "defaultvalue": "tile.openstreetmap.org", 
+                "type": "stringParam",  
+                "name": "OSM_BASE_URL"
+            },
+            {
+                "defaultvalue": "planet.com", 
+                "type": "stringParam",  
+                "name": "PLANET_BASE_URL"
+            },
+            {
+                "defaultvalue": false, 
+                "type": "booleanParam", 
+                "description": "Skipping postman tests", 
+                "name": "SKIP_INTEGRATION_TESTS"
+            },
+            {
+                "defaultvalue": true, 
+                "type": "booleanParam", 
+                "description": "Disabling the running of static/security scans", 
+                "name": "SKIP_SCANS"
+            },
+            {
+                "defaultvalue": true, 
+                "type": "booleanParam", 
+                "description": "Perform two phase CF deployment", 
+                "name": "DEPLOY_PHASE_TWO"
+            },
+            {
+                "defaultvalue": false, 
+                "type": "booleanParam", 
+                "description": "Enable security banner and configurations", 
+                "name": "SECENV"
+            },
+            {
+                "defaultvalue": true, 
+                "type": "booleanParam", 
+                "description": "Tag and release all repos to bump versions", 
+                "name": "TAG_AND_RELEASE"
+            },
+            {
+                "defaultvalue": false, 
+                "type": "booleanParam", 
+                "description": "Determines if the GeoServer PKI Auth should be applied to apps or not", 
+                "name": "USE_GEOSERVER_PKI_AUTH"
+            } 
+         ],
+         "repos":[
+            {
+                "url": "https://github.com/venicegeo/bf-tideprediction.git", 
+                "threadfixId": "67",
+                "requires_conda": true, 
+                "name": "bf-tideprediction" 
+
+            },
+            {
+                "url": "https://github.com/venicegeo/bf-ui.git", 
+                "threadfixId": "63",
+                "requires_map_data": true,
+                "requires_npm": true,
+                "requires_xvfb": true, 
+                "name": "bf-ui" 
+
+            },
+            {
+                "url": "https://github.com/venicegeo/bf-api.git", 
+                "threadfixId": "57",
+                "requires_geoserver_ssl_creds": true,
+                "name": "bf-api"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/bfalg-ndwi.git", 
+                "threadfixId": "92",
+                "requires_conda": true,
+                "name": "bfalg-ndwi"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/bf-swagger.git", 
+                "threadfixId": "68",
+                "name": "bf-swagger"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pzsvc-ndwi-py.git", 
+                "requires_conda": true,
+                "childjobs": "venicegeo-conda-recipes-pipeline",
+                "name": "pzsvc-ndwi-py"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/bf-geojson-geopkg-converter.git", 
+                "threadfixId": "117",
+                "name": "bf-geojson-geopkg-converter"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/bf-ia-broker.git", 
+                "threadfixId": "116",
+                "name": "bf-ia-broker"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pzsvc-shape-py.git", 
+                "threadfixId": "116",
+                "requires_conda": true,
+                "childjobs": "venicegeo-conda-recipes-pipeline",
+                "name": "pzsvc-shape-py"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/bfalg-shape.git", 
+                "threadfixId": "125",
+                "requires_conda": true,
+                "name": "bfalg-shape"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/bfalg_WTA.git", 
+                "requires_conda": true,
+                "name": "bfalg_WTA"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pzsvc-wta-py.git", 
+                "requires_conda": true,
+                "name": "pzsvc-wta-py"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/pzsvc-exec.git", 
+                "name": "pzsvc-exec"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/venicegeo-conda-recipes.git", 
+                "requires_conda": true,
+                "childjobs": ["pzsvc-exec-pipeline","bfalg-ndwi-pipeline","bfalg-shape-pipeline"],
+                "name": "venicegeo-conda-recipes"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/beachfront-py.git", 
+                "threadfixId": 91,
+                "requires_conda": true,
+                "name": "beachfront-py"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/bftest-integration.git", 
+                "threadfixId": 135,
+                "requires_npm": true,
+                "name": "bftest-integration"
+
+            },
+            {
+                "url": "https://github.com/venicegeo/geojson-go.git", 
+                "threadfixId": 115,
+                "name": "geojson-go"
+
+            },
+
+
+            
+         ],
+         "foldername":"beachfront"
+      }
+
+
+   ]
+}
