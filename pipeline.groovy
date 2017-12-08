@@ -7,13 +7,13 @@
 
 String configfile = readFileFromWorkspace("venice.json")
 
-def baseFolderName = "venice/l2"
 def slurper = new groovy.json.JsonSlurper()
-def veniceprojects = slurper.parseText(configfile)
+def config = slurper.parseText(configfile)
 
+def baseFolderName = config.basefolder
 folder("${baseFolderName}")
 
-for (project in veniceprojects.projects) {
+for (project in config.projects) {
   folder("${baseFolderName}/${project.foldername}") {
     displayName("${project.foldername} pipelines")
   }
