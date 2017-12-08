@@ -5,6 +5,6 @@ base=$(pwd -P)
 
 jarfile=$base/scripts/job-dsl-core-1.50-standalone.jar
 
-java -jar $jarfile run.groovy >/dev/null
+java -jar $jarfile pipeline.groovy >/dev/null
 
 popd > /dev/null

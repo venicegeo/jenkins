@@ -6,20 +6,12 @@ This is the repo for Venice's Jenkins Seed Job. [More Information](https://githu
 
 The seed job is responsible for generating all other Jenkins jobs.
 
-## How do I create a Jenkins job?
+## Configuration File
 
-All jobs are spec'd out in `./venice-pipeline.groovy`. To add jobs for your repo, just add your jobs to the `projects` collection in `./venice-pipelin.groovy`:
-
-```groovy
-def projects = ['ingest', 'idam', 'gateway', 'yourproject']
-```
-
-And then, when Jenkins fails to automatically build your project for you, go to your project's "Webooks & Services" page on GitHub and add a new service of type "Jenkins (GitHub)". Set the URL to https://jenkins.devops.geointservices.io/github-webhook/.
-
-The pipeline implementation relies on a `JenkinsFile` located within the code repository. After adding your project,
-ensure you have a `JenkinsFile` in your repository. You can find out more about [using a `JenkinsFile`](https://jenkins.io/doc/book/pipeline/jenkinsfile/) in the introduction.
+The seed job points to the configuration file (`venice.json`) in order to pull in parameterized build parameters into project repositories. The JSON file consists of a group of project folders that define all of this information on a per-project basis. 
 
 ## Testing seed job generation
+
 ```
 ./scripts/test.sh
 ```
