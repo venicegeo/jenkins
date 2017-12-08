@@ -21,7 +21,7 @@ for (project in config.projects) {
     pipelineJob("${baseFolderName}/${project.foldername}/${repo.name}-pipeline") {
       description("${repo.name} pipeline")
       triggers {
-        gitlabPush()
+        gitHubPushTrigger()
       }
       environmentVariables {
         if (repo.threadfixId) {
