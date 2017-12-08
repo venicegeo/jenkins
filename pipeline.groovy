@@ -7,12 +7,11 @@
 
 String configfile = readFileFromWorkspace("venice.json")
 
-def baseFolderName = "venice/l2-test"
+def baseFolderName = "venice/l2"
 def slurper = new groovy.json.JsonSlurper()
 def veniceprojects = slurper.parseText(configfile)
 
 folder("${baseFolderName}")
-//remove above "test" folder when it passes
 
 for (project in veniceprojects.projects) {
   folder("${baseFolderName}/${project.foldername}") {
@@ -36,9 +35,7 @@ for (project in veniceprojects.projects) {
             git {
               remote {
                 url("${repo.url}")
-/////////////////////////////////////////////////////////////////////////////////
-//change this to master when done testing
-                branch("*/l2-test")
+                branch("*/master")
               }
             }
           }
@@ -72,9 +69,7 @@ for (project in veniceprojects.projects) {
             git {
               remote {
                 url("${repo.url}")
-/////////////////////////////////////////////////////////////////////////////////
-//change this to master when done testing
-                branch("*/l2-test")
+                branch("*/master")
               }
             }
           }
