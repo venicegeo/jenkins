@@ -11,9 +11,17 @@ The seed job is responsible for generating all other Jenkins jobs.
 The seed job points to the configuration file (`venice.json`) in order to pull in parameterized build parameters into project repositories. The JSON file consists of a group of project folders that define all of this information on a per-project basis. 
 
 ## Testing seed job generation
+
 ```
 ./scripts/test.sh
 ```
+
+## Replicating repos for disconnected environments using gitlab
+
+First, install the [gitlab cli](http://narkoz.github.io/gitlab/installation).
+
+You can then script the mirroring of your private or public github repos
+automatically.
 
 ## License
 
