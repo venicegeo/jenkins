@@ -413,6 +413,12 @@
                 "name": "ARTIFACT_STORAGE_DEPLOY_URL"
             },
             {
+                "defaultvalue": "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", 
+                "type": "stringParam", 
+                "description": "Repo Group proxy in Nexus", 
+                "name": "ARTIFACT_STORAGE_URL"
+            },
+            {
                 "defaultvalue": "https://sonar.geointservices.io", 
                 "type": "stringParam", 
                 "description": "URL to upload data to sonar.", 
