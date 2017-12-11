@@ -591,7 +591,7 @@
                 "name": "CONDA_CHANNEL_URL"
             },
             {
-                "defaultvalue": "tile.openstreetmap.org", 
+                "defaultvalue": "osm.geointservices.io", 
                 "type": "stringParam",  
                 "name": "OSM_BASE_URL"
             },
