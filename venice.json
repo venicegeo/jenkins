@@ -621,6 +621,12 @@
             {
                 "defaultvalue": true, 
                 "type": "booleanParam", 
+                "description": "Disabling the xvfb dependency", 
+                "name": "SKIP_XVFB"
+            },
+            {
+                "defaultvalue": true, 
+                "type": "booleanParam", 
                 "description": "Perform two phase CF deployment", 
                 "name": "DEPLOY_PHASE_TWO"
             },
