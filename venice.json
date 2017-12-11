@@ -533,6 +533,12 @@
                 "name": "PYTHON_BUILDPACK_NAME"
             },
             {
+                "defaultvalue": "https://nexus.devops.geointservices.io/content/repositories/npmjs/", 
+                "type": "stringParam", 
+                "description": "The URL for the NPM repository", 
+                "name": "NPM_REPOSITORY_URL"
+            },
+            {
                 "defaultvalue": "https://api.planet.com", 
                 "type": "stringParam", 
                 "description": "The base URL for the Planet Labs API", 
