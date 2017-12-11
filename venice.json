@@ -374,6 +374,11 @@
                 "name": "BEACHFRONT_PIAZZA_AUTH_TEXT"
             },
             {
+                "defaultvalue": "824eee31-0408-49e2-9a7e-70b59297b1b9",
+                "description": "Consent banner text",
+                "name": "CONSENT_BANNER_TEXT"
+            },
+            {
                 "defaultvalue": "b81d7d20-3576-4f02-ac90-4e6fd5a9d453",
                 "name": "GEOAXIS_CLIENT_ID"
             },
