@@ -574,6 +574,12 @@
                 "name": "GEOAXIS_AUTH_DOMAIN"
             },
             {
+                "defaultvalue": "gxisaccess.gxaccess.com", 
+                "type": "stringParam", 
+                "description": "Geoaxis URL for logout", 
+                "name": "GEOAXIS_LOGOUT_DOMAIN"
+            },
+            {
                 "defaultvalue": "dev.east.paas.geointservices.io", 
                 "type": "stringParam", 
                 "description": "Piazza's URL without prefixes, which allows for the changing of spaces. Ex: piazza.{SPACE}.{PIAZZA_URL}", 
