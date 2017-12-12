@@ -39,6 +39,14 @@
                 "name": "ARTIFACT_STORAGE_CREDS"
             },
             {
+                "defaultvalue": "b81d7d20-3576-4f02-ac90-4e6fd5a9d453",
+                "name": "GEOAXIS_CLIENT_ID"
+            },
+            {
+                "defaultvalue": "e83dfc65-4462-4a80-a04d-57ab8da20ebd",
+                "name": "GEOAXIS_SECRET"
+            },
+            {
                 "defaultvalue": "ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8",
                 "description": "Java Key Store",
                 "name": "JKS_FILE"
@@ -207,6 +215,24 @@
                 "description": "Enable security banner and configurations", 
                 "name": "SCENV"
             }, 
+            {
+                "defaultvalue": "gxisapi.gxaccess.com", 
+                "type": "stringParam", 
+                "description": "Geoaxis URL for tokens and profile", 
+                "name": "GEOAXIS_DOMAIN"
+            },
+            {
+                "defaultvalue": "geoaxis.gxaccess.com", 
+                "type": "stringParam", 
+                "description": "Geoaxis URL for authorize", 
+                "name": "GEOAXIS_AUTH_DOMAIN"
+            },
+            {
+                "defaultvalue": "gxisaccess.gxaccess.com", 
+                "type": "stringParam", 
+                "description": "Geoaxis URL for logout", 
+                "name": "GEOAXIS_LOGOUT_DOMAIN"
+            },
             {
                 "defaultvalue": false, 
                 "type": "booleanParam", 
