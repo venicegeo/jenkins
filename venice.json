@@ -758,6 +758,12 @@
               "type": "stringParam", 
               "description": "The space of the PCF organization to push to. By default, will push to production.", 
               "name": "PROMOTE_SPACE"
+          },
+          {
+              "defaultvalue": "prod.dev.east.paas.geointservices.io", 
+              "type": "stringParam", 
+              "description": "The domain of the PCF organization to push to. By default, will push to production.", 
+              "name": "PROMOTE_DOMAIN"
           }
       ]
    }
