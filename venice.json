@@ -205,7 +205,7 @@
                 "defaultvalue": false, 
                 "type": "booleanParam", 
                 "description": "Enable security banner and configurations", 
-                "name": "SCENV"
+                "name": "SECENV"
             }, 
             {
                 "defaultvalue": false, 
