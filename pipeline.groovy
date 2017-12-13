@@ -60,7 +60,7 @@ for (project in config.projects) {
     }
 
     //promotion jobs
-    pipelineJob("${baseFolderName}/${project.foldername}/${repo.name}-promote-pipeline") {
+    pipelineJob("${baseFolderName}/${project.foldername}/${config.promotion.foldername}/${repo.name}-promote-pipeline") {
       description("${repo.name} promotion pipeline")
       definition {
         cpsScm {
