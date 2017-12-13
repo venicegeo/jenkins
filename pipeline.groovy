@@ -83,6 +83,13 @@ for (project in config.projects) {
           "${param.type}"("${param.name}", "${param.defaultvalue}", "${param.description}")
           }
         }
+        for(param in config.promotion.jobparams) {
+          if (param.type == "booleanParam") {
+          "${param.type}"("${param.name}", "${param.defaultvalue}".toBoolean(), "${param.description}")
+          } else {
+          "${param.type}"("${param.name}", "${param.defaultvalue}", "${param.description}")
+          }
+        }
         stringParam("GIT_URL", "${repo.url}", "Git repository URL")
         for(credparam in project.credparams) {
           credentialsParam("${credparam.name}") {

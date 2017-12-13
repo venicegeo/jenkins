@@ -2,7 +2,8 @@
    "basefolder": "venice/l2",
    "projects":[
       {
-         "credparams":[
+        "foldername":"piazza",
+        "credparams":[
             {
                 "defaultvalue": "NEXUS_READ_ONLY",
                 "description": "Read-only credentials for Nexus",
@@ -219,8 +220,6 @@
                 "description": "Determines if the GeoServer PKI Auth should be applied to apps or not", 
                 "name": "USE_GEOSERVER_PKI_AUTH"
             }       
-
-            
          ],
          "repos":[
             {
@@ -228,93 +227,77 @@
                 "threadfixId": "115", 
                 "requiresJksCreds": true,
                 "name": "pz-access",
-
             },
             {
                 "url": "https://github.com/venicegeo/pz-docs.git", 
                 "threadfixId": "115", 
                 "name": "pz-docs"
-
             },
             {
                 "url": "https://github.com/venicegeo/pz-gateway.git", 
                 "threadfixId": "115", 
                 "name": "pz-gateway"
-
             },
             {
                 "url": "https://github.com/venicegeo/pz-idam.git", 
                 "threadfixId": "115",
                 "requiresJksCreds": true, 
                 "name": "pz-idam"
-
             },
             {
                 "url": "https://github.com/venicegeo/pz-ingest.git", 
                 "threadfixId": "115", 
                 "name": "pz-ingest"
-
             },
             {
                 "url": "https://github.com/venicegeo/pz-jobcommon.git", 
                 "threadfixId": "115", 
                 "name": "pz-jobcommon"
-
             },
             {
                 "url": "https://github.com/venicegeo/pz-jobmanager.git", 
                 "threadfixId": "115", 
                 "name": "pz-jobmanager"
-
             },
             {
                 "url": "https://github.com/venicegeo/pz-search-metadata-ingest.git", 
                 "threadfixId": "115", 
                 "name": "pz-search-metadata-ingest"
-
             },
             {
                 "url": "https://github.com/venicegeo/pz-search-query.git", 
                 "threadfixId": "115", 
                 "name": "pz-search-query"
-
             },
             {
                 "url": "https://github.com/venicegeo/pz-servicecontroller.git", 
                 "threadfixId": "115", 
                 "name": "pz-servicecontroller"
-
             },
             {
                 "url": "https://github.com/venicegeo/pz-sak.git", 
                 "threadfixId": "115", 
                 "name": "pz-sak"
-
             },
             {
                 "url": "https://github.com/venicegeo/pz-swagger.git", 
                 "threadfixId": "115", 
                 "name": "pz-swagger"
-
-
             },
             {
                 "url": "https://github.com/venicegeo/pzsvc-hello.git", 
                 "threadfixId": "115", 
                 "name": "pzsvc-hello"
-
             },
             {
                 "url": "https://github.com/venicegeo/pzsvc-preview-generator.git", 
                 "threadfixId": "115", 
                 "name": "pzsvc-preview-generator"
-
             },
             {
                 "url": "https://github.com/venicegeo/pztest-integration.git", 
                 "threadfixId": "115", 
                 "name": "pztest-integration"
-
             },
             {
                 "url": "https://github.com/venicegeo/pz-release.git", 
@@ -323,10 +306,10 @@
                 "name": "pz-release"
 
             }
-         ],
-         "foldername":"piazza"
+         ]
       },
       {
+         "foldername":"beachfront",
          "credparams":[
             {
                 "defaultvalue": "sonar-publish-token",
@@ -666,7 +649,6 @@
                 "threadfixId": "67",
                 "requires_conda": true, 
                 "name": "bf-tideprediction" 
-
             },
             {
                 "url": "https://github.com/venicegeo/bf-ui.git", 
@@ -675,46 +657,39 @@
                 "requires_npm": true,
                 "requires_xvfb": true, 
                 "name": "bf-ui" 
-
             },
             {
                 "url": "https://github.com/venicegeo/bf-api.git", 
                 "threadfixId": "57",
                 "requires_geoserver_ssl_creds": true,
                 "name": "bf-api"
-
             },
             {
                 "url": "https://github.com/venicegeo/bfalg-ndwi.git", 
                 "threadfixId": "92",
                 "requires_conda": true,
                 "name": "bfalg-ndwi"
-
             },
             {
                 "url": "https://github.com/venicegeo/bf-swagger.git", 
                 "threadfixId": "68",
                 "name": "bf-swagger"
-
             },
             {
                 "url": "https://github.com/venicegeo/pzsvc-ndwi-py.git", 
                 "requires_conda": true,
                 "childjobs": "venicegeo-conda-recipes-pipeline",
                 "name": "pzsvc-ndwi-py"
-
             },
             {
                 "url": "https://github.com/venicegeo/bf-geojson-geopkg-converter.git", 
                 "threadfixId": "117",
                 "name": "bf-geojson-geopkg-converter"
-
             },
             {
                 "url": "https://github.com/venicegeo/bf-ia-broker.git", 
                 "threadfixId": "116",
                 "name": "bf-ia-broker"
-
             },
             {
                 "url": "https://github.com/venicegeo/pzsvc-shape-py.git", 
@@ -722,66 +697,67 @@
                 "requires_conda": true,
                 "childjobs": "venicegeo-conda-recipes-pipeline",
                 "name": "pzsvc-shape-py"
-
             },
             {
                 "url": "https://github.com/venicegeo/bfalg-shape.git", 
                 "threadfixId": "125",
                 "requires_conda": true,
                 "name": "bfalg-shape"
-
             },
             {
                 "url": "https://github.com/venicegeo/bfalg_WTA.git", 
                 "requires_conda": true,
                 "name": "bfalg_WTA"
-
             },
             {
                 "url": "https://github.com/venicegeo/pzsvc-wta-py.git", 
                 "requires_conda": true,
                 "name": "pzsvc-wta-py"
-
             },
             {
                 "url": "https://github.com/venicegeo/pzsvc-exec.git", 
                 "name": "pzsvc-exec"
-
             },
             {
                 "url": "https://github.com/venicegeo/venicegeo-conda-recipes.git", 
                 "requires_conda": true,
                 "childjobs": ["pzsvc-exec-pipeline","bfalg-ndwi-pipeline","bfalg-shape-pipeline"],
                 "name": "venicegeo-conda-recipes"
-
             },
             {
                 "url": "https://github.com/venicegeo/beachfront-py.git", 
                 "threadfixId": 91,
                 "requires_conda": true,
                 "name": "beachfront-py"
-
             },
             {
                 "url": "https://github.com/venicegeo/bftest-integration.git", 
                 "threadfixId": 135,
                 "requires_npm": true,
                 "name": "bftest-integration"
-
             },
             {
                 "url": "https://github.com/venicegeo/geojson-go.git", 
                 "threadfixId": 115,
                 "name": "geojson-go"
-
             },
-
-
-            
-         ],
-         "foldername":"beachfront"
+         ]
       }
-
-
-   ]
+   ],
+   "promotion": {
+      "jobparams": [
+          {
+              "defaultvalue": "", 
+              "type": "stringParam", 
+              "description": "The version of the application to push. This must match the version of the artifact in Nexus. Leave empty to pull the latest version from the phase 2 space.", 
+              "name": "PROMOTE_VERSION"
+          },
+          {
+              "defaultvalue": "pz-prod", 
+              "type": "stringParam", 
+              "description": "The space of the PCF organization to push to. By default, will push to production.", 
+              "name": "PROMOTE_SPACE"
+          }
+      ]
+   }
 }
