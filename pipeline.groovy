@@ -62,42 +62,43 @@ for (project in config.projects) {
       }
     }
 
-    //promotion jobs
-    pipelineJob("${baseFolderName}/${project.foldername}/${config.promotion.foldername}/${repo.name}-promote-pipeline") {
-      description("${repo.name} promotion pipeline")
-      definition {
-        cpsScm {
-          scm {
-            scriptPath("JenkinsFile.Promote")
-            git {
-              remote {
-                url("${repo.url}")
-                branch("*/master")
+    if (repo.promotable) {
+      pipelineJob("${baseFolderName}/${project.foldername}/${config.promotion.foldername}/${repo.name}-promote-pipeline") {
+        description("${repo.name} promotion pipeline")
+        definition {
+          cpsScm {
+            scm {
+              scriptPath("JenkinsFile.Promote")
+              git {
+                remote {
+                  url("${repo.url}")
+                  branch("*/master")
+                }
               }
             }
           }
         }
-      }
-      parameters {
-        for(param in project.jobparams) {
-          if (param.type == "booleanParam") {
-          "${param.type}"("${param.name}", "${param.defaultvalue}".toBoolean(), "${param.description}")
-          } else {
-          "${param.type}"("${param.name}", "${param.defaultvalue}", "${param.description}")
+        parameters {
+          for(param in project.jobparams) {
+            if (param.type == "booleanParam") {
+            "${param.type}"("${param.name}", "${param.defaultvalue}".toBoolean(), "${param.description}")
+            } else {
+            "${param.type}"("${param.name}", "${param.defaultvalue}", "${param.description}")
+            }
           }
-        }
-        for(param in config.promotion.jobparams) {
-          if (param.type == "booleanParam") {
-          "${param.type}"("${param.name}", "${param.defaultvalue}".toBoolean(), "${param.description}")
-          } else {
-          "${param.type}"("${param.name}", "${param.defaultvalue}", "${param.description}")
+          for(param in config.promotion.jobparams) {
+            if (param.type == "booleanParam") {
+            "${param.type}"("${param.name}", "${param.defaultvalue}".toBoolean(), "${param.description}")
+            } else {
+            "${param.type}"("${param.name}", "${param.defaultvalue}", "${param.description}")
+            }
           }
-        }
-        stringParam("GIT_URL", "${repo.url}", "Git repository URL")
-        for(credparam in project.credparams) {
-          credentialsParam("${credparam.name}") {
-            defaultValue("${credparam.defaultvalue}")
-            description("${credparam.description}")
+          stringParam("GIT_URL", "${repo.url}", "Git repository URL")
+          for(credparam in project.credparams) {
+            credentialsParam("${credparam.name}") {
+              defaultValue("${credparam.defaultvalue}")
+              description("${credparam.description}")
+            }
           }
         }
       }
