@@ -17,6 +17,9 @@ for (project in config.projects) {
   folder("${baseFolderName}/${project.foldername}") {
     displayName("${project.foldername} pipelines")
   }
+  folder("${baseFolderName}/${project.foldername}/${config.promotion.foldername}") {
+    displayName("${project.foldername} promotion jobs")
+  }
   for (repo in project.repos) {
     pipelineJob("${baseFolderName}/${project.foldername}/${repo.name}-pipeline") {
       description("${repo.name} pipeline")
