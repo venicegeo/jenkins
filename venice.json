@@ -216,19 +216,25 @@
                 "name": "SCENV"
             }, 
             {
-                "defaultvalue": "gxisapi.gxaccess.com", 
+                "defaultvalue": "https://gxisapi.gxaccess.com/ms_oauth/resources/userprofile/me", 
                 "type": "stringParam", 
-                "description": "Geoaxis URL for tokens and profile", 
-                "name": "GEOAXIS_DOMAIN"
+                "description": "Geoaxis URL for user profile", 
+                "name": "GEOAXIS_PROFILE_DOMAIN"
             },
             {
-                "defaultvalue": "geoaxis.gxaccess.com", 
+                "defaultvalue": "https://gxisapi.gxaccess.com/ms_oauth/oauth2/endpoints/oauthservice/tokens", 
+                "type": "stringParam", 
+                "description": "Geoaxis URL for tokens", 
+                "name": "GEOAXIS_TOKENS_DOMAIN"
+            },
+            {
+                "defaultvalue": "https://geoaxis.gxaccess.com/ms_oauth/oauth2/endpoints/oauthservice/authorize", 
                 "type": "stringParam", 
                 "description": "Geoaxis URL for authorize", 
                 "name": "GEOAXIS_AUTH_DOMAIN"
             },
             {
-                "defaultvalue": "gxisaccess.gxaccess.com", 
+                "defaultvalue": "https://gxisaccess.gxaccess.com/oam/server/logout", 
                 "type": "stringParam", 
                 "description": "Geoaxis URL for logout", 
                 "name": "GEOAXIS_LOGOUT_DOMAIN"
