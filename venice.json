@@ -40,6 +40,14 @@
                 "name": "ARTIFACT_STORAGE_CREDS"
             },
             {
+                "defaultvalue": "b81d7d20-3576-4f02-ac90-4e6fd5a9d453",
+                "name": "GEOAXIS_CLIENT_ID"
+            },
+            {
+                "defaultvalue": "e83dfc65-4462-4a80-a04d-57ab8da20ebd",
+                "name": "GEOAXIS_SECRET"
+            },
+            {
                 "defaultvalue": "ca8591a7-fc1f-4b6d-808e-c9944c9bf4f8",
                 "description": "Java Key Store",
                 "name": "JKS_FILE"
@@ -208,6 +216,30 @@
                 "description": "Enable security banner and configurations", 
                 "name": "SECENV"
             }, 
+            {
+                "defaultvalue": "https://gxisapi.gxaccess.com/ms_oauth/resources/userprofile/me", 
+                "type": "stringParam", 
+                "description": "Geoaxis URL for user profile", 
+                "name": "GEOAXIS_PROFILE_DOMAIN"
+            },
+            {
+                "defaultvalue": "https://gxisapi.gxaccess.com/ms_oauth/oauth2/endpoints/oauthservice/tokens", 
+                "type": "stringParam", 
+                "description": "Geoaxis URL for tokens", 
+                "name": "GEOAXIS_TOKENS_DOMAIN"
+            },
+            {
+                "defaultvalue": "https://geoaxis.gxaccess.com/ms_oauth/oauth2/endpoints/oauthservice/authorize", 
+                "type": "stringParam", 
+                "description": "Geoaxis URL for authorize", 
+                "name": "GEOAXIS_AUTH_DOMAIN"
+            },
+            {
+                "defaultvalue": "https://gxisaccess.gxaccess.com/oam/server/logout", 
+                "type": "stringParam", 
+                "description": "Geoaxis URL for logout", 
+                "name": "GEOAXIS_LOGOUT_DOMAIN"
+            },
             {
                 "defaultvalue": false, 
                 "type": "booleanParam", 
