@@ -107,43 +107,41 @@ for (project in config.projects) {
   }
 }
 // Tools Pipelines
-for (tool in config.tools) {
+for (repo in config.tools.repos) {
   folder("${baseFolderName}/${config.tools.foldername}") {
     displayName("venice tools pipelines")
   }
-  for (repo in project.repos) {
-    pipelineJob("${baseFolderName}/${config.tools.foldername}/${repo.name}-pipeline") {
-      description("${repo.name} pipeline")
-      triggers {
-        gitHubPushTrigger()
-      }
-      definition {
-        cpsScm {
-          scm {
-            scriptPath("JenkinsFile")
-            git {
-              remote {
-                url("${repo.url}")
-                branch("*/master")
-              }
+  pipelineJob("${baseFolderName}/${config.tools.foldername}/${repo.name}-pipeline") {
+    description("${repo.name} pipeline")
+    triggers {
+      gitHubPushTrigger()
+    }
+    definition {
+      cpsScm {
+        scm {
+          scriptPath("JenkinsFile")
+          git {
+            remote {
+              url("${repo.url}")
+              branch("*/master")
             }
           }
         }
       }
-      parameters {
-        for(param in project.jobparams) {
-          if (param.type == "booleanParam") {
-          "${param.type}"("${param.name}", "${param.defaultvalue}".toBoolean(), "${param.description}")
-          } else {
-          "${param.type}"("${param.name}", "${param.defaultvalue}", "${param.description}")
-          }
+    }
+    parameters {
+      for(param in config.tools.jobparams) {
+        if (param.type == "booleanParam") {
+        "${param.type}"("${param.name}", "${param.defaultvalue}".toBoolean(), "${param.description}")
+        } else {
+        "${param.type}"("${param.name}", "${param.defaultvalue}", "${param.description}")
         }
-        stringParam("GIT_URL", "${repo.url}", "Git repository URL")
-        for(credparam in project.credparams) {
-          credentialsParam("${credparam.name}") {
-            defaultValue("${credparam.defaultvalue}")
-            description("${credparam.description}")
-          }
+      }
+      stringParam("GIT_URL", "${repo.url}", "Git repository URL")
+      for(credparam in config.tools.credparams) {
+        credentialsParam("${credparam.name}") {
+          defaultValue("${credparam.defaultvalue}")
+          description("${credparam.description}")
         }
       }
     }
