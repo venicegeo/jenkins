@@ -13,6 +13,7 @@ def config = slurper.parseText(configfile)
 def baseFolderName = config.basefolder
 folder("${baseFolderName}")
 
+// Project Pipelines
 for (project in config.projects) {
   folder("${baseFolderName}/${project.foldername}") {
     displayName("${project.foldername} pipelines")
@@ -99,6 +100,49 @@ for (project in config.projects) {
               defaultValue("${credparam.defaultvalue}")
               description("${credparam.description}")
             }
+          }
+        }
+      }
+    }
+  }
+}
+// Tools Pipelines
+for (tool in config.tools) {
+  folder("${baseFolderName}/${config.tools.foldername}") {
+    displayName("venice tools pipelines")
+  }
+  for (repo in project.repos) {
+    pipelineJob("${baseFolderName}/${config.tools.foldername}/${repo.name}-pipeline") {
+      description("${repo.name} pipeline")
+      triggers {
+        gitHubPushTrigger()
+      }
+      definition {
+        cpsScm {
+          scm {
+            scriptPath("JenkinsFile")
+            git {
+              remote {
+                url("${repo.url}")
+                branch("*/master")
+              }
+            }
+          }
+        }
+      }
+      parameters {
+        for(param in project.jobparams) {
+          if (param.type == "booleanParam") {
+          "${param.type}"("${param.name}", "${param.defaultvalue}".toBoolean(), "${param.description}")
+          } else {
+          "${param.type}"("${param.name}", "${param.defaultvalue}", "${param.description}")
+          }
+        }
+        stringParam("GIT_URL", "${repo.url}", "Git repository URL")
+        for(credparam in project.credparams) {
+          credentialsParam("${credparam.name}") {
+            defaultValue("${credparam.defaultvalue}")
+            description("${credparam.description}")
           }
         }
       }

@@ -824,5 +824,22 @@
               "name": "PROMOTE_DOMAIN"
           }
       ]
+   },
+   "tools": {
+     "foldername": "tools",
+      "jobparams": [],
+      "credparams": [
+          {
+              "defaultvalue": "nexus-deployment",
+              "description": "Nexus Repository Credentials",
+              "name": "ARTIFACT_STORAGE_CREDS"
+          }
+      ],
+      "repos":[
+          {
+              "url": "https://github.com/venicegeo/vzutil-versioning/tree/jenkins", 
+              "name": "spm-dependency-collector"
+          }
+      ]
    }
 }
