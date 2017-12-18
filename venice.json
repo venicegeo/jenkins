@@ -837,7 +837,7 @@
       ],
       "repos":[
           {
-              "url": "https://github.com/venicegeo/vzutil-versioning/tree/jenkins", 
+              "url": "https://github.com/venicegeo/vzutil-versioning.git", 
               "name": "spm-dependency-collector"
           }
       ]
