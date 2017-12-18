@@ -317,12 +317,6 @@
                 "promotable": true
             },
             {
-                "url": "https://github.com/venicegeo/pz-sak.git", 
-                "threadfixId": "115", 
-                "name": "pz-sak",
-                "promotable": true
-            },
-            {
                 "url": "https://github.com/venicegeo/pz-swagger.git", 
                 "threadfixId": "115", 
                 "name": "pz-swagger",
