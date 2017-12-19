@@ -827,7 +827,14 @@
    },
    "tools": {
      "foldername": "tools",
-      "jobparams": [],
+      "jobparams": [
+            {
+                "defaultvalue": "https://nexus.devops.geointservices.io/content/repositories/Piazza-Group/", 
+                "type": "stringParam", 
+                "description": "Repo Group proxy in Nexus", 
+                "name": "ARTIFACT_STORAGE_URL"
+            }
+      ],
       "credparams": [
           {
               "defaultvalue": "nexus-deployment",
