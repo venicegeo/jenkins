@@ -110,7 +110,7 @@ for (project in config.projects) {
     
     if (repo.nightly) {
       pipelineJob("${baseFolderName}/${project.foldername}/${config.nightly.foldername}/${repo.name}-nightly-pipeline") {
-        description("${repo.name} nightly pipeline"),
+        description("${repo.name} nightly pipeline")
         triggers {
           cron('H 2 * * *')
         }
