@@ -259,93 +259,108 @@
                 "threadfixId": "115", 
                 "requiresJksCreds": true,
                 "name": "pz-access",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pz-docs.git", 
                 "threadfixId": "115", 
                 "name": "pz-docs",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pz-gateway.git", 
                 "threadfixId": "115", 
                 "name": "pz-gateway",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pz-idam.git", 
                 "threadfixId": "115",
                 "requiresJksCreds": true, 
                 "name": "pz-idam",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pz-ingest.git", 
                 "threadfixId": "115", 
                 "name": "pz-ingest",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pz-jobcommon.git", 
                 "threadfixId": "115", 
                 "name": "pz-jobcommon",
-                "promotable": false
+                "promotable": false,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pz-jobmanager.git", 
                 "threadfixId": "115", 
                 "name": "pz-jobmanager",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pz-search-metadata-ingest.git", 
                 "threadfixId": "115", 
                 "name": "pz-search-metadata-ingest",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pz-search-query.git", 
                 "threadfixId": "115", 
                 "name": "pz-search-query",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pz-servicecontroller.git", 
                 "threadfixId": "115", 
                 "name": "pz-servicecontroller",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pz-swagger.git", 
                 "threadfixId": "115", 
                 "name": "pz-swagger",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pzsvc-hello.git", 
                 "threadfixId": "115", 
                 "name": "pzsvc-hello",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pzsvc-preview-generator.git", 
                 "threadfixId": "115", 
                 "name": "pzsvc-preview-generator",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pztest-integration.git", 
                 "threadfixId": "115", 
                 "name": "pztest-integration",
-                "promotable": false
+                "promotable": false,
+                "nightly": true
             },
             {
                 "url": "https://github.com/venicegeo/pz-release.git", 
                 "threadfixId": "115",
                 "requiresTagging": true, 
                 "name": "pz-release",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             }
          ]
       },
@@ -690,7 +705,8 @@
                 "threadfixId": "67",
                 "requires_conda": true, 
                 "name": "bf-tideprediction",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/bf-ui.git", 
@@ -699,46 +715,53 @@
                 "requires_npm": true,
                 "requires_xvfb": true, 
                 "name": "bf-ui",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/bf-api.git", 
                 "threadfixId": "57",
                 "requires_geoserver_ssl_creds": true,
                 "name": "bf-api",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/bfalg-ndwi.git", 
                 "threadfixId": "92",
                 "requires_conda": true,
                 "name": "bfalg-ndwi",
-                "promotable": false
+                "promotable": false,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/bf-swagger.git", 
                 "threadfixId": "68",
                 "name": "bf-swagger",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pzsvc-ndwi-py.git", 
                 "requires_conda": true,
                 "childjobs": "venicegeo-conda-recipes-pipeline",
                 "name": "pzsvc-ndwi-py",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/bf-geojson-geopkg-converter.git", 
                 "threadfixId": "117",
                 "name": "bf-geojson-geopkg-converter",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/bf-ia-broker.git", 
                 "threadfixId": "116",
                 "name": "bf-ia-broker",
-                "promotable": true
+                "promotable": true,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pzsvc-shape-py.git", 
@@ -746,62 +769,75 @@
                 "requires_conda": true,
                 "childjobs": "venicegeo-conda-recipes-pipeline",
                 "name": "pzsvc-shape-py",
-                "promotable": false
+                "promotable": false,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/bfalg-shape.git", 
                 "threadfixId": "125",
                 "requires_conda": true,
                 "name": "bfalg-shape",
-                "promotable": false
+                "promotable": false,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/bfalg_WTA.git", 
                 "requires_conda": true,
                 "name": "bfalg_WTA",
-                "promotable": false
+                "promotable": false,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pzsvc-wta-py.git", 
                 "requires_conda": true,
                 "name": "pzsvc-wta-py",
-                "promotable": false
+                "promotable": false,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/pzsvc-exec.git", 
                 "name": "pzsvc-exec",
-                "promotable": false
+                "promotable": false,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/venicegeo-conda-recipes.git", 
                 "requires_conda": true,
                 "childjobs": ["pzsvc-exec-pipeline","bfalg-ndwi-pipeline","bfalg-shape-pipeline"],
                 "name": "venicegeo-conda-recipes",
-                "promotable": false
+                "promotable": false,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/beachfront-py.git", 
                 "threadfixId": 91,
                 "requires_conda": true,
                 "name": "beachfront-py",
-                "promotable": false
+                "promotable": false,
+                "nightly": false
             },
             {
                 "url": "https://github.com/venicegeo/bftest-integration.git", 
                 "threadfixId": 135,
                 "requires_npm": true,
                 "name": "bftest-integration",
-                "promotable": false
+                "promotable": false,
+                "nightly": true
             },
             {
                 "url": "https://github.com/venicegeo/geojson-go.git", 
                 "threadfixId": 115,
                 "name": "geojson-go",
-                "promotable": false
+                "promotable": false,
+                "nightly": false
             },
          ]
       }
    ],
+   "nightly": {
+      "foldername": "nightly",
+      "jobparams": []
+   },
    "promotion": {
       "foldername": "promotion",
       "jobparams": [
