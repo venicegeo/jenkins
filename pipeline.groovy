@@ -158,7 +158,7 @@ for (project in config.projects) {
   
   // Create an individual job for all Promotable Repos
   pipelineJob("${baseFolderName}/${project.foldername}/${config.promotion.foldername}/promote-all-pipelines") {
-    description("_${repo.name} promote all pipelines")
+    description("_${project.foldername} promote all pipelines")
     for (promotableRepo in promotableRepos) {
       build job: "${promotableRepo}"
     }
