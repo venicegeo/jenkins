@@ -157,7 +157,7 @@ for (project in config.projects) {
   }
   
   // Create an individual job for all Promotable Repos
-  pipelineJob("${baseFolderName}/${project.foldername}/${config.promotion.foldername}/promote-all-pipelines") {
+  pipelineJob("${baseFolderName}/${project.foldername}/${config.promotion.foldername}/_promote-all-pipelines") {
     description("_${project.foldername} promote all pipelines")
     def masterScript = ""
     for (promoteJob in promoteJobs) {
