@@ -24,6 +24,7 @@ for (project in config.projects) {
   folder("${baseFolderName}/${project.foldername}/${config.nightly.foldername}") {
     displayName("${project.foldername} nightly jobs")
   }
+  def promotableRepos = [] // Collect Promotable Repos for a single promote job
   for (repo in project.repos) {
     pipelineJob("${baseFolderName}/${project.foldername}/${repo.name}-pipeline") {
       description("${repo.name} pipeline")
@@ -67,7 +68,9 @@ for (project in config.projects) {
     }
 
     if (repo.promotable) {
-      pipelineJob("${baseFolderName}/${project.foldername}/${config.promotion.foldername}/${repo.name}-promote-pipeline") {
+      def promoteJobName = "${baseFolderName}/${project.foldername}/${config.promotion.foldername}/${repo.name}-promote-pipeline"
+      promotableRepos.add(promoteJobName)
+      pipelineJob(promoteJobName) {
         description("${repo.name} promotion pipeline")
         definition {
           cpsScm {
@@ -97,7 +100,6 @@ for (project in config.projects) {
             "${param.type}"("${param.name}", "${param.defaultvalue}", "${param.description}")
             }
           }
-          stringParam("GIT_URL", "${repo.url}", "Git repository URL")
           for(credparam in project.credparams) {
             credentialsParam("${credparam.name}") {
               defaultValue("${credparam.defaultvalue}")
@@ -153,7 +155,38 @@ for (project in config.projects) {
       }
     }
   }
+  
+  // Create an individual job for all Promotable Repos
+  pipelineJob("${baseFolderName}/${project.foldername}/${config.promotion.foldername}/promote-all-pipelines") {
+    description("_${repo.name} promote all pipelines")
+    for (promotableRepo in promotableRepos) {
+      build job: "${promotableRepo}"
+    }
+    parameters {
+      for(param in project.jobparams) {
+        if (param.type == "booleanParam") {
+        "${param.type}"("${param.name}", "${param.defaultvalue}".toBoolean(), "${param.description}")
+        } else {
+        "${param.type}"("${param.name}", "${param.defaultvalue}", "${param.description}")
+        }
+      }
+      for(param in config.promotion.jobparams) {
+        if (param.type == "booleanParam") {
+        "${param.type}"("${param.name}", "${param.defaultvalue}".toBoolean(), "${param.description}")
+        } else {
+        "${param.type}"("${param.name}", "${param.defaultvalue}", "${param.description}")
+        }
+      }
+      for(credparam in project.credparams) {
+        credentialsParam("${credparam.name}") {
+          defaultValue("${credparam.defaultvalue}")
+          description("${credparam.description}")
+        }
+      }
+    }
+  }
 }
+
 // Tools Pipelines
 for (repo in config.tools.repos) {
   folder("${baseFolderName}/${config.tools.foldername}") {
