@@ -3,7 +3,7 @@
 // Creates all PCF services required by Beachfront and Piazza. 
 node {
   def root = pwd()
-  def pcfSpace = "${env.PROMOTE_SPACE}"
+  def pcfSpace = "${env.PROVISION_SPACE}"
 
   withEnv(["CF_HOME=.cf"]) {
 

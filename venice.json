@@ -881,6 +881,12 @@
                 "type": "stringParam", 
                 "description": "PCF Organization", 
                 "name": "PCF_ORG"
+            },
+            {
+                "defaultvalue": "pz-int", 
+                "type": "stringParam", 
+                "description": "The space of the PCF organization to provision.", 
+                "name": "PROVISION_SPACE"
             }
       ],
       "credparams": [
