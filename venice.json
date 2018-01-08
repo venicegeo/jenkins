@@ -909,7 +909,7 @@
           },
           {
               "url": "https://github.com/venicegeo/jenkins.git",
-              "name": "PCF Service Provisioning",
+              "name": "pcf-service-provisioning",
               "scriptPath": "tools/JenkinsFile.Provision"
           }
       ]
