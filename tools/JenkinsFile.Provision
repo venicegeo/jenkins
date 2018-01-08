@@ -1,0 +1,130 @@
+#!/usr/bin/groovy
+
+// Creates all PCF services required by Beachfront and Piazza. 
+node {
+  def root = pwd()
+  def pcfSpace = "${env.PROMOTE_SPACE}"
+
+  withEnv(["CF_HOME=.cf"]) {
+
+    def authenticatePcf = { ->
+      withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${env.PCF_CREDS}", usernameVariable: "CFUSER", passwordVariable: "CFPASS"]]) {
+        sh """
+          cf api ${env.PCF_API_ENDPOINT}
+          cf auth ${CFUSER} ${CFPASS}
+          cf target -o ${env.PCF_ORG} -s ${pcfSpace}
+        """
+      }
+    }
+
+    def doesExist = { String serviceName ->
+      def existStatus = sh(script: "cf service ${serviceName}", returnStatus: true)
+      if (existStatus == 0) {
+        echo "${serviceName} exists in ${pcfSpace}. Will not attempt to recreate."
+        return true
+      } else {
+        return false
+      }
+    }
+
+    stage("Elasticsearch") {
+      def serviceName = "pz-elasticsearch"
+      authenticatePcf()
+      if (!doesExist("${serviceName}")) {
+        sh """
+          cf create-service ece small-cluster-with-kibana ${serviceName}
+        """
+      }
+    }
+
+    stage("RabbitMQ") {
+      def serviceName = "pz-rabbitmq"
+      authenticatePcf()
+      if (!doesExist("${serviceName}")) {
+        sh """
+          cf create-service p.rabbitmq solo ${serviceName}
+        """
+      }
+    }
+
+    stage("S3 Store") {
+      def serviceName = "pz-blobstore"
+      authenticatePcf()
+      if (!doesExist("${serviceName}")) {
+        sh """
+          cf create-service aws-s3 standard ${serviceName}
+        """
+      }
+    }
+
+    stage("GeoServer") {
+      def serviceName = "pz-geoserver"
+      authenticatePcf()
+      if (!doesExist("${serviceName}")) {
+        sh """
+          cf create-service boundless-on-demand small ${serviceName}
+        """
+      }
+    }
+
+    stage("PostgreSQL") {
+      def serviceName = "pz-postgres"
+      authenticatePcf()
+      if (!doesExist("${serviceName}")) {
+        sh """
+          cf create-service crunchy-postgresql-9.5-on-demand medium ${serviceName} -c \'{\"db_name\":\"piazza\",\"db_username\":\"piazza\",\"owner_name\":\"VeniceGeo\",\"owner_email\":\"patrick.doody@rgi-corp.com\"}\'
+        """
+      }
+      def serviceKeyName = "pz-postgres-service-key"
+      if (!doesExist("${serviceKeyName}")) { // Checking for the cups service wrapper for the service keys
+        // Ensure that the PostgreSQL instance has been created. Wait until it has been.
+        def isPostgresProvisioned = false
+        def timeouts = 0
+        def timeoutLimit = 10
+        while (!isPostgresProvisioned) {
+          def serviceStatus = sh(script: """cf service ${serviceName}""", returnStdout: true)
+          if (serviceStatus.contains("create succeeded") || serviceStatus.contains("update succeeded")) {
+            echo "${serviceName} instance found. Creating a Service key."
+            isPostgresProvisioned = true
+          } else if (timeouts++ > timeoutLimit) {
+            error("Timeout in confirming the provisioned status of ${serviceName}. This service could not be confirmed, so ${serviceKeyName} service keys could not be created.")
+          } else {
+            echo "${serviceName} not available yet. Will retry in two minutes."
+            sleep(time: 2, unit: "MINUTES")
+          }
+        }
+        // PostgreSQL provisioned - check if the Service Keys exist, or if they need to be created.
+        def serviceKeyStatus = sh(script: """cf service-key ${serviceName} ${serviceKeyName}""", returnStatus: true)
+        if (serviceKeyStatus != 0) {
+          // Service key doesn't exist - create it.
+          // Wait an arbitrary amount of time after PostgreSQL creation, or else the service keys call will fail. There is some required "warmup" after the 
+          // PostgreSQL service is immediately created.
+          sleep(time: 3, unit: "MINUTES")
+          sh """
+            cf create-service-key ${serviceName} ${serviceKeyName}
+          """
+        }
+        // Finally, create the cups service and inject the service key details as the JSON payload
+        def serviceKeyDetails = sh(script: """cf service-key ${serviceName} ${serviceKeyName}""", returnStdout: true)
+        // Write JSON to a file to avoid having to escape JSON characters in the cups command
+        // Also, those cli -p json parameters are also non-standard across platforms (avoid!)
+        def serviceKeyJson = serviceKeyDetails.substring(serviceKeyDetails.indexOf("{"), serviceKeyDetails.size()-1)
+        writeFile(file: "${root}/serviceKey.json", text: "${serviceKeyJson}")
+        sh """
+          cf cups ${serviceKeyName} -p ${root}/serviceKey.json
+        """
+      }
+    }
+
+    // TODO: GeoAxis must be done manually for now, until a proper cred store can be found.
+    // stage("GEOAxIS") {
+    //   sh """
+    //     cf api ${env.PCF_API_ENDPOINT}
+    //     cf auth ${CFUSER} ${CFPASS}
+    //     cf target -o ${env.PCF_ORG} -s ${pcfSpace}
+    //     cf cups geoaxis -p \\{"api":${},"basic":${},"client_id":${},"token":${},"uri":${}}\\
+    //   """
+    // }
+
+  }
+}

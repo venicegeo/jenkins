@@ -869,6 +869,18 @@
                 "type": "stringParam", 
                 "description": "Repo Group proxy in Nexus", 
                 "name": "ARTIFACT_STORAGE_URL"
+            },
+            {
+                "defaultvalue": "api.system.dev.east.paas.geointservices.io", 
+                "type": "stringParam", 
+                "description": "Cloudfoundry API endpoint", 
+                "name": "PCF_API_ENDPOINT"
+            },
+            {
+                "defaultvalue": "Optimus", 
+                "type": "stringParam", 
+                "description": "PCF Organization", 
+                "name": "PCF_ORG"
             }
       ],
       "credparams": [
@@ -876,12 +888,23 @@
               "defaultvalue": "nexus-deployment",
               "description": "Nexus Repository Credentials",
               "name": "ARTIFACT_STORAGE_CREDS"
-          }
+          },
+          {
+              "defaultvalue": "L2-PCF-Creds",
+              "description": "Cloud Foundry Credentials",
+              "name": "PCF_CREDS"
+          },
       ],
       "repos":[
           {
               "url": "https://github.com/venicegeo/vzutil-versioning.git", 
-              "name": "spm-dependency-collector"
+              "name": "spm-dependency-collector",
+              "scriptPath": "JenkinsFile"
+          },
+          {
+              "url": "https://github.com/venicegeo/jenkins.git",
+              "name": "PCF Service Provisioning",
+              "scriptPath": "tools/JenkinsFile.Provision"
           }
       ]
    }

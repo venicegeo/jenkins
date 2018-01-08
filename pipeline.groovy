@@ -208,7 +208,7 @@ for (repo in config.tools.repos) {
     definition {
       cpsScm {
         scm {
-          scriptPath("JenkinsFile")
+          scriptPath("${repo.scriptPath}")
           git {
             remote {
               url("${repo.url}")
