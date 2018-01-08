@@ -887,6 +887,12 @@
                 "type": "stringParam", 
                 "description": "The space of the PCF organization to provision.", 
                 "name": "PROVISION_SPACE"
+            },
+            {
+                "defaultvalue": "int.dev.east.paas.geointservices.io", 
+                "type": "stringParam", 
+                "description": "The domain of the PCF organization to provision.", 
+                "name": "PROVISION_DOMAIN"
             }
       ],
       "credparams": [
