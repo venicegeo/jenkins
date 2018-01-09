@@ -893,6 +893,11 @@
                 "type": "stringParam", 
                 "description": "The domain of the PCF organization to provision.", 
                 "name": "PROVISION_DOMAIN"
+            },
+            {
+                "defaultvalue": "https://NEXUSUSER:NEXUSPASS@nexus.devops.geointservices.io/content/repositories/beachfront-conda", 
+                "type": "stringParam", 
+                "name": "CONDA_CHANNEL_CREDS_URL"
             }
       ],
       "credparams": [
@@ -906,6 +911,11 @@
               "description": "Cloud Foundry Credentials",
               "name": "PCF_CREDS"
           },
+          {
+              "defaultvalue": "NEXUS_READ_ONLY",
+              "description": "Read-only credentials for Nexus",
+              "name": "ARTIFACT_READ_ONLY_CREDS"
+          }
       ],
       "repos":[
           {
