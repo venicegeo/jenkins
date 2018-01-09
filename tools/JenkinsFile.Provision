@@ -111,7 +111,7 @@ node {
         def serviceKeyJson = serviceKeyDetails.substring(serviceKeyDetails.indexOf("{"), serviceKeyDetails.size()-1)
         writeFile(file: "${root}/serviceKey.json", text: "${serviceKeyJson}")
         sh """
-          cf cups ${serviceKeyName} -p ${root}/serviceKey.json
+          cf cups ${serviceKeyName} -p "${root}/serviceKey.json"
         """
       }
     }
