@@ -933,11 +933,6 @@
               "name": "pcf-service-provisioning",
               "scriptPath": "tools/JenkinsFile.Provision"
           },
-          {
-              "url": "https://github.com/venicegeo/cf-quota", 
-              "name": "cf-quota",
-              "scriptPath": "JenkinsFile"
-          }
 
       ]
    }
