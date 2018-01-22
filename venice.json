@@ -919,6 +919,11 @@
       ],
       "repos":[
           {
+              "url": "https://github.com/venicegeo/cf-quota.git", 
+              "name": "cf-quota",
+              "scriptPath": "JenkinsFile"
+          },
+          {
               "url": "https://github.com/venicegeo/vzutil-versioning.git", 
               "name": "spm-dependency-collector",
               "scriptPath": "JenkinsFile"
@@ -927,7 +932,13 @@
               "url": "https://github.com/venicegeo/jenkins.git",
               "name": "pcf-service-provisioning",
               "scriptPath": "tools/JenkinsFile.Provision"
+          },
+          {
+              "url": "https://github.com/venicegeo/cf-quota", 
+              "name": "cf-quota",
+              "scriptPath": "JenkinsFile"
           }
+
       ]
    }
 }
