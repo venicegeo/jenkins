@@ -306,20 +306,6 @@
                 "nightly": false
             },
             {
-                "url": "https://github.com/venicegeo/pz-search-metadata-ingest.git", 
-                "threadfixId": "115", 
-                "name": "pz-search-metadata-ingest",
-                "promotable": true,
-                "nightly": false
-            },
-            {
-                "url": "https://github.com/venicegeo/pz-search-query.git", 
-                "threadfixId": "115", 
-                "name": "pz-search-query",
-                "promotable": true,
-                "nightly": false
-            },
-            {
                 "url": "https://github.com/venicegeo/pz-servicecontroller.git", 
                 "threadfixId": "115", 
                 "name": "pz-servicecontroller",
