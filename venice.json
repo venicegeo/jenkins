@@ -10,11 +10,6 @@
                 "name": "ARTIFACT_READ_ONLY_CREDS"
             },
             {
-                "defaultvalue": "VENICE_GITHUB_DEPLOY",
-                "description": "Git SSH Deploy Keys",
-                "name": "GITLAB_CREDS"
-            },
-            {
                 "defaultvalue": "PZ_THREADFIX_API_KEY",
                 "description": "Piazza's Threadfix API Key",
                 "name": "THREADFIX_API_KEY"
@@ -162,7 +157,7 @@
                 "name": "THREADFIX_ID"
             }, 
             {
-                "defaultvalue": "git@github.com:venicegeo/sspf/archive/master.zip", 
+                "defaultvalue": "https://github.com/venicegeo/sspf/archive/master.zip", 
                 "type": "stringParam", 
                 "description": "Security Scan Pass/Fail archive package", 
                 "name": "SSPF_PACKAGE"
@@ -260,7 +255,7 @@
          ],
          "repos":[
             {
-                "url": "git@github.com:venicegeo/pz-access.git", 
+                "url": "https://github.com/venicegeo/pz-access.git", 
                 "threadfixId": "115", 
                 "requiresJksCreds": true,
                 "name": "pz-access",
@@ -268,21 +263,21 @@
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pz-docs.git", 
+                "url": "https://github.com/venicegeo/pz-docs.git", 
                 "threadfixId": "115", 
                 "name": "pz-docs",
                 "promotable": true,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pz-gateway.git", 
+                "url": "https://github.com/venicegeo/pz-gateway.git", 
                 "threadfixId": "115", 
                 "name": "pz-gateway",
                 "promotable": true,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pz-idam.git", 
+                "url": "https://github.com/venicegeo/pz-idam.git", 
                 "threadfixId": "115",
                 "requiresJksCreds": true, 
                 "name": "pz-idam",
@@ -290,63 +285,63 @@
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pz-ingest.git", 
+                "url": "https://github.com/venicegeo/pz-ingest.git", 
                 "threadfixId": "115", 
                 "name": "pz-ingest",
                 "promotable": true,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pz-jobcommon.git", 
+                "url": "https://github.com/venicegeo/pz-jobcommon.git", 
                 "threadfixId": "115", 
                 "name": "pz-jobcommon",
                 "promotable": false,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pz-jobmanager.git", 
+                "url": "https://github.com/venicegeo/pz-jobmanager.git", 
                 "threadfixId": "115", 
                 "name": "pz-jobmanager",
                 "promotable": true,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pz-servicecontroller.git", 
+                "url": "https://github.com/venicegeo/pz-servicecontroller.git", 
                 "threadfixId": "115", 
                 "name": "pz-servicecontroller",
                 "promotable": true,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pz-swagger.git", 
+                "url": "https://github.com/venicegeo/pz-swagger.git", 
                 "threadfixId": "115", 
                 "name": "pz-swagger",
                 "promotable": true,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pzsvc-hello.git", 
+                "url": "https://github.com/venicegeo/pzsvc-hello.git", 
                 "threadfixId": "115", 
                 "name": "pzsvc-hello",
                 "promotable": true,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pzsvc-preview-generator.git", 
+                "url": "https://github.com/venicegeo/pzsvc-preview-generator.git", 
                 "threadfixId": "115", 
                 "name": "pzsvc-preview-generator",
                 "promotable": true,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pztest-integration.git", 
+                "url": "https://github.com/venicegeo/pztest-integration.git", 
                 "threadfixId": "115", 
                 "name": "pztest-integration",
                 "promotable": false,
                 "nightly": true
             },
             {
-                "url": "git@github.com:venicegeo/pz-release.git", 
+                "url": "https://github.com/venicegeo/pz-release.git", 
                 "threadfixId": "115",
                 "requiresTagging": true, 
                 "name": "pz-release",
@@ -362,11 +357,6 @@
                 "defaultvalue": "sonar-publish-token",
                 "description": "Sonar Upload Token",
                 "name": "SONAR_TOKEN"
-            },
-            {
-                "defaultvalue": "VENICE_GITHUB_DEPLOY",
-                "description": "Git SSH Deploy Keys",
-                "name": "GITLAB_CREDS"
             },
             {
                 "defaultvalue": "bf_test_key",
@@ -525,7 +515,7 @@
                 "name": "PCF_ORG"
             },
             {
-                "defaultvalue": "git@github.com:venicegeo/", 
+                "defaultvalue": "https://github.com/venicegeo/", 
                 "type": "stringParam", 
                 "description": "Git Base URL", 
                 "name": "GIT_BASE_URL"
@@ -537,7 +527,7 @@
                 "name": "THREADFIX_URL"
             },
             {
-                "defaultvalue": "git@github.com:venicegeo/sspf/archive/master.zip", 
+                "defaultvalue": "https://github.com/venicegeo/sspf/archive/master.zip", 
                 "type": "stringParam", 
                 "description": "Security Scan Pass/Fail archive package", 
                 "name": "SSPF_PACKAGE"
@@ -697,7 +687,7 @@
          ],
          "repos":[
             {
-                "url": "git@github.com:venicegeo/bf-tideprediction.git", 
+                "url": "https://github.com/venicegeo/bf-tideprediction.git", 
                 "threadfixId": "67",
                 "requires_conda": true, 
                 "name": "bf-tideprediction",
@@ -705,7 +695,7 @@
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/bf-ui.git", 
+                "url": "https://github.com/venicegeo/bf-ui.git", 
                 "threadfixId": "63",
                 "requires_map_data": true,
                 "requires_npm": true,
@@ -715,7 +705,7 @@
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/bf-api.git", 
+                "url": "https://github.com/venicegeo/bf-api.git", 
                 "threadfixId": "57",
                 "requires_geoserver_ssl_creds": true,
                 "name": "bf-api",
@@ -723,7 +713,7 @@
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/bfalg-ndwi.git", 
+                "url": "https://github.com/venicegeo/bfalg-ndwi.git", 
                 "threadfixId": "92",
                 "requires_conda": true,
                 "name": "bfalg-ndwi",
@@ -731,14 +721,14 @@
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/bf-swagger.git", 
+                "url": "https://github.com/venicegeo/bf-swagger.git", 
                 "threadfixId": "68",
                 "name": "bf-swagger",
                 "promotable": true,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pzsvc-ndwi-py.git", 
+                "url": "https://github.com/venicegeo/pzsvc-ndwi-py.git", 
                 "requires_conda": true,
                 "childjobs": "venicegeo-conda-recipes-pipeline",
                 "name": "pzsvc-ndwi-py",
@@ -746,21 +736,21 @@
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/bf-geojson-geopkg-converter.git", 
+                "url": "https://github.com/venicegeo/bf-geojson-geopkg-converter.git", 
                 "threadfixId": "117",
                 "name": "bf-geojson-geopkg-converter",
                 "promotable": true,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/bf-ia-broker.git", 
+                "url": "https://github.com/venicegeo/bf-ia-broker.git", 
                 "threadfixId": "116",
                 "name": "bf-ia-broker",
                 "promotable": true,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pzsvc-shape-py.git", 
+                "url": "https://github.com/venicegeo/pzsvc-shape-py.git", 
                 "threadfixId": "116",
                 "requires_conda": true,
                 "childjobs": "venicegeo-conda-recipes-pipeline",
@@ -769,7 +759,7 @@
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/bfalg-shape.git", 
+                "url": "https://github.com/venicegeo/bfalg-shape.git", 
                 "threadfixId": "125",
                 "requires_conda": true,
                 "name": "bfalg-shape",
@@ -777,27 +767,27 @@
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/bfalg_WTA.git", 
+                "url": "https://github.com/venicegeo/bfalg_WTA.git", 
                 "requires_conda": true,
                 "name": "bfalg_WTA",
                 "promotable": false,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pzsvc-wta-py.git", 
+                "url": "https://github.com/venicegeo/pzsvc-wta-py.git", 
                 "requires_conda": true,
                 "name": "pzsvc-wta-py",
                 "promotable": false,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/pzsvc-exec.git", 
+                "url": "https://github.com/venicegeo/pzsvc-exec.git", 
                 "name": "pzsvc-exec",
                 "promotable": false,
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/venicegeo-conda-recipes.git", 
+                "url": "https://github.com/venicegeo/venicegeo-conda-recipes.git", 
                 "requires_conda": true,
                 "childjobs": ["pzsvc-exec-pipeline","bfalg-ndwi-pipeline","bfalg-shape-pipeline"],
                 "name": "venicegeo-conda-recipes",
@@ -805,7 +795,7 @@
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/beachfront-py.git", 
+                "url": "https://github.com/venicegeo/beachfront-py.git", 
                 "threadfixId": 91,
                 "requires_conda": true,
                 "name": "beachfront-py",
@@ -813,7 +803,7 @@
                 "nightly": false
             },
             {
-                "url": "git@github.com:venicegeo/bftest-integration.git", 
+                "url": "https://github.com/venicegeo/bftest-integration.git", 
                 "threadfixId": 135,
                 "requires_npm": true,
                 "name": "bftest-integration",
@@ -821,7 +811,7 @@
                 "nightly": true
             },
             {
-                "url": "git@github.com:venicegeo/geojson-go.git", 
+                "url": "https://github.com/venicegeo/geojson-go.git", 
                 "threadfixId": 115,
                 "name": "geojson-go",
                 "promotable": false,
@@ -903,11 +893,6 @@
               "name": "ARTIFACT_STORAGE_CREDS"
           },
           {
-              "defaultvalue": "VENICE_GITHUB_DEPLOY",
-              "description": "Git SSH Deploy Keys",
-              "name": "GITLAB_CREDS"
-          },
-          {
               "defaultvalue": "L2-PCF-Creds",
               "description": "Cloud Foundry Credentials",
               "name": "PCF_CREDS"
@@ -920,17 +905,17 @@
       ],
       "repos":[
           {
-              "url": "git@github.com:venicegeo/cf-quota.git", 
+              "url": "https://github.com/venicegeo/cf-quota.git", 
               "name": "cf-quota",
               "scriptPath": "JenkinsFile"
           },
           {
-              "url": "git@github.com:venicegeo/vzutil-versioning.git", 
+              "url": "https://github.com/venicegeo/vzutil-versioning.git", 
               "name": "spm-dependency-collector",
               "scriptPath": "JenkinsFile"
           },
           {
-              "url": "git@github.com:venicegeo/jenkins.git",
+              "url": "https://github.com/venicegeo/jenkins.git",
               "name": "pcf-service-provisioning",
               "scriptPath": "tools/JenkinsFile.Provision"
           }
