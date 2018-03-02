@@ -687,6 +687,14 @@
          ],
          "repos":[
             {
+                "url": "git://github.com/venicegeo/bf-docs.git",
+                "threadfixId": "",
+                "requires_conda": false,
+                "name": "bf-docs",
+                "promotable": true,
+                "nightly": false
+            },
+            {
                 "url": "git://github.com/venicegeo/bf-tideprediction.git", 
                 "threadfixId": "67",
                 "requires_conda": true, 
