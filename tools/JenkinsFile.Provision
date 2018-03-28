@@ -27,16 +27,6 @@ node {
       }
     }
 
-    stage("Elasticsearch") {
-      def serviceName = "pz-elasticsearch"
-      authenticatePcf()
-      if (!doesExist("${serviceName}")) {
-        sh """
-          cf create-service ece small-cluster-with-kibana ${serviceName}
-        """
-      }
-    }
-
     stage("RabbitMQ") {
       def serviceName = "pz-rabbitmq"
       authenticatePcf()
