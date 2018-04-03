@@ -744,13 +744,6 @@
                 "nightly": false
             },
             {
-                "url": "git://github.com/venicegeo/bf-geojson-geopkg-converter.git", 
-                "threadfixId": "117",
-                "name": "bf-geojson-geopkg-converter",
-                "promotable": true,
-                "nightly": false
-            },
-            {
                 "url": "git://github.com/venicegeo/bf-ia-broker.git", 
                 "threadfixId": "116",
                 "name": "bf-ia-broker",
