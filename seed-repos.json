@@ -1,5 +1,5 @@
 {
-  "configuration-url": "git@gitlab.devops.geointservices.io:hosmerbl/venice-jenkins-mil.git",
+  "configuration-url": "git@gitlab.devops.geointservices.io:venicegeo/jenkins.git",
   "configuration-credentials": "gitlab-piazza-jenkins",
   "environment": "l2",
 	"folders": [{
