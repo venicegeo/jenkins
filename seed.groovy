@@ -12,16 +12,16 @@ def promotionFolderName = config.promotionsFolderName
 folder("${baseFolderName}")
 
 // For each folder, create the repo jobs
-for (folder in config.folders) {
-  folder("${baseFolderName}/${folder.name}") {
-    displayName("${folder.name} pipelines")
+for (projectFolder in config.folders) {
+  folder("${baseFolderName}/${projectFolder.name}") {
+    displayName("${projectFolder.name} pipelines")
   }
-  folder("${baseFolderName}/${folder.name}/${promotionFolderName}") {
-    displayName("${folder.name} promotion jobs")
+  folder("${baseFolderName}/${projectFolder.name}/${promotionFolderName}") {
+    displayName("${projectFolder.name} promotion jobs")
   }
   def promoteJobs = [] // Collect Promotable Jobs for a Master Promote Job
-  for (repo in folder.repos) {
-    pipelineJob("${baseFolderName}/${folder.name}/${repo.name}-pipeline") {
+  for (repo in projectFolder.repos) {
+    pipelineJob("${baseFolderName}/${projectFolder.name}/${repo.name}-pipeline") {
       description("${repo.name} pipeline")
       //triggers {
       //  gitHubPushTrigger()
@@ -56,7 +56,7 @@ for (folder in config.folders) {
       }
     }
     if (repo.promotable) {
-      def promoteJobName = "${baseFolderName}/${folder.name}/${promotionFolderName}/${repo.name}-promote-pipeline"
+      def promoteJobName = "${baseFolderName}/${projectFolder.name}/${promotionFolderName}/${repo.name}-promote-pipeline"
       promoteJobs.add(promoteJobName)
       pipelineJob(promoteJobName) {
         description("${repo.name} promotion pipeline")
@@ -84,8 +84,8 @@ for (folder in config.folders) {
     }
   }
   // Create an individual job for all Promotable repos
-  pipelineJob("${baseFolderName}/${folder.name}/${promotionFolderName}/_promote-all-pipelines") {
-    description("_${folder.name} promote all pipelines")
+  pipelineJob("${baseFolderName}/${projectFolder.name}/${promotionFolderName}/_promote-all-pipelines") {
+    description("_${projectFolder.name} promote all pipelines")
     def masterScript = ""
     for (promoteJob in promoteJobs) {
       masterScript = masterScript + """
