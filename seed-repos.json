@@ -1,4 +1,6 @@
 {
+  "baseFolderName": "l2-manual-pipelines",
+  "promotionsFolderName": "promotions",
   "configuration-url": "git@gitlab.devops.geointservices.io:venicegeo/jenkins.git",
   "configuration-credentials": "gitlab-piazza-jenkins",
   "environment": "l2",
