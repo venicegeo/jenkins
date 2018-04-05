@@ -23,9 +23,9 @@ for (folder in config.folders) {
   for (repo in folder.repos) {
     pipelineJob("${baseFolderName}/${folder.name}/${repo.name}-pipeline") {
       description("${repo.name} pipeline")
-      triggers {
-        gitHubPushTrigger()
-      }
+      //triggers {
+      //  gitHubPushTrigger()
+      //}
       environmentVariables { // If the repo has specified a Threadfix ID, use that.
         if (repo.threadfixId) {
           env('THREADFIX_ID', "${repo.threadfixId}")
