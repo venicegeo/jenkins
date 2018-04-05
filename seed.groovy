@@ -46,8 +46,8 @@ for (projectFolder in config.folders) {
       }
       parameters { // These are the parameters that would otherwise be manually injected.
         stringParam("GIT_URL", "${repo.url}", "Project Git repository URL")
-        stringParam("CONFIGURATION_URL", "${config.configuration-url}", "Credential Git repository URL")
-        stringParam("CONFIGURATION_CREDS", "${config.configuration-credentials}", "Credentials for Credential Git repository")
+        stringParam("CONFIGURATION_URL", "${config.configurationUrl}", "Credential Git repository URL")
+        stringParam("CONFIGURATION_CREDS", "${config.configurationCredentials}", "Credentials for Credential Git repository")
         stringParam("ENVIRONMENT", "${config.environment}", 
           "The environment, matching with the ENVIRONMENT-config.json file located in the configuration repository")
         if (repo.threadfixId) {
@@ -75,8 +75,8 @@ for (projectFolder in config.folders) {
         }
         parameters { // These are the parameters that would otherwise be manually injected.
           stringParam("GIT_URL", "${repo.url}", "Project Git repository URL")
-          stringParam("CONFIGURATION_URL", "${config.configuration-url}", "Credential Git repository URL")
-          stringParam("CONFIGURATION_CREDS", "${config.configuration-credentials}", "Credentials for Credential Git repository")
+          stringParam("CONFIGURATION_URL", "${config.configurationUrll}", "Credential Git repository URL")
+          stringParam("CONFIGURATION_CREDS", "${config.configurationCredentials}", "Credentials for Credential Git repository")
           stringParam("ENVIRONMENT", "${config.environment}", 
             "The environment, matching with the ENVIRONMENT-config.json file located in the configuration repository")
         }
