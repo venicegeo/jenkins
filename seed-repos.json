@@ -1,5 +1,5 @@
 {
-  "baseFolderName": "l2-manual-pipelines",
+  "baseFolderName": "venice/l2-manual-pipelines",
   "promotionsFolderName": "promotions",
   "configurationUrl": "git@gitlab.devops.geointservices.io:venicegeo/jenkins.git",
   "configurationCredentials": "gitlab-piazza-jenkins",
