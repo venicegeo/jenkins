@@ -7,8 +7,8 @@
 String configfile = readFileFromWorkspace("seed-repos.json")
 def slurper = new groovy.json.JsonSlurper()
 def config = slurper.parseText(configfile)
-def baseFolderName = "${config.baseFolderName}"
-def promotionFolderName = "${promotionsFolderName}"
+def baseFolderName = config.baseFolderName
+def promotionFolderName = config.promotionsFolderName
 folder("${baseFolderName}")
 
 // For each folder, create the repo jobs
