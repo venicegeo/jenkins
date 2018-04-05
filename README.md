@@ -1,31 +1,14 @@
-# Jenkins Build Pipelines
+# Jenkins Build Configurations
 
-This is the repo for Venice's Jenkins Seed Job. [More Information](https://github.com/venicegeo/venice/blob/master/docs/devops.md#jenkins).
+This is the repo for Venice Beachfront & Piazza Configuration files. 
 
-## What is a seed job?
+## Configuration Files
 
-The seed job is responsible for generating all other Jenkins jobs.
-
-## Configuration File
-
-The seed job points to the configuration file (`venice.json`) in order to pull in parameterized build parameters into project repositories. The JSON file consists of a group of project folders that define all of this information on a per-project basis. 
-
-## Testing seed job generation
-
-```
-./scripts/test.sh
-```
-
-## Replicating repos for disconnected environments using gitlab
-
-First, install the [gitlab cli](http://narkoz.github.io/gitlab/installation).
-
-You can then script the mirroring of your private or public github repos
-automatically.
+Each individual project JenkinsFile can pull the appropriate JSON file for its environment, and should inject those JSON credentials into its own build.
 
 ## License
 
-Copyright 2016, RadiantBlue Technologies, Inc.
+Copyright 2018, RadiantBlue Technologies, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
