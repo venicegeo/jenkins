@@ -369,7 +369,10 @@
 		"defaultvalue": "geointservices.io",
 		"type": "stringParam",
 		"description": "The domain of the PCF organization to push to. By default, will push to production.",
-		"name": "PROMOTE_DOMAIN""defaultvalue": "pz-int",
+		"name": "PROMOTE_DOMAIN"
+	},
+	{
+		"defaultvalue": "pz-int",
 		"type": "stringParam",
 		"description": "The space of the PCF organization to provision.",
 		"name": "PROVISION_SPACE"
