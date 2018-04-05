@@ -8,6 +8,7 @@ String configfile = readFileFromWorkspace("seed-repos.json")
 def slurper = new groovy.json.JsonSlurper()
 def config = slurper.parseText(configfile)
 def baseFolderName = "l2-manual-pipelines"
+def promotionFolderName = "promotions"
 folder("${baseFolderName}")
 
 // For each folder, create the repo jobs
@@ -15,7 +16,7 @@ for (folder in config.folders) {
   folder("${baseFolderName}/${folder.name}") {
     displayName("${folder.name} pipelines")
   }
-  folder("${baseFolderName}/${folder.name}/promotions") {
+  folder("${baseFolderName}/${folder.name}/${promotionFolderName}") {
     displayName("${folder.name} promotion jobs")
   }
   def promoteJobs = [] // Collect Promotable Jobs for a Master Promote Job
@@ -55,7 +56,7 @@ for (folder in config.folders) {
       }
     }
     if (repo.promotable) {
-      def promoteJobName = "${baseFolderName}/${folder.name}/promotions/${repo.name}-promote-pipeline"
+      def promoteJobName = "${baseFolderName}/${folder.name}/${promotionFolderName}/${repo.name}-promote-pipeline"
       promoteJobs.add(promoteJobName)
       pipelineJob(promoteJobName) {
         description("${repo.name} promotion pipeline")
@@ -83,7 +84,7 @@ for (folder in config.folders) {
     }
   }
   // Create an individual job for all Promotable repos
-  pipelineJob("${baseFolderName}/${folder.name}/promotions/_promote-all-pipelines") {
+  pipelineJob("${baseFolderName}/${folder.name}/${promotionFolderName}/_promote-all-pipelines") {
     description("_${folder.name} promote all pipelines")
     def masterScript = ""
     for (promoteJob in promoteJobs) {
