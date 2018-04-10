@@ -1,0 +1,223 @@
+{
+  "baseFolderName": "venice/l2-manual-pipelines",
+  "promotionsFolderName": "promotions",
+  "configurationUrl": "git@gitlab.devops.geointservices.io:venicegeo/jenkins.git",
+  "configurationCredentials": "gitlab-piazza-jenkins",
+  "environment": "l2",
+	"folders": [{
+		"name": "piazza",
+		"repos": [{
+			"url": "git://github.com/venicegeo/pz-access.git",
+			"threadfixId": "115",
+			"name": "pz-access",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pz-docs.git",
+			"threadfixId": "115",
+			"name": "pz-docs",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pz-gateway.git",
+			"threadfixId": "115",
+			"name": "pz-gateway",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pz-idam.git",
+			"threadfixId": "115",
+			"name": "pz-idam",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pz-ingest.git",
+			"threadfixId": "115",
+			"name": "pz-ingest",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pz-jobcommon.git",
+			"threadfixId": "115",
+			"name": "pz-jobcommon",
+			"promotable": false,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pz-jobmanager.git",
+			"threadfixId": "115",
+			"name": "pz-jobmanager",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pz-servicecontroller.git",
+			"threadfixId": "115",
+			"name": "pz-servicecontroller",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pz-swagger.git",
+			"threadfixId": "115",
+			"name": "pz-swagger",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pzsvc-hello.git",
+			"threadfixId": "115",
+			"name": "pzsvc-hello",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pzsvc-preview-generator.git",
+			"threadfixId": "115",
+			"name": "pzsvc-preview-generator",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pztest-integration.git",
+			"threadfixId": "115",
+			"name": "pztest-integration",
+			"promotable": false,
+			"nightly": true
+		},
+		{
+			"url": "git://github.com/venicegeo/pz-release.git",
+			"threadfixId": "115",
+			"name": "pz-release",
+			"promotable": true,
+			"nightly": false
+		}]
+	},
+	{
+		"name": "beachfront",
+		"repos": [{
+			"url": "git://github.com/venicegeo/bf-docs.git",
+			"threadfixId": "",
+			"name": "bf-docs",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/bf-tideprediction.git",
+			"threadfixId": "67",
+			"name": "bf-tideprediction",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/bf-ui.git",
+			"threadfixId": "63",
+			"name": "bf-ui",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/bf-api.git",
+			"threadfixId": "57",
+			"name": "bf-api",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/bfalg-ndwi.git",
+			"threadfixId": "92",
+			"name": "bfalg-ndwi",
+			"promotable": false,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/bf-swagger.git",
+			"threadfixId": "68",
+			"name": "bf-swagger",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pzsvc-ndwi-py.git",
+			"childjobs": "venicegeo-conda-recipes-pipeline",
+			"name": "pzsvc-ndwi-py",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/bf-ia-broker.git",
+			"threadfixId": "116",
+			"name": "bf-ia-broker",
+			"promotable": true,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pzsvc-shape-py.git",
+			"threadfixId": "116",
+			"childjobs": "venicegeo-conda-recipes-pipeline",
+			"name": "pzsvc-shape-py",
+			"promotable": false,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/bfalg-shape.git",
+			"threadfixId": "125",
+			"name": "bfalg-shape",
+			"promotable": false,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/bfalg_WTA.git",
+			"name": "bfalg_WTA",
+			"promotable": false,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pzsvc-wta-py.git",
+			"name": "pzsvc-wta-py",
+			"promotable": false,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/pzsvc-exec.git",
+			"name": "pzsvc-exec",
+			"promotable": false,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/venicegeo-conda-recipes.git",
+			"childjobs": ["pzsvc-exec-pipeline",
+			"bfalg-ndwi-pipeline",
+			"bfalg-shape-pipeline"],
+			"name": "venicegeo-conda-recipes",
+			"promotable": false,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/beachfront-py.git",
+			"threadfixId": 91,
+			"name": "beachfront-py",
+			"promotable": false,
+			"nightly": false
+		},
+		{
+			"url": "git://github.com/venicegeo/bftest-integration.git",
+			"threadfixId": 135,
+			"name": "bftest-integration",
+			"promotable": false,
+			"nightly": true
+		},
+		{
+			"url": "git://github.com/venicegeo/geojson-go.git",
+			"threadfixId": 115,
+			"name": "geojson-go",
+			"promotable": false,
+			"nightly": false
+		}]
+	}]
+}
