@@ -33,6 +33,9 @@ for (projectFolder in config.folders) {
           env('THREADFIX_ID', "${repo.threadfixId}")
         }
       }
+      triggers {
+        gitHubPushTrigger()
+      }
       definition {
         cpsScm {
           scm {
