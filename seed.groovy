@@ -83,7 +83,7 @@ for (projectFolder in config.folders) {
         }
         parameters { // These are the parameters that would otherwise be manually injected.
           stringParam("GIT_URL", "${repo.url}", "Project Git repository URL")
-          stringParam("CONFIGURATION_URL", "${config.configurationUrll}", "Credential Git repository URL")
+          stringParam("CONFIGURATION_URL", "${config.configurationUrl}", "Credential Git repository URL")
           credentialsParam("CONFIGURATION_CREDS") {
             defaultValue("${config.configurationCredentials}")
             description("Credentials for Credential Git repository")
@@ -129,7 +129,7 @@ for (tool in config.tools.repos) {
     }
     parameters { // These are the parameters that would otherwise be manually injected.
       stringParam("GIT_URL", "${tool.url}", "Project Git repository URL")
-      stringParam("CONFIGURATION_URL", "${config.configurationUrll}", "Credential Git repository URL")
+      stringParam("CONFIGURATION_URL", "${config.configurationUrl}", "Credential Git repository URL")
       credentialsParam("CONFIGURATION_CREDS") {
         defaultValue("${config.configurationCredentials}")
         description("Credentials for Credential Git repository")
