@@ -1,9 +1,17 @@
 {
-  "baseFolderName": "venice/l2-manual-pipelines",
-  "promotionsFolderName": "promotions",
-  "configurationUrl": "git@gitlab.devops.geointservices.io:venicegeo/jenkins.git",
-  "configurationCredentials": "gitlab-piazza-jenkins",
-  "environment": "l2",
+	"baseFolderName": "venice/l2-manual-pipelines",
+	"promotionsFolderName": "promotions",
+  "toolsFolderName": "tools",
+	"configurationUrl": "git@gitlab.devops.geointservices.io:venicegeo/jenkins.git",
+	"configurationCredentials": "gitlab-piazza-jenkins",
+	"environment": "l2",
+	"tools": {
+		"repos": [{
+			"url": "git://github.com/venicegeo/jenkins",
+			"name": "pcf-service-provisioning",
+			"path": "tools/JenkinsFile.Provision"
+		}]
+	},
 	"folders": [{
 		"name": "piazza",
 		"repos": [{

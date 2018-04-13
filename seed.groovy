@@ -9,7 +9,9 @@ def slurper = new groovy.json.JsonSlurper()
 def config = slurper.parseText(configfile)
 def baseFolderName = config.baseFolderName
 def promotionFolderName = config.promotionsFolderName
+def toolsFolderName = config.toolsFolderName
 folder("${baseFolderName}")
+folder("${baseFolderName}/${toolsFolderName}")
 
 // For each folder, create the repo jobs
 for (projectFolder in config.folders) {
@@ -102,6 +104,35 @@ for (projectFolder in config.folders) {
       cps {
         script(masterScript)
       }
+    }
+  }
+}
+// Create Tool Folders
+for (tool in config.tools.repos) {
+  pipelineJob("${baseFolderName}/${toolsFolderName}/${tool.name}") {
+    description("${tool.name}")
+    definition {
+      cpsScm {
+        scm {
+          scriptPath("${tool.path}")
+          git {
+            remote {
+              url("${tool.url}")
+              branch("*/master")
+            }
+          }
+        }
+      }
+    }
+    parameters { // These are the parameters that would otherwise be manually injected.
+      stringParam("GIT_URL", "${tool.url}", "Project Git repository URL")
+      stringParam("CONFIGURATION_URL", "${config.configurationUrll}", "Credential Git repository URL")
+      credentialsParam("CONFIGURATION_CREDS") {
+        defaultValue("${config.configurationCredentials}")
+        description("Credentials for Credential Git repository")
+      }
+      stringParam("ENVIRONMENT", "${config.environment}", 
+        "The environment, matching with the ENVIRONMENT-config.json file located in the configuration repository")
     }
   }
 }
