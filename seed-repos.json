@@ -1,10 +1,10 @@
 {
-	"baseFolderName": "venice/l2-manual-pipelines",
+	"baseFolderName": "venice/2-0-test-pipelines",
 	"promotionsFolderName": "promotions",
   "toolsFolderName": "tools",
 	"configurationUrl": "git@gitlab.devops.geointservices.io:venicegeo/jenkins.git",
 	"configurationCredentials": "gitlab-piazza-jenkins",
-	"environment": "l2",
+	"environment": "2.0",
 	"tools": {
 		"repos": [{
 			"url": "git://github.com/venicegeo/jenkins",
