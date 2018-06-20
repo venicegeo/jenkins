@@ -1,0 +1,26 @@
+#!/usr/bin/groovy
+
+node {
+  def root = pwd()
+  
+  def repos = ["venicegeo-conda-recipes","pzsvc-ndwi-py"]
+
+	stage("Setup") {
+		deleteDir()
+        repos.each {
+            sh "mkdir ${it}"
+            dir("${it}") {
+              git url: "https://github.com/venicegeo/${it}"
+              sh """
+                bash tag.sh ${env.RELEASE_NAME} || true
+                git tag -a ${env.RELEASE_NAME} -m "${env.RELEASE_NAME} ${env.RELEASE_MESSAGE}"
+                git add .
+                git commit -m "Creating tag ${env.RELEASE_NAME}" --allow-empty
+                git push --tags
+              """
+              
+            }
+            sh "rm -rf ${it}"
+        }
+	}
+}
