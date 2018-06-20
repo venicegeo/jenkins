@@ -27,7 +27,7 @@ node {
         repos.each {
             sh "mkdir ${it}"
             dir("${it}") {
-              git url: "git://github.com/venicegeo/${it}"
+              git url: "https://github.com/venicegeo/${it}"
               sh """
                 bash tag.sh ${env.RELEASE_NAME} || true
                 git tag -a ${env.RELEASE_NAME} -m "${env.RELEASE_NAME} ${env.RELEASE_MESSAGE}"
