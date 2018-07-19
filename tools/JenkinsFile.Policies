@@ -1,0 +1,71 @@
+#!/usr/bin/groovy
+
+// Creates all of the Network Policies required for using apps.internal route.
+// This uses a user-defined Jenkins parameters called SPACE to determine which space to provision.
+// This parameter must be set up in the accompanying Jenkins job.
+node {
+  def root = pwd()
+  
+  stage("Config") {
+    // clone the configuration repository and copy the current configuration
+    def configDir = "${root}/configuration"
+    def configFile = "${root}/config.json"
+    dir(configDir) {
+      git url: "${env.CONFIGURATION_URL}", credentialsId: "${env.CONFIGURATION_CREDS}"
+      sh "mv ${configDir}/${ENVIRONMENT}-config.json ${configFile}"
+      deleteDir()
+    }
+    // read the current configuration
+    def configJson = readJSON file: "${configFile}"
+    for (param in configJson.credparams + configJson.jobparams) { 
+      env."${param.name}" = (param.type == "booleanParam") ? "${param.defaultvalue}".toBoolean() : "${param.defaultvalue}"
+    }
+  }
+  
+  def pcfSpace = "${env.SPACE}"
+
+  withEnv(["CF_HOME=.cf"]) {
+
+    def getAppName = { String appName -> 
+      def appName = sh(script: "cf routes | grep \"${appName} \" | awk '{print \$4}'", returnStdout: true).trim()
+      if ((appName == "") || (appName == null)) {
+        error("Could not find ${appName} application. Cannot create all policies.")
+      }
+    }
+
+    stage("Create Policies") {
+      withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${env.PCF_CREDS}", usernameVariable: "CFUSER", passwordVariable: "CFPASS"]]) {
+        // Log into PCF
+        sh """
+          cf api ${env.PCF_API_ENDPOINT}
+          cf auth ${CFUSER} ${CFPASS}
+          cf target -o ${env.PCF_ORG} -s ${pcfSpace}
+        """
+        
+        // Collect all of the Application Names from the Routes
+        def api = getAppName("bf-api")
+        def iaBroker = getAppName("bf-ia-broker")
+        def tides = getAppName("bf-tideprediction")
+        def gateway = getAppName("pz-gateway")
+        def ingest = getAppName("pz-ingest")
+        def access = getAppName("pz-access")
+        def idam = getAppName("pz-idam")
+        def jobManager = getAppName("pz-jobmanager")
+        def serviceController = getAppName("pz-servicecontroller")
+        
+        // Create the Policies
+        sh "cf add-network-policy ${api} --destination-app ${iaBroker} --protocol tcp --port 8080"
+        sh "cf add-network-policy ${iaBroker} --destination-app ${tides} --protocol tcp --port 8080"
+        
+        sh "cf add-network-policy ${gateway} --destination-app ${ingest} --protocol tcp --port 8080"
+        sh "cf add-network-policy ${gateway} --destination-app ${access} --protocol tcp --port 8080"
+        sh "cf add-network-policy ${gateway} --destination-app ${serviceController} --protocol tcp --port 8080"
+        sh "cf add-network-policy ${gateway} --destination-app ${jobManager} --protocol tcp --port 8080"
+        sh "cf add-network-policy ${gateway} --destination-app ${idam} --protocol tcp --port 8080"
+        
+        sh "cf add-network-policy ${ingest} --destination-app ${access} --protocol tcp --port 8080"
+      }
+
+    }
+  }
+}
