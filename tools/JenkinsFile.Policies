@@ -27,7 +27,7 @@ node {
   withEnv(["CF_HOME=.cf"]) {
 
     def getAppName = { String appName -> 
-      def fullAppName = sh(script: "cf routes | grep \"${appName} \" | awk '{print \$4}'", returnStdout: true).trim()
+      def fullAppName = sh(script: "cf routes | grep \"${appName}\" | awk '{print \$4}' | head -n1", returnStdout: true).trim()
       if ((fullAppName == "") || (fullAppName == null)) {
         error("Could not find ${appName} application. Cannot create all policies.")
       }
