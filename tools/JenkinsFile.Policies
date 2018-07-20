@@ -43,6 +43,9 @@ node {
           cf target -o ${env.PCF_ORG} -s ${pcfSpace}
         """
         
+        // Ensure routes are cleaned
+        sh "cf delete-orphaned-routes -f"
+        
         // Collect all of the Application Names from the Routes
         def api = getAppName("bf-api")
         def iaBroker = getAppName("bf-ia-broker")
