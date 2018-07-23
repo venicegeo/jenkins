@@ -43,19 +43,23 @@ node {
           cf target -o ${env.PCF_ORG} -s ${pcfSpace}
         """
         
-        // Ensure routes are cleaned
+        // Initial route cleanup
         sh "cf delete-orphaned-routes -f"
-        
+
         // Scan all routes
-        def routes = sh(script: "cf routes", returnStdout: true)
-        for (Object route : routes.trim().tokenize('\r')) {
-          def routeName = sh(script: "echo \"${route}\" | awk '{print \$2}'", returnStdout: true).trim()
-          def appName = sh(script: "echo \"${route}\" | awk '{print \$4}'", returnStdout: true).trim()
+        def routes = sh(script: "cf routes | tail -n +4", returnStdout: true)
+        for (Object route : routes.trim().tokenize('\n')) {
+          def appName = sh(script: "echo \"${route}\" | awk '{print \$2}'", returnStdout: true).trim()
+          def routeName = sh(script: "echo \"${route}\" | awk '{print \$4}'", returnStdout: true).trim()
           // If the host and the route are the same name, then it is default. Remove.
           if (routeName.equalsIgnoreCase(appName)) {
             sh "cf unmap-route ${appName} ${pcfDomain} --hostname ${routeName}"
+            sh "cf delete-route ${pcfDomain} --hostname ${routeName}"
           }
         }
+        
+        // Final cleanup if any routes are lingering without an app.
+        sh "cf delete-orphaned-routes -f"
       }
     }
   }
