@@ -49,8 +49,8 @@ node {
         // Scan all routes
         def routes = sh(script: "cf routes", returnStdout: true)
         for (Object route : routes.trim().tokenize('\r')) {
-          def routeName = sh(script: "echo ${route} | awk '{print \$2}'", returnStdout: true)
-          def appName = sh(script: "echo ${route} | awk '{print \$4}'", returnStdout: true)
+          def routeName = sh(script: "echo \"${route}\" | awk '{print \$2}'", returnStdout: true)
+          def appName = sh(script: "echo \"${route}\" | awk '{print \$4}'", returnStdout: true)
           // If the host and the route are the same name, then it is default. Remove.
           sh "cf unmap-route ${appName} ${pcfDomain} --hostname ${routeName}"
         }
