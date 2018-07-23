@@ -49,12 +49,17 @@ node {
         // Scan all routes
         def routes = sh(script: "cf routes | tail -n +4", returnStdout: true)
         for (Object route : routes.trim().tokenize('\n')) {
-          def appName = sh(script: "echo \"${route}\" | awk '{print \$2}'", returnStdout: true).trim()
-          def routeName = sh(script: "echo \"${route}\" | awk '{print \$4}'", returnStdout: true).trim()
+          def routeName = sh(script: "echo \"${route}\" | awk '{print \$2}'", returnStdout: true).trim()
+          def appName = sh(script: "echo \"${route}\" | awk '{print \$4}'", returnStdout: true).trim()
           // If the host and the route are the same name, then it is default. Remove.
           if (routeName.equalsIgnoreCase(appName)) {
             sh "cf unmap-route ${appName} ${pcfDomain} --hostname ${routeName}"
             sh "cf delete-route ${pcfDomain} --hostname ${routeName}"
+          }
+          // Special case - remove pz-gateway. We exclusively use `piazza` now. 
+          if (routeName == "pz-gateway") {
+            sh "cf unmap-route ${appName} ${pcfDomain} --hostname pz-gateway"
+            sh "cf delete-route ${pcfDomain} --hostname pz-gateway"
           }
         }
         
