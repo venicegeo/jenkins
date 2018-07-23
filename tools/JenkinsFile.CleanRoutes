@@ -52,7 +52,7 @@ node {
           def routeName = sh(script: "echo \"${route}\" | awk '{print \$2}'", returnStdout: true).trim()
           def appName = sh(script: "echo \"${route}\" | awk '{print \$4}'", returnStdout: true).trim()
           // If the host and the route are the same name, then it is default. Remove.
-          if (!routeName == appName) {
+          if (routeName == appName) {
             sh "cf unmap-route ${appName} ${pcfDomain} --hostname ${routeName}"
           }
         }
