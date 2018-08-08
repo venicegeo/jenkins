@@ -1,0 +1,59 @@
+node {
+    def root = pwd()
+
+    if(!fileExists('.cf')) {
+        sh "mkdir -p .cf"
+    }
+    
+    stage("Config") {
+        // clone the configuration repository and copy the current configuration
+        def configDir = "${root}/configuration"
+        def configFile = "${root}/config.json"
+        dir(configDir) {
+            git url: "${env.CONFIGURATION_URL}", credentialsId: "${env.CONFIGURATION_CREDS}"
+            sh "mv ${configDir}/${env.ENVIRONMENT}-config.json ${configFile}"
+            deleteDir()
+        }
+        // read the current configuration
+        def configJson = readJSON file: "${configFile}"
+        for (param in configJson.credparams + configJson.jobparams) {
+            def paramValueString = (param.defaultvalue != null) ? param.defaultvalue.toString() : ""
+            env."${param.name}" = (param.type == "booleanParam") ? paramValueString.toBoolean() : paramValueString
+        }   
+    }
+
+    stage("Unbind services") {
+        withEnv(["CF_HOME=.cf"]) {
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${env.PCF_CREDS}", usernameVariable: "CFUSER", passwordVariable: "CFPASS"]]) {
+                sh """
+                    cf api ${env.PCF_API_ENDPOINT}
+                    cf auth ${CFUSER} ${CFPASS}
+                    cf target -o ${env.PCF_ORG} -s ${env.PCF_SPACE}
+                """
+            }
+
+            def apps = sh(script:"cf service ${env.UNBIND_SERVICE} | grep '^bound apps:' | sed 's/^bound apps: *//'", returnStdout: true).split(", ")
+          
+
+            def unboundAppCount = 0
+            apps.each { appName ->
+                appName = appName.trim()
+                if (appName.equals("")) {
+                    return
+                }
+                def command = "cf unbind-service ${appName} ${env.UNBIND_SERVICE}"
+                
+                if (env.DRY_RUN) {
+                    echo "DRY RUN COMMAND: ${command}"
+                } else {
+                    sh command
+                }
+                unboundAppCount++
+            }
+            if (unboundAppCount < 1) {
+                echo "ERROR: no apps found; are you sure your environment/auth are set up right?"
+                return
+            }
+        }
+    }
+}
